@@ -5,7 +5,6 @@ var initialized : bool
 enum GameStates { INIT, TITLE, INTRO, PLAY }
 
 func _ready() -> void:
-	print("[Game] ready: ", Globals.initialized)
 	if Globals.initialized == false:
 		return
 

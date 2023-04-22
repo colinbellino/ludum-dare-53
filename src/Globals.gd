@@ -77,12 +77,9 @@ var audio_player_sound : AudioStreamPlayer2D
 var audio_player_music : AudioStreamPlayer2D
 
 func _ready() -> void:
-	print("[Globals] _ready")
 	init()
 
 func init() -> void:
-	print("[Globals] init")
-
 	# Reset state (mainly for restarts)
 	initialized = false
 	game_state = 0
@@ -142,7 +139,6 @@ func init() -> void:
 	Globals.astar = AStar2D.new()
 	assert(Globals.astar != null, "Globals.astar not initialized correctly.")
 
-	print("Globals.settings: ", Globals.settings.window_fullscreen, Globals.settings.resolution)
 	if Globals.can_fullscreen:
 		Globals.set_fullscreen(Globals.settings.window_fullscreen)
 	Globals.set_resolution(Globals.settings.resolution)

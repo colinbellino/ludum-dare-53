@@ -20,7 +20,7 @@
         {
             "label": "Windows: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Windows/${input:folder} colinbellino/untitled-dinosaur-game:win",
+            "command": "butler push ./builds/Windows/${input:folder} colinbellino/ludum-dare-53:win",
             "problemMatcher": []
         },
         {
@@ -42,7 +42,7 @@
         {
             "label": "Mac: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Mac/${input:folder} colinbellino/untitled-dinosaur-game:mac",
+            "command": "butler push ./builds/Mac/${input:folder} colinbellino/ludum-dare-53:mac",
             "problemMatcher": []
         },
         {
@@ -60,7 +60,7 @@
         {
             "label": "Web: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Web/${input:folder} colinbellino/untitled-dinosaur-game:web",
+            "command": "butler push ./builds/Web/${input:folder} colinbellino/ludum-dare-53:web",
             "problemMatcher": []
         },
         {
@@ -72,7 +72,7 @@
         {
             "label": "Linux: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Linux/${input:folder} colinbellino/untitled-dinosaur-game:linux",
+            "command": "butler push ./builds/Linux/${input:folder} colinbellino/ludum-dare-53:linux",
             "problemMatcher": []
         },
     ],
