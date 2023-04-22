@@ -1,0 +1,132 @@
+[gd_scene load_steps=3 format=3 uid="uid://3syp2ekpshot"]
+
+[ext_resource type="Script" path="res://src/SettingsUI.gd" id="1"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://media/main.theme" id="2"]
+
+[node name="Settings" type="CanvasLayer"]
+unique_name_in_owner = true
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.454902, 0.623529, 1)
+
+[node name="Title" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 400.0
+offset_right = 439.0
+offset_bottom = 22.0
+theme = ExtResource("2")
+text = "Settings"
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.541
+anchor_top = 0.496
+anchor_right = 0.541
+anchor_bottom = 0.496
+offset_left = -308.72
+offset_top = -401.68
+offset_right = -154.72
+offset_bottom = -200.68
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Fullscreen" type="CheckButton" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+text = "Fullscreen"
+
+[node name="Resolution" type="OptionButton" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+flat = true
+
+[node name="Locale" type="OptionButton" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+flat = true
+
+[node name="Control" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Control"]
+layout_mode = 0
+theme = ExtResource("2")
+text = "Volume: Main"
+
+[node name="VolumeMain" type="HSlider" parent="Menu/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 16.0
+grow_horizontal = 0
+max_value = 1.0
+step = 0.1
+
+[node name="Control2" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Control2"]
+layout_mode = 0
+theme = ExtResource("2")
+text = "Volume: Music"
+
+[node name="VolumeMusic" type="HSlider" parent="Menu/Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 16.0
+grow_horizontal = 0
+max_value = 1.0
+step = 0.1
+
+[node name="Control3" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Control3"]
+layout_mode = 0
+theme = ExtResource("2")
+text = "Volume: Sound"
+
+[node name="VolumeSound" type="HSlider" parent="Menu/Control3"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 16.0
+grow_horizontal = 0
+max_value = 1.0
+step = 0.1
+
+[node name="Close" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+text = "Close"
+
+[node name="Quit" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+text = "Quit game"

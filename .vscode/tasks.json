@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Windows: build (debug)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --no-window --export-debug 'Windows' ./builds/Windows/$date_time/LD53.exe && ./builds/Windows/$date_time/LD53.exe",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Windows: build (release)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --no-window --export 'Windows' ./builds/Windows/$date_time/LD53.exe && ./builds/Windows/$date_time/LD53.exe",
+            "problemMatcher": []
+        },
+        {
+            "label": "Windows: deploy",
+            "type": "shell",
+            "command": "butler push ./builds/Windows/${input:folder} colinbellino/untitled-dinosaur-game:win",
+            "problemMatcher": []
+        },
+        {
+            "label": "Mac: build (debug)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --no-window --export-debug 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Mac: build (release)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --no-window --export 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
+            "problemMatcher": []
+        },
+        {
+            "label": "Mac: deploy",
+            "type": "shell",
+            "command": "butler push ./builds/Mac/${input:folder} colinbellino/untitled-dinosaur-game:mac",
+            "problemMatcher": []
+        },
+        {
+            "label": "Web: build (debug)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Web/$date_time && godot --no-window --export-debug 'Web' ./builds/Web/$date_time/index.html && serve --no-clipboard ./builds/Web/$date_time",
+            "problemMatcher": []
+        },
+        {
+            "label": "Web: build (release)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Web/$date_time && godot --no-window --export 'Web' ./builds/Web/$date_time/index.html && serve --no-clipboard ./builds/Web/$date_time",
+            "problemMatcher": []
+        },
+        {
+            "label": "Web: deploy",
+            "type": "shell",
+            "command": "butler push ./builds/Web/${input:folder} colinbellino/untitled-dinosaur-game:web",
+            "problemMatcher": []
+        },
+        {
+            "label": "Linux: build (release)",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --no-window --export 'Linux' ./builds/Linux/$date_time/LD53 && ./builds/Linux/$date_time/LD53",
+            "problemMatcher": []
+        },
+        {
+            "label": "Linux: deploy",
+            "type": "shell",
+            "command": "butler push ./builds/Linux/${input:folder} colinbellino/untitled-dinosaur-game:linux",
+            "problemMatcher": []
+        },
+    ],
+    "inputs": [
+        {
+            "id": "folder",
+            "type": "promptString",
+            "description": "Folder to deploy"
+        }
+    ]
+}
