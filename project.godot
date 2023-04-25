@@ -38,6 +38,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Ludum-dare-53"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_up={
