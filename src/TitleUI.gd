@@ -16,6 +16,7 @@ func _ready() -> void:
 	button_continue.connect("mouse_entered", on_button_hover)
 	button_settings.connect("mouse_entered", on_button_hover)
 	button_settings.connect("pressed", button_settings_pressed)
+	Globals.ui_settings.connect("closed", button_settings_closed)
 	button_quit.connect("mouse_entered", on_button_hover)
 	button_quit.connect("pressed", button_quit_pressed)
 
@@ -45,6 +46,10 @@ func button_start_pressed() -> void:
 
 func button_settings_pressed() -> void:
 	Globals.ui_settings.open()
+
+func button_settings_closed() -> void:
+	print("button_settings_pressed")
+	button_settings.grab_focus()
 
 func button_quit_pressed() -> void:
 	Game.quit_game()

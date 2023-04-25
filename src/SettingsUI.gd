@@ -9,6 +9,8 @@ var slider_volume_main : Slider
 var slider_volume_music : Slider
 var slider_volume_sound : Slider
 
+signal closed
+
 func _ready() -> void:
 	button_fullscreen = get_node("%Fullscreen")
 	button_resolution = get_node("%Resolution")
@@ -74,6 +76,7 @@ func open(show_quit_button: bool = false) -> void:
 
 func close() -> void:
 	visible = false
+	closed.emit()
 
 func button_fullscreen_pressed() -> void:
 	Globals.settings.window_fullscreen = !Globals.settings.window_fullscreen
