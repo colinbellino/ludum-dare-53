@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfagjt81lv8qt"]
+[gd_scene load_steps=12 format=3 uid="uid://cfagjt81lv8qt"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://3lw77c48pgwm" path="res://media/scenes/ui/TitleUI.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dk1wwxg17poig" path="res://media/scenes/ui/DebugUI.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://3syp2ekpshot" path="res://media/scenes/ui/SettingsUI.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://cq8pnvl1dbvye" path="res://media/art/icon_godot.png" id="8_ugvn6"]
 [ext_resource type="Script" path="res://src/ScreenShake.gd" id="11"]
 [ext_resource type="PackedScene" uid="uid://cjy2v6yweddr1" path="res://media/scenes/ui/PlayUI.tscn" id="12"]
 [ext_resource type="Script" path="res://src/PlayUI.gd" id="13"]
@@ -73,3 +74,9 @@ libraries = {
 
 [node name="World" type="Node2D" parent="."]
 scale = Vector2(4, 4)
+
+[node name="Player" type="Sprite2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(247.5, 134)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_ugvn6")

@@ -1,5 +1,7 @@
 class_name Game extends Node
 
+var PLAYER_SPEED := 60.0
+
 var initialized : bool
 
 enum GameStates { INIT, TITLE, INTRO, PLAY }
@@ -106,6 +108,13 @@ func _process(delta: float):
 				"time_elapsed": Globals.time_elapsed,
 				"delta": delta,
 			}, "  ")
+
+		var move_input = Vector2(
+			Input.get_axis("move_left", "move_right"),
+			Input.get_axis("move_up", "move_down"),
+		);
+		Globals.player.position += move_input * delta * PLAYER_SPEED;
+
 
 static func button_start_pressed() -> void:
 	# start_game()

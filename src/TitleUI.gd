@@ -40,7 +40,7 @@ func _name_changed(new_text: String) -> void:
 		Globals.creature_name = new_text
 
 func button_start_pressed() -> void:
-	# Game.start_game()
+	Game.start_game()
 	pass
 
 func button_settings_pressed() -> void:

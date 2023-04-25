@@ -75,6 +75,7 @@ var animation_player : AnimationPlayer
 var screen_shake : ScreenShake
 var audio_player_sound : AudioStreamPlayer2D
 var audio_player_music : AudioStreamPlayer2D
+var player : Sprite2D
 
 func _ready() -> void:
 	init()
@@ -138,6 +139,9 @@ func init() -> void:
 	Globals.random.randomize()
 	Globals.astar = AStar2D.new()
 	assert(Globals.astar != null, "Globals.astar not initialized correctly.")
+
+	Globals.player = get_node("/root/Game/World/Player")
+	assert(Globals.player != null, "Globals.player not initialized correctly.")
 
 	if Globals.can_fullscreen:
 		Globals.set_fullscreen(Globals.settings.window_fullscreen)
