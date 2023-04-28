@@ -62,6 +62,12 @@ layout_mode = 2
 theme = ExtResource("2")
 text = "Settings"
 
+[node name="Credits" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2")
+text = "Credits"
+
 [node name="Quit" type="Button" parent="Menu"]
 unique_name_in_owner = true
 layout_mode = 2

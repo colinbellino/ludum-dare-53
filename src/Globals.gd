@@ -65,6 +65,7 @@ var restarting : bool
 var ui_title : TitleUI
 var ui_settings : SettingsUI
 var ui_debug : DebugUI
+var ui_credits : CreditsUI
 var ui_play : PlayUI
 var ui_splash : CanvasLayer
 var world : Node2D
@@ -107,6 +108,9 @@ func init() -> void:
 	Globals.ui_settings = null
 	Globals.ui_settings = get_node("/root/Game/SettingsUI")
 	assert(Globals.ui_settings != null, "Globals.ui_settings not initialized correctly.")
+	Globals.ui_credits = null
+	Globals.ui_credits = get_node("/root/Game/CreditsUI")
+	assert(Globals.ui_credits != null, "Globals.ui_credits not initialized correctly.")
 	Globals.ui_debug = null
 	Globals.ui_debug = get_node("/root/Game/DebugUI")
 	assert(Globals.ui_debug != null, "Globals.ui_debug not initialized correctly.")

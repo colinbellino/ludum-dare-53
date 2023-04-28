@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfagjt81lv8qt"]
+[gd_scene load_steps=13 format=3 uid="uid://cfagjt81lv8qt"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://3lw77c48pgwm" path="res://media/scenes/ui/TitleUI.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dk1wwxg17poig" path="res://media/scenes/ui/DebugUI.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://3syp2ekpshot" path="res://media/scenes/ui/SettingsUI.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b85xnnfakm38p" path="res://media/scenes/ui/CreditsUI.tscn" id="7_cx2g2"]
 [ext_resource type="Texture2D" uid="uid://cq8pnvl1dbvye" path="res://media/art/icon_godot.png" id="8_ugvn6"]
 [ext_resource type="Script" path="res://src/ScreenShake.gd" id="11"]
 [ext_resource type="PackedScene" uid="uid://cjy2v6yweddr1" path="res://media/scenes/ui/PlayUI.tscn" id="12"]
@@ -50,6 +51,9 @@ script = ExtResource("13")
 [node name="SettingsUI" parent="." instance=ExtResource("4")]
 unique_name_in_owner = false
 layer = 2
+visible = false
+
+[node name="CreditsUI" parent="." instance=ExtResource("7_cx2g2")]
 visible = false
 
 [node name="DebugUI" parent="." instance=ExtResource("3")]

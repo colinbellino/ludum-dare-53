@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://b85xnnfakm38p"]
+
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://media/main.theme" id="1_rd3gi"]
+[ext_resource type="Script" path="res://src/CreditsUI.gd" id="1_rrack"]
+
+[node name="Credits UI" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_rrack")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.623529, 0.345098, 1)
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 400.0
+offset_right = 446.0
+offset_bottom = 24.0
+theme = ExtResource("1_rd3gi")
+text = "Settings"
+
+[node name="Team" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = 664.0
+offset_top = 116.0
+offset_right = 818.0
+offset_bottom = 185.0
+scale = Vector2(4, 4)
+bbcode_enabled = true
+text = "[CREDITS GO HERE]
+Don't edit here, this is loaded from the credits.txt file"
+fit_content = true
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.541
+anchor_top = 0.496
+anchor_right = 0.541
+anchor_bottom = 0.496
+offset_left = -359.72
+offset_top = 182.32
+offset_right = -205.72
+offset_bottom = 397.32
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Close" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_rd3gi")
+text = "Close"
+
+[node name="Quit" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_rd3gi")
+text = "Quit game"
