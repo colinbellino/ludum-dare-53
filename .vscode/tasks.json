@@ -5,11 +5,7 @@
             "label": "Windows: build (debug)",
             "type": "shell",
             "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --no-window --export-debug 'Windows' ./builds/Windows/$date_time/LD53.exe && ./builds/Windows/$date_time/LD53.exe",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "problemMatcher": []
         },
         {
             "label": "Windows: build (release)",
@@ -27,11 +23,7 @@
             "label": "Mac: build (debug)",
             "type": "shell",
             "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --no-window --export-debug 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "problemMatcher": []
         },
         {
             "label": "Mac: build (release)",

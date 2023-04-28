@@ -72,7 +72,6 @@ var world : Node2D
 var current_level: Node2D
 var current_level_data: Dictionary
 var camera: Camera2D
-var animation_player : AnimationPlayer
 var screen_shake : ScreenShake
 var audio_player_sound : AudioStreamPlayer2D
 var audio_player_music : AudioStreamPlayer2D
@@ -123,9 +122,6 @@ func init() -> void:
 	Globals.camera = null
 	Globals.camera = get_node("/root/Game/MainCamera")
 	assert(Globals.camera != null, "Globals.camera not initialized correctly.")
-	Globals.animation_player = null
-	Globals.animation_player = get_node("/root/Game/AnimationPlayer")
-	assert(Globals.animation_player != null, "Globals.animation_player not initialized correctly.")
 	Globals.audio_player_sound = null
 	Globals.audio_player_sound = get_node("/root/Game/SoundPlayer")
 	assert(Globals.audio_player_sound != null, "Globals.audio_player_sound not initialized correctly.")

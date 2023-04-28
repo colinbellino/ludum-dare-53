@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfagjt81lv8qt"]
+[gd_scene load_steps=10 format=3 uid="uid://cfagjt81lv8qt"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://3lw77c48pgwm" path="res://media/scenes/ui/TitleUI.tscn" id="2"]
@@ -9,18 +9,6 @@
 [ext_resource type="Script" path="res://src/ScreenShake.gd" id="11"]
 [ext_resource type="PackedScene" uid="uid://cjy2v6yweddr1" path="res://media/scenes/ui/PlayUI.tscn" id="12"]
 [ext_resource type="Script" path="res://src/PlayUI.gd" id="13"]
-
-[sub_resource type="Animation" id="3"]
-resource_name = "Intro2"
-
-[sub_resource type="Animation" id="2"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqta2"]
-_data = {
-"Intro2": SubResource("3"),
-"RESET": SubResource("2")
-}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1")
@@ -69,12 +57,6 @@ position = Vector2(480, 270)
 
 [node name="MainCamera" type="Camera2D" parent="."]
 anchor_mode = 0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_nqta2")
-}
 
 [node name="World" type="Node2D" parent="."]
 scale = Vector2(4, 4)
