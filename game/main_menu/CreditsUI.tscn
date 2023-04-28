@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://b85xnnfakm38p"]
+
+[ext_resource type="Script" path="res://game/main_menu/CreditsUI.gd" id="1_8xbg6"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_rd3gi"]
+
+[node name="Credits UI" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_8xbg6")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.623529, 0.345098, 1)
+
+[node name="Team" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[CREDITS GO HERE]
+Don't edit here, this is loaded from the credits.txt file"
+fit_content = true
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = 28.0
+offset_right = 18.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Close" type="Button" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_rd3gi")
+text = "Close"
+
+[connection signal="meta_clicked" from="Team" to="." method="open_link"]
+[connection signal="pressed" from="Menu/Close" to="." method="close"]
