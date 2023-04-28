@@ -54,7 +54,6 @@ func button_credits_pressed() -> void:
 	Globals.ui_credits.open()
 
 func button_settings_closed() -> void:
-	print("button_settings_pressed")
 	button_settings.grab_focus()
 
 func button_quit_pressed() -> void:

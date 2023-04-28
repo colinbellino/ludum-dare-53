@@ -72,7 +72,7 @@ func open(show_quit_button: bool = false) -> void:
 	if show_quit_button:
 		button_quit.visible = true
 
-	visible = true
+	visible = false
 
 func close() -> void:
 	visible = false
