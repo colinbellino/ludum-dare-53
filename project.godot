@@ -190,3 +190,7 @@ debug_12={
 [internationalization]
 
 locale/translations=PackedStringArray("res://media/text.en.translation", "res://media/text.fr.translation")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
