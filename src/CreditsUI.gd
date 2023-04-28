@@ -16,7 +16,7 @@ func _ready() -> void:
 	button_quit.connect("pressed", button_quit_pressed)
 	button_quit.connect("pressed", play_button_sound)
 	team_label.connect("meta_clicked", team_label_meta_clicked)
-	team_label.text = Globals.load_file("credits.txt", "")
+	team_label.text = Globals.load_file("res://credits.txt", "")
 
 	close()
 
