@@ -78,9 +78,6 @@ func _ready() -> void:
 	# if show_quit_button:
 	# 	button_quit.visible = true
 
-	# FIXME:
-	# Utils.sync_to_ui(ui_mappings(), Settings)
-
 func close() -> void:
 	closed.emit()
 	Settings.save_all()

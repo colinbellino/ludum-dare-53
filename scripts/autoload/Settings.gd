@@ -3,7 +3,7 @@ extends Node
 var resource : SettingsResource
 
 func can_change_resolution() -> bool:
-	return OS.get_name() != "HTML5"
+	return OS.get_name() != "Web"
 
 func can_fullscreen() -> bool:
 	return OS.has_feature("pc")
