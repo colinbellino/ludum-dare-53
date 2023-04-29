@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready():
-	%Team.text = Utils.load_file("credits.txt", "")
+	%Team.text = Utils.load_file("res://credits.txt", "")
 
 func close():
 	queue_free()
