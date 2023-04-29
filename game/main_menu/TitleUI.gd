@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 func _ready():
+	Settings.load_all()
+
 	# TODO: we probably don't want to do this in here?
 	AudioPlayer.play_music(preload("res://assets/audio/ludum1.ogg"))
 
