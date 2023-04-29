@@ -3,6 +3,7 @@ extends Node
 var bus_main : int
 var bus_music : int
 var bus_sound : int
+var audio_player_sound_one_shot : AudioStreamPlayer2D
 var audio_player_sound : AudioStreamPlayer2D
 var audio_player_music : AudioStreamPlayer2D
 
@@ -11,14 +12,14 @@ func _ready():
 	assert(bus_main != null, "bus_main not initialized correctly.")
 	bus_music = AudioServer.get_bus_index("Music")
 	assert(bus_music != null, "bus_music not initialized correctly.")
+	audio_player_sound_one_shot = get_node("%SoundPlayerOneShot")
+	assert(audio_player_sound_one_shot != null, "audio_player_sound_one_shot not initialized correctly.")
 	bus_sound = AudioServer.get_bus_index("Sound")
 	assert(bus_sound != null, "bus_sound not initialized correctly.")
 	audio_player_music = get_node("%MusicPlayer")
 	assert(audio_player_music != null, "audio_player_music not initialized correctly.")
 	audio_player_sound = get_node("%SoundPlayer")
 	assert(audio_player_sound != null, "audio_player_sound not initialized correctly.")
-
-	# FIXME: still a work in progress
 
 func play_sound(stream: AudioStream, position: Vector2 = Vector2(120, 72), loop: bool = false, pitch_scale : float = 1.0) -> void:
 	stream.loop = loop
@@ -47,6 +48,12 @@ func play_music(stream: AudioStream, loop: bool = true) -> void:
 func stop_music() -> void:
 	audio_player_music.stop()
 
-func spawn_audio_player() -> AudioStreamPlayer:
-	# FIXME: i don't know how we can to do this with this workflow
-	return null
+func spawn_audio_player() -> AudioStreamPlayer2D:
+	var audio_player = audio_player_sound_one_shot.duplicate()
+	if Engine.time_scale > 0:
+		audio_player.pitch_scale = Engine.time_scale
+	self.add_child(audio_player)
+	return audio_player
+
+func play_ui_button_sound() -> void:
+	play_sound(preload("res://assets/audio/fft-text.mp3"));

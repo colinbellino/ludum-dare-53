@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 func _ready():
+	# TODO: we probably don't want to do this in here?
+	AudioPlayer.play_music(preload("res://assets/audio/ludum1.ogg"))
+
 	%Start.grab_focus()
 
 func _process(_delta: float):
@@ -11,10 +14,10 @@ func start_game():
 	Overlay.transition("res://game/level/Level.tscn")
 
 func settings():
-	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"))
+	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"), false)
 
 func credits():
-	Overlay.show_modal(preload("res://game/main_menu/CreditsUI.tscn"))
+	Overlay.show_modal(preload("res://game/main_menu/CreditsUI.tscn"), false)
 
 func quit() -> void:
 	get_tree().quit()

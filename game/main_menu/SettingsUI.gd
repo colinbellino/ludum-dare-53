@@ -103,29 +103,25 @@ func button_close_pressed() -> void:
 	Utils.write_settings(Settings.resource)
 	close()
 
-func button_quit_pressed() -> void:
-	Utils.write_settings(Settings.resource)
-	# FIXME:
-	# Game.quit_game()
+# func button_quit_pressed() -> void:
+# 	Utils.write_settings(Settings.resource)
+# 	# FIXME:
+# 	# Game.quit_game()
 
 func slider_volume_main_changed(value: float) -> void:
 	Settings.resource.volume_main = value
-	# FIXME:
-	# Utils.set_linear_db(Globals.bus_main, Settings.resource.volume_main)
-	# print("bus_main: ", [Globals.get_linear_db(Globals.bus_main), AudioServer.get_bus_volume_db(Globals.bus_main)])
+	Utils.set_linear_db(AudioPlayer.bus_main, Settings.resource.volume_main)
+	# print("Settings.resource.volume_main", Settings.resource.volume_main)
 
 func slider_volume_music_changed(value: float) -> void:
 	Settings.resource.volume_music = value
-	# FIXME:
-	# Utils.set_linear_db(Globals.bus_music, Settings.resource.volume_music)
-	# print("bus_music: ", [Globals.get_linear_db(Globals.bus_music), AudioServer.get_bus_volume_db(Globals.bus_music)])
+	Utils.set_linear_db(AudioPlayer.bus_music, Settings.resource.volume_music)
+	# print("Settings.resource.volume_music", Settings.resource.volume_music)
 
 func slider_volume_sound_changed(value: float) -> void:
 	Settings.resource.volume_sound = value
-	# FIXME:
-	# Utils.set_linear_db(Globals.bus_sound, Settings.resource.volume_sound)
-	# print("bus_sound: ", [Globals.get_linear_db(Globals.bus_sound), AudioServer.get_bus_volume_db(Globals.bus_sound)])
+	Utils.set_linear_db(AudioPlayer.bus_sound, Settings.resource.volume_sound)
+	# print("Settings.resource.volume_sound", Settings.resource.volume_sound)
 
 func play_button_sound(_whatever = null) -> void:
-	# Audio.play_sound_random([Globals.SFX.BUTTON_CLICK_2])
-	pass
+	AudioPlayer.play_ui_button_sound()

@@ -21,7 +21,6 @@ func _ready():
 
 func save_all():
 	Utils.write_settings(resource);
-	pass
 
 func load_all():
 	resource = Utils.read_settings()
