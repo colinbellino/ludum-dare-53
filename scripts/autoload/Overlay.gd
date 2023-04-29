@@ -28,7 +28,7 @@ func show_modal(scene:PackedScene, pause : bool = true)->Node:
 
 func on_modal_closed():
 	num_modals_open -= 1
-	if num_modals_open == 0:
+	if num_modals_open == 0 and is_inside_tree():
 		get_tree().paused = false
 
 	var new_focus = focus_stack.pop_back()
