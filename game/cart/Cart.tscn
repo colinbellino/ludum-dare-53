@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://h4b1yoj0sw3a"]
+[gd_scene load_steps=4 format=3 uid="uid://h4b1yoj0sw3a"]
 
 [ext_resource type="PackedScene" uid="uid://cefq52m5s65j6" path="res://game/cart/CartSlot.tscn" id="1_2b14a"]
 [ext_resource type="Script" path="res://game/cart/Cart.gd" id="1_d453d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcf"]
+size = Vector2(80, 80)
 
 [node name="Cart" type="Node2D"]
 script = ExtResource("1_d453d")
@@ -12,6 +15,7 @@ offset_top = -37.0
 offset_right = 39.0
 offset_bottom = 39.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="CartSlot" parent="." instance=ExtResource("1_2b14a")]
 position = Vector2(-18, 18)
@@ -26,3 +30,8 @@ position = Vector2(-18, -18)
 position = Vector2(18, 18)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tkdcf")

@@ -13,7 +13,7 @@ func _process(_delta: float):
 		quit()
 
 func start_game():
-	Overlay.transition("res://game/level/Level.tscn")
+	Overlay.transition("res://game/level/" + Settings.resource.level + ".tscn")
 
 func settings():
 	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"), false)

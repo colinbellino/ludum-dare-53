@@ -6,4 +6,4 @@ class_name SettingsResource extends Resource
 @export var volume_music : float = 0.7
 @export var volume_sound : float = 0.7
 @export var locale : String = "en"
-@export var level : int
+@export var level : String = "Level"

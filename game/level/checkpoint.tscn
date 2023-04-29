@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvrab08qg8u45"]
+
+[ext_resource type="Texture2D" uid="uid://dvh3a80qkloqm" path="res://assets/sprites/colored_tilemap.png" id="1_xinl2"]
+[ext_resource type="Script" path="res://game/level/Checkpoint.gd" id="2_v25fl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53lmc"]
+
+[node name="Checkpoint" type="Sprite2D"]
+position = Vector2(0, -2177)
+scale = Vector2(4, 4)
+texture = ExtResource("1_xinl2")
+region_enabled = true
+region_rect = Rect2(9, 72, 8, 8)
+script = ExtResource("2_v25fl")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_53lmc")
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -22.0
+offset_right = 36.0
+offset_bottom = 18.0
+scale = Vector2(0.2, 0.2)
+
+[node name="Continue" type="Button" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.5
+offset_top = -31.5
+offset_right = 40.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="Sell" type="Button" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -67.5
+offset_right = 42.0
+offset_bottom = -36.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Sell cargo"
