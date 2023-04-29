@@ -22,12 +22,12 @@ buses/default_bus_layout="res://assets/default_bus_layout.tres"
 
 [autoload]
 
-AudioPlayer="*res://scripts/autoload/Audio.tscn"
 Settings="*res://scripts/autoload/Settings.gd"
 PlayerProfile="*res://scripts/autoload/PlayerProfile.gd"
 Overlay="*res://scripts/autoload/Overlay.tscn"
 UserInteraction="*res://scripts/autoload/UserInteraction.gd"
 GameData="*res://scripts/autoload/GameData.gd"
+AudioPlayer="*res://scripts/autoload/Audio.tscn"
 
 [debug]
 

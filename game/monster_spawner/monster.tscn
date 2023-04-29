@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://4dg81ekuxnt4"]
+
+[ext_resource type="Script" path="res://game/monster_spawner/monster.gd" id="1_5fwjl"]
+[ext_resource type="Texture2D" uid="uid://dd2psm1u6e0w6" path="res://icon.svg" id="1_didev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
+size = Vector2(130, 126)
+
+[node name="monster" type="RigidBody2D" groups=["Monsters"]]
+collision_layer = 2
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_5fwjl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_didev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uld0d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(6.6, 6.5)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

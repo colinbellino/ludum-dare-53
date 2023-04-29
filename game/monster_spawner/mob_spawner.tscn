@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dccu4xsykskvb"]
+
+[ext_resource type="Script" path="res://game/monster_spawner/mob_spawner.gd" id="1_q6ppy"]
+[ext_resource type="PackedScene" uid="uid://4dg81ekuxnt4" path="res://game/monster_spawner/monster.tscn" id="2_arhdo"]
+
+[sub_resource type="Curve2D" id="Curve2D_6jm5r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 540, 0, 0, 0, 0, 960, 540, 0, 0, 0, 0, 960, 0)
+}
+point_count = 5
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_q6ppy")
+mob_scene = ExtResource("2_arhdo")
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6jm5r")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(960, 540)
+progress = 1500.0
+
+[node name="MobTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 20.0
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
