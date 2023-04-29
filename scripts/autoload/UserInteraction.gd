@@ -13,7 +13,7 @@ func setup_ui_node(new_node:Node)->void:
 		new_node.focus_entered.connect(self.ui_pointer)
 		new_node.pressed.connect(self.ui_confirm)
 		if get_viewport().gui_get_focus_owner() == null and new_node.focus_mode != 0:
-			new_node.call_deferred("grab_focus")
+			new_node.grab_focus()
 
 func ui_pointer():
 	# TODO: UI Feedback sounds
