@@ -4,9 +4,7 @@ func _ready():
 	%Start.grab_focus()
 
 func start_game():
-	# TODO
-	# Overlay.transition("res://game/level1/Level1.tscn")
-	pass
+	Overlay.transition("res://game/level/Level.tscn")
 
 func settings():
 	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"))

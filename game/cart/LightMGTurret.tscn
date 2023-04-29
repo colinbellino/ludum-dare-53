@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://q3s4k7jqvttf"]
+
+[ext_resource type="Texture2D" uid="uid://d4hbbyeh8ahg0" path="res://game/cart/turret_placeholder.png" id="1_to4s0"]
+[ext_resource type="Script" path="res://game/cart/LightMGTurret.gd" id="1_tv5q1"]
+
+[node name="LightMGTurret" type="Node2D"]
+script = ExtResource("1_tv5q1")
+
+[node name="TurretPlaceholder" type="Sprite2D" parent="."]
+texture = ExtResource("1_to4s0")

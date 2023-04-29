@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cefq52m5s65j6"]
+
+[ext_resource type="Script" path="res://game/cart/CartSlot.gd" id="1_1q2lu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2dm5"]
+size = Vector2(32, 32)
+
+[node name="CartSlot" type="Area2D"]
+script = ExtResource("1_1q2lu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(0.0627451, 0.105882, 0.235294, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d2dm5")

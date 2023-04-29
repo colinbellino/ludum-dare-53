@@ -34,7 +34,6 @@ text = "Untitled game"
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2")
-disabled = true
 text = "Start"
 
 [node name="Settings" type="Button" parent="Menu"]
