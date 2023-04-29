@@ -11,14 +11,6 @@ func can_fullscreen() -> bool:
 func _ready():
 	load_all()
 
-	if can_fullscreen():
-		Utils.set_fullscreen(resource.window_fullscreen)
-	Utils.set_resolution(resource.resolution)
-	Utils.set_linear_db(AudioPlayer.bus_main, resource.volume_main)
-	Utils.set_linear_db(AudioPlayer.bus_music, resource.volume_music)
-	Utils.set_linear_db(AudioPlayer.bus_sound, resource.volume_sound)
-	TranslationServer.set_locale(resource.locale)
-
 func save_all():
 	Utils.write_settings(resource);
 
@@ -31,3 +23,11 @@ func load_all():
 	print("- volume_sound: ", resource.volume_sound)
 	print("- locale: ", resource.locale)
 	print("- level: ", resource.level)
+
+	if can_fullscreen():
+		Utils.set_fullscreen(resource.window_fullscreen)
+	Utils.set_resolution(resource.resolution)
+	Utils.set_linear_db(AudioPlayer.bus_main, resource.volume_main)
+	Utils.set_linear_db(AudioPlayer.bus_music, resource.volume_music)
+	Utils.set_linear_db(AudioPlayer.bus_sound, resource.volume_sound)
+	TranslationServer.set_locale(resource.locale)
