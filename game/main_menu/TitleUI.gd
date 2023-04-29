@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready():
+	%Start.grab_focus()
+
 func start_game():
 	# TODO
 	# Overlay.transition("res://game/level1/Level1.tscn")
