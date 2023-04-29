@@ -42,8 +42,11 @@ static func read_settings() -> SettingsResource:
 	var settings : SettingsResource
 	if ResourceLoader.exists(settings_path):
 		settings = ResourceLoader.load(settings_path) as SettingsResource
-		print("[Save] Settings read from file.")
-	else:
+		if settings:
+			print("[Save] Settings read from file.")
+		else:
+			print("[Save] Error while reading settings.")
+	if settings == null:
 		print("[Save] Settings couldn't be read from file, creating default.")
 		settings = SettingsResource.new()
 		var locales := TranslationServer.get_loaded_locales()
