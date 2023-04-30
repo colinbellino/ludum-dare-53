@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Monster
 
 @export var speed = 150
 @export var scroll_speed = 10
