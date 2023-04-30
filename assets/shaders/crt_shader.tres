@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckd4lecmbhh4l"]
+
+[ext_resource type="Shader" path="res://assets/shaders/crt_shader.gdshader" id="1_tgmar"]
+
+[resource]
+shader = ExtResource("1_tgmar")
+shader_parameter/screen_size = Vector2(960, 540)
+shader_parameter/bleed_size = Vector2(5, 3)
+shader_parameter/scanline_color = Quaternion(1, 1, 1, 1)
+shader_parameter/scanline_size = 0.411
+shader_parameter/distortion = 0.035
+shader_parameter/distortion_tweak = -0.011
+shader_parameter/bleed = 0.306
