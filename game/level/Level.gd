@@ -22,7 +22,7 @@ func _ready():
 	# for node in chunks:
 	# 	var chunk : LevelChunk = node
 
-	connect_chunk_events(0)
+	start_chunk(0)
 
 	checkpoint_ui = get_node("%CheckpointUI")
 	assert(checkpoint_ui != null, "Missing checkpoint_ui from level.")
@@ -70,12 +70,13 @@ func checkpoint_reached():
 func on_checkpoint_continue_pressed():
 	checkpoint_ui.close()
 	var next_index := current_chunk_index + 1
-	connect_chunk_events(next_index)
+	start_chunk(next_index)
 	state = LevelStates.MOVING
 
-func connect_chunk_events(index: int):
+func start_chunk(index: int):
 	if current_chunk != null:
 		current_chunk.checkpoint.disconnect("reached", checkpoint_reached)
 	current_chunk_index = index
 	current_chunk = chunks[current_chunk_index] as LevelChunk
 	current_chunk.checkpoint.connect("reached", checkpoint_reached)
+	current_chunk.mob_spawner.start_wave()

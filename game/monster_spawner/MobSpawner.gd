@@ -9,6 +9,8 @@ func _ready():
 	spawn_area.visible = false
 	assert(spawn_area != null, "Missing spawn_area from MobSpawner.")
 
+func start_wave():
+	print("Wave starting...")
 	while waves.size() > 0:
 		var wave = waves.pop_front()
 		for mob_scene in wave.mobs:
@@ -20,7 +22,6 @@ func _ready():
 
 		await get_tree().create_timer(wave.wave_over_timer).timeout
 		print("Wave over")
-
 
 func spawn_position(mob_scene) -> Mob:
 	var mob = mob_scene.instantiate() as Mob
