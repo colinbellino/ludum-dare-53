@@ -43,7 +43,7 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 	assert(mob != null)
 
 	level.add_child(mob)
-	var mob_size = mob.collision_shape.shape.get_rect().size * mob.collision_shape.scale
+	var spawn_offset = Vector2(32, 32)
 
 	var position : Vector2 = Vector2.ZERO
 
@@ -52,14 +52,13 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 		Wave.SpawnPatterns.RandomSide:
 			position.y = randf_range(spawn_area.position.y, spawn_area.end.y)
 			if randf() > 0.5:
-				position.x = spawn_area.end.x + mob_size.x / 2
+				position.x = spawn_area.end.x + spawn_offset.x / 2
 			else:
-				position.x = spawn_area.position.x - mob_size.x / 2
+				position.x = spawn_area.position.x - spawn_offset.x / 2
 
 		Wave.SpawnPatterns.TopCenter:
 			position.x = spawn_area.get_center().x
-			position.y = spawn_area.position.y - mob_size.y / 2
-			print("mob_size: ", [mob_size])
+			position.y = spawn_area.position.y - spawn_offset.y / 2
 
 	mob.global_position = position + global_position
 

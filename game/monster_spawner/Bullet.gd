@@ -4,7 +4,7 @@ var bullet_damage;
 @export var speed = 1000;
 
 func _physics_process(delta):
-	position += transform.x * speed * delta
+	position += Vector2(1.0, 0.0).rotated(rotation) * speed * delta
 
 func _on_body_entered(body):
 	if body.has_method("take_hit"):

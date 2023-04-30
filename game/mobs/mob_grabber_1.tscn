@@ -18,9 +18,15 @@ script = ExtResource("1_pvs4u")
 projectile = ExtResource("2_1ejet")
 speed = 300
 scroll_speed = 0
+approach_distance = 100
 movement_type = 2
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
 z_index = 10
 texture = ExtResource("2_8nv5s")
 region_enabled = true
@@ -31,6 +37,12 @@ position = Vector2(-2, 0)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_uld0d")
 
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(19, -1)
+shape = SubResource("CircleShape2D_7k8xq")
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
@@ -38,11 +50,5 @@ scale = Vector2(17.4, 16.75)
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(19, -1)
-shape = SubResource("CircleShape2D_7k8xq")
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
