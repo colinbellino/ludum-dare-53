@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="Wave" load_steps=3 format=3 uid="uid://rjjdp7p67dei"]
+[gd_resource type="Resource" script_class="Wave" load_steps=4 format=3 uid="uid://rjjdp7p67dei"]
 
 [ext_resource type="PackedScene" uid="uid://4dg81ekuxnt4" path="res://game/mobs/mob_stork_1.tscn" id="1_gnrlg"]
 [ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="2_60tp5"]
+[ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="2_f81b8"]
 
 [resource]
 script = ExtResource("2_60tp5")
 mob_timer = 1.0
 wave_over_timer = 5.0
 spawn_pattern = 0
-mobs = Array[PackedScene]([ExtResource("1_gnrlg"), ExtResource("1_gnrlg"), ExtResource("1_gnrlg"), ExtResource("1_gnrlg")])
+mobs = Array[PackedScene]([ExtResource("1_gnrlg"), ExtResource("1_gnrlg"), ExtResource("1_gnrlg"), ExtResource("1_gnrlg"), ExtResource("2_f81b8"), ExtResource("2_f81b8"), ExtResource("2_f81b8"), ExtResource("2_f81b8")])
 is_checkpoint = false
