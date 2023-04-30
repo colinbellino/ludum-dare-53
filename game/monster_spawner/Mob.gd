@@ -25,7 +25,7 @@ func _ready():
 	collision_shape = get_node("CollisionShape2D")
 	assert(collision_shape != null, "collision_shape not found in Mob.")
 	
-func _process(delta):
+func _process(_delta):
 	linear_velocity.y = -GameData.level.ship.linear_velocity.y
 
 	if GameData.level:
@@ -35,11 +35,11 @@ func _process(delta):
 
 			MovementTypes.HorizontalLine:
 				if direction_established == false:
-					linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed * delta
+					linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
 					direction_established = true
 
 			MovementTypes.TowardsShip:
-				linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed * delta
+				linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
 				# # Stops approaching at defined distances to the center
 #				if position.x > 480-approach_distance and position.x < 480+approach_distance:
 #					linear_velocity.x = 0
