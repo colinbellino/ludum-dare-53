@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://de3finheo2q5k"]
+[gd_scene load_steps=6 format=3 uid="uid://de3finheo2q5k"]
 
 [ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_pvs4u"]
+[ext_resource type="PackedScene" uid="uid://dd8dgqunc1fgb" path="res://game/mobs/acid_blob.tscn" id="2_1ejet"]
 [ext_resource type="Texture2D" uid="uid://bsfxat76ewwge" path="res://assets/sprites/enemies/Grabber.png" id="2_8nv5s"]
-[ext_resource type="PackedScene" uid="uid://38p451gvh1tw" path="res://game/monster_spawner/bullet.tscn" id="2_xqmx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
 size = Vector2(130, 126)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7k8xq"]
+radius = 43.4166
 
 [node name="Mob" type="RigidBody2D" groups=["Monsters"]]
 collision_layer = 2
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_pvs4u")
-projectile = ExtResource("2_xqmx1")
+projectile = ExtResource("2_1ejet")
 speed = 300
 scroll_speed = 0
 movement_type = 2
@@ -34,4 +37,11 @@ scale = Vector2(6.6, 6.5)
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(19, -1)
+shape = SubResource("CircleShape2D_7k8xq")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

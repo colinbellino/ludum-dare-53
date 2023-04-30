@@ -40,7 +40,9 @@ func _process(_delta):
 
 			MovementTypes.TowardsShip:
 				linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
-				# # Stops approaching at defined distances to the center
+				if (GameData.level.ship.position - position) < approach_distance and attack_type == AttackTypes.Ranged: 
+					ranged_attack()
+				# Stops approaching at defined distances to the center
 #				if position.x > 480-approach_distance and position.x < 480+approach_distance:
 #					linear_velocity.x = 0
 #					attack()
@@ -48,24 +50,27 @@ func _process(_delta):
 func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that go off screen
 	queue_free()
 
-func attack():
+func ranged_attack():
 	if $AttackTimer.is_stopped():
-		match attack_type:
-			AttackTypes.Touch:
-				$AttackTimer.start()
-				pass
-			AttackTypes.Ranged:
-				var p = projectile.instantiate()
-				add_child(p)
-				p.damage = damage
-				p.transform = (GameData.level.ship.position - position).normalized()
-				p.rotation_degrees += randf_range(-spread,spread)
-				$AttackTimer.start()
-			AttackTypes.Collision:
-				pass
+		var p = projectile.instantiate()
+		add_child(p)
+		p.damage = damage
+		p.transform = (GameData.level.ship.position - position).normalized()
+		p.rotation_degrees += randf_range(-spread,spread)
+		$AttackTimer.start()
 
 func take_hit(damage: float):
 	hitpoints -= damage
 	if hitpoints <= 0:
 		queue_free()
 		#Play some animation or emit particles for destroying it
+
+func _on_attack_area_body_entered(body):
+	if attack_type == AttackTypes.Collision:
+		if body.has_method("take_hit"):
+			body.take_hit()
+			queue_free()
+	if $AttackTimer.is_stopped() and attack_type == AttackTypes.Touch:
+		if body.has_method("take_hit") and not body.is_in_group("Monsters"):
+			body.take_hit()
+			$AttackTimer.start()
