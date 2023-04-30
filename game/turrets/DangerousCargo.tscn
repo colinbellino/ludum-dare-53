@@ -33,12 +33,21 @@ texture = ExtResource("2_xw5xi")
 region_enabled = true
 region_rect = Rect2(32, 32, 16, 16)
 
-[node name="Turret" type="Node2D" parent="."]
+[node name="TurretAim" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
+[node name="Turret" type="Node2D" parent="TurretAim"]
+unique_name_in_owner = true
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="TurretAim/Turret"]
 unique_name_in_owner = true
 position = Vector2(-10, 0)
+
+[node name="Aim" type="ColorRect" parent="TurretAim"]
+unique_name_in_owner = true
+offset_right = 4000.0
+offset_bottom = 2.0
+color = Color(1, 1, 1, 0.392157)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Fire"

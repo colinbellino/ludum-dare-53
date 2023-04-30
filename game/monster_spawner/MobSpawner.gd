@@ -40,10 +40,9 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 	var mob = mob_scene.instantiate() as Mob
 	mob.name = mob_scene.resource_path.get_file().trim_suffix(".tscn")
 	assert(mob != null)
-	print(" - Spawning mob: ", mob.name, " at ", mob.position)
-	add_child(mob)
 
-	var mob_size = mob.collision_shape.shape.get_rect().size
+	add_child(mob)
+	var mob_size = mob.collision_shape.shape.get_rect().size * mob.collision_shape.scale
 
 	var position : Vector2 = Vector2.ZERO
 
@@ -59,8 +58,10 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 		Wave.SpawnPatterns.TopCenter:
 			position.x = spawn_area.get_size().x / 2
 			position.y = -mob_size.y / 2
-
+			print("mob_size: ", [mob_size])
 
 	mob.position = position
+
+	print(" - Spawning mob: %s at %s (pattern: %s)" % [mob.name, mob.position, wave.spawn_pattern])
 
 	return mob
