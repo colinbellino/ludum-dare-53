@@ -64,12 +64,15 @@ offset_right = 66.0
 offset_bottom = -30.0
 text = "Checkpoint"
 
-[node name="LevelChunk1" parent="." instance=ExtResource("3_14wyq")]
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="LevelChunk2" parent="." instance=ExtResource("4_1ddd3")]
+[node name="LevelChunk1" parent="World" instance=ExtResource("3_14wyq")]
 
-[node name="LevelChunk3" parent="." instance=ExtResource("5_nldbo")]
+[node name="LevelChunk2" parent="World" instance=ExtResource("4_1ddd3")]
+
+[node name="LevelChunk3" parent="World" instance=ExtResource("5_nldbo")]
 
 [node name="Cart" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true
-position = Vector2(1, 0)
+position = Vector2(480, 270)
