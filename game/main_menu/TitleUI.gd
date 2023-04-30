@@ -13,7 +13,11 @@ func _process(_delta: float):
 		quit()
 
 func start_game():
-	Overlay.transition("res://game/level/" + Settings.resource.level + ".tscn")
+	var level_name := "res://game/level/" + Settings.resource.level + ".tscn";
+	# Safety check so we don't load an invalid level if we have an old settings format
+	if ResourceLoader.exists(level_name) == false:
+		level_name = "res://game/level/Level.tscn"
+	Overlay.transition(level_name)
 
 func settings():
 	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"), false)

@@ -3,7 +3,7 @@ extends Node
 var num_modals_open = 0
 var focus_stack = []
 
-func transition(new_scene):
+func transition(new_scene: String):
 	# We can add a animation later here if we want
 	var next_scene = load(new_scene)
 	get_tree().change_scene_to_packed(next_scene)

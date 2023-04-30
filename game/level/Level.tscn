@@ -1,74 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://cktef4gcsjhd2"]
+[gd_scene load_steps=7 format=3 uid="uid://bnkje53y6akyu"]
 
+[ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://h4b1yoj0sw3a" path="res://game/cart/Cart.tscn" id="1_s3r65"]
+[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
+[ext_resource type="PackedScene" uid="uid://bjtavtoy1thgu" path="res://game/level/LevelChunk1.tscn" id="3_14wyq"]
+[ext_resource type="PackedScene" uid="uid://c1redgoht1pd0" path="res://game/level/LevelChunk2.tscn" id="4_1ddd3"]
+[ext_resource type="PackedScene" uid="uid://b8bul215yakvk" path="res://game/level/LevelChunk3.tscn" id="5_nldbo"]
 
 [node name="Level" type="Node"]
+script = ExtResource("1_2gnls")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="CheckpointUI" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 636.0
+offset_top = 163.0
+offset_right = 676.0
+offset_bottom = 203.0
+script = ExtResource("2_vkujm")
+
+[node name="Continue" type="Button" parent="CanvasLayer/CheckpointUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.5
+offset_top = -31.5
+offset_right = 40.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="Sell" type="Button" parent="CanvasLayer/CheckpointUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -67.5
+offset_right = 42.0
+offset_bottom = -36.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Sell cargo"
+
+[node name="Title" type="Label" parent="CanvasLayer/CheckpointUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -22.0
+offset_top = -56.0
+offset_right = 66.0
+offset_bottom = -30.0
+text = "Checkpoint"
+
+[node name="LevelChunk1" parent="." instance=ExtResource("3_14wyq")]
+
+[node name="LevelChunk2" parent="." instance=ExtResource("4_1ddd3")]
+
+[node name="LevelChunk3" parent="." instance=ExtResource("5_nldbo")]
 
 [node name="Cart" parent="." instance=ExtResource("1_s3r65")]
+unique_name_in_owner = true
 position = Vector2(1, 0)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -315.0
-offset_top = -181.0
-offset_right = -230.0
-offset_bottom = -65.0
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 334.0
-offset_top = -49.0
-offset_right = 419.0
-offset_bottom = 67.0
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = 187.0
-offset_top = 182.0
-offset_right = 272.0
-offset_bottom = 298.0
-
-[node name="ColorRect4" type="ColorRect" parent="."]
-offset_left = -298.0
-offset_top = 256.0
-offset_right = -213.0
-offset_bottom = 372.0
-
-[node name="ColorRect5" type="ColorRect" parent="."]
-offset_left = 228.0
-offset_top = -396.0
-offset_right = 313.0
-offset_bottom = -280.0
-
-[node name="ColorRect6" type="ColorRect" parent="."]
-offset_left = -232.0
-offset_top = -649.0
-offset_right = -147.0
-offset_bottom = -533.0
-
-[node name="ColorRect7" type="ColorRect" parent="."]
-offset_left = 162.0
-offset_top = -906.0
-offset_right = 247.0
-offset_bottom = -790.0
-
-[node name="ColorRect8" type="ColorRect" parent="."]
-offset_left = -278.0
-offset_top = -1034.0
-offset_right = -193.0
-offset_bottom = -918.0
-
-[node name="ColorRect9" type="ColorRect" parent="."]
-offset_left = 180.0
-offset_top = -1291.0
-offset_right = 265.0
-offset_bottom = -1175.0
-
-[node name="ColorRect10" type="ColorRect" parent="."]
-offset_left = -258.0
-offset_top = -1384.0
-offset_right = -173.0
-offset_bottom = -1268.0
-
-[node name="ColorRect11" type="ColorRect" parent="."]
-offset_left = 184.0
-offset_top = -1559.0
-offset_right = 269.0
-offset_bottom = -1443.0

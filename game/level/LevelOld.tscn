@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://cktef4gcsjhd2"]
+
+[ext_resource type="PackedScene" uid="uid://h4b1yoj0sw3a" path="res://game/cart/Cart.tscn" id="1_wla37"]
+
+[node name="Level" type="Node"]
+
+[node name="Cart" parent="." instance=ExtResource("1_wla37")]
+position = Vector2(1, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -315.0
+offset_top = -181.0
+offset_right = -230.0
+offset_bottom = -65.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 334.0
+offset_top = -49.0
+offset_right = 419.0
+offset_bottom = 67.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 187.0
+offset_top = 182.0
+offset_right = 272.0
+offset_bottom = 298.0
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -298.0
+offset_top = 256.0
+offset_right = -213.0
+offset_bottom = 372.0
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 228.0
+offset_top = -396.0
+offset_right = 313.0
+offset_bottom = -280.0
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = -232.0
+offset_top = -649.0
+offset_right = -147.0
+offset_bottom = -533.0
+
+[node name="ColorRect7" type="ColorRect" parent="."]
+offset_left = 162.0
+offset_top = -906.0
+offset_right = 247.0
+offset_bottom = -790.0
+
+[node name="ColorRect8" type="ColorRect" parent="."]
+offset_left = -278.0
+offset_top = -1034.0
+offset_right = -193.0
+offset_bottom = -918.0
+
+[node name="ColorRect9" type="ColorRect" parent="."]
+offset_left = 180.0
+offset_top = -1291.0
+offset_right = 265.0
+offset_bottom = -1175.0
+
+[node name="ColorRect10" type="ColorRect" parent="."]
+offset_left = -258.0
+offset_top = -1384.0
+offset_right = -173.0
+offset_bottom = -1268.0
+
+[node name="ColorRect11" type="ColorRect" parent="."]
+offset_left = 184.0
+offset_top = -1559.0
+offset_right = 269.0
+offset_bottom = -1443.0
