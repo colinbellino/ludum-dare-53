@@ -1,22 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://mntot2ajrptc"]
+[gd_scene load_steps=13 format=3 uid="uid://c3yprcxl05tyq"]
 
-[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_i0phl"]
-[ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_60iu4"]
-[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_cryvg"]
-[ext_resource type="Texture2D" uid="uid://bxrlo2pyys7vu" path="res://assets/sprites/cart/misc/ssanim_muzzle_plasmaturret.png" id="3_dawmd"]
-[ext_resource type="Texture2D" uid="uid://cs1clpq1weo2a" path="res://assets/sprites/cart/misc/pearl2.png" id="3_ueon4"]
-[ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_is27a"]
-[ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_m876v"]
+[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_0kbl5"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_6jpqw"]
+[ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_hoc6a"]
+[ext_resource type="Texture2D" uid="uid://cs1clpq1weo2a" path="res://assets/sprites/cart/misc/pearl2.png" id="3_d6ruv"]
+[ext_resource type="Texture2D" uid="uid://cjaugs122auek" path="res://assets/sprites/cart/misc/ssanim_muzzle_disruptorturret.png" id="3_yss01"]
+[ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_3eeal"]
+[ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_uqqbu"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_21v8v"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_amt8o"]
 frames = 4
-frame_0/texture = ExtResource("2_60iu4")
+frame_0/texture = ExtResource("2_hoc6a")
 frame_0/duration = 0.05
-frame_1/texture = ExtResource("3_ueon4")
+frame_1/texture = ExtResource("3_d6ruv")
 frame_1/duration = 0.05
-frame_2/texture = ExtResource("4_is27a")
+frame_2/texture = ExtResource("4_3eeal")
 frame_2/duration = 0.05
-frame_3/texture = ExtResource("5_m876v")
+frame_3/texture = ExtResource("5_uqqbu")
 frame_3/duration = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ta8nm"]
@@ -75,10 +75,10 @@ tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.26, 1, 0.901333, 1), Color(0.807843, 0.898039, 0.866667, 1), Color(0.26, 1, 0.901333, 1), Color(0.843137, 0.886275, 0.866667, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1), Color(0.26, 1, 0.901333, 1), Color(0.619608, 0.952941, 0.85098, 1)]
+"times": PackedFloat32Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vh3j6"]
@@ -139,23 +139,25 @@ _data = {
 }
 
 [node name="PlasmaTurret" type="Node2D"]
-script = ExtResource("1_i0phl")
-fire_rate = 4.0
-hitpoints = 50.0
-damage = 10.0
-projectile_sprite = SubResource("AnimatedTexture_21v8v")
+script = ExtResource("1_0kbl5")
+cost = 600.0
+fire_rate = 2.0
+hitpoints = 100.0
+damage = 50.0
+projectile_sprite = SubResource("AnimatedTexture_amt8o")
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_cryvg")
+texture = ExtResource("2_6jpqw")
 region_enabled = true
-region_rect = Rect2(0, 80, 16, 16)
+region_rect = Rect2(16, 80, 16, 16)
 
 [node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("2_cryvg")
-offset = Vector2(-3, 0)
+texture = ExtResource("2_6jpqw")
+centered = false
+offset = Vector2(-8, -6)
 region_enabled = true
-region_rect = Rect2(0, 129, 16, 10)
+region_rect = Rect2(17, 117, 15, 12)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
@@ -163,8 +165,8 @@ position = Vector2(-10, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 modulate = Color(0.26, 1, 0.901333, 1)
-position = Vector2(-21, -8)
-texture = ExtResource("3_dawmd")
+position = Vector2(-20, -6)
+texture = ExtResource("3_yss01")
 centered = false
 hframes = 3
 
@@ -175,13 +177,6 @@ emitting = false
 process_material = SubResource("ParticleProcessMaterial_ta8nm")
 one_shot = true
 randomness = 0.14
-
-[node name="aboveturret" type="Node2D" parent="."]
-
-[node name="aboveturret" type="Sprite2D" parent="aboveturret"]
-texture = ExtResource("2_cryvg")
-region_enabled = true
-region_rect = Rect2(2, 117, 12, 12)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Fire"
