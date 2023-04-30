@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi5t10q702fd4"]
+
+[ext_resource type="Script" path="res://game/ship/slot_action_button.gd" id="1_1ygea"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="1_vl5h2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03h2a"]
+bg_color = Color(1, 1, 1, 0.839216)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0.12549, 0.533333)
+shadow_size = 3
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjp36"]
+atlas = ExtResource("1_vl5h2")
+region = Rect2(0, 80, 16, 16)
+
+[node name="SlotActionButton" type="Panel"]
+offset_right = 155.0
+offset_bottom = 24.0
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_03h2a")
+script = ExtResource("1_1ygea")
+
+[node name="Layout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = -10.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_hjp36")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Layout/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Plasma"
+
+[node name="Cost" type="Label" parent="Layout/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.607843, 0.113725, 0.0588235, 1)
+text = "-50$"
+
+[node name="Extra" type="HBoxContainer" parent="Layout/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/VBoxContainer/Extra"]
+layout_mode = 2
+text = "Value"
+
+[node name="Value" type="Label" parent="Layout/VBoxContainer/Extra"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.643137, 1, 0.807843, 1)
+text = "+200$"

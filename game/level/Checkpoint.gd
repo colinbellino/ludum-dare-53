@@ -10,6 +10,6 @@ func _ready():
 	area.connect("area_entered", on_area_entered)
 
 func on_area_entered(other: Area2D):
-	if was_reached == false && other.get_parent().name == "Cart":
+	if was_reached == false && other.get_parent().name == "Ship":
 		emit_signal("reached")
 		was_reached = true

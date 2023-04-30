@@ -6,7 +6,7 @@ class_name Mob extends RigidBody2D
 @export var movement_type : MovementTypes
 var direction_established : bool
 
-enum MovementTypes { HorizontalLine, TowardsCart }
+enum MovementTypes { HorizontalLine, TowardsShip }
 
 func _process(delta):
 	if GameData.level:
@@ -15,11 +15,11 @@ func _process(delta):
 		match movement_type:
 			MovementTypes.HorizontalLine:
 				if direction_established == false:
-					linear_velocity.x = (GameData.level.cart.position - position).normalized().x * speed
+					linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
 					direction_established = true
 
-			MovementTypes.TowardsCart:
-				linear_velocity = (GameData.level.cart.position - position).normalized() * speed
+			MovementTypes.TowardsShip:
+				linear_velocity = (GameData.level.ship.position - position).normalized() * speed
 				# Stops approaching at defined distances to the center
 				if position.x > 480-approach_distance and position.x < 480+approach_distance:
 					linear_velocity.x = 0

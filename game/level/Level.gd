@@ -1,7 +1,7 @@
 class_name Level extends Node
 
 var world : Node2D
-var cart : Cart
+var ship : Ship
 var state : LevelStates
 var chunks : Array[Node]
 var current_chunk_index : int = 0
@@ -14,8 +14,8 @@ func _ready():
 	world = get_node("%World")
 	assert(world != null, "Missing world from level.")
 
-	cart = get_node("%Cart")
-	assert(cart != null, "Missing cart from level.")
+	ship = get_node("%Ship")
+	assert(ship != null, "Missing ship from level.")
 
 	chunks = get_tree().get_nodes_in_group("level_chunk")
 	assert(chunks.size() > 0, "No level chunks found, make sure you tagged your level with the level_chunk group.")
@@ -47,10 +47,10 @@ func _process(delta: float):
 
 	match state:
 		LevelStates.MOVING:
-			cart.linear_velocity = cart.movement_speed
+			ship.movement_mult = 1.0
 
 		LevelStates.CHECKPOINT:
-			cart.linear_velocity = Vector2.ZERO
+			ship.movement_mult = 0.0
 
 func checkpoint_reached():
 	var next_index := current_chunk_index + 1
