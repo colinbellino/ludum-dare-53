@@ -47,9 +47,10 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 
 	var position : Vector2 = Vector2.ZERO
 
+	# TODO: When we want different spawn patterns, add them here :)
 	match wave.spawn_pattern:
 		Wave.SpawnPatterns.RandomSide:
-			position.y = spawn_area.get_size().y / 2
+			position.y = randf_range(100, spawn_area.get_size().y - 200)
 			if randi_range(0, 1) > 0:
 				position.x = spawn_area.get_size().x + mob_size.x / 2
 			else:

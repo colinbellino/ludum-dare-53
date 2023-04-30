@@ -18,11 +18,11 @@ func _ready():
 	assert(collision_shape != null, "collision_shape not found in Mob.")
 
 func _process(_delta):
-	linear_velocity.y = -GameData.level.ship.linear_velocity.y
-
 	if GameData.level:
+		# FIXME: this is placeholder code for movement, it's absolutely not doing what it should
 		match movement_type:
 			MovementTypes.Stationary:
+				linear_velocity.y = -GameData.level.ship.linear_velocity.y
 				pass
 
 			MovementTypes.HorizontalLine:
