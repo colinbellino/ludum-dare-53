@@ -15,12 +15,6 @@ region = Rect2(52, 176, 84, 66)
 [node name="Ship" type="Node2D"]
 script = ExtResource("1_p4bv2")
 
-[node name="RepairMenu" parent="." instance_placeholder="res://game/ship/ConstructedSlotUI.tscn"]
-position = Vector2(85, 165)
-
-[node name="ConstructMenu" parent="." instance_placeholder="res://game/ship/EmptySlotUI.tscn"]
-position = Vector2(81, -189)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
 texture = SubResource("AtlasTexture_lpml2")
@@ -66,3 +60,11 @@ position = Vector2(-1, 65)
 texture = SubResource("AtlasTexture_j7t37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ConstructMenu" parent="." instance_placeholder="res://game/ship/EmptySlotUI.tscn"]
+unique_name_in_owner = true
+position = Vector2(81, -189)
+
+[node name="RepairMenu" parent="." instance_placeholder="res://game/ship/ConstructedSlotUI.tscn"]
+unique_name_in_owner = true
+position = Vector2(85, 165)

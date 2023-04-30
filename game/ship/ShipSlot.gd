@@ -1,5 +1,5 @@
 class_name ShipSlot
-extends StaticBody2D
+extends Area2D
 
 signal selected()
 
@@ -21,13 +21,12 @@ func build_structure(new_structure:PackedScene):
 	current_structure = new_structure
 	current_structure_node = current_structure.instantiate()
 	add_child(current_structure_node)
-	$CollisionShape2D.disabled = false
 	
 func clear():
 	if current_structure_node and is_instance_valid(current_structure_node):
 		current_structure_node.free()
 		current_structure_node = null
-		$CollisionShape2D.disabled = true
+	current_structure = null
 
 func deselect():
 	is_selected = false

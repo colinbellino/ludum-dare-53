@@ -3,32 +3,32 @@ extends Panel
 
 signal pressed()
 
-func _input(event):
+func _gui_input(event):
 	if has_focus() or event is InputEventMouse:
 		if event.is_action_released("ui_accept") or event.is_action_released("mouse_left"):
 			pressed.emit()
 
 @export var icon : Texture:
-	set(value):
-		icon = value
+	set(val):
+		icon = val
 		upd()
 		
 @export var label := "":
-	set(value):
-		label = value
+	set(val):
+		label = val
 		upd()
 
 @export var cost := 50:
-	set(value):
-		cost = value
+	set(val):
+		cost = val
 		upd()
 
 @export var action := "build"
 @export var meta : Resource
 
 @export var bg_color := Color("3b3b3bd6"):
-	set(value):
-		bg_color = value
+	set(val):
+		bg_color = val
 		upd()
 		
 @export var value := 0:

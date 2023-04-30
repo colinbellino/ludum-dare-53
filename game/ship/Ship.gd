@@ -7,28 +7,29 @@ class_name Ship extends Node2D
 var current_ui_node = null
 
 func _ready():
-	for child in get_children():
-		if child is ShipSlot:
-			child.connect("selected", self.on_slot_selected.bind(child))
+	for node in get_tree().get_nodes_in_group("Selectable"):
+		if is_ancestor_of(node) and node is ShipSlot:
+			node.connect("selected", self.on_slot_selected.bind(node))
 
 func _process(delta):
 	position += movement_speed * movement_mult * delta
 
 func on_slot_selected(slot:ShipSlot):
-	if current_ui_node:
+	if current_ui_node and is_instance_valid(current_ui_node):
 		current_ui_node.free()
 		current_ui_node = null
 	
-	var ui_scene = $ConstructMenu if slot.current_structure else $RepairMenu
-	var node = ui_scene.instantiate()
-	
+	var ui_scene : InstancePlaceholder = %ConstructMenu if not slot.current_structure else %RepairMenu
+	var node = ui_scene.create_instance()
+	node.global_position = slot.global_position
 	node.action_pressed.connect(self.player_action.bind(slot))
+	current_ui_node = node
 	
-func player_action(target:ShipSlot, action_name:String, meta = null):
+func player_action(action_name:String, meta, target:ShipSlot):
 	var old_structure = target.current_structure
 	var old_health = target.health
 	match action_name:
-		"buy":
+		"build":
 			target.build_structure(meta)
 		"sell":
-			target.tear_down_structure()
+			target.clear()
