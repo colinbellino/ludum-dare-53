@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://oclytgikhluu"]
+[gd_scene load_steps=18 format=3 uid="uid://oclytgikhluu"]
 
 [ext_resource type="Texture2D" uid="uid://3kmp38xt8lds" path="res://assets/env/misc/helper_960x540.png" id="1_daafs"]
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="2_ku34h"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="2_s3m5m"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_uvf13"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="3_1ds1j"]
+[ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="4_bjyie"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="4_nvb3x"]
 [ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="5_gkng0"]
 [ext_resource type="Texture2D" uid="uid://fg5vlpa6w4vq" path="res://assets/sprites/enemies/stork.png" id="6_c34w1"]
@@ -90,10 +91,38 @@ centered = false
 [node name="starsbg_1" type="Sprite2D" parent="BGstuff"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_7tsxj")
-position = Vector2(682, 316)
 texture = ExtResource("3_1ds1j")
 centered = false
-offset = Vector2(-616, -316)
+
+[node name="objs" type="Node2D" parent="BGstuff"]
+
+[node name="SsSpacedeco" type="Sprite2D" parent="BGstuff/objs"]
+position = Vector2(63, 138)
+texture = ExtResource("4_bjyie")
+centered = false
+region_enabled = true
+region_rect = Rect2(5, 102, 99, 97)
+
+[node name="SsSpacedeco2" type="Sprite2D" parent="BGstuff/objs"]
+position = Vector2(246, 393)
+texture = ExtResource("4_bjyie")
+centered = false
+region_enabled = true
+region_rect = Rect2(115, 55, 78, 77)
+
+[node name="SsSpacedeco3" type="Sprite2D" parent="BGstuff/objs"]
+position = Vector2(821, 74)
+texture = ExtResource("4_bjyie")
+centered = false
+region_enabled = true
+region_rect = Rect2(399, 5, 107, 101)
+
+[node name="SsSpacedeco4" type="Sprite2D" parent="BGstuff/objs"]
+position = Vector2(748, 303)
+texture = ExtResource("4_bjyie")
+centered = false
+region_enabled = true
+region_rect = Rect2(39, 3, 34, 34)
 
 [node name="StarsbgDust2" type="Sprite2D" parent="BGstuff"]
 texture_repeat = 2
@@ -113,7 +142,7 @@ region_enabled = true
 region_rect = Rect2(3, 3, 22, 24)
 
 [node name="SsAsteroidsPlaceholder6" type="Sprite2D" parent="enemies/asteroids"]
-position = Vector2(247, 190)
+position = Vector2(222, 380)
 texture = ExtResource("5_gkng0")
 centered = false
 region_enabled = true
@@ -162,21 +191,21 @@ region_enabled = true
 region_rect = Rect2(3, 3, 22, 24)
 
 [node name="SsAsteroidsPlaceholder11" type="Sprite2D" parent="enemies/asteroids"]
-position = Vector2(739, 65)
+position = Vector2(786, 30)
 texture = ExtResource("5_gkng0")
 centered = false
 region_enabled = true
 region_rect = Rect2(3, 3, 22, 24)
 
 [node name="SsAsteroidsPlaceholder2" type="Sprite2D" parent="enemies/asteroids"]
-position = Vector2(143, 124)
+position = Vector2(182, 150)
 texture = ExtResource("5_gkng0")
 centered = false
 region_enabled = true
 region_rect = Rect2(33, 3, 19, 16)
 
 [node name="SsAsteroidsPlaceholder3" type="Sprite2D" parent="enemies/asteroids"]
-position = Vector2(160, 345)
+position = Vector2(204, 493)
 texture = ExtResource("5_gkng0")
 centered = false
 region_enabled = true
