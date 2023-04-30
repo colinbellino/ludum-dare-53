@@ -1,7 +1,5 @@
 class_name BaseTurret
-extends Node2D
-
-@export var ui_icon : Texture
+extends AnimatableBody2D
 
 @export var cost = 100.0
 @export var upgrade_cost_mult = 4.0
@@ -17,6 +15,28 @@ extends Node2D
 
 @export var projectile_sprite : Texture
 @export var projectile_speed = 200.0
-@export var max_range = 500.0
 
 @export var animation_bullet_spawn_offset = 0.0
+
+var current_target = null
+var shot_cooldown = 0.0
+var target_rotation = 0.0
+
+func aquire_target():
+	pass
+
+func _process(delta):
+	if fire_rate <= 0.0:
+		return
+	if not is_instance_valid(current_target):
+		current_target = null
+	if shot_cooldown > 0.0:
+		shot_cooldown -= delta
+		
+	if not current_target:
+		aquire_target()
+		
+	if current_target:
+		target_rotation = 0.0
+		
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://myfl6qelpm1c"]
+[gd_scene load_steps=7 format=3 uid="uid://myfl6qelpm1c"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_yw1v3"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="6_snh7v"]
@@ -17,7 +17,12 @@ _data = {
 "RESET": SubResource("Animation_vh3j6")
 }
 
-[node name="PlasmaTurret" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxtp7"]
+size = Vector2(16, 16)
+
+[node name="Plating" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_yw1v3")
 fire_rate = 0.0
 hitpoints = 200.0
@@ -40,3 +45,6 @@ autoplay = "Fire"
 libraries = {
 "": SubResource("AnimationLibrary_ar1k4")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lxtp7")

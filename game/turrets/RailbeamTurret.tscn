@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwxaob5dlen7i"]
+[gd_scene load_steps=13 format=3 uid="uid://dwxaob5dlen7i"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_nlby4"]
 [ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="2_q6647"]
@@ -163,7 +163,12 @@ _data = {
 "RESET": SubResource("Animation_vh3j6")
 }
 
-[node name="PlasmaTurret" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5m2kn"]
+size = Vector2(16, 16)
+
+[node name="Railbeam" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_nlby4")
 cost = 400.0
 hitpoints = 75.0
@@ -214,7 +219,9 @@ one_shot = true
 randomness = 0.14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Fire"
 libraries = {
 "": SubResource("AnimationLibrary_ar1k4")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5m2kn")
