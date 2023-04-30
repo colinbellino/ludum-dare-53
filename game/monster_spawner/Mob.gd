@@ -68,9 +68,9 @@ func take_hit(damage: float):
 func _on_attack_area_body_entered(body):
 	if attack_type == AttackTypes.Collision:
 		if body.has_method("take_hit"):
-			body.take_hit()
+			body.take_hit(damage)
 			queue_free()
 	if $AttackTimer.is_stopped() and attack_type == AttackTypes.Touch:
 		if body.has_method("take_hit") and not body.is_in_group("Monsters"):
-			body.take_hit()
+			body.take_hit(damage)
 			$AttackTimer.start()
