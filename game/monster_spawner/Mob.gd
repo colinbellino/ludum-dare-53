@@ -39,13 +39,9 @@ func _process(_delta):
 					direction_established = true
 
 			MovementTypes.TowardsShip:
-				linear_velocity = (GameData.level.ship.global_position - position).normalized() * speed
+				linear_velocity = (GameData.level.ship.global_position - global_position).normalized() * speed
 				if position.distance_to(GameData.level.ship.global_position) < approach_distance and attack_type == AttackTypes.Ranged: 
 					ranged_attack()
-				# Stops approaching at defined distances to the center
-#				if position.x > 480-approach_distance and position.x < 480+approach_distance:
-#					linear_velocity.x = 0
-#					attack()
 
 func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that go off screen
 	queue_free()
@@ -55,7 +51,7 @@ func ranged_attack():
 		var p = projectile.instantiate()
 		add_child(p)
 		p.bullet_damage = damage
-		p.transform = (GameData.level.ship.global_position - position).normalized() # Passing direction incorrectly
+		#p.transform = (GameData.level.ship.global_position - global_position).normalized() # Passing direction incorrectly
 		p.rotation_degrees += randf_range(-spread,spread)
 		$AttackTimer.start()
 

@@ -33,13 +33,10 @@ texture = ExtResource("6_snh7v")
 region_enabled = true
 region_rect = Rect2(48, 80, 16, 16)
 
-[node name="TurretAim" type="Node2D" parent="."]
+[node name="Turret" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Turret" type="Node2D" parent="TurretAim"]
-unique_name_in_owner = true
-
-[node name="BulletSpawnPosition" type="Marker2D" parent="TurretAim/Turret"]
+[node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
 position = Vector2(-10, 0)
 
