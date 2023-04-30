@@ -1,5 +1,6 @@
 class_name Level extends Node
 
+var world : Node2D
 var cart : Cart
 var state : LevelStates
 var chunks : Array[Node]
@@ -10,6 +11,9 @@ var checkpoint_ui : CheckpointUI
 enum LevelStates { INIT, MOVING, CHECKPOINT }
 
 func _ready():
+	world = get_node("%World")
+	assert(world != null, "Missing world from level.")
+
 	cart = get_node("%Cart")
 	assert(cart != null, "Missing cart from level.")
 
@@ -25,21 +29,29 @@ func _ready():
 	checkpoint_ui.connect("continue_pressed", on_checkpoint_continue_pressed)
 	checkpoint_ui.close()
 
+	GameData.level = self
+
 	state = LevelStates.MOVING
 
+func _exit_tree():
+	GameData.level = null
+
 func _process(delta: float):
-	var speed_multiplier := 1
 	if OS.is_debug_build() && Input.is_action_just_released("ui_cancel"):
 		get_tree().quit()
-	if OS.is_debug_build() && Input.is_key_pressed(KEY_SHIFT):
-		speed_multiplier = 20
+	if OS.is_debug_build():
+		if Input.is_key_pressed(KEY_SHIFT):
+			Engine.set_time_scale(20)
+		else:
+			Engine.set_time_scale(1)
 
 	match state:
 		LevelStates.INIT:
 			pass
 
 		LevelStates.MOVING:
-			cart.position += cart.movement_speed * delta * speed_multiplier
+			# world.position -= cart.movement_speed * delta * speed_multiplier
+			cart.position += cart.movement_speed * delta
 
 		LevelStates.CHECKPOINT:
 			pass

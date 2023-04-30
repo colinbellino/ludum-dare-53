@@ -3,6 +3,7 @@ extends Node
 var scene_properties := {}
 var scene_by_category := {}
 var category_defaults := {}
+var level: Level
 
 func _ready():
 	add_category("Turrets", BaseTurret)
