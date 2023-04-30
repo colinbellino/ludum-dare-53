@@ -22,6 +22,9 @@ var current_target = null
 var shot_cooldown = 0.0
 var target_rotation = 0.0
 
+func _ready():
+	sync_to_physics = false
+
 func aquire_target():
 	pass
 
@@ -32,10 +35,10 @@ func _process(delta):
 		current_target = null
 	if shot_cooldown > 0.0:
 		shot_cooldown -= delta
-		
+
 	if not current_target:
 		aquire_target()
-		
+
 	if current_target:
 		target_rotation = 0.0
 
