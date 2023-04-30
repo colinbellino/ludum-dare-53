@@ -7,7 +7,7 @@ var level: Level
 
 func _ready():
 	add_category("Turrets", BaseTurret)
-	add_to_db("Turrets", preload("res://game/cart/LightMGTurret.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/PlasmaTurret.tscn"))
 
 func add_to_db(category:String, scene:PackedScene):
 	var properties = category_defaults[category].duplicate()

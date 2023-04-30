@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://codofwr6sw1s3"]
+
+[ext_resource type="Script" path="res://game/ship/ShipSlotUI.gd" id="1_jxpph"]
+[ext_resource type="PackedScene" uid="uid://bi5t10q702fd4" path="res://game/ship/slot_action_button.tscn" id="2_rtrqw"]
+
+[node name="ShipSlotUI" type="Node2D"]
+script = ExtResource("1_jxpph")
+
+[node name="SlotActionButton" parent="." instance=ExtResource("2_rtrqw")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
+offset_left = 22.0
+offset_top = -69.0
+offset_right = 177.0
+offset_bottom = -45.0
+label = "Sell"
+cost = -25
+action = "sell"
+
+[node name="SlotActionButton2" parent="." instance=ExtResource("2_rtrqw")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
+offset_left = 59.0
+offset_top = -27.0
+offset_right = 214.0
+offset_bottom = -3.0
+label = "Repair"
+cost = 40
+action = "repair"
+
+[node name="SlotActionButton3" parent="." instance=ExtResource("2_rtrqw")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
+offset_left = 59.0
+offset_top = 18.0
+offset_right = 214.0
+offset_bottom = 42.0
+label = "Upgrade"
+cost = 1000
+action = "upgrade"

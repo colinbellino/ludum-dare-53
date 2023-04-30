@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnkje53y6akyu"]
+[gd_scene load_steps=6 format=3 uid="uid://dknlum3ir1kwc"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
-[ext_resource type="PackedScene" uid="uid://h4b1yoj0sw3a" path="res://game/cart/Cart.tscn" id="1_s3r65"]
+[ext_resource type="PackedScene" uid="uid://beipp7nvh1nvk" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
 [ext_resource type="PackedScene" uid="uid://bubt6k0ilbi5t" path="res://game/level/LevelChunk1.tscn" id="3_14wyq"]
 [ext_resource type="PackedScene" uid="uid://lg060g1ymx3l" path="res://game/level/LevelChunk2.tscn" id="4_1ddd3"]
@@ -71,6 +71,6 @@ unique_name_in_owner = true
 [node name="LevelChunk2" parent="World" instance=ExtResource("4_1ddd3")]
 position = Vector2(0, -2721)
 
-[node name="Cart" parent="." instance=ExtResource("1_s3r65")]
+[node name="Ship" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true
 position = Vector2(480, 270)

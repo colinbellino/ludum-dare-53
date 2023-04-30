@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cktef4gcsjhd2"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="PackedScene" uid="uid://h4b1yoj0sw3a" path="res://game/cart/Cart.tscn" id="1_wla37"]
+[ext_resource type="PackedScene" path="res://game/ship/Ship.tscn" id="1_wla37"]
 
 [node name="Level" type="Node"]
 
