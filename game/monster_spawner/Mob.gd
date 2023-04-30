@@ -19,7 +19,6 @@ func _ready():
 
 func _process(_delta):
 	linear_velocity.y = -GameData.level.ship.linear_velocity.y
-	print(linear_velocity.y)
 
 	if GameData.level:
 		match movement_type:
