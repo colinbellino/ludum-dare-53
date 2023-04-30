@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://r0mr0eps8w7w"]
+
+[ext_resource type="Texture2D" uid="uid://bwle0dd1nqili" path="res://assets/sprites/cart/misc/ssanim_bullet_pearl.png" id="1_36qkb"]
+[ext_resource type="Texture2D" uid="uid://b1qd05xk4xex6" path="res://assets/sprites/cart/misc/ssanim_cycleorange.png" id="2_kbykc"]
+
+[sub_resource type="Animation" id="Animation_apmsn"]
+resource_name = "new_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5o0gk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nw2hj"]
+_data = {
+"RESET": SubResource("Animation_5o0gk"),
+"new_animation": SubResource("Animation_apmsn")
+}
+
+[sub_resource type="Animation" id="Animation_f4vpd"]
+resource_name = "new_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_yrfwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_osj2g"]
+_data = {
+"RESET": SubResource("Animation_yrfwv"),
+"new_animation": SubResource("Animation_f4vpd")
+}
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(1.02362, 1.02333)
+
+[node name="SsanimBulletPearl" type="Sprite2D" parent="."]
+position = Vector2(15.6308, 11.7264)
+texture = ExtResource("1_36qkb")
+centered = false
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SsanimBulletPearl"]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_nw2hj")
+}
+
+[node name="SsanimCycleorange" type="Sprite2D" parent="."]
+position = Vector2(15.6308, 36.1564)
+scale = Vector2(1.00644, 1)
+texture = ExtResource("2_kbykc")
+centered = false
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SsanimCycleorange"]
+autoplay = "new_animation"
+speed_scale = -1.0
+libraries = {
+"": SubResource("AnimationLibrary_osj2g")
+}
