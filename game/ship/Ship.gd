@@ -1,4 +1,4 @@
-class_name Ship extends Node2D
+class_name Ship extends RigidBody2D
 
 @export var money := 100
 @export var movement_speed := Vector2(0, -100)
@@ -11,20 +11,20 @@ func _ready():
 		if is_ancestor_of(node) and node is ShipSlot:
 			node.connect("selected", self.on_slot_selected.bind(node))
 
-func _process(delta):
-	position += movement_speed * movement_mult * delta
+func _process(_delta):
+	linear_velocity = movement_speed * movement_mult
 
 func on_slot_selected(slot:ShipSlot):
 	if current_ui_node and is_instance_valid(current_ui_node):
 		current_ui_node.free()
 		current_ui_node = null
-	
+
 	var ui_scene : InstancePlaceholder = %ConstructMenu if not slot.current_structure else %RepairMenu
 	var node = ui_scene.create_instance()
 	node.global_position = slot.global_position
 	node.action_pressed.connect(self.player_action.bind(slot))
 	current_ui_node = node
-	
+
 func player_action(action_name:String, meta, target:ShipSlot):
 	var old_structure = target.current_structure
 	var old_health = target.health

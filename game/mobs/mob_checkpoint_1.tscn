@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4dg81ekuxnt4"]
+[gd_scene load_steps=4 format=3 uid="uid://c0fbojoq66o0e"]
 
-[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_1usvn"]
-[ext_resource type="Texture2D" uid="uid://bgkekjtucdno2" path="res://assets/sprites/enemies/stork-sheet.png" id="2_x4820"]
+[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_gg3ha"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_u3hh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
 size = Vector2(130, 126)
@@ -10,13 +10,22 @@ size = Vector2(130, 126)
 collision_layer = 2
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_1usvn")
-movement_type = 1
+script = ExtResource("1_gg3ha")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 10
+position = Vector2(-98, 0)
 rotation = 1.5708
-texture = ExtResource("2_x4820")
+scale = Vector2(1, -1)
+texture = ExtResource("2_u3hh4")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(98, 0)
+rotation = 1.5708
+texture = ExtResource("2_u3hh4")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
 

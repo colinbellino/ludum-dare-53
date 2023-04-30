@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=2 format=3 uid="uid://bx8kruduvxtbu"]
+
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="2_uuo6f"]
+
+[resource]
+script = ExtResource("2_uuo6f")
+mob_timer = 1.0
+wave_over_timer = 2.2
+spawn_pattern = 1
+mobs = Array[PackedScene]([])
+is_checkpoint = true

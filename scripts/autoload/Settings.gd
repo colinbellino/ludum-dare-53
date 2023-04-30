@@ -16,13 +16,13 @@ func save_all():
 
 func load_all():
 	resource = Utils.read_settings()
-	print("- window_fullscreen: ", resource.window_fullscreen)
-	print("- resolution: ", resource.resolution)
-	print("- volume_main: ", resource.volume_main)
-	print("- volume_music: ", resource.volume_music)
-	print("- volume_sound: ", resource.volume_sound)
-	print("- locale: ", resource.locale)
-	print("- level: ", resource.level)
+	# print("- window_fullscreen: ", resource.window_fullscreen)
+	# print("- resolution: ", resource.resolution)
+	# print("- volume_main: ", resource.volume_main)
+	# print("- volume_music: ", resource.volume_music)
+	# print("- volume_sound: ", resource.volume_sound)
+	# print("- locale: ", resource.locale)
+	# print("- level: ", resource.level)
 
 	if can_fullscreen():
 		Utils.set_fullscreen(resource.window_fullscreen)
