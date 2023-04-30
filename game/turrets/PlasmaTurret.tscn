@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_is27a"]
 [ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_m876v"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_21v8v"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_clmhl"]
 frames = 4
 frame_0/texture = ExtResource("2_60iu4")
 frame_0/duration = 0.05
@@ -143,7 +143,7 @@ script = ExtResource("1_i0phl")
 fire_rate = 4.0
 hitpoints = 50.0
 damage = 10.0
-projectile_sprite = SubResource("AnimatedTexture_21v8v")
+projectile_sprite = SubResource("AnimatedTexture_clmhl")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_cryvg")
