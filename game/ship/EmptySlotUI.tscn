@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="3_mxlek"]
 [ext_resource type="PackedScene" uid="uid://mntot2ajrptc" path="res://game/turrets/PlasmaTurret.tscn" id="4_owwvp"]
 [ext_resource type="PackedScene" uid="uid://dwxaob5dlen7i" path="res://game/turrets/RailbeamTurret.tscn" id="5_nlgx1"]
-[ext_resource type="PackedScene" uid="uid://c3yprcxl05tyq" path="res://game/turrets/DisruptorTurret.tscn" id="6_jwl3o"]
+[ext_resource type="PackedScene" uid="uid://d2g1x8qio16mp" path="res://game/turrets/DisruptorTurret.tscn" id="6_jwl3o"]
 [ext_resource type="PackedScene" uid="uid://myfl6qelpm1c" path="res://game/turrets/Plating.tscn" id="7_yihpi"]
 [ext_resource type="PackedScene" uid="uid://be5fk04vsboo8" path="res://game/turrets/Cargo.tscn" id="8_ivogd"]
 [ext_resource type="PackedScene" uid="uid://bpaxaptqt1c48" path="res://game/turrets/DangerousCargo.tscn" id="9_riluh"]
@@ -38,6 +38,7 @@ region = Rect2(32, 32, 16, 16)
 script = ExtResource("1_shr7f")
 
 [node name="SlotActionButton" parent="." instance=ExtResource("2_jsqkk")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 22.0
 offset_top = -69.0
 offset_right = 177.0
@@ -47,6 +48,7 @@ label = "Plasma"
 meta = ExtResource("4_owwvp")
 
 [node name="SlotActionButton2" parent="." instance=ExtResource("2_jsqkk")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 59.0
 offset_top = -27.0
 offset_right = 214.0
@@ -57,6 +59,7 @@ cost = 400
 meta = ExtResource("5_nlgx1")
 
 [node name="SlotActionButton3" parent="." instance=ExtResource("2_jsqkk")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 61.0
 offset_top = 15.0
 offset_right = 216.0
@@ -67,6 +70,7 @@ cost = 600
 meta = ExtResource("6_jwl3o")
 
 [node name="SlotActionButton4" parent="." instance=ExtResource("2_jsqkk")]
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 63.0
 offset_top = 53.0
 offset_right = 218.0
