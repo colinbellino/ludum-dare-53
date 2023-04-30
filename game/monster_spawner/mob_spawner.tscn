@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dccu4xsykskvb"]
+[gd_scene load_steps=15 format=3 uid="uid://dccu4xsykskvb"]
 
 [ext_resource type="Script" path="res://game/monster_spawner/mob_spawner.gd" id="1_q6ppy"]
 [ext_resource type="Script" path="res://game/monster_spawner/mob_resource.gd" id="3_r0rry"]
@@ -7,33 +7,69 @@
 [sub_resource type="Resource" id="Resource_85n3m"]
 script = ExtResource("3_r0rry")
 monster = 0
-start_direction = 0
-start_section = 0
+start_side = 0
+start_section = 1
 
 [sub_resource type="Resource" id="Resource_3upam"]
 script = ExtResource("3_r0rry")
 monster = 0
-start_direction = 0
+start_side = 1
+start_section = 2
+
+[sub_resource type="Resource" id="Resource_sgko7"]
+script = ExtResource("3_r0rry")
+monster = 0
+start_side = 0
 start_section = 0
 
 [sub_resource type="Resource" id="Resource_03op1"]
 script = ExtResource("4_7fqkk")
 mob_timer = 1.0
-wave_over_timer = 10.0
-mobs = Array[ExtResource("3_r0rry")]([SubResource("Resource_85n3m"), SubResource("Resource_3upam")])
+wave_over_timer = 5.0
+mobs = Array[ExtResource("3_r0rry")]([SubResource("Resource_85n3m"), SubResource("Resource_3upam"), SubResource("Resource_sgko7")])
 
 [sub_resource type="Resource" id="Resource_10olr"]
 script = ExtResource("3_r0rry")
 monster = 0
-start_direction = 0
+start_side = 2
 start_section = 0
+
+[sub_resource type="Resource" id="Resource_dy32k"]
+script = ExtResource("3_r0rry")
+monster = 0
+start_side = 3
+start_section = 1
+
+[sub_resource type="Resource" id="Resource_5084k"]
+script = ExtResource("3_r0rry")
+monster = 0
+start_side = 2
+start_section = 2
 
 [sub_resource type="Resource" id="Resource_osfmk"]
 script = ExtResource("4_7fqkk")
+mob_timer = 0.0
+wave_over_timer = 10.0
+mobs = Array[ExtResource("3_r0rry")]([SubResource("Resource_10olr"), SubResource("Resource_dy32k"), SubResource("Resource_5084k")])
+
+[sub_resource type="Resource" id="Resource_udb5f"]
+script = ExtResource("3_r0rry")
+monster = 0
+start_side = 0
+start_section = 0
+
+[sub_resource type="Resource" id="Resource_xdbuk"]
+script = ExtResource("3_r0rry")
+monster = 0
+start_side = 0
+start_section = 0
+
+[sub_resource type="Resource" id="Resource_qatww"]
+script = ExtResource("4_7fqkk")
 mob_timer = 1.0
 wave_over_timer = 10.0
-mobs = Array[ExtResource("3_r0rry")]([SubResource("Resource_10olr")])
+mobs = Array[ExtResource("3_r0rry")]([SubResource("Resource_udb5f"), SubResource("Resource_xdbuk")])
 
 [node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_q6ppy")
-waves = Array[ExtResource("4_7fqkk")]([SubResource("Resource_03op1"), SubResource("Resource_osfmk")])
+waves = Array[ExtResource("4_7fqkk")]([SubResource("Resource_03op1"), SubResource("Resource_osfmk"), SubResource("Resource_qatww")])
