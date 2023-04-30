@@ -16,7 +16,7 @@ var sprite : Sprite2D
 var collision_shape : CollisionShape2D
 
 enum MovementTypes { Stationary, HorizontalLine, TowardsShip }
-enum AttackTypes { Ranged, Collision, Touch }
+enum AttackTypes { Ranged, Collision, Touch, Bomb }
 
 func _ready():
 	sprite = get_node("Sprite")
@@ -35,12 +35,12 @@ func _process(_delta):
 
 			MovementTypes.HorizontalLine:
 				if direction_established == false:
-					linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
+					linear_velocity = (GameData.level.ship.global_position - position).normalized() * speed * randi_range(-4,4)
 					direction_established = true
 
 			MovementTypes.TowardsShip:
-				linear_velocity.x = (GameData.level.ship.position - position).normalized().x * speed
-				if (GameData.level.ship.position - position) < approach_distance and attack_type == AttackTypes.Ranged: 
+				linear_velocity = (GameData.level.ship.global_position - position).normalized() * speed
+				if position.distance_to(GameData.level.ship.global_position) < approach_distance and attack_type == AttackTypes.Ranged: 
 					ranged_attack()
 				# Stops approaching at defined distances to the center
 #				if position.x > 480-approach_distance and position.x < 480+approach_distance:
@@ -54,8 +54,8 @@ func ranged_attack():
 	if $AttackTimer.is_stopped():
 		var p = projectile.instantiate()
 		add_child(p)
-		p.damage = damage
-		p.transform = (GameData.level.ship.position - position).normalized()
+		p.bullet_damage = damage
+		p.transform = (GameData.level.ship.global_position - position).normalized() # Passing direction incorrectly
 		p.rotation_degrees += randf_range(-spread,spread)
 		$AttackTimer.start()
 

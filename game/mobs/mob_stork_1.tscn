@@ -12,6 +12,7 @@ gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_1usvn")
 movement_type = 2
+attack_type = 3
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 10

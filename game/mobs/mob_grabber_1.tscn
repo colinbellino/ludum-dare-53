@@ -18,6 +18,7 @@ script = ExtResource("1_pvs4u")
 projectile = ExtResource("2_1ejet")
 speed = 300
 scroll_speed = 0
+approach_distance = 600
 movement_type = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]

@@ -35,7 +35,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:frame")
+tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +47,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/1/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -59,7 +59,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TurretAim/Turret/GPUParticles2D:emitting")
+tracks/2/path = NodePath("Turret/GPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -71,7 +71,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:modulate")
+tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -86,7 +86,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:frame")
+tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/1/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -110,7 +110,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TurretAim/Turret/GPUParticles2D:emitting")
+tracks/2/path = NodePath("Turret/GPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -122,7 +122,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TurretAim/Turret/SsanimMuzzlePlasmaturret:modulate")
+tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -156,43 +156,32 @@ texture = ExtResource("2_6jpqw")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)
 
-[node name="TurretAim" type="Node2D" parent="."]
+[node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-
-[node name="Turret" type="Sprite2D" parent="TurretAim"]
-unique_name_in_owner = true
-rotation = 3.14159
 texture = ExtResource("2_6jpqw")
 centered = false
 offset = Vector2(-8, -6)
 region_enabled = true
 region_rect = Rect2(17, 117, 15, 12)
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="TurretAim/Turret"]
+[node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
 position = Vector2(-10, 0)
 
-[node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="TurretAim/Turret"]
+[node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 modulate = Color(0.26, 1, 0.901333, 1)
 position = Vector2(-20, -6)
 texture = ExtResource("3_yss01")
 centered = false
 hframes = 3
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="TurretAim/Turret"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Turret"]
 visible = false
 position = Vector2(-10, 0)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_ta8nm")
 one_shot = true
 randomness = 0.14
-
-[node name="Aim" type="ColorRect" parent="TurretAim"]
-unique_name_in_owner = true
-offset_right = 4000.0
-offset_bottom = 2.0
-mouse_filter = 2
-color = Color(1, 1, 1, 0.392157)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
