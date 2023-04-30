@@ -38,5 +38,8 @@ func _process(delta):
 		
 	if current_target:
 		target_rotation = 0.0
-		
-	
+
+func take_hit(damage: float):
+	hitpoints -= damage
+	if hitpoints <= 0:
+		get_parent().clear()
