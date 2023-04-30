@@ -1,0 +1,373 @@
+[gd_scene load_steps=17 format=3 uid="uid://oclytgikhluu"]
+
+[ext_resource type="Texture2D" uid="uid://3kmp38xt8lds" path="res://assets/env/misc/helper_960x540.png" id="1_daafs"]
+[ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="2_ku34h"]
+[ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="2_s3m5m"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_uvf13"]
+[ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="3_1ds1j"]
+[ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="4_nvb3x"]
+[ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="5_gkng0"]
+[ext_resource type="Texture2D" uid="uid://fg5vlpa6w4vq" path="res://assets/sprites/enemies/stork.png" id="6_c34w1"]
+
+[sub_resource type="Shader" id="Shader_xccvg"]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += TIME * 0.0		;
+	newuv.y += TIME * -0.00			;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ho6pc"]
+shader = SubResource("Shader_xccvg")
+
+[sub_resource type="Shader" id="Shader_84jnd"]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += TIME * 0.0		;
+	newuv.y += TIME * -0.005			;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}	
+
+render_mode blend_add;"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xoghr"]
+shader = SubResource("Shader_84jnd")
+
+[sub_resource type="Shader" id="Shader_ood3x"]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += TIME * 0.0		;
+	newuv.y += TIME * -0.01			;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}	
+
+render_mode blend_add;"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7tsxj"]
+shader = SubResource("Shader_ood3x")
+
+[sub_resource type="Shader" id="Shader_3iejv"]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += TIME * 0.0		;
+	newuv.y += TIME * -0.02			;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}
+
+render_mode blend_add;"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13c4q"]
+shader = SubResource("Shader_3iejv")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BGstuff" type="Node2D" parent="."]
+
+[node name="starsbg_dust1" type="Sprite2D" parent="BGstuff"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ho6pc")
+texture = ExtResource("2_ku34h")
+centered = false
+
+[node name="starsbg_far" type="Sprite2D" parent="BGstuff"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xoghr")
+texture = ExtResource("2_s3m5m")
+centered = false
+
+[node name="starsbg_1" type="Sprite2D" parent="BGstuff"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7tsxj")
+position = Vector2(682, 316)
+texture = ExtResource("3_1ds1j")
+centered = false
+offset = Vector2(-616, -316)
+
+[node name="StarsbgDust2" type="Sprite2D" parent="BGstuff"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_13c4q")
+texture = ExtResource("4_nvb3x")
+centered = false
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="asteroids" type="Node2D" parent="enemies"]
+
+[node name="SsAsteroidsPlaceholder" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(82, 63)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder6" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(247, 190)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder15" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(878, 406)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder16" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(812, 479)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder7" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(67, 386)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder8" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(678, 443)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder9" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(812, 263)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder10" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(662, 81)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder11" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(739, 65)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
+
+[node name="SsAsteroidsPlaceholder2" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(143, 124)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(33, 3, 19, 16)
+
+[node name="SsAsteroidsPlaceholder3" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(160, 345)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(63, 5, 22, 20)
+
+[node name="SsAsteroidsPlaceholder4" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(107, 258)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 40, 17, 18)
+
+[node name="SsAsteroidsPlaceholder12" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(719, 369)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 40, 17, 18)
+
+[node name="SsAsteroidsPlaceholder13" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(847, 216)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 40, 17, 18)
+
+[node name="SsAsteroidsPlaceholder14" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(740, 209)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 40, 17, 18)
+
+[node name="SsAsteroidsPlaceholder5" type="Sprite2D" parent="enemies/asteroids"]
+position = Vector2(184, 282)
+texture = ExtResource("5_gkng0")
+centered = false
+region_enabled = true
+region_rect = Rect2(63, 39, 12, 10)
+
+[node name="birdz" type="Node2D" parent="enemies"]
+
+[node name="Stork" type="Sprite2D" parent="enemies/birdz"]
+position = Vector2(212, 55)
+texture = ExtResource("6_c34w1")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 3, 33, 50)
+
+[node name="Stork2" type="Sprite2D" parent="enemies/birdz"]
+position = Vector2(289, 338)
+texture = ExtResource("6_c34w1")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 3, 33, 50)
+
+[node name="Stork3" type="Sprite2D" parent="enemies/birdz"]
+position = Vector2(592, 133)
+texture = ExtResource("6_c34w1")
+centered = false
+region_enabled = true
+region_rect = Rect2(80, 3, 33, 50)
+
+[node name="playership" type="Node2D" parent="."]
+
+[node name="SsShipMisc" type="Sprite2D" parent="playership"]
+position = Vector2(403, 164)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(106, 2, 148, 115)
+
+[node name="SsShipMisc2" type="Sprite2D" parent="playership"]
+position = Vector2(437, 253)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(174, 127, 80, 40)
+
+[node name="SsShipMisc6" type="Sprite2D" parent="playership"]
+position = Vector2(438, 327)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(174, 127, 80, 40)
+
+[node name="SsShipMisc3" type="Sprite2D" parent="playership"]
+position = Vector2(421, 278)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(142, 175, 112, 53)
+
+[node name="SsShipMisc5" type="Sprite2D" parent="playership"]
+position = Vector2(421, 302)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(142, 175, 112, 53)
+
+[node name="SsShipMisc4" type="Sprite2D" parent="playership"]
+position = Vector2(436, 352)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(52, 175, 84, 67)
+
+[node name="Node2D" type="Node2D" parent="playership"]
+position = Vector2(445, 191)
+
+[node name="slot" type="Sprite2D" parent="playership/Node2D"]
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot2" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(16, -8)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot3" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(32, -8)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot4" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(48, 15)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot5" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(16, 24)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot6" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(16, 67)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot7" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(8, 92)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot8" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(40, 92)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot9" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(8, 116)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot10" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(24, 116)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="slot11" type="Sprite2D" parent="playership/Node2D"]
+position = Vector2(33, 141)
+texture = ExtResource("2_uvf13")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="[  ]" type="Node2D" parent="."]
+visible = false
+
+[node name="Helper960x540" type="Sprite2D" parent="[  ]"]
+modulate = Color(1, 1, 1, 0.188235)
+texture = ExtResource("1_daafs")
+centered = false
+metadata/_edit_lock_ = true

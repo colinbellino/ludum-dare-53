@@ -1,0 +1,14 @@
+[gd_resource type="Shader" format=3 uid="uid://br1hn12efg7ha"]
+
+[resource]
+code = "shader_type canvas_item;
+
+void fragment(){
+    vec2 newuv = UV;
+    newuv.x += TIME * 0.0		;
+	newuv.y += TIME * 0.1			;
+    vec4 c = texture(TEXTURE, newuv);
+    COLOR = c;
+}
+
+render_mode blend_add;"
