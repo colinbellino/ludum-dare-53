@@ -4,11 +4,10 @@ var ship : Ship
 var state : LevelStates
 var chunks : Array[Node]
 var checkpoint_ui : CheckpointUI
-var mob_spawner : MobSpawner
 var checkpoint_index : int = 1
 var wave_index : int
 
-@export var waves : Array[Wave]
+@export var waves : WaveList
 
 enum LevelStates { MOVING, CHECKPOINT }
 
@@ -21,10 +20,8 @@ func _ready():
 	checkpoint_ui.connect("continue_pressed", on_checkpoint_continue_pressed)
 	checkpoint_ui.close()
 
-	mob_spawner = get_node("MobSpawner")
-	assert(mob_spawner != null, "Missing mob_spawner from LevelChunk.")
-	mob_spawner.connect("wave_over", on_wave_over)
-	mob_spawner.start_wave(waves, wave_index)
+	%MobSpawner.connect("wave_over", on_wave_over)
+	%MobSpawner.start_wave(waves.waves, wave_index)
 
 	GameData.level = self
 
@@ -63,5 +60,5 @@ func on_wave_over(wave, index):
 func on_checkpoint_continue_pressed():
 	checkpoint_ui.close()
 	checkpoint_index += 1;
-	mob_spawner.start_wave(waves, wave_index)
+	%MobSpawner.start_wave(waves.waves, wave_index)
 	state = LevelStates.MOVING

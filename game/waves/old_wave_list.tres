@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaveList" load_steps=6 format=3 uid="uid://dejxnmuff8382"]
+
+[ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="1_18fs6"]
+[ext_resource type="Resource" uid="uid://rjjdp7p67dei" path="res://game/waves/wave_storks.tres" id="2_unset"]
+[ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="3_7kgl7"]
+[ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="4_bvnon"]
+[ext_resource type="Resource" uid="uid://bx8kruduvxtbu" path="res://game/waves/wave_checkpoint_ending.tres" id="5_7nrfh"]
+
+[resource]
+script = ExtResource("1_18fs6")
+waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("2_unset"), ExtResource("3_7kgl7"), ExtResource("4_bvnon"), ExtResource("3_7kgl7"), ExtResource("4_bvnon"), ExtResource("5_7nrfh")])

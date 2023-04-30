@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwkdkc4usw3yn"]
+[gd_scene load_steps=7 format=3 uid="uid://dwkdkc4usw3yn"]
 
 [ext_resource type="Script" path="res://game/ship/Ship.gd" id="1_p4bv2"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_prb85"]
@@ -12,7 +12,10 @@ region = Rect2(106, 2, 148, 115)
 atlas = ExtResource("2_prb85")
 region = Rect2(52, 176, 84, 66)
 
-[node name="Ship" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_astbv"]
+size = Vector2(38, 26)
+
+[node name="Ship" type="AnimatableBody2D"]
 script = ExtResource("1_p4bv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -58,6 +61,10 @@ position = Vector2(-24, -22)
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(-1, 65)
 texture = SubResource("AtlasTexture_j7t37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 52)
+shape = SubResource("RectangleShape2D_astbv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

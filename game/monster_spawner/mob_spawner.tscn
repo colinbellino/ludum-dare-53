@@ -2,14 +2,5 @@
 
 [ext_resource type="Script" path="res://game/monster_spawner/MobSpawner.gd" id="1_dupso"]
 
-[node name="MobSpawner" type="CanvasLayer"]
+[node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_dupso")
-
-[node name="Spawn Area" type="ColorRect" parent="."]
-unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0, 0.0509804, 0.0392157)

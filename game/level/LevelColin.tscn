@@ -1,9 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://yhai8bumplyw"]
+[gd_scene load_steps=19 format=3 uid="uid://yhai8bumplyw"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_3c37r"]
-[ext_resource type="PackedScene" uid="uid://4dg81ekuxnt4" path="res://game/mobs/mob_stork_1.tscn" id="2_ablf2"]
-[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="3_6kha2"]
-[ext_resource type="Resource" uid="uid://bx8kruduvxtbu" path="res://game/waves/wave_checkpoint_ending.tres" id="5_0feli"]
+[ext_resource type="Resource" uid="uid://dejxnmuff8382" path="res://game/waves/old_wave_list.tres" id="2_2sm17"]
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="6_34wlx"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="7_mc7wv"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="8_gtej7"]
@@ -12,14 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="11_gemuq"]
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="12_pt2r3"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="13_rj37s"]
-
-[sub_resource type="Resource" id="Resource_ufebf"]
-script = ExtResource("3_6kha2")
-mob_timer = 1.0
-wave_over_timer = 10000.0
-spawn_pattern = 1
-mobs = Array[PackedScene]([ExtResource("2_ablf2")])
-is_checkpoint = false
 
 [sub_resource type="Shader" id="Shader_xccvg"]
 code = "shader_type canvas_item;
@@ -85,7 +75,7 @@ shader = SubResource("Shader_3iejv")
 
 [node name="Level" type="Node"]
 script = ExtResource("1_3c37r")
-waves = Array[ExtResource("3_6kha2")]([SubResource("Resource_ufebf"), ExtResource("5_0feli")])
+waves = ExtResource("2_2sm17")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 99

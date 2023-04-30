@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_60tp5")
+repeat_n_times = 1
 mob_timer = 1.0
 wave_over_timer = 5.0
 spawn_pattern = 0

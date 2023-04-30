@@ -18,7 +18,6 @@ script = ExtResource("1_pvs4u")
 projectile = ExtResource("2_1ejet")
 speed = 300
 scroll_speed = 0
-approach_distance = 600
 movement_type = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -33,7 +32,8 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_uld0d")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(6.6, 6.5)
+position = Vector2(4, 6)
+scale = Vector2(17.4, 16.75)
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
