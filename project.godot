@@ -37,8 +37,10 @@ gdscript/warnings/static_called_on_instance=0
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/default_signal_callback_name="_on_{node_name}_{signal_name}"
+window/default_signal_callback_to_self_name="_on_{signal_name}"
 
 [dotnet]
 

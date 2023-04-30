@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_tgmar")
-shader_parameter/screen_size = Vector2(960, 540)
+shader_parameter/screen_size = Vector2(480, 270)
 shader_parameter/bleed_size = Vector2(5, 3)
 shader_parameter/scanline_color = Quaternion(1, 1, 1, 1)
 shader_parameter/scanline_size = 0.411

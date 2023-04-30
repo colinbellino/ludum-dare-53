@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cky5707ktpod7"]
+[gd_scene load_steps=3 format=3 uid="uid://cky5707ktpod7"]
 
 [ext_resource type="Script" path="res://scripts/autoload/Overlay.gd" id="1_51b2p"]
+[ext_resource type="Material" uid="uid://ckd4lecmbhh4l" path="res://assets/shaders/crt_shader.tres" id="2_xm84n"]
 
 [node name="Overlay" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_51b2p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+
+[node name="CRTShader" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("2_xm84n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
