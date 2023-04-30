@@ -8,9 +8,6 @@ func can_change_resolution() -> bool:
 func can_fullscreen() -> bool:
 	return OS.has_feature("pc")
 
-func _ready():
-	load_all()
-
 func save_all():
 	Utils.write_settings(resource);
 

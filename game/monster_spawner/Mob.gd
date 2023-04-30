@@ -24,7 +24,7 @@ func _ready():
 
 	collision_shape = get_node("CollisionShape2D")
 	assert(collision_shape != null, "collision_shape not found in Mob.")
-	
+
 func _process(_delta):
 	linear_velocity.y = -GameData.level.ship.linear_velocity.y
 
