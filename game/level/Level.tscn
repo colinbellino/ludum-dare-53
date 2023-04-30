@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnkje53y6akyu"]
+[gd_scene load_steps=6 format=3 uid="uid://bnkje53y6akyu"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://h4b1yoj0sw3a" path="res://game/cart/Cart.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
-[ext_resource type="PackedScene" uid="uid://bjtavtoy1thgu" path="res://game/level/LevelChunk1.tscn" id="3_14wyq"]
-[ext_resource type="PackedScene" uid="uid://c1redgoht1pd0" path="res://game/level/LevelChunk2.tscn" id="4_1ddd3"]
-[ext_resource type="PackedScene" uid="uid://b8bul215yakvk" path="res://game/level/LevelChunk3.tscn" id="5_nldbo"]
+[ext_resource type="PackedScene" uid="uid://bubt6k0ilbi5t" path="res://game/level/LevelChunk1.tscn" id="3_14wyq"]
+[ext_resource type="PackedScene" uid="uid://lg060g1ymx3l" path="res://game/level/LevelChunk2.tscn" id="4_1ddd3"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_2gnls")
@@ -70,8 +69,7 @@ unique_name_in_owner = true
 [node name="LevelChunk1" parent="World" instance=ExtResource("3_14wyq")]
 
 [node name="LevelChunk2" parent="World" instance=ExtResource("4_1ddd3")]
-
-[node name="LevelChunk3" parent="World" instance=ExtResource("5_nldbo")]
+position = Vector2(0, -2721)
 
 [node name="Cart" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true

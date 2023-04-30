@@ -11,12 +11,10 @@ func _ready():
 
 	while waves.size() > 0:
 		var wave = waves.pop_front()
-		for mob in wave.mobs:
-			var spawn_rect = get_viewport().get_visible_rect()
-			var mob_node = mob.EnemyScenesLookup[mob.monster].instantiate()
-			mob_node.position = spawn_position(mob_node)
-			add_child(mob_node)
-			print("Spawning mob: ", mob_node.name, mob_node.position)
+		for mob_scene in wave.mobs:
+			var mob := spawn_position(mob_scene)
+			add_child(mob)
+			print("Spawning mob: ", mob.name, mob.position)
 
 			await get_tree().create_timer(wave.mob_timer).timeout
 
@@ -24,7 +22,10 @@ func _ready():
 		print("Wave over")
 
 
-func spawn_position(mob_node: Monster) -> Vector2:
+func spawn_position(mob_scene) -> Mob:
+	var mob = mob_scene.instantiate() as Mob
+	assert(mob != null)
+
 	var position : Vector2 = Vector2.ZERO
 
 	if randi_range(0, 1) > 0:
@@ -32,4 +33,6 @@ func spawn_position(mob_node: Monster) -> Vector2:
 	else:
 		position.x = -spawn_area.get_size().x
 
-	return position
+	mob.position = position
+
+	return mob

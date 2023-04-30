@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjtavtoy1thgu"]
+[gd_scene load_steps=10 format=3 uid="uid://bubt6k0ilbi5t"]
 
 [ext_resource type="Script" path="res://game/level/LevelChunk.gd" id="1_kyx8w"]
 [ext_resource type="TileSet" uid="uid://di4mbcmtdmgn" path="res://game/level/tileset_placeholder.tres" id="2_s8166"]
 [ext_resource type="PackedScene" uid="uid://bvrab08qg8u45" path="res://game/level/checkpoint.tscn" id="3_iufje"]
-[ext_resource type="PackedScene" uid="uid://cs4je77a54u2w" path="res://game/level/mob_spawner.tscn" id="4_5ubmw"]
+[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="4_5ubmw"]
+[ext_resource type="PackedScene" uid="uid://4dg81ekuxnt4" path="res://game/mobs/stork.tscn" id="5_02cvr"]
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="5_5fq63"]
+[ext_resource type="PackedScene" uid="uid://d07to3piph5o8" path="res://game/mobs/asteroid_1.tscn" id="7_1gtp1"]
+
+[sub_resource type="Resource" id="Resource_256pb"]
+script = ExtResource("5_5fq63")
+mob_timer = 1.0
+wave_over_timer = 10.0
+mobs = Array[PackedScene]([ExtResource("5_02cvr"), ExtResource("5_02cvr")])
+
+[sub_resource type="Resource" id="Resource_8pnpt"]
+script = ExtResource("5_5fq63")
+mob_timer = 1.0
+wave_over_timer = 10.0
+mobs = Array[PackedScene]([ExtResource("7_1gtp1"), ExtResource("7_1gtp1")])
 
 [node name="LevelChunk1" type="Node2D" groups=["level_chunk"]]
 script = ExtResource("1_kyx8w")
@@ -19,3 +34,4 @@ layer_0/tile_data = PackedInt32Array(-262146, 0, 1, -262147, 65536, 1, -196610, 
 position = Vector2(481, -2118)
 
 [node name="MobSpawner" parent="." instance=ExtResource("4_5ubmw")]
+waves = Array[ExtResource("5_5fq63")]([SubResource("Resource_256pb"), SubResource("Resource_8pnpt")])

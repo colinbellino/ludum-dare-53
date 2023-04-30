@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d07to3piph5o8"]
+
+[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_dv1b3"]
+[ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="2_s2n5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
+size = Vector2(130, 126)
+
+[node name="Mob" type="RigidBody2D" groups=["Monsters"]]
+collision_layer = 2
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_dv1b3")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 10
+rotation = 1.5708
+texture = ExtResource("2_s2n5i")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uld0d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(6.6, 6.5)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

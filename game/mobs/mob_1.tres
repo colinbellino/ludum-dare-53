@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Mob" load_steps=2 format=3 uid="uid://31okp2aludtl"]
-
-[ext_resource type="Script" path="res://game/monster_spawner/mob_resource.gd" id="1_27p2d"]
-
-[resource]
-script = ExtResource("1_27p2d")
-monster = 0
-start_side = 2
-start_section = 0
