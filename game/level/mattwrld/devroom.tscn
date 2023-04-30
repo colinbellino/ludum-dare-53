@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://r0mr0eps8w7w"]
+[gd_scene load_steps=14 format=3 uid="uid://r0mr0eps8w7w"]
 
 [ext_resource type="Texture2D" uid="uid://bwle0dd1nqili" path="res://assets/sprites/cart/misc/ssanim_bullet_pearl.png" id="1_36qkb"]
 [ext_resource type="Texture2D" uid="uid://b1qd05xk4xex6" path="res://assets/sprites/cart/misc/ssanim_cycleorange.png" id="2_kbykc"]
 [ext_resource type="Texture2D" uid="uid://csc2sqpknby8t" path="res://assets/sprites/checkpointstation/ss_stationstructure_placeholder.png" id="3_v7dmn"]
+[ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="4_c06d5"]
 
 [sub_resource type="Animation" id="Animation_5o0gk"]
 length = 0.001
@@ -80,6 +81,45 @@ _data = {
 "new_animation": SubResource("Animation_f4vpd")
 }
 
+[sub_resource type="Animation" id="Animation_qtt6x"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_m3qnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
+_data = {
+"RESET": SubResource("Animation_m3qnl"),
+"idle": SubResource("Animation_qtt6x")
+}
+
 [node name="Node2D" type="Node2D"]
 scale = Vector2(1.02362, 1.02333)
 
@@ -110,7 +150,7 @@ libraries = {
 }
 
 [node name="checkpointstation" type="Node2D" parent="."]
-position = Vector2(608.624, 211.076)
+position = Vector2(567.593, 482.738)
 
 [node name="station_lower" type="Sprite2D" parent="checkpointstation"]
 position = Vector2(-201.247, -150.489)
@@ -125,3 +165,20 @@ texture = ExtResource("3_v7dmn")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1078, 815)
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="dangersaucer" type="Node2D" parent="enemies"]
+position = Vector2(87.9232, 32.2477)
+
+[node name="Dangersaucer" type="Sprite2D" parent="enemies/dangersaucer"]
+position = Vector2(2.93078, 0)
+texture = ExtResource("4_c06d5")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemies/dangersaucer"]
+autoplay = "idle"
+speed_scale = 0.7
+libraries = {
+"": SubResource("AnimationLibrary_jdr8w")
+}
