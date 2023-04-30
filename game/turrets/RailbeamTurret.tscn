@@ -95,10 +95,7 @@ libraries = {
 "": SubResource("AnimationLibrary_7ull0")
 }
 
-[node name="TurretAim" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Turret" type="Sprite2D" parent="TurretAim"]
+[node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 rotation = 3.14159
 texture = ExtResource("2_t20bm")
@@ -107,31 +104,24 @@ offset = Vector2(-11, -5)
 region_enabled = true
 region_rect = Rect2(34, 118, 19, 10)
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="TurretAim/Turret"]
+[node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
 position = Vector2(-10, 0)
 
-[node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="TurretAim/Turret"]
+[node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 modulate = Color(0.26, 1, 0.901333, 1)
 position = Vector2(-26, -14)
 texture = ExtResource("3_sttwk")
 centered = false
 hframes = 3
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="TurretAim/Turret"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Turret"]
 visible = false
 position = Vector2(-10, 0)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_ta8nm")
 one_shot = true
 randomness = 0.14
-
-[node name="Aim" type="ColorRect" parent="TurretAim"]
-unique_name_in_owner = true
-offset_right = 4000.0
-offset_bottom = 2.0
-mouse_filter = 2
-color = Color(1, 1, 1, 0.392157)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -20,15 +20,9 @@ extends AnimatableBody2D
 
 var current_target = null
 var shot_cooldown = 0.0
-var turret_aim : Node2D
 
 func _ready():
 	sync_to_physics = false
-	turret_aim = get_node("%TurretAim")
-	assert(turret_aim != null, "Missing turret_aim from BaseTurret.")
-
-	if OS.is_debug_build() == false && turret_aim.has_node("Aim"):
-		turret_aim.get_node("Aim").visible = false
 
 func _process(delta):
 	if fire_rate <= 0.0:
@@ -42,7 +36,7 @@ func _process(delta):
 
 	if current_target && is_valid_target(current_target):
 		var direction : Vector2 = current_target.get_global_transform_with_canvas().origin - get_global_transform_with_canvas().origin
-		turret_aim.look_at(global_position + direction)
+		%Turret.look_at(global_position + direction)
 	else:
 		aquire_target()
 
