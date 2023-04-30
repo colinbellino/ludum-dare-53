@@ -8,7 +8,7 @@ var current_chunk_index : int = 0
 var current_chunk : LevelChunk
 var checkpoint_ui : CheckpointUI
 
-enum LevelStates { INIT, MOVING, CHECKPOINT }
+enum LevelStates { MOVING, CHECKPOINT }
 
 func _ready():
 	world = get_node("%World")
@@ -46,15 +46,11 @@ func _process(delta: float):
 			Engine.set_time_scale(1)
 
 	match state:
-		LevelStates.INIT:
-			pass
-
 		LevelStates.MOVING:
-			# world.position -= cart.movement_speed * delta * speed_multiplier
-			cart.position += cart.movement_speed * delta
+			cart.linear_velocity = cart.movement_speed
 
 		LevelStates.CHECKPOINT:
-			pass
+			cart.linear_velocity = Vector2.ZERO
 
 func checkpoint_reached():
 	var next_index := current_chunk_index + 1

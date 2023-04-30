@@ -1,5 +1,4 @@
-class_name Mob
-extends RigidBody2D
+class_name Mob extends RigidBody2D
 
 @export var speed = 200
 @export var scroll_speed = 10

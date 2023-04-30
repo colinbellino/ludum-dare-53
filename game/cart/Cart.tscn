@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcf"]
 size = Vector2(80, 80)
 
-[node name="Cart" type="Node2D"]
+[node name="Cart" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource("1_d453d")
 
 [node name="Placeholder" type="ColorRect" parent="."]

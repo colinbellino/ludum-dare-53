@@ -1,4 +1,4 @@
-class_name Cart extends Node2D
+class_name Cart extends RigidBody2D
 
 @export var money := 100
 @export var movement_speed := Vector2(0, -100)
