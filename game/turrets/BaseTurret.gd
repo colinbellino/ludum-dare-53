@@ -1,6 +1,8 @@
 class_name BaseTurret
 extends Node2D
 
+@export var ui_icon : Texture
+
 @export var cost = 100.0
 @export var upgrade_cost_mult = 4.0
 @export var upgrade_fire_rate_mult = 1.5
