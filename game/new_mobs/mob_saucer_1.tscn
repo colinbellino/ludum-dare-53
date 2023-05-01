@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5k641fqt0bx"]
+[gd_scene load_steps=12 format=3 uid="uid://dq2m6vhsuf3jf"]
 
-[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_hr1v8"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="1_n75fa"]
+[ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_ot32v"]
 [ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="2_q4j00"]
 [ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="3_3e0j6"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_nieii"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
 length = 0.001
@@ -43,68 +45,68 @@ _data = {
 "idle": SubResource("Animation_qtt6x")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
-size = Vector2(76, 72)
+[sub_resource type="Animation" id="Animation_nf565"]
+resource_name = "Fire"
+length = 0.1
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7k8xq"]
-radius = 20.0
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bm0np"]
+_data = {
+"Fire": SubResource("Animation_nf565")
+}
 
-[node name="Mob2" type="RigidBody2D" groups=["Monsters"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7bfp"]
+radius = 26.0
+
+[node name="Dangersaucer" type="RigidBody2D" groups=["Monsters"]]
 collision_layer = 4
 collision_mask = 7
+physics_material_override = ExtResource("1_ot32v")
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 lock_rotation = true
-script = ExtResource("1_hr1v8")
-damage = 10.0
+script = ExtResource("1_n75fa")
 hitpoints = 100.0
 speed = 300
 approach_distance = 100
-movement_type = 2
+accleration = 4.0
+movement_type = 1
+movement_type_when_in_range = 1
+
+[node name="MonsterTurret" type="Node2D" parent="."]
+script = ExtResource("3_nieii")
+damage = 10.0
 projectile_sprite = ExtResource("2_q4j00")
+max_range = 318.0
 
-[node name="Pivot" type="Node2D" parent="."]
-
-[node name="BulletSpawnPosition" type="Marker2D" parent="Pivot"]
-unique_name_in_owner = true
-position = Vector2(20, 0)
-
-[node name="dangersaucer" type="Node2D" parent="Pivot"]
-z_index = 10
-position = Vector2(-3, 0)
-
-[node name="Dangersaucer" type="Sprite2D" parent="Pivot/dangersaucer"]
-position = Vector2(2.93078, 0)
-texture = ExtResource("3_3e0j6")
-hframes = 8
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/dangersaucer"]
+[node name="SaucerAnim" type="AnimationPlayer" parent="MonsterTurret"]
 autoplay = "idle"
 speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
-[node name="old Sprite" type="Sprite2D" parent="Pivot"]
-visible = false
-z_index = 10
+[node name="Dangersaucer" type="Sprite2D" parent="MonsterTurret"]
+position = Vector2(-0.0692201, 0)
 texture = ExtResource("3_3e0j6")
 hframes = 8
-region_rect = Rect2(0, 0, 44.8282, 40.313)
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
+unique_name_in_owner = true
+position = Vector2(18, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret"]
+libraries = {
+"": SubResource("AnimationLibrary_bm0np")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)
 scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_uld0d")
-
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-2, -1)
-shape = SubResource("CircleShape2D_7k8xq")
+shape = SubResource("CircleShape2D_m7bfp")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

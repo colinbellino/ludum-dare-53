@@ -1,18 +1,9 @@
 @tool
-class_name BaseTurret
-extends AnimatableBody2D
-
-@export var cost = 100.0
-@export var upgrade_cost_mult = 4.0
-@export var upgrade_fire_rate_mult = 1.5
-@export var upgrade_health_mult = 1.5
-@export var upgrade_damage_mult = 1.5
+class_name MonsterTurret
+extends Node2D
 
 @export var fire_rate = 1.0
-@export var hitpoints = 10.0
-var max_hitpoints
 @export var turn_speed = 1.0
-@export var aim_lookahead = 1.0
 @export var damage = 5.0
 
 @export var pierce = 0
@@ -33,25 +24,13 @@ var max_hitpoints
 
 @export var animation_bullet_spawn_offset = 0.0
 
-@export var debris_sprite : Texture
-
 var current_target = null
 var shot_cooldown = 0.0
 var target_rotation = 0.0
 var current_rotation = 0.0
 
-signal damaged(damage)
-
-func _ready():
-	max_hitpoints = hitpoints
-	sync_to_physics = false
-	add_to_group("ShipParts")
-
 func _physics_process(delta):
 	if Engine.is_editor_hint():
-		return
-
-	if fire_rate <= 0.0:
 		return
 
 	if not is_valid_target(current_target):
@@ -61,11 +40,11 @@ func _physics_process(delta):
 		aquire_target()
 
 	if current_target:
-		var aim = current_target.global_position + current_target.linear_velocity * aim_lookahead
+		var aim = current_target.global_position
 		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
-		target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
-		current_rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
-		%Turret.rotation = current_rotation
+		target_rotation = barrel_orientation.angle_to(aim - global_position)
+		current_rotation = Utils.move_towards_angle(rotation, target_rotation, delta * turn_speed * TAU)
+		rotation = current_rotation
 
 		if shot_cooldown > 0.0:
 			shot_cooldown -= delta
@@ -91,38 +70,30 @@ func spawn_bullet():
 	bullet.expiration_time = projectile_lifetime
 	bullet.is_beam = projectile_is_beam
 	bullet.rotate_projectile = projectile_rotate
+	bullet.monster_bullet = true
 	if bullet.is_beam:
 		bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
-		%Turret.add_child(bullet)
+		add_child(bullet)
 	else:
 		level.add_child(bullet)
 	bullet.global_position = %BulletSpawnPosition.global_position
 
 func aquire_target():
-	var mobs = get_tree().get_nodes_in_group("Monsters")
-	mobs = mobs.filter(is_valid_target)
-	mobs.sort_custom(
+	var targets = get_tree().get_nodes_in_group("ShipParts")
+	targets = targets.filter(is_valid_target)
+	targets.sort_custom(
 		func(a,b):
 			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 	)
 
-	if mobs.size() > 0:
-		if mobs[0].global_position.distance_to(global_position) < max_range:
-			current_target = mobs[0]
+	if targets.size() > 0:
+		if targets[0].global_position.distance_to(global_position) < max_range:
+			current_target = targets[0]
 
-func take_hit(hit_damage: float):
-	hitpoints -= hit_damage
-	emit_signal("damaged", hit_damage)
-	print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
-	if hitpoints <= 0:
-		destroyed()
-
-func destroyed():
-	get_parent().destroy()
-
-func is_valid_target(mob):
+func is_valid_target(target):
 	return (
-		is_instance_valid(mob)
-		&& mob.hitpoints > 0
-		&& global_position.distance_to(mob.global_position) < max_range
+		is_instance_valid(target)
+		&& target.hitpoints > 0
+		&& global_position.distance_to(target.global_position) < max_range
 	)
+
