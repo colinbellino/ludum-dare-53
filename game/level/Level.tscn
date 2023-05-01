@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://coaiy7267rcni"]
+[gd_scene load_steps=26 format=3 uid="uid://coaiy7267rcni"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="6_acimt"]
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="7_dj8xb"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="7_l1jce"]
+[ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
@@ -147,6 +148,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_dj8xb")
 text = "Continue"
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("8_ssp35")]
 
 [node name="Ship" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true
