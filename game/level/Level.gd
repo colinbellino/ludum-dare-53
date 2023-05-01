@@ -33,10 +33,11 @@ func _process(_delta: float):
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if Input.is_key_pressed(KEY_SHIFT):
-			Engine.set_time_scale(20)
-		else:
-			Engine.set_time_scale(1)
+		if OS.is_debug_build():
+			if Input.is_key_pressed(KEY_SHIFT):
+				Engine.set_time_scale(20)
+			else:
+				Engine.set_time_scale(1)
 
 	match state:
 		LevelStates.MOVING:
@@ -48,7 +49,7 @@ func _process(_delta: float):
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
-	if wave_index > waves.size() - 1:
+	if wave_index > waves.waves.size() - 1:
 		print("End of the game reached!")
 		Overlay.transition("res://game/main_menu/TitleUI.tscn")
 		return

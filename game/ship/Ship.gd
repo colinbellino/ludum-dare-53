@@ -14,7 +14,6 @@ func _ready():
 
 func _process(_delta):
 	velocity = movement_speed * movement_mult
-	position += velocity * _delta
 
 func on_slot_selected(slot:ShipSlot):
 	if current_ui_node and is_instance_valid(current_ui_node):

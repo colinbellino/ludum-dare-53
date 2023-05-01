@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd8dgqunc1fgb"]
+[gd_scene load_steps=4 format=3 uid="uid://d3frxsw2th0r4"]
 
 [ext_resource type="Script" path="res://game/monster_spawner/Bullet.gd" id="1_uayki"]
 [ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="2_nl67t"]

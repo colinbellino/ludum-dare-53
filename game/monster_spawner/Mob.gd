@@ -25,9 +25,10 @@ var side_of_ship = -1
 func _physics_process(_delta):
 	if not GameData.level:
 		return
-		
+
 	match movement_type:
 		MovementTypes.Stationary:
+			target_velocity.y = -GameData.level.ship.velocity.y
 			pass
 
 		MovementTypes.HorizontalLine:
@@ -40,17 +41,17 @@ func _physics_process(_delta):
 			target_position.x = GameData.level.ship.global_position.x + approach_distance * side_of_ship
 			target_position.y = clamp(global_position.y, GameData.level.ship.global_position.y-100.0, GameData.level.ship.global_position.y+100.0)
 			target_velocity = (target_position - global_position).normalized() * speed
-	
-	if global_position.distance_to(GameData.level.ship.global_position) < attack_distance and attack_type == AttackTypes.Ranged: 
+
+	if global_position.distance_to(GameData.level.ship.global_position) < attack_distance and attack_type == AttackTypes.Ranged:
 		ranged_attack()
-		
-	if abs(target_velocity.x) > 150.0:
+
+	if abs(target_velocity.x) > 150.0 && has_node("Pivot"):
 		$Pivot.scale.x = signf(target_velocity.x)
 
 func _integrate_forces(state):
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))
 	queue_redraw()
-	
+
 func _draw():
 	draw_rect(Rect2(target_position - global_position, Vector2(4, 4)), Color.RED)
 
@@ -58,12 +59,15 @@ func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that g
 	queue_free()
 
 func ranged_attack():
+	if has_node("AttackTimer") == false:
+		return
+
 	if $AttackTimer.is_stopped():
 		var p = projectile.instantiate()
 		get_parent().add_child(p)
 		p.global_position = %BulletSpawnPosition.global_position
 		p.bullet_damage = damage
-		p.rotation = 0.0 if $Pivot.scale.x > 0 else PI 
+		p.rotation = 0.0 if $Pivot.scale.x > 0 else PI
 		p.rotation_degrees += randf_range(-spread,spread)
 		$AttackTimer.start()
 

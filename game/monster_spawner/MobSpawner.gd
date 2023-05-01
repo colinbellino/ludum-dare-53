@@ -13,16 +13,14 @@ func _ready():
 func start_wave(waves, wave_index):
 	print("Wave " + str(wave_index) + " starting --------------------------")
 
+	assert(waves[waves.size() - 1].is_checkpoint == true, "Invalid waves: last wave must be a checkpoint (is_checkpoint=true)")
+
 	while true:
 		var wave = waves[wave_index]
-		# var wave = waves.pop_front()
-		var last_spawn_time = 0.0
 		for mob_scene in wave.mobs:
 			for i in wave.repeat_n_times:
-				spawn_mob(mob_scene, wave)
-				await get_tree().create_timer(wave.mob_timer * (i+1)).timeout
-
-		await get_tree().create_timer(wave.wave_over_timer).timeout
+				spawn_mob(mob_scene, wave, i)
+				await get_tree().create_timer(wave.mob_timer).timeout
 
 		print("Wave " + str(wave_index) + " over     --------------------------")
 		emit_signal("wave_over", wave, wave_index)
@@ -34,7 +32,7 @@ func start_wave(waves, wave_index):
 
 	emit_signal("all_waves_over")
 
-func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
+func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Mob:
 	if mob_scene == null:
 		return
 
@@ -62,6 +60,6 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave) -> Mob:
 
 	mob.global_position = position + global_position
 
-	print(" - Spawning mob: %s at %s (pattern: %s)" % [mob.name, mob.global_position, wave.spawn_pattern])
+	print(" - Spawning mob: %s at %s (pattern: %s, mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
 
 	return mob

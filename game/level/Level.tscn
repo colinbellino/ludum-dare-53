@@ -1,30 +1,23 @@
-[gd_scene load_steps=23 format=3 uid="uid://dknlum3ir1kwc"]
+[gd_scene load_steps=24 format=3 uid="uid://dknlum3ir1kwc"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="3_5rcjp"]
-[ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="3_bwdbi"]
-[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="3_t857t"]
+[ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="3_lmsls"]
+[ext_resource type="Resource" uid="uid://c4css43n5g1ej" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="4_ll4f6"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
+[ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="6_acimt"]
+[ext_resource type="Resource" uid="uid://bx8kruduvxtbu" path="res://game/waves/wave_checkpoint_ending.tres" id="6_sap08"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="7_l1jce"]
-
-[sub_resource type="Resource" id="Resource_h5jdk"]
-script = ExtResource("3_t857t")
-repeat_n_times = 120
-mob_timer = 1.0
-wave_over_timer = 120.0
-spawn_pattern = 0
-mobs = Array[PackedScene]([ExtResource("3_bwdbi")])
-is_checkpoint = false
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
-waves = Array[ExtResource("3_t857t")]([SubResource("Resource_h5jdk")])
+waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("4_7thro"), ExtResource("5_ymyxe"), ExtResource("3_lmsls"), ExtResource("6_sap08")])
 
 [sub_resource type="Shader" id="Shader_xccvg"]
 code = "shader_type canvas_item;
@@ -150,8 +143,9 @@ text = "Checkpoint"
 unique_name_in_owner = true
 position = Vector2(480, 270)
 
-[node name="MobSpawner" parent="Ship" instance=ExtResource("5_ih7dg")]
+[node name="MobSpawner" parent="." instance=ExtResource("5_ih7dg")]
 unique_name_in_owner = true
+position = Vector2(480, 270)
 spawn_area = Rect2(-360, -202.5, 720, 405)
 
 [node name="BG" type="CanvasLayer" parent="."]
