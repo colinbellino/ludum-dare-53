@@ -1,26 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://de3finheo2q5k"]
+[gd_scene load_steps=6 format=3 uid="uid://c5k641fqt0bx"]
 
-[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_pvs4u"]
-[ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="2_4sh1x"]
-[ext_resource type="Texture2D" uid="uid://bsfxat76ewwge" path="res://assets/sprites/enemies/Grabber.png" id="2_8nv5s"]
+[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_hr1v8"]
+[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="2_q4j00"]
+[ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="3_3e0j6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
-size = Vector2(130, 126)
+size = Vector2(76, 72)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k8xq"]
-radius = 43.4166
+radius = 20.0
 
 [node name="Mob2" type="RigidBody2D" groups=["Monsters"]]
 collision_layer = 4
 collision_mask = 7
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_pvs4u")
+script = ExtResource("1_hr1v8")
 speed = 300
 approach_distance = 100
 movement_type = 2
-attack_type = 2
-projectile_sprite = ExtResource("2_4sh1x")
+projectile_sprite = ExtResource("2_q4j00")
 
 [node name="Pivot" type="Node2D" parent="."]
 
@@ -30,9 +29,9 @@ position = Vector2(20, 0)
 
 [node name="Sprite" type="Sprite2D" parent="Pivot"]
 z_index = 10
-texture = ExtResource("2_8nv5s")
-region_enabled = true
-region_rect = Rect2(0, 0, 64, 64)
+texture = ExtResource("3_3e0j6")
+hframes = 8
+region_rect = Rect2(0, 0, 44.8282, 40.313)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)
@@ -42,7 +41,7 @@ shape = SubResource("RectangleShape2D_uld0d")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(19, -1)
+position = Vector2(-2, -1)
 shape = SubResource("CircleShape2D_7k8xq")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

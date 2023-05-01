@@ -34,6 +34,7 @@ var current_rotation = 0.0
 
 func _ready():
 	sync_to_physics = false
+	add_to_group("ShipParts")
 
 func _process(delta):
 	if Engine.is_editor_hint():

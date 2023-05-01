@@ -105,7 +105,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -147,16 +147,11 @@ collision_mask = 3
 sync_to_physics = false
 script = ExtResource("1_0kbl5")
 cost = 600.0
-fire_rate = 4.0
+fire_rate = 2.0
 hitpoints = 100.0
-turn_speed = 4.0
-aim_lookahead = 2.0
-damage = 25.0
-explosion_radius = 32.0
-explosion_knockback = 40.0
+damage = 50.0
 projectile_sprite = SubResource("AnimatedTexture_amt8o")
-projectile_lifetime = 0.5
-max_range = 150.0
+max_range = 318.0
 animation_bullet_spawn_offset = 0.25
 
 [node name="Base" type="Sprite2D" parent="."]
@@ -177,7 +172,6 @@ unique_name_in_owner = true
 position = Vector2(-7, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
-visible = false
 modulate = Color(0.26, 1, 0.901333, 1)
 position = Vector2(-20, -6)
 texture = ExtResource("3_yss01")
