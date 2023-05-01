@@ -10,6 +10,7 @@ extends AnimatableBody2D
 
 @export var fire_rate = 1.0
 @export var hitpoints = 10.0
+var max_hitpoints
 @export var turn_speed = 1.0
 @export var aim_lookahead = 1.0
 @export var damage = 5.0
@@ -32,19 +33,22 @@ var shot_cooldown = 0.0
 var target_rotation = 0.0
 var current_rotation = 0.0
 
+signal damaged(damage)
+
 func _ready():
+	max_hitpoints = hitpoints
 	sync_to_physics = false
 
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
-	
+
 	if fire_rate <= 0.0:
 		return
 
 	if not is_valid_target(current_target):
 		current_target = null
-		
+
 	if not current_target:
 		aquire_target()
 
@@ -54,7 +58,7 @@ func _process(delta):
 		target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
 		current_rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
 		%Turret.rotation = current_rotation
-		
+
 		if shot_cooldown > 0.0:
 			shot_cooldown -= delta
 		if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
@@ -64,7 +68,7 @@ func _process(delta):
 			else:
 				get_tree().create_timer(animation_bullet_spawn_offset, false, true).timeout.connect(self.spawn_bullet)
 			shot_cooldown = 1.0 / fire_rate
-		
+
 func spawn_bullet():
 	var level = GameData.level
 	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
@@ -94,6 +98,7 @@ func aquire_target():
 
 func take_hit(hit_damage: float):
 	hitpoints -= hit_damage
+	emit_signal("damaged", hit_damage)
 	print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
 	if hitpoints <= 0:
 		destroyed()
