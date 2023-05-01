@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://r0mr0eps8w7w"]
+[gd_scene load_steps=24 format=3 uid="uid://r0mr0eps8w7w"]
 
 [ext_resource type="Texture2D" uid="uid://bwle0dd1nqili" path="res://assets/sprites/cart/misc/ssanim_bullet_pearl.png" id="1_36qkb"]
 [ext_resource type="Texture2D" uid="uid://b1qd05xk4xex6" path="res://assets/sprites/cart/misc/ssanim_cycleorange.png" id="2_kbykc"]
 [ext_resource type="Texture2D" uid="uid://csc2sqpknby8t" path="res://assets/sprites/checkpointstation/ss_stationstructure_placeholder.png" id="3_v7dmn"]
 [ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="4_c06d5"]
+[ext_resource type="Texture2D" uid="uid://dd4pclj3lly7m" path="res://assets/sprites/checkpointstation/stationlower.png" id="4_kkk12"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="5_mqc5b"]
+[ext_resource type="Texture2D" uid="uid://d4see57ra15k" path="res://assets/sprites/checkpointstation/stationupper.png" id="5_x7xfj"]
 [ext_resource type="Texture2D" uid="uid://db6r24bbn2hbn" path="res://assets/sprites/cart/misc/thruster-sheet.png" id="6_x51uq"]
 
 [sub_resource type="Animation" id="Animation_5o0gk"]
@@ -133,6 +135,21 @@ load_path = "res://.godot/imported/ss_ship_misc.png-0f593cf4e9a35a15f8f8269f9c17
 atlas = SubResource("CompressedTexture2D_8pn8f")
 region = Rect2(130, 186, 135, 63)
 
+[sub_resource type="Animation" id="Animation_7s63r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_lavhm"]
 resource_name = "thruster fire"
 length = 0.3
@@ -148,21 +165,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_7s63r"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cf7ph"]
@@ -201,7 +203,7 @@ libraries = {
 }
 
 [node name="checkpointstation" type="Node2D" parent="."]
-position = Vector2(567.593, 482.738)
+position = Vector2(1946.03, 852.12)
 
 [node name="station_lower" type="Sprite2D" parent="checkpointstation"]
 position = Vector2(-201.247, -150.489)
@@ -216,6 +218,17 @@ texture = ExtResource("3_v7dmn")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1078, 815)
+
+[node name="checkpointstation_final" type="Node2D" parent="."]
+position = Vector2(568.57, 1280.13)
+
+[node name="Stationlower" type="Sprite2D" parent="checkpointstation_final"]
+position = Vector2(40.054, -480.784)
+texture = ExtResource("4_kkk12")
+
+[node name="Stationupper" type="Sprite2D" parent="checkpointstation_final"]
+position = Vector2(41.0309, -476.875)
+texture = ExtResource("5_x7xfj")
 
 [node name="enemies" type="Node2D" parent="."]
 
