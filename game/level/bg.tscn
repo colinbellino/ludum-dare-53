@@ -1,58 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://kr7qkxwy0nhg"]
+[gd_scene load_steps=7 format=3 uid="uid://kr7qkxwy0nhg"]
 
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="1_nhh0f"]
+[ext_resource type="Material" path="res://assets/shaders/unshaded_add.tres" id="2_n8u8s"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="2_qyw5i"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="3_foiag"]
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="4_5ptd0"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="5_tg2kd"]
-
-[sub_resource type="Shader" id="Shader_84jnd"]
-code = "shader_type canvas_item;
-
-void fragment(){
-    vec2 newuv = UV;
-    newuv.x += TIME * 0.0		;
-	newuv.y += TIME * -0.005			;
-    vec4 c = texture(TEXTURE, newuv);
-    COLOR = c;
-}
-
-render_mode blend_add;"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wnky"]
-shader = SubResource("Shader_84jnd")
-
-[sub_resource type="Shader" id="Shader_ood3x"]
-code = "shader_type canvas_item;
-
-void fragment(){
-    vec2 newuv = UV;
-    newuv.x += TIME * 0.0		;
-	newuv.y += TIME * -0.01			;
-    vec4 c = texture(TEXTURE, newuv);
-    COLOR = c;
-}
-
-render_mode blend_add;"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h3n7r"]
-shader = SubResource("Shader_ood3x")
-
-[sub_resource type="Shader" id="Shader_3iejv"]
-code = "shader_type canvas_item;
-
-void fragment(){
-    vec2 newuv = UV;
-    newuv.x += TIME * 0.0		;
-	newuv.y += TIME * -0.02			;
-    vec4 c = texture(TEXTURE, newuv);
-    COLOR = c;
-}
-
-render_mode blend_add;"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh50q"]
-shader = SubResource("Shader_3iejv")
 
 [node name="BG" type="ParallaxBackground"]
 layer = -1
@@ -73,7 +26,7 @@ motion_mirroring = Vector2(0, 1877)
 
 [node name="starsbg_far" type="Sprite2D" parent="ParallaxLayer2"]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_5wnky")
+material = ExtResource("2_n8u8s")
 texture = ExtResource("2_qyw5i")
 centered = false
 
@@ -83,7 +36,7 @@ motion_mirroring = Vector2(0, 2302)
 
 [node name="starsbg_1" type="Sprite2D" parent="ParallaxLayer3"]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_h3n7r")
+material = ExtResource("2_n8u8s")
 texture = ExtResource("3_foiag")
 centered = false
 
@@ -129,6 +82,6 @@ motion_mirroring = Vector2(0, 1200)
 
 [node name="StarsbgDust2" type="Sprite2D" parent="ParallaxLayer6"]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_qh50q")
+material = ExtResource("2_n8u8s")
 texture = ExtResource("5_tg2kd")
 centered = false
