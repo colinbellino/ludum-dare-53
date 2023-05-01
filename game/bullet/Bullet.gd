@@ -39,6 +39,8 @@ func _ready():
 	
 func _physics_process(delta):
 	var velocity = direction * speed * delta
+	if is_beam:
+		velocity = direction * speed
 	time_alive += delta
 	if frames_alive > 0 and not Engine.is_editor_hint():
 		force_shapecast_update()
