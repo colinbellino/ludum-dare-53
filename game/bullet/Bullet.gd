@@ -18,6 +18,8 @@ extends ShapeCast2D
 		if is_inside_tree() and val:
 			$Sprite.texture = val
 
+@export var is_beam := false
+
 # Set these before adding to scene
 @export_category("Initialization")
 @export var monster_bullet := false:
@@ -37,6 +39,8 @@ func _ready():
 	
 func _physics_process(delta):
 	var velocity = direction * speed * delta
+	if is_beam:
+		velocity = direction * speed
 	time_alive += delta
 	if frames_alive > 0 and not Engine.is_editor_hint():
 		force_shapecast_update()
@@ -58,7 +62,8 @@ func _physics_process(delta):
 			else:
 				queue_free()
 				return
-		position += velocity
+		if not is_beam:
+			position += velocity
 	target_position = velocity
 	frames_alive += 1
 	if time_alive >= expiration_time:

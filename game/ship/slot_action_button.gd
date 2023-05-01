@@ -42,11 +42,17 @@ func _ready():
 
 func upd():
 	if is_inside_tree():
-		var node = meta.instantiate()
+		var node : BaseTurret = null
+		if meta:
+			node = meta.instantiate()
 		%Icon.texture = icon
-		%Label.text = node.name
-		%Cost.text = "%s$" % [node.cost]
-		if node.cost > GameData.money:
+		if node:
+			%Label.text = node.name
+			%Cost.text = "%s$" % [node.cost]
+		else:
+			%Label.text = label
+			%Cost.text = "%s$" % [cost]
+		if node && node.cost > GameData.money:
 			%Cost.add_theme_color_override("font_color", GameData.COLOR_RED)
 		else:
 			%Cost.add_theme_color_override("font_color", GameData.COLOR_GREEN)
