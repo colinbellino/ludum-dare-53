@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_pvs4u"]
 [ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="2_4sh1x"]
-[ext_resource type="Texture2D" uid="uid://bsfxat76ewwge" path="res://assets/sprites/enemies/Grabber.png" id="2_8nv5s"]
+[ext_resource type="Texture2D" uid="uid://blsd58rg07gp3" path="res://assets/sprites/enemies/Grabber-sheet.png" id="3_wpp5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
 size = Vector2(130, 126)
@@ -16,6 +16,7 @@ collision_mask = 7
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_pvs4u")
+hitpoints = 200.0
 speed = 300
 approach_distance = 100
 movement_type = 2
@@ -29,8 +30,8 @@ position = Vector2(20, 0)
 
 [node name="Sprite" type="Sprite2D" parent="Pivot"]
 z_index = 10
-texture = ExtResource("2_8nv5s")
-region_enabled = true
+texture = ExtResource("3_wpp5o")
+hframes = 4
 region_rect = Rect2(0, 0, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
