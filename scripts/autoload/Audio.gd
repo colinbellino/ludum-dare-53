@@ -60,7 +60,10 @@ func play_ui_button_sound() -> void:
 	play_sound(preload("res://assets/audio/fft-text.mp3"));
 
 func play_ui_error_sound() -> void:
-	play_sound(preload("res://assets/audio/small-fart.wav"));
+	play_sound(preload("res://assets/audio/error.wav"));
 
 func play_ui_money_sound() -> void:
-	play_sound(preload("res://assets/audio/fft-text.mp3"));
+	play_sound(preload("res://assets/audio/money.wav"));
+
+func play_ui_turret_sound() -> void:
+	play_sound(preload("res://assets/audio/place_turret.wav"));

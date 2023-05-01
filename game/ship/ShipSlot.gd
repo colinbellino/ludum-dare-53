@@ -31,7 +31,7 @@ func build_structure(new_structure:PackedScene, initial_build = false):
 			return
 
 		GameData.money -= node.cost
-		AudioPlayer.play_ui_money_sound()
+		AudioPlayer.play_ui_turret_sound()
 		print("money: ", GameData.money)
 
 	current_structure = new_structure
