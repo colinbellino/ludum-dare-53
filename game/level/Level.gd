@@ -33,6 +33,10 @@ func _ready():
 	title_node.connect("tree_exited", start_game)
 
 func start_game():
+	if GameData.voice_played == false:
+		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
+		GameData.voice_played = true
+
 	%MobSpawner.connect("wave_over", on_wave_over)
 	%MobSpawner.start_wave(waves.waves, wave_index)
 
