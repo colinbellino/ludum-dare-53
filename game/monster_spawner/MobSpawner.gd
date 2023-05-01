@@ -24,7 +24,7 @@ func start_wave(waves, wave_index):
 					return
 
 				await get_tree().create_timer(wave.mob_timer).timeout
-			await get_tree().create_timer(wave.wait_timer).timeout
+		await get_tree().create_timer(wave.wait_timer).timeout
 
 		print("Wave " + str(wave_index) + " over     --------------------------")
 		emit_signal("wave_over", wave, wave_index)
