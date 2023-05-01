@@ -11,39 +11,64 @@ script = ExtResource("1_8xbg6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0.623529, 0.345098, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 95.0
+grow_horizontal = 2
+theme = ExtResource("1_rd3gi")
+theme_override_font_sizes/font_size = 38
+text = "Credits"
+horizontal_alignment = 1
 
 [node name="Team" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 4.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 200.0
+offset_right = 150.0
+offset_bottom = 500.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("1_rd3gi")
 bbcode_enabled = true
-text = "[CREDITS GO HERE]
-Don't edit here, this is loaded from the credits.txt file"
+text = "[center]
+[url=https://colinbellino.com]Colin Bellino[/url]
+mathias
+denmander
+Squirrelsquid
+Beast
+Krikit
+[/center]
+"
 fit_content = true
 
 [node name="Menu" type="VBoxContainer" parent="."]
-anchors_preset = 13
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -18.0
-offset_top = 28.0
-offset_right = 18.0
-offset_bottom = -34.0
+offset_left = -100.0
+offset_top = -92.0
+offset_right = 100.0
+offset_bottom = -73.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 alignment = 2
 
 [node name="Close" type="Button" parent="Menu"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_rd3gi")
-text = "Close"
+text = "Back"
 
 [connection signal="meta_clicked" from="Team" to="." method="open_link"]
 [connection signal="pressed" from="Menu/Close" to="." method="close"]
