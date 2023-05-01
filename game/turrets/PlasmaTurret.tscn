@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://mntot2ajrptc"]
+[gd_scene load_steps=17 format=3 uid="uid://mntot2ajrptc"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_i0phl"]
 [ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_60iu4"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cs1clpq1weo2a" path="res://assets/sprites/cart/misc/pearl2.png" id="3_ueon4"]
 [ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_is27a"]
 [ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_m876v"]
+[ext_resource type="AudioStream" uid="uid://dov17ip4hhlew" path="res://assets/audio/shot_plasma.wav" id="6_kdw6k"]
+[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="7_2bf1f"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_clmhl"]
 frames = 4
@@ -156,6 +158,8 @@ hitpoints = 50.0
 damage = 10.0
 projectile_sprite = SubResource("AnimatedTexture_clmhl")
 projectile_speed = 400.0
+fire_sfx = Array[AudioStream]([ExtResource("6_kdw6k")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("7_2bf1f")])
 max_range = 618.0
 debris_sprite = SubResource("AtlasTexture_ecpj5")
 

@@ -23,6 +23,7 @@ func on_slot_selected(slot:ShipSlot):
 	var ui_scene : InstancePlaceholder = %ConstructMenu if not slot.current_structure else %RepairMenu
 	var node = ui_scene.create_instance()
 	node.global_position = slot.global_position
+	node.open(slot)
 	node.action_pressed.connect(self.player_action.bind(slot))
 	current_ui_node = node
 
@@ -34,3 +35,6 @@ func player_action(action_name:String, meta, target:ShipSlot):
 			target.build_structure(meta)
 		"sell":
 			target.sell()
+		_:
+			print("Actiion not implemented yet")
+			AudioPlayer.play_ui_error_sound()
