@@ -12,11 +12,13 @@ var cargo_required = 50
 
 @export var waves : WaveList
 
-var CHECKPOINT_WAVE_DELAY := 5
+var CHECKPOINT_WAVE_DELAY := 25
 
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
+
 	wave_index = 0
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version)
@@ -84,6 +86,7 @@ func on_wave_over(wave, index):
 	#	return
 
 	if wave.is_checkpoint:
+		AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
 		state = LevelStates.CHECKPOINT
 		deliever_cargo()
 		checkpoint_ui = get_node("%CheckpointUI").create_instance()
@@ -123,13 +126,20 @@ func on_checkpoint_continue_pressed():
 	if not is_inside_tree():
 		return
 
+	AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
+	await get_tree().create_timer(2).timeout
+
+	AudioPlayer.play_music(preload("res://assets/audio/ludum1_3.ogg"))
+
 	checkpoint_index += 1
 
 	state = LevelStates.MOVING
 	wave_index = 0
 	waves = $WaveDirector.generate_waves(calc_difficulty())
 
+	print("BEFORE")
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
+	print("AFTER")
 	%MobSpawner.start_wave(waves.waves, wave_index)
 
 func on_cargo_destroyed(_cargo: Cargo):

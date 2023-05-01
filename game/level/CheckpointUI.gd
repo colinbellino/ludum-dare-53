@@ -8,7 +8,7 @@ func _ready():
 	%Title.text = "Alpha Centauri #" + str(level.checkpoint_index)
 	set_text(%cargo_shipped, [level.last_checkpoint_cargo_worth])
 	set_text(%cargo_req, [level.cargo_required])
-	
+
 var templates = {}
 
 func set_text(node:RichTextLabel, values:Array):
@@ -23,5 +23,4 @@ func on_continue_pressed():
 	if GameData.level.cargo_worth() < GameData.level.cargo_required:
 		AudioPlayer.play_ui_error_sound()
 	else:
-		AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
 		queue_free()
