@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="3_5rcjp"]
 [ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="3_lmsls"]
-[ext_resource type="Resource" uid="uid://c4css43n5g1ej" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
+[ext_resource type="Resource" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="4_ll4f6"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
@@ -16,7 +16,7 @@
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
-waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("3_lmsls"), ExtResource("5_ymyxe"), ExtResource("4_7thro"), ExtResource("5_ymyxe")])
+waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("3_lmsls"), ExtResource("4_7thro"), ExtResource("5_ymyxe"), ExtResource("5_ymyxe")])
 
 [sub_resource type="Shader" id="Shader_xccvg"]
 code = "shader_type canvas_item;
@@ -142,9 +142,8 @@ text = "Checkpoint"
 unique_name_in_owner = true
 position = Vector2(480, 270)
 
-[node name="MobSpawner" parent="." instance=ExtResource("5_ih7dg")]
+[node name="MobSpawner" parent="Ship" instance=ExtResource("5_ih7dg")]
 unique_name_in_owner = true
-position = Vector2(480, 270)
 spawn_area = Rect2(-360, -202.5, 720, 405)
 
 [node name="BG" type="CanvasLayer" parent="."]

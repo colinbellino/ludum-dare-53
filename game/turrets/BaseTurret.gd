@@ -10,7 +10,12 @@ extends AnimatableBody2D
 @export var fire_rate = 1.0
 @export var hitpoints = 10.0
 @export var turn_speed = 1.0
+@export var aim_lookahead = 1.0
 @export var damage = 5.0
+
+@export var pierce = 0
+@export var explosion_radius = 0.0
+@export var knockback = 2.5
 
 @export var projectile_sprite : Texture
 @export var projectile_speed = 200.0
@@ -19,6 +24,8 @@ extends AnimatableBody2D
 
 var current_target = null
 var shot_cooldown = 0.0
+var target_rotation = 0.0
+var current_rotation = 0.0
 
 func _ready():
 	sync_to_physics = false
@@ -29,17 +36,39 @@ func _process(delta):
 
 	if not is_valid_target(current_target):
 		current_target = null
-
-	if shot_cooldown > 0.0:
-		shot_cooldown -= delta
+		
+	if not current_target:
+		aquire_target()
 
 	if current_target:
-		var aim = current_target.global_position
+		var aim = current_target.global_position + current_target.linear_velocity * aim_lookahead
 		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
-		var target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
-		%Turret.rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
-	else:
-		aquire_target()
+		target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
+		current_rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
+		%Turret.rotation = current_rotation
+		
+		if shot_cooldown > 0.0:
+			shot_cooldown -= delta
+		if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
+			$AnimationPlayer.play("Fire")
+			if animation_bullet_spawn_offset <= 0.01:
+				spawn_bullet()
+			else:
+				get_tree().create_timer(animation_bullet_spawn_offset, false, true).timeout.connect(self.spawn_bullet)
+			shot_cooldown = 1.0 / fire_rate
+		
+func spawn_bullet():
+	var level = GameData.level
+	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
+	bullet.sprite = projectile_sprite
+	bullet.speed = projectile_speed
+	bullet.damage = damage
+	bullet.pierce = pierce
+	bullet.explosion_radius = explosion_radius
+	bullet.knockback = knockback
+	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
+	level.add_child(bullet)
+	bullet.global_position = %BulletSpawnPosition.global_position
 
 func aquire_target():
 	var mobs = get_tree().get_nodes_in_group("Monsters")
@@ -51,7 +80,6 @@ func aquire_target():
 
 	if mobs.size() > 0:
 		current_target = mobs[0]
-		print("Target aquired: ", current_target.name)
 
 func take_hit(hit_damage: float):
 	hitpoints -= hit_damage
@@ -65,6 +93,5 @@ func destroyed():
 func is_valid_target(mob):
 	return (
 		is_instance_valid(mob)
-		&& get_viewport().get_visible_rect().has_point(mob.position)
 		&& mob.hitpoints > 0
 	)

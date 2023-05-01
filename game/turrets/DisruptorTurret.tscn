@@ -150,6 +150,7 @@ fire_rate = 2.0
 hitpoints = 100.0
 damage = 50.0
 projectile_sprite = SubResource("AnimatedTexture_amt8o")
+animation_bullet_spawn_offset = 0.25
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_6jpqw")

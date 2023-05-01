@@ -22,7 +22,7 @@ extends ShapeCast2D
 @export var monster_bullet := false:
 	set(val):
 		monster_bullet = val
-		collision_mask = GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_SHIP_HURTABLE if monster_bullet else GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_MONSTER_HURTABLE
+		collision_mask = (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_SHIP_HURTABLE) if monster_bullet else (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_MONSTER_HURTABLE)
 @export var direction = Vector2(1.0, 0.0)
 
 var frames_alive = 0

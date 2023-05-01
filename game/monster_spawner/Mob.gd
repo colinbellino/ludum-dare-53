@@ -6,7 +6,6 @@ class_name Mob extends RigidBody2D
 
 @export var hitpoints = 10.0
 @export var speed = 200
-@export var scroll_speed = 10
 @export var approach_distance = 50
 @export var attack_distance = 200
 @export var accleration = 1.0
@@ -70,8 +69,8 @@ func ranged_attack():
 		p.rotation_degrees += randf_range(-spread,spread)
 		$AttackTimer.start()
 
-func take_hit(damage: float):
-	hitpoints -= damage
+func take_hit(hit: float):
+	hitpoints -= hit
 	if hitpoints <= 0:
 		queue_free()
 		#Play some animation or emit particles for destroying it

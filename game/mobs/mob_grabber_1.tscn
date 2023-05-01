@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://de3finheo2q5k"]
 
 [ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_pvs4u"]
-[ext_resource type="PackedScene" uid="uid://d3frxsw2th0r4" path="res://game/mobs/acid_blob.tscn" id="2_1ejet"]
+[ext_resource type="PackedScene" uid="uid://dd8dgqunc1fgb" path="res://game/mobs/acid_blob.tscn" id="2_1ejet"]
 [ext_resource type="Texture2D" uid="uid://bsfxat76ewwge" path="res://assets/sprites/enemies/Grabber.png" id="2_8nv5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
@@ -11,8 +11,10 @@ size = Vector2(130, 126)
 radius = 43.4166
 
 [node name="Mob" type="RigidBody2D" groups=["Monsters"]]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 3
 gravity_scale = 0.0
+can_sleep = false
 lock_rotation = true
 script = ExtResource("1_pvs4u")
 projectile = ExtResource("2_1ejet")

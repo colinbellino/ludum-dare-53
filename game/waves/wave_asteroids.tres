@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_pbiw7")
-repeat_n_times = 1
-mob_timer = 1.0
+repeat_n_times = 20
+mob_timer = 0.5
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("1_xc7xl"), ExtResource("1_xc7xl"), ExtResource("1_xc7xl"), ExtResource("1_xc7xl")])
 is_checkpoint = false

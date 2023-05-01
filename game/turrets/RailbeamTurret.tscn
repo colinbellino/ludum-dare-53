@@ -136,8 +136,11 @@ collision_mask = 3
 script = ExtResource("1_nlby4")
 cost = 400.0
 hitpoints = 75.0
+aim_lookahead = 0.25
 damage = 100.0
+pierce = 4
 projectile_sprite = ExtResource("2_q6647")
+projectile_speed = 600.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_t20bm")
@@ -175,7 +178,6 @@ position = Vector2(-26, -14)
 texture = ExtResource("3_sttwk")
 centered = false
 hframes = 3
-frame = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Turret"]
 visible = false

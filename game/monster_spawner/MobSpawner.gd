@@ -32,11 +32,11 @@ func start_wave(waves, wave_index):
 
 	emit_signal("all_waves_over")
 
-func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Mob:
+func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Node2D:
 	if mob_scene == null:
 		return
 
-	var mob = mob_scene.instantiate() as Mob
+	var mob = mob_scene.instantiate()
 	mob.name = mob_scene.resource_path.get_file().trim_suffix(".tscn")
 	assert(mob != null)
 
