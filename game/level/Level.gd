@@ -79,9 +79,20 @@ func on_cargo_destroyed(_cargo: Cargo):
 	if all_cargo_destroyed:
 		state = LevelStates.GAME_OVER
 
-		print("GAME OVER MAN!")
-		await get_tree().create_timer(1).timeout
-		Overlay.transition("res://game/main_menu/TitleUI.tscn")
+		var center = ship.position
+
+		for i in range(10):
+			var count := i * 2 - 2
+			for y in range(max(1, count)):
+				var position = Vector2(
+					randi_range(center.x - 60, center.x + 60),
+					randi_range(center.y - 60, center.y + 60)
+				)
+				FxSpawner.spawn_fx(preload("res://game/fx/explosion_1.tscn"), position)
+				await get_tree().create_timer(0.02).timeout
+			await get_tree().create_timer(0.2).timeout
+
+		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
 
 func is_all_cargo_destroyed() -> bool:
 	var cargo := 0

@@ -28,6 +28,7 @@ PlayerProfile="*res://scripts/autoload/PlayerProfile.gd"
 Overlay="*res://scripts/autoload/Overlay.tscn"
 UserInteraction="*res://scripts/autoload/UserInteraction.gd"
 GameData="*res://scripts/autoload/GameData.gd"
+FxSpawner="*res://scripts/autoload/FX.gd"
 
 [debug]
 
