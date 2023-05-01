@@ -21,6 +21,8 @@ func _ready():
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version)
 
+	%HUD.visible = false
+
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
 
@@ -34,6 +36,8 @@ func start_game():
 	if GameData.voice_played == false:
 		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
 		GameData.voice_played = true
+
+	%HUD.visible = true
 
 	%MobSpawner.connect("wave_over", on_wave_over)
 	%MobSpawner.start_wave(waves.waves, wave_index)
