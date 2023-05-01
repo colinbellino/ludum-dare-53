@@ -46,7 +46,7 @@ func _process(_delta: float):
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if Input.is_action_just_released("debug_8"):
+		if Input.is_action_just_released("debug_1"):
 			GameData.money += 1000
 			print("Money: ", GameData.money)
 
