@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2g1x8qio16mp"]
+[gd_scene load_steps=15 format=3 uid="uid://d2g1x8qio16mp"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_0kbl5"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_6jpqw"]
@@ -18,6 +18,10 @@ frame_2/texture = ExtResource("4_3eeal")
 frame_2/duration = 0.05
 frame_3/texture = ExtResource("5_uqqbu")
 frame_3/duration = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3awsr"]
+atlas = ExtResource("2_6jpqw")
+region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ta8nm"]
 lifetime_randomness = 0.13
@@ -158,6 +162,7 @@ projectile_sprite = SubResource("AnimatedTexture_amt8o")
 projectile_lifetime = 0.5
 max_range = 150.0
 animation_bullet_spawn_offset = 0.25
+debris_sprite = SubResource("AtlasTexture_3awsr")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_6jpqw")
