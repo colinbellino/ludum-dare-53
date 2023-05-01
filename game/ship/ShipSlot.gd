@@ -31,7 +31,10 @@ func build_structure(new_structure:PackedScene, initial_build = false):
 			return
 
 		GameData.money -= node.cost
-		AudioPlayer.play_ui_turret_sound()
+		if node is Cargo:
+			AudioPlayer.play_sound(preload("res://assets/audio/place_crate.wav"));
+		else:
+			AudioPlayer.play_sound(preload("res://assets/audio/place_turret.wav"));
 
 	current_structure = new_structure
 	current_structure_node = node
