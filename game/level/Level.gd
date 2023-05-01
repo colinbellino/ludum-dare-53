@@ -117,17 +117,19 @@ func on_cargo_destroyed(_cargo: Cargo):
 
 		for i in range(10):
 			var count := i * 2 - 2
+			var position : Vector2
 			for y in range(max(1, count)):
-				var position = Vector2(
+				position = Vector2(
 					randi_range(center.x - 60, center.x + 60),
 					randi_range(center.y - 60, center.y + 60)
 				)
 				FxSpawner.spawn_fx(preload("res://game/fx/explosion_1.tscn"), position)
+				await get_tree().create_timer(0.02).timeout
+			if i < 8:
 				AudioPlayer.play_sound_random([
 					preload("res://assets/audio/player_explode02.wav"),
 					preload("res://assets/audio/explosion01.wav"),
-				], position)
-				await get_tree().create_timer(0.02).timeout
+				])
 			await get_tree().create_timer(0.2).timeout
 
 		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
