@@ -11,9 +11,11 @@ var wave_index : int
 
 var CHECKPOINT_WAVE_DELAY := 10
 
-enum LevelStates { MOVING, CHECKPOINT, GAME_OVER }
+enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	GameData.level = self
+
 	ship = get_node("%Ship")
 	assert(ship != null, "Missing ship from level.")
 
@@ -22,10 +24,14 @@ func _ready():
 	checkpoint_ui.connect("continue_pressed", on_checkpoint_continue_pressed)
 	checkpoint_ui.close()
 
+	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
+	title_node.connect("tree_exited", start_game)
+
+func start_game():
 	%MobSpawner.connect("wave_over", on_wave_over)
 	%MobSpawner.start_wave(waves.waves, wave_index)
 
-	GameData.level = self
+	state = LevelStates.MOVING
 
 func _exit_tree():
 	GameData.level = null
@@ -35,13 +41,15 @@ func _process(_delta: float):
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if OS.is_debug_build():
-			if Input.is_key_pressed(KEY_SHIFT):
-				Engine.set_time_scale(20)
-			else:
-				Engine.set_time_scale(1)
+		if Input.is_key_pressed(KEY_SHIFT):
+			Engine.set_time_scale(20)
+		else:
+			Engine.set_time_scale(1)
 
 	match state:
+		LevelStates.TITLE:
+			pass
+
 		LevelStates.MOVING:
 			ship.movement_mult = 1.0
 

@@ -47,10 +47,12 @@ text = "Fullscreen"
 [node name="Resolution" type="OptionButton" parent="Menu"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2")
 
 [node name="Locale" type="OptionButton" parent="Menu"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2")
 
 [node name="Control" type="Control" parent="Menu"]
 custom_minimum_size = Vector2(0, 20)

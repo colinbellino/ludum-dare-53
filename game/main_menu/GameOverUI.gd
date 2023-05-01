@@ -24,4 +24,4 @@ func close() -> void:
 func on_close_pressed():
 	AudioPlayer.play_ui_button_sound()
 
-	Overlay.transition("res://game/main_menu/TitleUI.tscn")
+	Overlay.transition("res://game/level/Level.tscn")
