@@ -30,21 +30,13 @@ func _ready() -> void:
 	slider_volume_sound = get_node("%VolumeSound")
 
 	button_fullscreen.connect("pressed", button_fullscreen_pressed)
-	button_fullscreen.connect("pressed", play_button_sound)
 	button_resolution.connect("item_selected", button_resolution_item_selected)
-	button_resolution.connect("item_selected", play_button_sound)
 	button_locale.connect("item_selected", button_locale_item_selected)
-	button_locale.connect("item_selected", play_button_sound)
 	button_close.connect("pressed", button_close_pressed)
-	button_close.connect("pressed", play_button_sound)
 	# button_quit.connect("pressed", button_quit_pressed)
-	# button_quit.connect("pressed", play_button_sound)
 	slider_volume_main.connect("value_changed", slider_volume_main_changed)
-	slider_volume_main.connect("value_changed", play_button_sound)
 	slider_volume_music.connect("value_changed", slider_volume_music_changed)
-	slider_volume_music.connect("value_changed", play_button_sound)
 	slider_volume_sound.connect("value_changed", slider_volume_sound_changed)
-	slider_volume_sound.connect("value_changed", play_button_sound)
 
 	if Settings.can_fullscreen():
 		button_fullscreen.grab_focus()
@@ -120,5 +112,4 @@ func slider_volume_sound_changed(value: float) -> void:
 	Utils.set_linear_db(AudioPlayer.bus_sound, Settings.resource.volume_sound)
 	# print("Settings.resource.volume_sound", Settings.resource.volume_sound)
 
-func play_button_sound(_whatever = null) -> void:
 	AudioPlayer.play_ui_button_sound()

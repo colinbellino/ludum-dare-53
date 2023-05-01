@@ -48,13 +48,14 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1078, 815)
 
 [node name="ABOVE" type="Node2D" parent="checkpointstation"]
-z_index = 100
+z_index = 3
+z_as_relative = false
 
 [node name="Stationupper" type="Sprite2D" parent="checkpointstation/ABOVE"]
 texture = ExtResource("4_0dxoi")
 
 [node name="BELOW" type="Node2D" parent="checkpointstation"]
-z_index = -50
+z_index = -3
 
 [node name="Stationlower" type="Sprite2D" parent="checkpointstation/BELOW"]
 texture = ExtResource("3_cndib")

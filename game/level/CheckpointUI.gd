@@ -19,6 +19,7 @@ func _ready():
 	assert(ui_label_title != null, "Missing ui_label_title in CheckpointUI.")
 
 func on_continue_pressed():
+	AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
 	emit_signal("continue_pressed")
 
 func open(title: String):

@@ -10,6 +10,8 @@ func _ready():
 	tween.tween_property(%Root, "modulate", Color.WHITE, 1.0)
 	await tween.finished
 
+	AudioPlayer.play_sound(preload("res://assets/audio/voice_total_destruction.wav"))
+
 	tween = create_tween()
 	tween.tween_property(%Content, "modulate", Color.WHITE, 1.0)
 	await tween.finished

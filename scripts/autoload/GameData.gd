@@ -15,6 +15,7 @@ var scene_by_category := {}
 var category_defaults := {}
 var level: Level
 var money : int # Initialized in Level.ready
+var voice_played := false
 
 func _ready():
 	add_category("Turrets", BaseTurret)
