@@ -113,5 +113,5 @@ func is_valid_target(mob):
 	return (
 		is_instance_valid(mob)
 		&& mob.hitpoints > 0
-		&& global_position.distance_to(mob.global_position) > max_range
+		&& global_position.distance_to(mob.global_position) < max_range
 	)

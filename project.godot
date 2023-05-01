@@ -245,6 +245,9 @@ locale/translations=PackedStringArray("res://assets/locale/text.en.translation",
 
 [physics]
 
+common/physics_ticks_per_second=120
+common/max_physics_steps_per_frame=2
+common/physics_jitter_fix=0.0
 3d/default_gravity=0.0
 2d/default_gravity=0.0
 

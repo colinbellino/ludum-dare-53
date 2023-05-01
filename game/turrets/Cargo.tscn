@@ -29,6 +29,7 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_i1svh")
 cost = 50.0
+fire_rate = 0.0
 hitpoints = 50.0
 debris_sprite = SubResource("AtlasTexture_pdanj")
 
