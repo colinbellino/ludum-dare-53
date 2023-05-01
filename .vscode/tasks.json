@@ -14,6 +14,12 @@
             "problemMatcher": []
         },
         {
+            "label": "Windows: build (release) + deploy",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-release 'Windows' ./builds/Windows/$date_time/LD53.exe && butler push ./builds/Windows/$date_time colinbellino/ludum-dare-53:win",
+            "problemMatcher": []
+        },
+        {
             "label": "Windows: deploy",
             "type": "shell",
             "command": "butler push ./builds/Windows/${input:folder} colinbellino/ludum-dare-53:win",
@@ -29,6 +35,12 @@
             "label": "Mac: build (release)",
             "type": "shell",
             "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
+            "problemMatcher": []
+        },
+        {
+            "label": "Mac: build (release) + deploy",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/LD53.app && butler push ./builds/Mac/$date_time colinbellino/ludum-dare-53:mac",
             "problemMatcher": []
         },
         {
@@ -50,6 +62,12 @@
             "problemMatcher": []
         },
         {
+            "label": "Web: build (release) + deploy",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Web/$date_time && godot --headless --export-release 'Web' ./builds/Web/$date_time/index.html && butler push ./builds/Web/$date_time colinbellino/ludum-dare-53:web",
+            "problemMatcher": []
+        },
+        {
             "label": "Web: deploy",
             "type": "shell",
             "command": "butler push ./builds/Web/${input:folder} colinbellino/ludum-dare-53:web",
@@ -62,9 +80,28 @@
             "problemMatcher": []
         },
         {
+            "label": "Linux: build (release) + deploy",
+            "type": "shell",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --headless --export-release 'Linux' ./builds/Linux/$date_time/LD53 && butler push ./builds/Linux/$date_time colinbellino/ludum-dare-53:linux",
+            "problemMatcher": []
+        },
+        {
             "label": "Linux: deploy",
             "type": "shell",
             "command": "butler push ./builds/Linux/${input:folder} colinbellino/ludum-dare-53:linux",
+            "problemMatcher": []
+        },
+        {
+            "label": "DEPLOY ALL THE THINGS",
+            "type": "shell",
+            "command": "echo ALL DONE!",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Web: build (release) + deploy",
+                "Windows: build (release) + deploy",
+                "Max: build (release) + deploy",
+                "Linux: build (release) + deploy",
+            ],
             "problemMatcher": []
         },
     ],
