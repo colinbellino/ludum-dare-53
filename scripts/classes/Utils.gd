@@ -32,6 +32,14 @@ static func sync_to_ui(mapping:Dictionary, source:Object):
 	for node in mapping:
 		ui_set_value(node, source.get(mapping[node]))
 
+static func angle_difference(from:float, to:float):
+	var diff = fmod(to - from, TAU)
+	return fmod(2.0 * diff, TAU) - diff
+
+static func move_towards_angle(from:float, to:float, delta:float):
+	var diff = angle_difference(from, to)
+	return from + minf(abs(diff), delta) * signf(diff)
+
 static func set_fullscreen(value: bool) -> void:
 	if value == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

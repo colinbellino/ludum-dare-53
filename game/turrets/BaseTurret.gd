@@ -28,26 +28,30 @@ func _process(delta):
 	if fire_rate <= 0.0:
 		return
 
-	if not is_instance_valid(current_target):
+	if not is_valid_target(current_target):
 		current_target = null
 
 	if shot_cooldown > 0.0:
 		shot_cooldown -= delta
 
-	if current_target && is_valid_target(current_target):
-		var direction : Vector2 = current_target.get_global_transform_with_canvas().origin - get_global_transform_with_canvas().origin
-		%Turret.look_at(global_position + direction)
+	if current_target:
+		var aim = current_target.global_position
+		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
+		var target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
+		%Turret.rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
 	else:
 		aquire_target()
 
 func aquire_target():
-	var all_mobs = get_tree().get_nodes_in_group("Monsters")
+	var mobs = get_tree().get_nodes_in_group("Monsters")
+	mobs = mobs.filter(is_valid_target)
+	mobs.sort_custom(
+		func(a,b):
+			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
 
-	var valid_mobs = all_mobs.filter(is_valid_target)
-
-	if valid_mobs.size() > 0:
-		var random_index = randi() % valid_mobs.size()
-		current_target = valid_mobs[random_index]
+	if mobs.size() > 0:
+		current_target = mobs[0]
 		print("Target aquired: ", current_target.name)
 
 func take_hit(damage: float):
@@ -57,6 +61,7 @@ func take_hit(damage: float):
 
 func is_valid_target(mob):
 	return (
-		get_viewport().get_visible_rect().has_point(mob.position) &&
-		mob.hitpoints > 0
+		is_instance_valid(mob)
+		&& get_viewport().get_visible_rect().has_point(mob.position)
+		&& mob.hitpoints > 0
 	)
