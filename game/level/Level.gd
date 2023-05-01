@@ -11,7 +11,7 @@ var wave_index : int
 
 var CHECKPOINT_WAVE_DELAY := 10
 
-enum LevelStates { MOVING, CHECKPOINT }
+enum LevelStates { MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
 	ship = get_node("%Ship")
@@ -48,6 +48,9 @@ func _process(_delta: float):
 		LevelStates.CHECKPOINT:
 			ship.movement_mult = 0.0
 
+		LevelStates.GAME_OVER:
+			ship.movement_mult = 0.0
+
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
@@ -68,3 +71,26 @@ func on_checkpoint_continue_pressed():
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	%MobSpawner.start_wave(waves.waves, wave_index)
+
+func on_cargo_destroyed(_cargo: Cargo):
+	var all_cargo_destroyed := is_all_cargo_destroyed()
+	print("all_cargo_destroyed: ", all_cargo_destroyed)
+
+	if all_cargo_destroyed:
+		state = LevelStates.GAME_OVER
+
+		print("GAME OVER MAN!")
+		await get_tree().create_timer(1).timeout
+		Overlay.transition("res://game/main_menu/TitleUI.tscn")
+
+func is_all_cargo_destroyed() -> bool:
+	var cargo := 0
+	var cargo_destroyed := 0
+	for node in ship.get_tree().get_nodes_in_group("Selectable"):
+		if ship.is_ancestor_of(node) and node is ShipSlot:
+			if node.current_structure_node && node.current_structure_node is Cargo:
+				cargo += 1
+				if node.current_structure_node.hitpoints <= 0:
+					cargo_destroyed += 1
+
+	return cargo > 0 && cargo == cargo_destroyed
