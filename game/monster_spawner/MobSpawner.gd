@@ -21,6 +21,7 @@ func start_wave(waves, wave_index):
 			for i in wave.repeat_n_times:
 				spawn_mob(mob_scene, wave, i)
 				await get_tree().create_timer(wave.mob_timer).timeout
+			await get_tree().create_timer(wave.wait_timer).timeout
 
 		print("Wave " + str(wave_index) + " over     --------------------------")
 		emit_signal("wave_over", wave, wave_index)

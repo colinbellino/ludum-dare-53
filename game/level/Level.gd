@@ -9,7 +9,7 @@ var wave_index : int
 
 @export var waves : WaveList
 
-var CHECKPOINT_WAVE_DELAY := 10
+var CHECKPOINT_WAVE_DELAY := 5
 
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
@@ -70,20 +70,32 @@ func _process(_delta: float):
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
-	if wave_index > waves.waves.size() - 1:
-		print("End of the game reached!")
-		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
-		return
+	#if wave_index > waves.waves.size() - 1:
+	#	print("End of the game reached!")
+	#	Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
+	#	return
 
 	if wave.is_checkpoint:
 		checkpoint_ui.open("Checkpoint #" + str(checkpoint_index))
 		state = LevelStates.CHECKPOINT
+
+func calc_difficulty_multiplier():
+	var difficulty_multiplier = 1.0
+	for node in ship.get_tree().get_nodes_in_group("ShipParts"):
+		if ship.is_ancestor_of(node) and node is Cargo:
+			difficulty_multiplier += node.attract_danger
+	return difficulty_multiplier
+
+func calc_difficulty():
+	return checkpoint_index + (10 + checkpoint_index) * (calc_difficulty_multiplier()-1.0)
 
 func on_checkpoint_continue_pressed():
 	checkpoint_ui.close()
 	checkpoint_index += 1;
 
 	state = LevelStates.MOVING
+	wave_index = 0
+	waves = $WaveDirector.generate_waves(calc_difficulty())
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	%MobSpawner.start_wave(waves.waves, wave_index)
