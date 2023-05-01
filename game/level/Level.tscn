@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="3_5rcjp"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="4_ll4f6"]
-[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
+[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="6_acimt"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="8_5jho8"]
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
-[ext_resource type="PackedScene" uid="uid://c5k641fqt0bx" path="res://game/mobs/mob_saucer_1.tscn" id="9_n50sm"]
+[ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="9_n50sm"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
