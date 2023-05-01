@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
 [ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="9_n50sm"]
-[ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
+[ext_resource type="PackedScene" path="res://game/level/bg.tscn" id="14_xp8p3"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
@@ -87,6 +87,7 @@ layer = 99
 unique_name_in_owner = true
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("8_ssp35")]
+unique_name_in_owner = true
 
 [node name="Ship" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true
