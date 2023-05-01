@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0fbojoq66o0e"]
+[gd_scene load_steps=6 format=3 uid="uid://c0fbojoq66o0e"]
 
 [ext_resource type="Script" path="res://game/mobs/Checkpoint.gd" id="1_vuwsk"]
-[ext_resource type="Texture2D" uid="uid://csc2sqpknby8t" path="res://assets/sprites/checkpointstation/ss_stationstructure_placeholder.png" id="2_neclj"]
 [ext_resource type="Texture2D" uid="uid://dd4pclj3lly7m" path="res://assets/sprites/checkpointstation/stationlower.png" id="3_cndib"]
 [ext_resource type="Texture2D" uid="uid://d4see57ra15k" path="res://assets/sprites/checkpointstation/stationupper.png" id="4_0dxoi"]
 [ext_resource type="Texture2D" uid="uid://3kmp38xt8lds" path="res://assets/env/misc/helper_960x540.png" id="5_hviu5"]
@@ -27,25 +26,6 @@ shape = SubResource("RectangleShape2D_w1mhx")
 
 [node name="checkpointstation" type="Node2D" parent="."]
 position = Vector2(-1, -539)
-
-[node name="_OLD" type="Node2D" parent="checkpointstation"]
-visible = false
-position = Vector2(568.57, 1280.13)
-
-[node name="station_lower" type="Sprite2D" parent="checkpointstation/_OLD"]
-position = Vector2(-769.817, -1430.62)
-texture = ExtResource("2_neclj")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 840, 404, 346)
-
-[node name="station_upper" type="Sprite2D" parent="checkpointstation/_OLD"]
-z_index = 2
-position = Vector2(-1108.81, -1628.99)
-texture = ExtResource("2_neclj")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1078, 815)
 
 [node name="ABOVE" type="Node2D" parent="checkpointstation"]
 z_index = 3

@@ -1,30 +1,27 @@
 class_name CheckpointUI extends Control
 
-var ui_root : Control
-var ui_button_continue : Button
-var ui_button_sell : Button
-var ui_label_title : Label
-
 signal continue_pressed()
 
 func _ready():
-	ui_root = get_node("%CheckpointUI")
-	assert(ui_root != null, "Missing ui_root in CheckpointUI.")
-	ui_button_continue = get_node("%Continue")
-	assert(ui_button_continue != null, "Missing ui_button_continue in CheckpointUI.")
-	ui_button_continue.connect("pressed", on_continue_pressed)
-	ui_button_sell = get_node("%Sell")
-	assert(ui_button_sell != null, "Missing ui_button_sell in CheckpointUI.")
-	ui_label_title = get_node("%Title")
-	assert(ui_label_title != null, "Missing ui_label_title in CheckpointUI.")
+	%Continue.grab_focus()
+	var level = GameData.level
+	%Title.text = "Alpha Centauri #" + str(level.checkpoint_index)
+	set_text(%cargo_shipped, [level.last_checkpoint_cargo_worth])
+	set_text(%cargo_req, [level.cargo_required])
+	
+var templates = {}
+
+func set_text(node:RichTextLabel, values:Array):
+	if not templates.has(node):
+		templates[node] = node.text
+	node.text = templates[node] % values
+
+func _process(delta):
+	set_text(%cargo_worth, [GameData.level.cargo_worth(), GameData.level.calc_difficulty_multiplier()*100.0])
 
 func on_continue_pressed():
-	emit_signal("continue_pressed")
-
-func open(title: String):
-	ui_label_title.text = title
-	ui_root.visible = true
-	ui_button_continue.grab_focus()
-
-func close():
-	ui_root.visible = false
+	if GameData.level.cargo_worth() < GameData.level.cargo_required:
+		AudioPlayer.play_ui_error_sound()
+	else:
+		AudioPlayer.play_ui_button_sound()
+		queue_free()

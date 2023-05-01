@@ -39,7 +39,10 @@ func build_structure(new_structure:PackedScene, initial_build = false):
 	add_child(current_structure_node)
 
 func sell():
-	GameData.money += current_structure_node.cost / 2
+	if GameData.level.is_at_checkpoint():
+		GameData.money += int(current_structure_node.cost * (current_structure_node.hitpoints / current_structure_node.max_hitpoints))
+	else:
+		GameData.money += int(current_structure_node.cost / 2 * (current_structure_node.hitpoints / current_structure_node.max_hitpoints))
 	AudioPlayer.play_ui_money_sound()
 	clear()
 

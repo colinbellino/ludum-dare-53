@@ -1,7 +1,7 @@
 class_name Cargo extends BaseTurret
 
 @export var delievery_value = 200
-@export var attract_danger = 0
+@export var attract_danger := 0.0
 
 func destroyed():
 	# FIXME: remove this, it's just to debug destroyed cargo

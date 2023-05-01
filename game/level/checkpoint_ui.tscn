@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqq0alerhcvd7"]
+
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_bcasg"]
+[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_x3eei"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5yl0"]
+bg_color = Color(0, 0, 0, 0.921569)
+
+[node name="CheckpointUI" type="Panel"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_bcasg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_k5yl0")
+script = ExtResource("2_x3eei")
+
+[node name="Title" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 12.0
+offset_right = 110.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme = ExtResource("1_bcasg")
+theme_override_font_sizes/font_size = 16
+text = "Alpha Centauri #0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="items" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 47.0
+offset_right = -21.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="items"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="travel_insurance_payout" type="RichTextLabel" parent="items/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "Travel Insurance Payout
+[color=green]+%s$/s[/color]
+"
+fit_content = true
+
+[node name="upgrade" type="Button" parent="items/HBoxContainer"]
+layout_mode = 2
+text = "Upgrade
+1000$"
+
+[node name="total_cargo_shipped" type="RichTextLabel" parent="items"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+bbcode_enabled = true
+text = "Total Cargo Shipped
+%s$"
+fit_content = true
+
+[node name="cargo_shipped" type="RichTextLabel" parent="items"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=gray]Contract fulfilled.[/color] Shipped [color=green]%s$[/color] worth of Cargo. [color=gray]The amount has been added to your account.[/color]"
+fit_content = true
+
+[node name="cargo_worth" type="RichTextLabel" parent="items"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Current Cargo worth: [color=green]%s$[/color]
+[color=gray]Difficulty Multiplier: %s%%[/color]"
+fit_content = true
+
+[node name="cargo_req" type="RichTextLabel" parent="items"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Place at least %s$ worth of cargo before embarking."
+fit_content = true
+
+[node name="Continue" type="Button" parent="items"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_bcasg")
+text = "Embark"
+
+[connection signal="pressed" from="items/Continue" to="." method="on_continue_pressed"]

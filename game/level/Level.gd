@@ -7,6 +7,9 @@ var checkpoint_ui : CheckpointUI
 var checkpoint_index : int = 1
 var wave_index : int
 
+var last_checkpoint_cargo_worth = 0
+var cargo_required = 50
+
 @export var waves : WaveList
 
 var CHECKPOINT_WAVE_DELAY := 5
@@ -23,11 +26,6 @@ func _ready():
 
 	ship = get_node("%Ship")
 	assert(ship != null, "Missing ship from level.")
-
-	checkpoint_ui = get_node("%CheckpointUI")
-	assert(checkpoint_ui != null, "Missing checkpoint_ui from level.")
-	checkpoint_ui.connect("continue_pressed", on_checkpoint_continue_pressed)
-	checkpoint_ui.close()
 
 	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
 	title_node.connect("tree_exited", start_game)
@@ -78,22 +76,46 @@ func on_wave_over(wave, index):
 	#	return
 
 	if wave.is_checkpoint:
-		checkpoint_ui.open("Checkpoint #" + str(checkpoint_index))
 		state = LevelStates.CHECKPOINT
+		deliever_cargo()
+		checkpoint_ui = get_node("%CheckpointUI").create_instance()
+		checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
+
+func is_at_checkpoint()->bool:
+	return state == LevelStates.CHECKPOINT
+	
+func deliever_cargo():
+	last_checkpoint_cargo_worth = cargo_worth()
+	if get_tree():
+		for node in get_tree().get_nodes_in_group("ShipParts"):
+			if ship.is_ancestor_of(node) and node is Cargo:
+				node.get_parent().clear()
+	GameData.money += last_checkpoint_cargo_worth
 
 func calc_difficulty_multiplier():
 	var difficulty_multiplier = 1.0
-	for node in ship.get_tree().get_nodes_in_group("ShipParts"):
-		if ship.is_ancestor_of(node) and node is Cargo:
-			difficulty_multiplier += node.attract_danger
+	if get_tree():
+		for node in get_tree().get_nodes_in_group("ShipParts"):
+			if ship.is_ancestor_of(node) and node is Cargo:
+				difficulty_multiplier += node.attract_danger
 	return difficulty_multiplier
 
 func calc_difficulty():
 	return checkpoint_index + (10 + checkpoint_index) * (calc_difficulty_multiplier()-1.0)
 
+func cargo_worth():
+	var value = 0.0
+	if get_tree():
+		for node in get_tree().get_nodes_in_group("ShipParts"):
+			if ship.is_ancestor_of(node) and node is Cargo:
+				value += node.delievery_value
+	return value
+
 func on_checkpoint_continue_pressed():
-	checkpoint_ui.close()
-	checkpoint_index += 1;
+	if not is_inside_tree():
+		return
+		
+	checkpoint_index += 1
 
 	state = LevelStates.MOVING
 	wave_index = 0
