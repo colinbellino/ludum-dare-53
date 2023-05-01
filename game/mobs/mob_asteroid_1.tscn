@@ -1,24 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://d07to3piph5o8"]
 
-[ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_5akff"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/Asteroid.gd" id="1_sf168"]
 [ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="2_ww5s4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
-size = Vector2(28, 26)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_myrua"]
+friction = 0.0
+bounce = 0.5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hjo8r"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk2gx"]
 
 [node name="Mob" type="RigidBody2D" groups=["Monsters"]]
 collision_layer = 4
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_myrua")
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 can_sleep = false
 lock_rotation = true
-script = ExtResource("1_5akff")
-speed = 500
-movement_type = 1
-attack_type = 1
+script = ExtResource("1_sf168")
+launch_speed_min = 200
+launch_speed_max = 300
+launch_direction_randomness = 50
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 10
@@ -28,18 +31,9 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_uld0d")
+shape = SubResource("CircleShape2D_vk2gx")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(6.6, 6.5)
-
-[node name="AttackArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_hjo8r")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
