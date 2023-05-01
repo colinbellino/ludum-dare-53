@@ -54,10 +54,14 @@ func aquire_target():
 		current_target = mobs[0]
 		print("Target aquired: ", current_target.name)
 
-func take_hit(damage: float):
-	hitpoints -= damage
+func take_hit(hit_damage: float):
+	hitpoints -= hit_damage
+	print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
 	if hitpoints <= 0:
-		get_parent().clear()
+		destroyed()
+
+func destroyed():
+	get_parent().clear()
 
 func is_valid_target(mob):
 	return (
