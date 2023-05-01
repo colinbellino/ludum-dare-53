@@ -16,7 +16,7 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.0823529, 0.0980392, 0.243137, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u54hb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w4gf"]
 bg_color = Color(0.2, 0.8, 0.45098, 1)
 border_width_left = 1
 border_width_top = 1
@@ -44,7 +44,7 @@ offset_top = 8.0
 offset_right = 8.0
 offset_bottom = 11.0
 theme_override_styles/background = SubResource("StyleBoxFlat_mx8rc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_u54hb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2w4gf")
 max_value = 1.0
 value = 0.5
 show_percentage = false
