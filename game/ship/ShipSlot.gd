@@ -1,6 +1,8 @@
 class_name ShipSlot
 extends Area2D
 
+var health_bar : ProgressBar
+
 signal selected()
 
 @export var current_structure:PackedScene = null
@@ -11,6 +13,8 @@ var current_structure_node = null
 var is_selected = false
 
 func _ready():
+	health_bar = get_node("%HealthBar")
+	health_bar.visible = false
 	add_to_group("Selectable")
 	if current_structure:
 		build_structure(current_structure)
@@ -20,10 +24,13 @@ func build_structure(new_structure:PackedScene):
 	health = 1.0
 	current_structure = new_structure
 	current_structure_node = current_structure.instantiate()
+	current_structure_node.connect("damaged", on_structure_damaged)
 	add_child(current_structure_node)
 
 func clear():
+	health_bar.visible = false
 	if current_structure_node and is_instance_valid(current_structure_node):
+		current_structure_node.disconnect("damaged", on_structure_damaged)
 		current_structure_node.queue_free()
 		current_structure_node = null
 	current_structure = null
@@ -37,6 +44,19 @@ func destroy():
 
 func deselect():
 	is_selected = false
+
+func on_structure_damaged(_damage: float):
+	var value : float = current_structure_node.hitpoints / current_structure_node.max_hitpoints
+	var bg = health_bar.get("theme_override_styles/fill")
+
+
+	health_bar.visible = true
+	health_bar.value = value
+	bg.bg_color = Color.html("33cc73")
+	if value < 0.66:
+		bg.bg_color = Color.html("c5cc28")
+	if value < 0.33:
+		bg.bg_color = Color.html("a02c1b")
 
 func _input_event(_viewport:Viewport, event:InputEvent, _shape_idx:int):
 	if event.is_action_pressed("mouse_left"):
@@ -57,4 +77,4 @@ func _input_event(_viewport:Viewport, event:InputEvent, _shape_idx:int):
 		# Debug code to simulate damage
 		if event.is_action_pressed("mouse_right"):
 			if current_structure_node:
-				current_structure_node.take_hit(100)
+				current_structure_node.take_hit(10)

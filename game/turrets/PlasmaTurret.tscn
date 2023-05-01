@@ -109,7 +109,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -149,6 +149,7 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 3
 sync_to_physics = false
+sync_to_physics = false
 script = ExtResource("1_i0phl")
 fire_rate = 4.0
 hitpoints = 50.0
@@ -165,6 +166,7 @@ region_rect = Rect2(0, 80, 16, 16)
 
 [node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 texture = ExtResource("2_cryvg")
 offset = Vector2(-3, 0)
 region_enabled = true
@@ -175,7 +177,6 @@ unique_name_in_owner = true
 position = Vector2(-10, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
-visible = false
 modulate = Color(0.26, 1, 0.901333, 1)
 position = Vector2(-21, -8)
 texture = ExtResource("3_dawmd")
