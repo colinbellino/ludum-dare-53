@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
 [ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="3_5rcjp"]
 [ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="3_lmsls"]
-[ext_resource type="Resource" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
+[ext_resource type="Resource" uid="uid://c4css43n5g1ej" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
 [ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="4_ll4f6"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
@@ -160,6 +160,7 @@ spawn_area = Rect2(-360, -202.5, 720, 405)
 layer = -1
 
 [node name="BGstuff" type="Node2D" parent="BG"]
+z_index = -100
 
 [node name="starsbg_dust1" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2

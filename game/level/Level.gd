@@ -42,7 +42,7 @@ func _process(_delta: float):
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if Input.is_key_pressed(KEY_SHIFT):
+		if Input.is_key_pressed(KEY_F12):
 			Engine.set_time_scale(20)
 		else:
 			Engine.set_time_scale(1)
