@@ -157,8 +157,10 @@ shape = SubResource("RectangleShape2D_astbv")
 
 [node name="ConstructMenu" parent="." instance_placeholder="res://game/ship/EmptySlotUI.tscn"]
 unique_name_in_owner = true
+z_index = 2
 position = Vector2(81, -189)
 
 [node name="RepairMenu" parent="." instance_placeholder="res://game/ship/ConstructedSlotUI.tscn"]
 unique_name_in_owner = true
+z_index = 2
 position = Vector2(85, 165)
