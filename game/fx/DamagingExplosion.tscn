@@ -1,0 +1,130 @@
+[gd_scene load_steps=19 format=3 uid="uid://v5lj0hdgdckn"]
+
+[ext_resource type="Texture2D" uid="uid://bnh2aileygb3i" path="res://assets/fx/ssanim_explosion_bysquid.png" id="1_hncvg"]
+[ext_resource type="Script" path="res://game/fx/DamagingExplosion.gd" id="2_i63lo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8phg"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0phqw"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1fbc"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh75t"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odj0a"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ein7r"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrn8x"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvws6"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5g7b"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbl2h"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vlgt"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmkcq"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seb6q"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqf2t"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlifk"]
+atlas = ExtResource("1_hncvg")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urnuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0phqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1fbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh75t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odj0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ein7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrn8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvws6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5g7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbl2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vlgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmkcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seb6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqf2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlifk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="DamagingExplosion" type="Area2D"]
+z_index = 15
+z_as_relative = false
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("2_i63lo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m8phg")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+z_index = 99
+sprite_frames = SubResource("SpriteFrames_urnuv")
+frame = 13
+frame_progress = 1.0

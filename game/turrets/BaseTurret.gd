@@ -1,3 +1,4 @@
+@tool
 class_name BaseTurret
 extends AnimatableBody2D
 
@@ -15,10 +16,14 @@ extends AnimatableBody2D
 
 @export var pierce = 0
 @export var explosion_radius = 0.0
+@export var explosion_knockback = 20.0
 @export var knockback = 2.5
 
 @export var projectile_sprite : Texture
 @export var projectile_speed = 200.0
+@export var projectile_lifetime = 1.5
+@export var max_range : float:
+	get: return projectile_speed*projectile_lifetime+18+explosion_radius
 
 @export var animation_bullet_spawn_offset = 0.0
 
@@ -31,6 +36,9 @@ func _ready():
 	sync_to_physics = false
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	
 	if fire_rate <= 0.0:
 		return
 
@@ -65,8 +73,10 @@ func spawn_bullet():
 	bullet.damage = damage
 	bullet.pierce = pierce
 	bullet.explosion_radius = explosion_radius
+	bullet.explosion_knockback = explosion_knockback
 	bullet.knockback = knockback
 	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
+	bullet.expiration_time = projectile_lifetime
 	level.add_child(bullet)
 	bullet.global_position = %BulletSpawnPosition.global_position
 
@@ -79,7 +89,8 @@ func aquire_target():
 	)
 
 	if mobs.size() > 0:
-		current_target = mobs[0]
+		if mobs[0].global_position.distance_to(global_position) < max_range:
+			current_target = mobs[0]
 
 func take_hit(hit_damage: float):
 	hitpoints -= hit_damage
