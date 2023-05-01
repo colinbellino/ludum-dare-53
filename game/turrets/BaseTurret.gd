@@ -126,3 +126,14 @@ func is_valid_target(mob):
 		&& mob.hitpoints > 0
 		&& global_position.distance_to(mob.global_position) < max_range
 	)
+
+func calculate_cost(mode: String):
+	if mode == "build":
+		return cost
+	if mode == "sell":
+		return cost / 2
+	if mode == "repair":
+		return cost / 2
+	if mode == "upgrade":
+		return 1000
+	return 9999

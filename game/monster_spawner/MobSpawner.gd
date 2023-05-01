@@ -20,6 +20,9 @@ func start_wave(waves, wave_index):
 		for mob_scene in wave.mobs:
 			for i in wave.repeat_n_times:
 				spawn_mob(mob_scene, wave, i)
+				if get_tree() == null:
+					return
+
 				await get_tree().create_timer(wave.mob_timer).timeout
 			await get_tree().create_timer(wave.wait_timer).timeout
 

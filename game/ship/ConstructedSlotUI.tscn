@@ -7,31 +7,28 @@
 script = ExtResource("1_r3563")
 
 [node name="SlotActionButton" parent="." instance=ExtResource("2_rtrqw")]
-self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 22.0
 offset_top = -69.0
 offset_right = 177.0
 offset_bottom = -45.0
-label = "Sell"
 cost = -25
 action = "sell"
+label = "Sell"
 
 [node name="SlotActionButton2" parent="." instance=ExtResource("2_rtrqw")]
-self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 59.0
 offset_top = -27.0
 offset_right = 214.0
 offset_bottom = -3.0
-label = "Repair"
 cost = 40
 action = "repair"
+label = "Repair"
 
 [node name="SlotActionButton3" parent="." instance=ExtResource("2_rtrqw")]
-self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_left = 59.0
 offset_top = 18.0
 offset_right = 214.0
 offset_bottom = 42.0
-label = "Upgrade"
 cost = 1000
 action = "upgrade"
+label = "Upgrade"
