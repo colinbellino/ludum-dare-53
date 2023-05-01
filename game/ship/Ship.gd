@@ -35,6 +35,8 @@ func player_action(action_name:String, meta, target:ShipSlot):
 			target.build_structure(meta)
 		"sell":
 			target.sell()
+		"repair":
+			target.repair()
 		_:
 			print("Actiion not implemented yet")
 			AudioPlayer.play_ui_error_sound()

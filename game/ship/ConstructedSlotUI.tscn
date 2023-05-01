@@ -25,6 +25,7 @@ action = "repair"
 label = "Repair"
 
 [node name="SlotActionButton3" parent="." instance=ExtResource("2_rtrqw")]
+visible = false
 offset_left = 59.0
 offset_top = 18.0
 offset_right = 214.0

@@ -12,6 +12,7 @@ func emit_action(action:String, meta = null):
 
 func open(slot: ShipSlot):
 	for child in get_children():
+		child.target = slot.current_structure_node
 		child.pressed.connect(self.emit_action.bind(child.action, slot.current_structure))
 		child.upd2(slot.current_structure)
 

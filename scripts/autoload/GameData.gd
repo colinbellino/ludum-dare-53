@@ -20,6 +20,11 @@ var voice_played := false
 func _ready():
 	add_category("Turrets", BaseTurret)
 	add_to_db("Turrets", preload("res://game/turrets/PlasmaTurret.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/DisruptorTurret.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/RailbeamTurret.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/Plating.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/Cargo.tscn"))
+	add_to_db("Turrets", preload("res://game/turrets/DangerousCargo.tscn"))
 
 func add_to_db(category:String, scene:PackedScene):
 	var properties = category_defaults[category].duplicate()
@@ -30,14 +35,16 @@ func add_to_db(category:String, scene:PackedScene):
 	for i in num_properties:
 		var value = scene_state.get_node_property_value(node_id, i)
 		properties[scene_state.get_node_property_name(node_id, i)] = value
-	scene_properties[scene] = properties
-	scene_by_category[category].push_back(scene)
+	scene_properties[scene.resource_path] = properties
+	scene_by_category[category].push_back(scene.resource_path)
 
 func add_category(category:String, base_class:Script):
 	scene_by_category[category] = []
 	var defaults = {}
+	var instance = base_class.new()
 	for p in base_class.get_script_property_list():
 		if (p.usage & PROPERTY_USAGE_SCRIPT_VARIABLE) and (p.usage & PROPERTY_USAGE_STORAGE):
-			defaults[p.name] = base_class.get_property_default_value(p.name)
+			defaults[p.name] = instance.get(p.name)
+	instance.free()
 	category_defaults[category] = defaults
 

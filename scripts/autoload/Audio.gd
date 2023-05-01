@@ -69,3 +69,6 @@ func play_ui_error_sound() -> void:
 
 func play_ui_money_sound() -> void:
 	play_sound(preload("res://assets/audio/money.wav"));
+
+func play_ui_repair_sound() -> void:
+	play_sound(preload("res://assets/audio/repair.wav"));

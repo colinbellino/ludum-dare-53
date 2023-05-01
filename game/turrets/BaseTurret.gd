@@ -10,7 +10,7 @@ extends AnimatableBody2D
 
 @export var fire_rate = 1.0
 @export var hitpoints = 10.0
-var max_hitpoints
+var max_hitpoints : float = 10.0
 @export var turn_speed = 1.0
 @export var aim_lookahead = 1.0
 @export var damage = 5.0
@@ -44,6 +44,9 @@ var target_rotation = 0.0
 var current_rotation = 0.0
 
 signal damaged(damage)
+
+func _init():
+	max_hitpoints = hitpoints
 
 func _ready():
 	max_hitpoints = hitpoints
@@ -142,9 +145,12 @@ func calculate_cost(mode: String):
 	if mode == "build":
 		return cost
 	if mode == "sell":
-		return cost / 2
+		if GameData.level.is_at_checkpoint():
+			return int(cost * (hitpoints / max_hitpoints))
+		else:
+			return int(cost * (hitpoints / max_hitpoints) * 0.5)
 	if mode == "repair":
-		return cost / 2
+		return int(cost * ((max_hitpoints - hitpoints) / max_hitpoints))
 	if mode == "upgrade":
 		return 1000
 	return 9999

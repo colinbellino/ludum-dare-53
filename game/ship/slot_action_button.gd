@@ -5,6 +5,7 @@ extends Panel
 @export var cost := 0
 @export var action := "build"
 @export var meta : Resource
+var target = null
 
 @export var bg_color := Color("3b3b3bd6")
 
@@ -27,17 +28,12 @@ func upd2(_meta):
 	upd()
 
 func upd():
-	if meta == null:
-		return
-
-	var node : BaseTurret = meta.instantiate()
-
 	%Icon.texture = icon
-	cost = node.calculate_cost(action)
-	if action == "build":
-		%Label.text = node.name
-	else:
-		%Label.text = label
+	if target:
+		cost = target.calculate_cost(action)
+	elif action == "build":
+		cost = GameData.scene_properties[meta.resource_path].cost
+	%Label.text = label
 
 	%Cost.text = "%s$" % [cost]
 
