@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0t354m6rhmk5"]
+[gd_scene load_steps=6 format=3 uid="uid://b0t354m6rhmk5"]
 
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_i5mdm"]
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5yl0"]
 bg_color = Color(0, 0, 0, 0.921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6akb"]
+bg_color = Color(0.0823529, 0.0980392, 0.243137, 1)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.0823529, 0.0980392, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sug1s"]
+bg_color = Color(0.2, 0.8, 0.45098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0823529, 0.0980392, 0.243137, 1)
 
 [node name="HUD" type="Panel"]
 anchors_preset = 5
@@ -36,8 +50,13 @@ vertical_alignment = 1
 
 [node name="LevelProgress" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 103.0
-offset_top = 1.0
-offset_right = 199.0
-offset_bottom = 19.0
+z_index = 1
+offset_left = 59.0
+offset_top = 9.0
+offset_right = 187.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v6akb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sug1s")
+max_value = 1.0
+value = 0.5
+show_percentage = false

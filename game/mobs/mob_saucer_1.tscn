@@ -1,8 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5k641fqt0bx"]
+[gd_scene load_steps=9 format=3 uid="uid://c5k641fqt0bx"]
 
 [ext_resource type="Script" path="res://game/monster_spawner/Mob.gd" id="1_hr1v8"]
 [ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="2_q4j00"]
 [ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="3_3e0j6"]
+
+[sub_resource type="Animation" id="Animation_m3qnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qtt6x"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
+_data = {
+"RESET": SubResource("Animation_m3qnl"),
+"idle": SubResource("Animation_qtt6x")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uld0d"]
 size = Vector2(76, 72)
@@ -29,7 +68,24 @@ projectile_sprite = ExtResource("2_q4j00")
 unique_name_in_owner = true
 position = Vector2(20, 0)
 
-[node name="Sprite" type="Sprite2D" parent="Pivot"]
+[node name="dangersaucer" type="Node2D" parent="Pivot"]
+z_index = 10
+position = Vector2(-3, 0)
+
+[node name="Dangersaucer" type="Sprite2D" parent="Pivot/dangersaucer"]
+position = Vector2(2.93078, 0)
+texture = ExtResource("3_3e0j6")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/dangersaucer"]
+autoplay = "idle"
+speed_scale = 0.7
+libraries = {
+"": SubResource("AnimationLibrary_jdr8w")
+}
+
+[node name="old Sprite" type="Sprite2D" parent="Pivot"]
+visible = false
 z_index = 10
 texture = ExtResource("3_3e0j6")
 hframes = 8

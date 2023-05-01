@@ -14,6 +14,7 @@ var CHECKPOINT_WAVE_DELAY := 5
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	wave_index = 0
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version)
 
@@ -45,7 +46,7 @@ func _process(_delta: float):
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if Input.is_action_just_released("debug_8"):
+		if Input.is_action_just_released("debug_1"):
 			GameData.money += 1000
 			print("Money: ", GameData.money)
 
