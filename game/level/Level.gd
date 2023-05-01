@@ -14,6 +14,7 @@ var CHECKPOINT_WAVE_DELAY := 10
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	wave_index = 0
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version)
 
