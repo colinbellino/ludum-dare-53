@@ -160,6 +160,7 @@ explosion_radius = 32.0
 explosion_knockback = 40.0
 projectile_sprite = SubResource("AnimatedTexture_amt8o")
 projectile_lifetime = 0.5
+projectile_rotate = false
 max_range = 150.0
 animation_bullet_spawn_offset = 0.25
 debris_sprite = SubResource("AtlasTexture_3awsr")

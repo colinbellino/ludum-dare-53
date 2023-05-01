@@ -19,6 +19,7 @@ extends ShapeCast2D
 			$Sprite.texture = val
 
 @export var is_beam := false
+@export var rotate_projectile := true
 
 # Set these before adding to scene
 @export_category("Initialization")
@@ -35,7 +36,8 @@ var num_targets_pierced = 0
 
 func _ready():
 	sprite = sprite
-	$Sprite.rotation = Vector2.RIGHT.angle_to(direction)
+	if rotate_projectile:
+		$Sprite.rotation = Vector2.RIGHT.angle_to(direction)
 	if is_beam:
 		$Sprite.position.x -= speed * 0.5
 		$Sprite.scale.x = speed / sprite.get_width()

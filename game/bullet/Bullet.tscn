@@ -17,6 +17,7 @@ collision_mask = 5
 collide_with_areas = true
 script = ExtResource("1_1u11q")
 sprite = ExtResource("2_djscc")
+rotate_projectile = null
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
