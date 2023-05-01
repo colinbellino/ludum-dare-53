@@ -10,3 +10,4 @@ mob_timer = 0.5
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("1_xc7xl"), ExtResource("1_xc7xl"), ExtResource("1_xc7xl"), ExtResource("1_xc7xl")])
 is_checkpoint = false
+total_wave_time = 10.0

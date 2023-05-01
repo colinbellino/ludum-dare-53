@@ -33,4 +33,4 @@ func player_action(action_name:String, meta, target:ShipSlot):
 		"build":
 			target.build_structure(meta)
 		"sell":
-			target.clear()
+			target.sell()

@@ -82,3 +82,15 @@ static func set_linear_db(bus_index: int, linear_db: float) -> void:
 
 static func set_resolution(resolution: Vector2) -> void:
 	DisplayServer.window_set_size(resolution)
+
+static func rand_element_weighted(dict):
+	var total_weight = 0
+	var stacked = []
+	for key in dict.keys():
+		total_weight += max(dict[key], 0.0)
+		stacked.push_back([total_weight, key])
+	var choice = randf_range(0.0, total_weight)
+	for item in stacked:
+		if choice < item[0]:
+			return item[1]
+	return stacked.back()[1]
