@@ -1,23 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2g1x8qio16mp"]
+[gd_scene load_steps=11 format=3 uid="uid://d2g1x8qio16mp"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_0kbl5"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_6jpqw"]
-[ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_hoc6a"]
-[ext_resource type="Texture2D" uid="uid://cs1clpq1weo2a" path="res://assets/sprites/cart/misc/pearl2.png" id="3_d6ruv"]
+[ext_resource type="Texture2D" uid="uid://dvlafc25dxnsk" path="res://assets/sprites/cart/misc/disruptorshot.png" id="2_mu5uv"]
 [ext_resource type="Texture2D" uid="uid://cjaugs122auek" path="res://assets/sprites/cart/misc/ssanim_muzzle_disruptorturret.png" id="3_yss01"]
-[ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_3eeal"]
-[ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_uqqbu"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_amt8o"]
-frames = 4
-frame_0/texture = ExtResource("2_hoc6a")
-frame_0/duration = 0.05
-frame_1/texture = ExtResource("3_d6ruv")
-frame_1/duration = 0.05
-frame_2/texture = ExtResource("4_3eeal")
-frame_2/duration = 0.05
-frame_3/texture = ExtResource("5_uqqbu")
-frame_3/duration = 0.05
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3awsr"]
 atlas = ExtResource("2_6jpqw")
@@ -158,7 +144,7 @@ aim_lookahead = 2.0
 damage = 25.0
 explosion_radius = 32.0
 explosion_knockback = 40.0
-projectile_sprite = SubResource("AnimatedTexture_amt8o")
+projectile_sprite = ExtResource("2_mu5uv")
 projectile_lifetime = 0.5
 projectile_rotate = false
 max_range = 150.0
