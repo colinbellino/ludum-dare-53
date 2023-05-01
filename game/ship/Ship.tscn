@@ -103,6 +103,7 @@ position = Vector2(-23, -10)
 position = Vector2(-23, -26)
 
 [node name="section_3x1" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(0, 53)
 texture = SubResource("AtlasTexture_j7t37")
@@ -118,6 +119,7 @@ position = Vector2(1, -14)
 position = Vector2(17, -14)
 
 [node name="section_3x13" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(-46, 48)
 texture = ExtResource("2_prb85")
@@ -134,7 +136,7 @@ position = Vector2(55, 18)
 
 [node name="section_boosters" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-48, 74)
+position = Vector2(-48, 21)
 texture = ExtResource("2_prb85")
 centered = false
 region_enabled = true
