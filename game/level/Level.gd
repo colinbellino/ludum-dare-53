@@ -119,6 +119,10 @@ func on_cargo_destroyed(_cargo: Cargo):
 					randi_range(center.y - 60, center.y + 60)
 				)
 				FxSpawner.spawn_fx(preload("res://game/fx/explosion_1.tscn"), position)
+				AudioPlayer.play_sound_random([
+					preload("res://assets/audio/player_explode02.wav"),
+					preload("res://assets/audio/explosion01.wav"),
+				], position)
 				await get_tree().create_timer(0.02).timeout
 			await get_tree().create_timer(0.2).timeout
 
