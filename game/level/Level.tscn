@@ -160,6 +160,7 @@ spawn_area = Rect2(-360, -202.5, 720, 405)
 layer = -1
 
 [node name="BGstuff" type="Node2D" parent="BG"]
+z_index = -100
 
 [node name="starsbg_dust1" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2

@@ -193,6 +193,7 @@ one_shot = true
 randomness = 0.14
 
 [node name="aboveturret" type="Node2D" parent="."]
+z_index = 10
 
 [node name="aboveturret" type="Sprite2D" parent="aboveturret"]
 texture = ExtResource("2_cryvg")

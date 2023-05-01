@@ -35,6 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Root/Content"]
+layout_mode = 0
 offset_left = 418.0
 offset_top = 204.0
 offset_right = 546.0
