@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://r0mr0eps8w7w"]
+[gd_scene load_steps=22 format=3 uid="uid://r0mr0eps8w7w"]
 
 [ext_resource type="Texture2D" uid="uid://bwle0dd1nqili" path="res://assets/sprites/cart/misc/ssanim_bullet_pearl.png" id="1_36qkb"]
 [ext_resource type="Texture2D" uid="uid://b1qd05xk4xex6" path="res://assets/sprites/cart/misc/ssanim_cycleorange.png" id="2_kbykc"]
 [ext_resource type="Texture2D" uid="uid://csc2sqpknby8t" path="res://assets/sprites/checkpointstation/ss_stationstructure_placeholder.png" id="3_v7dmn"]
 [ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="4_c06d5"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="5_mqc5b"]
+[ext_resource type="Texture2D" uid="uid://db6r24bbn2hbn" path="res://assets/sprites/cart/misc/thruster-sheet.png" id="6_x51uq"]
 
 [sub_resource type="Animation" id="Animation_5o0gk"]
 length = 0.001
@@ -81,6 +83,21 @@ _data = {
 "new_animation": SubResource("Animation_f4vpd")
 }
 
+[sub_resource type="Animation" id="Animation_m3qnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_qtt6x"]
 resource_name = "idle"
 length = 0.4
@@ -99,12 +116,46 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_m3qnl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
+_data = {
+"RESET": SubResource("Animation_m3qnl"),
+"idle": SubResource("Animation_qtt6x")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu7pk"]
+atlas = ExtResource("5_mqc5b")
+region = Rect2(100, 1, 160, 127)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pn8f"]
+load_path = "res://.godot/imported/ss_ship_misc.png-0f593cf4e9a35a15f8f8269f9c179d78.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no3x4"]
+atlas = SubResource("CompressedTexture2D_8pn8f")
+region = Rect2(130, 186, 135, 63)
+
+[sub_resource type="Animation" id="Animation_lavhm"]
+resource_name = "thruster fire"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_7s63r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -114,10 +165,10 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cf7ph"]
 _data = {
-"RESET": SubResource("Animation_m3qnl"),
-"idle": SubResource("Animation_qtt6x")
+"RESET": SubResource("Animation_7s63r"),
+"thruster fire": SubResource("Animation_lavhm")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -181,4 +232,41 @@ autoplay = "idle"
 speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
+}
+
+[node name="SHIP" type="Node2D" parent="."]
+position = Vector2(223.716, -76.2218)
+
+[node name="section_main" type="Sprite2D" parent="SHIP"]
+position = Vector2(0, -27.3617)
+texture = SubResource("AtlasTexture_eu7pk")
+
+[node name="section_3x1" type="Sprite2D" parent="SHIP"]
+position = Vector2(0, 53)
+texture = SubResource("AtlasTexture_no3x4")
+
+[node name="section_3x13" type="Sprite2D" parent="SHIP"]
+position = Vector2(-46, 64.4953)
+texture = ExtResource("5_mqc5b")
+centered = false
+region_enabled = true
+region_rect = Rect2(168, 129, 92, 53)
+
+[node name="section_boosters" type="Sprite2D" parent="SHIP"]
+position = Vector2(-49, 121.173)
+texture = ExtResource("5_mqc5b")
+centered = false
+region_enabled = true
+region_rect = Rect2(30, 186, 98, 65)
+
+[node name="thrusters" type="Sprite2D" parent="SHIP/section_boosters"]
+show_behind_parent = true
+position = Vector2(49, 55)
+texture = ExtResource("6_x51uq")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SHIP/section_boosters/thrusters"]
+autoplay = "thruster fire"
+libraries = {
+"": SubResource("AnimationLibrary_cf7ph")
 }

@@ -1,69 +1,151 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwkdkc4usw3yn"]
+[gd_scene load_steps=12 format=3 uid="uid://dwkdkc4usw3yn"]
 
 [ext_resource type="Script" path="res://game/ship/Ship.gd" id="1_p4bv2"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_prb85"]
 [ext_resource type="PackedScene" uid="uid://capgpw4kxltue" path="res://game/ship/ShipSlot.tscn" id="3_o36rr"]
+[ext_resource type="Texture2D" uid="uid://db6r24bbn2hbn" path="res://assets/sprites/cart/misc/thruster-sheet.png" id="4_vnr4m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpml2"]
 atlas = ExtResource("2_prb85")
-region = Rect2(106, 2, 148, 115)
+region = Rect2(100, 1, 160, 127)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pn8f"]
+load_path = "res://.godot/imported/ss_ship_misc.png-0f593cf4e9a35a15f8f8269f9c179d78.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7t37"]
-atlas = ExtResource("2_prb85")
-region = Rect2(52, 176, 84, 66)
+atlas = SubResource("CompressedTexture2D_8pn8f")
+region = Rect2(130, 186, 135, 63)
+
+[sub_resource type="Animation" id="Animation_lavhm"]
+resource_name = "thruster fire"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_7s63r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cf7ph"]
+_data = {
+"RESET": SubResource("Animation_7s63r"),
+"thruster fire": SubResource("Animation_lavhm")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_astbv"]
-size = Vector2(38, 26)
+size = Vector2(62, 80)
 
 [node name="Ship" type="AnimatableBody2D"]
 script = ExtResource("1_p4bv2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
+[node name="section_main" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_lpml2")
 
-[node name="ShipSlot" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-8, -31)
+[node name="ShipSlot" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-7, -35)
 
-[node name="ShipSlot2" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(8, -31)
+[node name="ShipSlot2" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(9, -35)
 
-[node name="ShipSlot3" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-8, -15)
+[node name="ShipSlot3" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-7, -19)
 
-[node name="ShipSlot4" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(8, -15)
+[node name="ShipSlot4" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(9, -19)
 
-[node name="ShipSlot5" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(8, 1)
+[node name="ShipSlot5" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(9, -3)
 
-[node name="ShipSlot6" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-8, 1)
+[node name="ShipSlot6" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-7, -3)
 
-[node name="ShipSlot7" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-8, 17)
+[node name="ShipSlot7" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-7, 13)
 
-[node name="ShipSlot8" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(8, 17)
+[node name="ShipSlot8" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(9, 13)
 
-[node name="ShipSlot9" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(24, -23)
+[node name="ShipSlot9" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(25, -27)
 
-[node name="ShipSlot10" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(24, -7)
+[node name="ShipSlot10" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(25, -11)
 
-[node name="ShipSlot11" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-24, -6)
+[node name="ShipSlot11" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-23, -10)
 
-[node name="ShipSlot12" parent="Sprite2D" instance=ExtResource("3_o36rr")]
-position = Vector2(-24, -22)
+[node name="ShipSlot12" parent="section_main" instance=ExtResource("3_o36rr")]
+position = Vector2(-23, -26)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-1, 65)
+[node name="section_3x1" type="Sprite2D" parent="."]
+position = Vector2(0, 53)
 texture = SubResource("AtlasTexture_j7t37")
 
+[node name="ShipSlot13" parent="section_3x1" instance=ExtResource("3_o36rr")]
+position = Vector2(-16, -14)
+
+[node name="ShipSlot14" parent="section_3x1" instance=ExtResource("3_o36rr")]
+position = Vector2(0, -14)
+
+[node name="ShipSlot15" parent="section_3x1" instance=ExtResource("3_o36rr")]
+position = Vector2(16, -14)
+
+[node name="section_3x13" type="Sprite2D" parent="."]
+position = Vector2(-46, 48)
+texture = ExtResource("2_prb85")
+centered = false
+region_enabled = true
+region_rect = Rect2(168, 129, 92, 53)
+
+[node name="ShipSlot16" parent="section_3x13" instance=ExtResource("3_o36rr")]
+position = Vector2(39, 17)
+
+[node name="ShipSlot17" parent="section_3x13" instance=ExtResource("3_o36rr")]
+position = Vector2(55, 17)
+
+[node name="section_boosters" type="Sprite2D" parent="."]
+position = Vector2(-49, 74)
+texture = ExtResource("2_prb85")
+centered = false
+region_enabled = true
+region_rect = Rect2(30, 186, 98, 65)
+
+[node name="thrusters" type="Sprite2D" parent="section_boosters"]
+show_behind_parent = true
+position = Vector2(49, 55)
+texture = ExtResource("4_vnr4m")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="section_boosters/thrusters"]
+autoplay = "thruster fire"
+libraries = {
+"": SubResource("AnimationLibrary_cf7ph")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 52)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_astbv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
