@@ -22,7 +22,8 @@ func _ready():
 	assert(audio_player_sound != null, "audio_player_sound not initialized correctly.")
 
 func play_sound(stream: AudioStream, position: Vector2 = Vector2(120, 72), loop: bool = false, pitch_scale : float = 1.0) -> void:
-	stream.loop = loop
+	if stream is AudioStreamWAV == false:
+		stream.loop = loop
 
 	var player := spawn_audio_player()
 	player.position = position
@@ -56,4 +57,10 @@ func spawn_audio_player() -> AudioStreamPlayer2D:
 	return audio_player
 
 func play_ui_button_sound() -> void:
+	play_sound(preload("res://assets/audio/fft-text.mp3"));
+
+func play_ui_error_sound() -> void:
+	play_sound(preload("res://assets/audio/small-fart.wav"));
+
+func play_ui_money_sound() -> void:
 	play_sound(preload("res://assets/audio/fft-text.mp3"));

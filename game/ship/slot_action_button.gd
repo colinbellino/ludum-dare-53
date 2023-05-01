@@ -12,13 +12,13 @@ func _gui_input(event):
 	set(val):
 		icon = val
 		upd()
-		
+
 @export var label := "":
 	set(val):
 		label = val
 		upd()
 
-@export var cost := 50:
+@export var cost := 0:
 	set(val):
 		cost = val
 		upd()
@@ -30,7 +30,7 @@ func _gui_input(event):
 	set(val):
 		bg_color = val
 		upd()
-		
+
 @export var value := 0:
 	set(val):
 		value = val
@@ -42,13 +42,14 @@ func _ready():
 
 func upd():
 	if is_inside_tree():
+		var node = meta.instantiate()
 		%Icon.texture = icon
-		%Label.text = label
-		%Cost.text = "%s$" % [cost]
-		if cost > 0:
-			%Cost.add_theme_color_override("font_color", Color.CORNFLOWER_BLUE)
+		%Label.text = node.name
+		%Cost.text = "%s$" % [node.cost]
+		if node.cost > GameData.money:
+			%Cost.add_theme_color_override("font_color", GameData.COLOR_RED)
 		else:
-			%Cost.add_theme_color_override("font_color", Color.FOREST_GREEN)
+			%Cost.add_theme_color_override("font_color", GameData.COLOR_GREEN)
 		if value == 0:
 			size.y = 24
 			%Extra.visible = false

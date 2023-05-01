@@ -17,13 +17,25 @@ func _ready():
 	health_bar.visible = false
 	add_to_group("Selectable")
 	if current_structure:
-		build_structure(current_structure)
+		build_structure(current_structure, true)
 
-func build_structure(new_structure:PackedScene):
+func build_structure(new_structure:PackedScene, initial_build = false):
 	clear()
 	health = 1.0
+
+	var node : BaseTurret = new_structure.instantiate()
+
+	if initial_build == false:
+		if node.cost > GameData.money:
+			AudioPlayer.play_ui_error_sound()
+			return
+
+		GameData.money -= node.cost
+		AudioPlayer.play_ui_money_sound()
+		print("money: ", GameData.money)
+
 	current_structure = new_structure
-	current_structure_node = current_structure.instantiate()
+	current_structure_node = node
 	current_structure_node.connect("damaged", on_structure_damaged)
 	add_child(current_structure_node)
 
@@ -34,7 +46,7 @@ func clear():
 		current_structure_node.queue_free()
 		current_structure_node = null
 	current_structure = null
-	
+
 func destroy():
 	if current_structure_node and is_instance_valid(current_structure_node):
 		if current_structure_node.debris_sprite != null:
@@ -51,11 +63,11 @@ func on_structure_damaged(_damage: float):
 
 	health_bar.visible = true
 	health_bar.value = value
-	bg.bg_color = Color.html("33cc73")
+	bg.bg_color = GameData.COLOR_GREEN
 	if value < 0.66:
-		bg.bg_color = Color.html("c5cc28")
+		bg.bg_color = GameData.COLOR_ORANGE
 	if value < 0.33:
-		bg.bg_color = Color.html("a02c1b")
+		bg.bg_color = GameData.COLOR_RED
 	health_bar.set("theme_override_styles/fill", bg)
 
 func _input_event(_viewport:Viewport, event:InputEvent, _shape_idx:int):

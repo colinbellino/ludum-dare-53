@@ -1,6 +1,5 @@
 class_name Ship extends AnimatableBody2D
 
-@export var money := 100
 @export var movement_speed := Vector2(0, -100)
 @export var movement_mult := 1.0
 

@@ -15,6 +15,7 @@ enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
 	GameData.level = self
+	GameData.money = GameData.STARTING_MONEY
 
 	ship = get_node("%Ship")
 	assert(ship != null, "Missing ship from level.")

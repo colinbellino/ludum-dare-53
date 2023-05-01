@@ -4,11 +4,17 @@ const PHYSICS_LAYER_MONSTER_HURTABLE = 4
 const PHYSICS_LAYER_SHIP_HURTABLE = 2
 const PHYSICS_LAYER_BLOCKER = 1
 const PHYSICS_LAYER_HURTABLE = PHYSICS_LAYER_MONSTER_HURTABLE | PHYSICS_LAYER_SHIP_HURTABLE
+const STARTING_MONEY = 200
+
+var COLOR_GREEN = Color.html("33cc73")
+var COLOR_ORANGE = Color.html("c5cc28")
+var COLOR_RED = Color.html("a02c1b")
 
 var scene_properties := {}
 var scene_by_category := {}
 var category_defaults := {}
 var level: Level
+var money : int # Initialized in Level.ready
 
 func _ready():
 	add_category("Turrets", BaseTurret)
