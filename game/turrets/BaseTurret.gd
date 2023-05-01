@@ -25,7 +25,10 @@ var max_hitpoints
 @export var projectile_speed = 200.0
 @export var projectile_lifetime = 1.5
 @export var max_range : float:
-	get: return projectile_speed*projectile_lifetime+18+explosion_radius
+	get:
+		if projectile_is_beam:
+			return projectile_speed
+		return projectile_speed*projectile_lifetime+18+explosion_radius 
 
 @export var animation_bullet_spawn_offset = 0.0
 
@@ -86,7 +89,11 @@ func spawn_bullet():
 	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
 	bullet.expiration_time = projectile_lifetime
 	bullet.is_beam = projectile_is_beam
-	level.add_child(bullet)
+	if bullet.is_beam:
+		bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
+		%Turret.add_child(bullet)
+	else:
+		level.add_child(bullet)
 	bullet.global_position = %BulletSpawnPosition.global_position
 
 func aquire_target():

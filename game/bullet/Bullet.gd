@@ -36,6 +36,9 @@ var num_targets_pierced = 0
 func _ready():
 	sprite = sprite
 	$Sprite.rotation = Vector2.RIGHT.angle_to(direction)
+	if is_beam:
+		$Sprite.position.x -= speed * 0.5
+		$Sprite.scale.x = speed / sprite.get_width()
 	
 func _physics_process(delta):
 	var velocity = direction * speed * delta

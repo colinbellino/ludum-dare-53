@@ -143,11 +143,11 @@ cost = 400.0
 hitpoints = 75.0
 aim_lookahead = 0.25
 damage = 100.0
-pierce = 4
+pierce = 200
 projectile_sprite = ExtResource("2_pu3qa")
 projectile_is_beam = true
-projectile_speed = 900.0
-max_range = 1368.0
+projectile_lifetime = 0.5
+max_range = 200.0
 debris_sprite = SubResource("AtlasTexture_vgow0")
 
 [node name="Base" type="Sprite2D" parent="."]
@@ -178,7 +178,7 @@ region_rect = Rect2(34, 118, 19, 10)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
-position = Vector2(240, 0.000633794)
+position = Vector2(-10, -2.53518e-05)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 visible = false
