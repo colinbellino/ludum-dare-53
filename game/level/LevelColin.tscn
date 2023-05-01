@@ -1,22 +1,32 @@
-[gd_scene load_steps=23 format=3 uid="uid://dknlum3ir1kwc"]
+[gd_scene load_steps=26 format=3 uid="uid://cfh4e2une46r1"]
 
-[ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
-[ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
-[ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
-[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_vkujm"]
-[ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="3_5rcjp"]
-[ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="3_lmsls"]
-[ext_resource type="Resource" uid="uid://c4css43n5g1ej" path="res://game/waves/wave_grabbers_1.tres" id="4_7thro"]
-[ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="4_ll4f6"]
-[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
-[ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
-[ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
-[ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="6_acimt"]
-[ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="7_l1jce"]
+[ext_resource type="Script" path="res://game/level/Level.gd" id="1_3c37r"]
+[ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_0uthi"]
+[ext_resource type="PackedScene" uid="uid://d07to3piph5o8" path="res://game/mobs/mob_asteroid_1.tscn" id="3_v0gqq"]
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="4_2dut4"]
+[ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="4_rsrvj"]
+[ext_resource type="Resource" uid="uid://barcb5jwth0gq" path="res://game/waves/wave_asteroids.tres" id="5_y78b2"]
+[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="6_34wlx"]
+[ext_resource type="Resource" uid="uid://bx8kruduvxtbu" path="res://game/waves/wave_checkpoint_ending.tres" id="6_fpvdl"]
+[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="7_mc7wv"]
+[ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="8_gtej7"]
+[ext_resource type="Texture2D" uid="uid://kd3qnu4wcvfy" path="res://assets/env/spacebg/starsbg_dust1.png" id="9_1cf08"]
+[ext_resource type="Texture2D" uid="uid://bhnvmcgqk1hqe" path="res://assets/env/spacebg/starsbg_far.png" id="10_mx82m"]
+[ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="11_gemuq"]
+[ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="12_pt2r3"]
+[ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="13_rj37s"]
+
+[sub_resource type="Resource" id="Resource_52r5u"]
+script = ExtResource("4_2dut4")
+repeat_n_times = 1
+mob_timer = 1.0
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("3_v0gqq")])
+is_checkpoint = false
 
 [sub_resource type="Resource" id="Resource_gghpq"]
-script = ExtResource("2_n8tay")
-waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("3_lmsls"), ExtResource("5_ymyxe"), ExtResource("4_7thro"), ExtResource("5_ymyxe")])
+script = ExtResource("2_0uthi")
+waves = Array[ExtResource("4_2dut4")]([SubResource("Resource_52r5u"), ExtResource("4_rsrvj"), ExtResource("5_y78b2"), ExtResource("6_fpvdl")])
 
 [sub_resource type="Shader" id="Shader_xccvg"]
 code = "shader_type canvas_item;
@@ -81,7 +91,7 @@ render_mode blend_add;"
 shader = SubResource("Shader_3iejv")
 
 [node name="Level" type="Node"]
-script = ExtResource("1_2gnls")
+script = ExtResource("1_3c37r")
 waves = SubResource("Resource_gghpq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -95,7 +105,7 @@ offset_left = 636.0
 offset_top = 163.0
 offset_right = 676.0
 offset_bottom = 203.0
-script = ExtResource("2_vkujm")
+script = ExtResource("6_34wlx")
 
 [node name="Continue" type="Button" parent="CanvasLayer/CheckpointUI"]
 unique_name_in_owner = true
@@ -138,11 +148,11 @@ offset_right = 66.0
 offset_bottom = -30.0
 text = "Checkpoint"
 
-[node name="Ship" parent="." instance=ExtResource("1_s3r65")]
+[node name="Ship" parent="." instance=ExtResource("8_gtej7")]
 unique_name_in_owner = true
 position = Vector2(480, 270)
 
-[node name="MobSpawner" parent="." instance=ExtResource("5_ih7dg")]
+[node name="MobSpawner" parent="." instance=ExtResource("7_mc7wv")]
 unique_name_in_owner = true
 position = Vector2(480, 270)
 spawn_area = Rect2(-360, -202.5, 720, 405)
@@ -155,47 +165,47 @@ layer = -1
 [node name="starsbg_dust1" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_wp6yy")
-texture = ExtResource("3_5rcjp")
+texture = ExtResource("9_1cf08")
 centered = false
 
 [node name="starsbg_far" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_5wnky")
-texture = ExtResource("4_ll4f6")
+texture = ExtResource("10_mx82m")
 centered = false
 
 [node name="starsbg_1" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_h3n7r")
-texture = ExtResource("5_jrtys")
+texture = ExtResource("11_gemuq")
 centered = false
 
 [node name="objs" type="Node2D" parent="BG/BGstuff"]
 
 [node name="SsSpacedeco" type="Sprite2D" parent="BG/BGstuff/objs"]
 position = Vector2(63, 138)
-texture = ExtResource("6_acimt")
+texture = ExtResource("12_pt2r3")
 centered = false
 region_enabled = true
 region_rect = Rect2(5, 102, 99, 97)
 
 [node name="SsSpacedeco2" type="Sprite2D" parent="BG/BGstuff/objs"]
 position = Vector2(246, 393)
-texture = ExtResource("6_acimt")
+texture = ExtResource("12_pt2r3")
 centered = false
 region_enabled = true
 region_rect = Rect2(115, 55, 78, 77)
 
 [node name="SsSpacedeco3" type="Sprite2D" parent="BG/BGstuff/objs"]
 position = Vector2(821, 74)
-texture = ExtResource("6_acimt")
+texture = ExtResource("12_pt2r3")
 centered = false
 region_enabled = true
 region_rect = Rect2(399, 5, 107, 101)
 
 [node name="SsSpacedeco4" type="Sprite2D" parent="BG/BGstuff/objs"]
 position = Vector2(748, 303)
-texture = ExtResource("6_acimt")
+texture = ExtResource("12_pt2r3")
 centered = false
 region_enabled = true
 region_rect = Rect2(39, 3, 34, 34)
@@ -203,5 +213,5 @@ region_rect = Rect2(39, 3, 34, 34)
 [node name="StarsbgDust2" type="Sprite2D" parent="BG/BGstuff"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_qh50q")
-texture = ExtResource("7_l1jce")
+texture = ExtResource("13_rj37s")
 centered = false

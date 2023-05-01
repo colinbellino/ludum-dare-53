@@ -6,7 +6,6 @@
 script = ExtResource("2_uuo6f")
 repeat_n_times = 1
 mob_timer = 1.0
-wave_over_timer = 2.2
 spawn_pattern = 1
 mobs = Array[PackedScene]([])
 is_checkpoint = true

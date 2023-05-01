@@ -17,6 +17,7 @@ func start_game():
 	# Safety check so we don't load an invalid level if we have an old settings format
 	if ResourceLoader.exists(level_name) == false:
 		level_name = "res://game/level/Level.tscn"
+	print("Starting level: %s" % [level_name])
 	Overlay.transition(level_name)
 
 func settings():

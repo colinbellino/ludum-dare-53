@@ -9,6 +9,8 @@ var wave_index : int
 
 @export var waves : WaveList
 
+var CHECKPOINT_WAVE_DELAY := 10
+
 enum LevelStates { MOVING, CHECKPOINT }
 
 func _ready():
@@ -61,5 +63,8 @@ func on_wave_over(wave, index):
 func on_checkpoint_continue_pressed():
 	checkpoint_ui.close()
 	checkpoint_index += 1;
-	%MobSpawner.start_wave(waves.waves, wave_index)
+
 	state = LevelStates.MOVING
+
+	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
+	%MobSpawner.start_wave(waves.waves, wave_index)
