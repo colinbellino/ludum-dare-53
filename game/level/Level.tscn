@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://coaiy7267rcni"]
+[gd_scene load_steps=25 format=3 uid="uid://coaiy7267rcni"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
@@ -12,11 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://doxkcowasmd4y" path="res://assets/env/spacebg/starsbg_1.png" id="5_jrtys"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
 [ext_resource type="Texture2D" uid="uid://caasgeslk15bp" path="res://assets/env/spacebg/ss_spacedeco.png" id="6_acimt"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="7_dj8xb"]
 [ext_resource type="Texture2D" uid="uid://midp2rexfu4h" path="res://assets/env/spacebg/starsbg_dust2_nodither.png" id="7_l1jce"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
 waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("3_lmsls"), ExtResource("4_7thro"), ExtResource("5_ymyxe"), ExtResource("5_ymyxe")])
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5yl0"]
+bg_color = Color(0, 0, 0, 0.921569)
 
 [sub_resource type="Shader" id="Shader_xccvg"]
 code = "shader_type canvas_item;
@@ -87,31 +91,28 @@ waves = SubResource("Resource_gghpq")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 99
 
-[node name="CheckpointUI" type="Control" parent="CanvasLayer"]
+[node name="CheckpointUI" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 636.0
-offset_top = 163.0
-offset_right = 676.0
-offset_bottom = 203.0
+offset_left = 240.0
+offset_top = 102.0
+offset_right = 440.0
+offset_bottom = 222.0
+theme = ExtResource("7_dj8xb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_k5yl0")
 script = ExtResource("2_vkujm")
 
-[node name="Continue" type="Button" parent="CanvasLayer/CheckpointUI"]
+[node name="Title" type="Label" parent="CanvasLayer/CheckpointUI"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -38.5
-offset_top = -31.5
-offset_right = 40.5
-offset_bottom = -0.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 9.0
+offset_bottom = 26.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Continue"
+theme = ExtResource("7_dj8xb")
+text = "Checkpoint"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sell" type="Button" parent="CanvasLayer/CheckpointUI"]
 unique_name_in_owner = true
@@ -121,22 +122,31 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -67.5
-offset_right = 42.0
-offset_bottom = -36.5
+offset_left = -72.0
+offset_top = -86.0
+offset_right = 68.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("7_dj8xb")
 text = "Sell cargo"
 
-[node name="Title" type="Label" parent="CanvasLayer/CheckpointUI"]
+[node name="Continue" type="Button" parent="CanvasLayer/CheckpointUI"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -22.0
-offset_top = -56.0
-offset_right = 66.0
-offset_bottom = -30.0
-text = "Checkpoint"
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -50.0
+offset_right = 68.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_dj8xb")
+text = "Continue"
 
 [node name="Ship" parent="." instance=ExtResource("1_s3r65")]
 unique_name_in_owner = true
