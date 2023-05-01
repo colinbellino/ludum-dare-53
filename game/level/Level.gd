@@ -14,6 +14,9 @@ var CHECKPOINT_WAVE_DELAY := 10
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	var version = Utils.load_file("res://version.txt")
+	print("version: ", version)
+
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
 
@@ -65,7 +68,7 @@ func on_wave_over(wave, index):
 
 	if wave_index > waves.waves.size() - 1:
 		print("End of the game reached!")
-		Overlay.transition("res://game/main_menu/TitleUI.tscn")
+		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
 		return
 
 	if wave.is_checkpoint:
