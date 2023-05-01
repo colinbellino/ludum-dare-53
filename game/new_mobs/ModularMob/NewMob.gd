@@ -40,7 +40,7 @@ func _physics_process(delta):
 			if collision_discriminate_enemies:
 				apply_damage = body.collision_layer & GameData.PHYSICS_LAYER_SHIP_HURTABLE
 			
-			if body.has_method("take_hit"):
+			if body.has_method("take_hit") and apply_damage:
 				print("- Collided with ", body)
 				body.take_hit(collision_damage)
 				self.take_hit(collision_self_damage)
