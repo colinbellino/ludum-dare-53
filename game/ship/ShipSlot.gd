@@ -47,8 +47,7 @@ func deselect():
 
 func on_structure_damaged(_damage: float):
 	var value : float = current_structure_node.hitpoints / current_structure_node.max_hitpoints
-	var bg = health_bar.get("theme_override_styles/fill")
-
+	var bg = health_bar.get("theme_override_styles/fill").duplicate()
 
 	health_bar.visible = true
 	health_bar.value = value
@@ -57,6 +56,7 @@ func on_structure_damaged(_damage: float):
 		bg.bg_color = Color.html("c5cc28")
 	if value < 0.33:
 		bg.bg_color = Color.html("a02c1b")
+	health_bar.set("theme_override_styles/fill", bg)
 
 func _input_event(_viewport:Viewport, event:InputEvent, _shape_idx:int):
 	if event.is_action_pressed("mouse_left"):
