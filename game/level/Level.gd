@@ -91,7 +91,7 @@ func on_wave_over(wave, index):
 
 func is_at_checkpoint()->bool:
 	return state == LevelStates.CHECKPOINT
-	
+
 func deliever_cargo():
 	last_checkpoint_cargo_worth = cargo_worth()
 	if get_tree():
@@ -122,7 +122,7 @@ func cargo_worth():
 func on_checkpoint_continue_pressed():
 	if not is_inside_tree():
 		return
-		
+
 	checkpoint_index += 1
 
 	state = LevelStates.MOVING
@@ -136,7 +136,7 @@ func on_cargo_destroyed(_cargo: Cargo):
 	var all_cargo_destroyed := is_all_cargo_destroyed()
 	print("all_cargo_destroyed: ", all_cargo_destroyed)
 
-	if all_cargo_destroyed:
+	if state != LevelStates.GAME_OVER && all_cargo_destroyed:
 		state = LevelStates.GAME_OVER
 
 		var center = ship.position
