@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwxaob5dlen7i"]
+[gd_scene load_steps=16 format=3 uid="uid://dwxaob5dlen7i"]
 
 [ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_nlby4"]
 [ext_resource type="Texture2D" uid="uid://7bnttnh247dc" path="res://assets/sprites/cart/misc/railbeam.png" id="2_pu3qa"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_t20bm"]
+[ext_resource type="AudioStream" uid="uid://c6adcn2y8qh06" path="res://assets/audio/shot_railbeam.wav" id="3_gneai"]
 [ext_resource type="Texture2D" uid="uid://1fagr0jnofua" path="res://assets/sprites/cart/misc/ssanim_muzzle_railbeamturret.png" id="3_sttwk"]
+[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="4_g77ta"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgow0"]
 atlas = ExtResource("2_t20bm")
@@ -147,6 +149,8 @@ pierce = 200
 projectile_sprite = ExtResource("2_pu3qa")
 projectile_is_beam = true
 projectile_lifetime = 0.5
+fire_sfx = Array[AudioStream]([ExtResource("3_gneai")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("4_g77ta")])
 max_range = 200.0
 debris_sprite = SubResource("AtlasTexture_vgow0")
 

@@ -10,7 +10,7 @@ extends ShapeCast2D
 	set(val):
 		pierce = val
 		max_results = maxi(pierce, 4)
-		
+
 @export var knockback = 2.5
 @export var sprite : Texture:
 	set(val):
@@ -29,6 +29,7 @@ extends ShapeCast2D
 		collision_mask = (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_SHIP_HURTABLE) if monster_bullet else (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_MONSTER_HURTABLE)
 @export var direction = Vector2(1.0, 0.0)
 @export var expiration_time = 9999.999
+@export var bullet_hit_sfx : Array[AudioStream]
 
 var frames_alive = 0
 var time_alive = 0.0
@@ -41,7 +42,7 @@ func _ready():
 	if is_beam:
 		$Sprite.position.x -= speed * 0.5
 		$Sprite.scale.x = speed / sprite.get_width()
-	
+
 func _physics_process(delta):
 	var velocity = direction * speed * delta
 	if is_beam:
@@ -52,6 +53,7 @@ func _physics_process(delta):
 		for i in get_collision_count():
 			var target_hit:CollisionObject2D = get_collider(i)
 			if target_hit.collision_layer & GameData.PHYSICS_LAYER_MONSTER_HURTABLE:
+				AudioPlayer.play_sound_random(bullet_hit_sfx, global_position)
 				if explosion_radius <= 1:
 					target_hit.take_hit(damage)
 				else:

@@ -25,11 +25,14 @@ var max_hitpoints
 @export var projectile_speed = 200.0
 @export var projectile_lifetime = 1.5
 @export var projectile_rotate := true
+@export var fire_sfx : Array[AudioStream]
+@export var bullet_hit_sfx : Array[AudioStream]
+
 @export var max_range : float:
 	get:
 		if projectile_is_beam:
 			return projectile_speed
-		return projectile_speed*projectile_lifetime+18+explosion_radius 
+		return projectile_speed*projectile_lifetime+18+explosion_radius
 
 @export var animation_bullet_spawn_offset = 0.0
 
@@ -71,6 +74,7 @@ func _process(delta):
 			shot_cooldown -= delta
 		if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
 			$AnimationPlayer.play("Fire")
+			AudioPlayer.play_sound_random(fire_sfx, global_position)
 			if animation_bullet_spawn_offset <= 0.01:
 				spawn_bullet()
 			else:
@@ -91,6 +95,7 @@ func spawn_bullet():
 	bullet.expiration_time = projectile_lifetime
 	bullet.is_beam = projectile_is_beam
 	bullet.rotate_projectile = projectile_rotate
+	bullet.bullet_hit_sfx = bullet_hit_sfx
 	if bullet.is_beam:
 		bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
 		%Turret.add_child(bullet)
