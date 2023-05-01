@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ne86nxxv25cy"]
+
+[ext_resource type="Script" path="res://game/bullet/Bullet.gd" id="1_1u11q"]
+[ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_djscc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4neab"]
+size = Vector2(6, 6)
+
+[node name="Bullet" type="ShapeCast2D"]
+shape = SubResource("RectangleShape2D_4neab")
+exclude_parent = false
+target_position = Vector2(1.66667, 0)
+max_results = 4
+collide_with_areas = true
+script = ExtResource("1_1u11q")
+sprite = ExtResource("2_djscc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_djscc")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_exit_screen"]

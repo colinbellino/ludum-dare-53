@@ -10,7 +10,6 @@ extends AnimatableBody2D
 @export var fire_rate = 1.0
 @export var hitpoints = 10.0
 @export var turn_speed = 1.0
-@export var spin_up_time = 0.0
 @export var damage = 5.0
 
 @export var projectile_sprite : Texture

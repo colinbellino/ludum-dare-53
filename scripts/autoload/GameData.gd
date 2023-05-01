@@ -1,5 +1,10 @@
 extends Node
 
+const PHYSICS_LAYER_MONSTER_HURTABLE = 4
+const PHYSICS_LAYER_SHIP_HURTABLE = 2
+const PHYSICS_LAYER_BLOCKER = 1
+const PHYSICS_LAYER_HURTABLE = PHYSICS_LAYER_MONSTER_HURTABLE | PHYSICS_LAYER_SHIP_HURTABLE
+
 var scene_properties := {}
 var scene_by_category := {}
 var category_defaults := {}
