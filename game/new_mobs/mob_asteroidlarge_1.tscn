@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq2m6vhsuf3jf"]
+[gd_scene load_steps=11 format=3 uid="uid://bjsp08y4mcbbp"]
 
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="1_n75fa"]
-[ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_ot32v"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="2_q4j00"]
-[ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="3_3e0j6"]
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_nieii"]
+[ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_nla2m"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/Asteroid.gd" id="2_6lltq"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_gllx5"]
+[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_0tu7l"]
+[ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="5_7jiqe"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
 length = 0.001
@@ -20,29 +20,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-
-[sub_resource type="Animation" id="Animation_qtt6x"]
-resource_name = "idle"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dangersaucer:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dangersaucer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
 _data = {
-"RESET": SubResource("Animation_m3qnl"),
-"idle": SubResource("Animation_qtt6x")
+"RESET": SubResource("Animation_m3qnl")
 }
 
 [sub_resource type="Animation" id="Animation_nf565"]
@@ -55,45 +48,39 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7bfp"]
-radius = 26.0
+radius = 34.0588
 
-[node name="Dangersaucer" type="RigidBody2D" groups=["Monsters"]]
+[node name="asteroidlarge" type="RigidBody2D" groups=["Monsters"]]
 collision_layer = 4
 collision_mask = 7
-physics_material_override = ExtResource("1_ot32v")
+physics_material_override = ExtResource("1_nla2m")
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
-lock_rotation = true
-script = ExtResource("1_n75fa")
-hitpoints = 100.0
-speed = 300
-approach_distance = 100
-accleration = 4.0
-movement_type = 1
-movement_type_when_in_range = 1
+angular_velocity = 3.0
+script = ExtResource("2_6lltq")
+collision_discriminate_enemies = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
 [node name="MonsterTurret" type="Node2D" parent="."]
-script = ExtResource("3_nieii")
+script = ExtResource("3_gllx5")
 damage = 10.0
-projectile_sprite = ExtResource("2_q4j00")
+projectile_sprite = ExtResource("4_0tu7l")
 max_range = 318.0
 
 [node name="mobidle" type="AnimationPlayer" parent="MonsterTurret"]
-autoplay = "idle"
-speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
 [node name="Dangersaucer" type="Sprite2D" parent="MonsterTurret"]
 position = Vector2(-0.0692201, 0)
-texture = ExtResource("3_3e0j6")
-hframes = 8
+texture = ExtResource("5_7jiqe")
+region_enabled = true
+region_rect = Rect2(3, 3, 22, 24)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
 unique_name_in_owner = true
@@ -105,7 +92,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_m7bfp")
 
