@@ -176,6 +176,7 @@ unique_name_in_owner = true
 position = Vector2(-10, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
+visible = false
 modulate = Color(0.26, 1, 0.901333, 1)
 position = Vector2(-21, -8)
 texture = ExtResource("3_dawmd")

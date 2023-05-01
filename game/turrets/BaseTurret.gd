@@ -54,7 +54,7 @@ func _process(delta):
 
 	if not current_target:
 		aquire_target()
-
+	
 	if current_target:
 		var aim = current_target.global_position + current_target.linear_velocity * aim_lookahead
 		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
@@ -113,4 +113,5 @@ func is_valid_target(mob):
 	return (
 		is_instance_valid(mob)
 		&& mob.hitpoints > 0
+		&& global_position.distance_to(current_target.global_position) > max_range
 	)
