@@ -104,7 +104,7 @@ func _on_attack_area_body_entered(body):
 		if body.has_method("take_hit"):
 			body.take_hit(damage)
 			queue_free()
-	if $AttackTimer.is_stopped() and attack_type == AttackTypes.Touch:
+	if shot_cooldown <= 0.0 and attack_type == AttackTypes.Touch:
 		if body.has_method("take_hit") and not body.is_in_group("Monsters"):
 			body.take_hit(damage)
 			$AttackTimer.start()
@@ -120,8 +120,8 @@ func aquire_target():
 		if ship_part[0].global_position.distance_to(global_position) < attack_distance:
 			current_target = ship_part[0]
 
-func is_valid_target(mob):
+func is_valid_target(ship_part):
 	return (
-		is_instance_valid(mob)
-		&& mob.hitpoints > 0
+		is_instance_valid(ship_part)
+		&& ship_part.hitpoints > 0
 	)
