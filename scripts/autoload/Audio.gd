@@ -36,7 +36,7 @@ func play_sound_random(streams: Array[AudioStream], position: Vector2 = Vector2(
 		return
 	var index := randi() % streams.size()
 	var stream := streams[index]
-	play_sound(stream, position, loop)
+	play_sound(stream, position, loop, randf_range(0.8, 1.2))
 
 func play_music(stream: AudioStream, loop: bool = true) -> void:
 	stream.set_loop(loop)
