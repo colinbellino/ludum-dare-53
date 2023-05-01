@@ -32,12 +32,16 @@ func build_structure(new_structure:PackedScene, initial_build = false):
 
 		GameData.money -= node.cost
 		AudioPlayer.play_ui_turret_sound()
-		print("money: ", GameData.money)
 
 	current_structure = new_structure
 	current_structure_node = node
 	current_structure_node.connect("damaged", on_structure_damaged)
 	add_child(current_structure_node)
+
+func sell():
+	GameData.money += current_structure_node.cost / 2
+	AudioPlayer.play_ui_money_sound()
+	clear()
 
 func clear():
 	health_bar.visible = false
