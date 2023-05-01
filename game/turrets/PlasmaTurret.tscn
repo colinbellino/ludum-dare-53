@@ -149,6 +149,7 @@ fire_rate = 4.0
 hitpoints = 50.0
 damage = 10.0
 projectile_sprite = SubResource("AnimatedTexture_clmhl")
+projectile_speed = 400.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_cryvg")

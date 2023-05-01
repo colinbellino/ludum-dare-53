@@ -135,12 +135,14 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_nlby4")
 cost = 400.0
+fire_rate = 0.5
 hitpoints = 75.0
+turn_speed = 2.0
 aim_lookahead = 0.25
 damage = 100.0
 pierce = 4
 projectile_sprite = ExtResource("2_q6647")
-projectile_speed = 600.0
+projectile_speed = 900.0
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_t20bm")
