@@ -53,7 +53,7 @@ func _physics_process(delta):
 		for i in get_collision_count():
 			var target_hit:CollisionObject2D = get_collider(i)
 			if target_hit.collision_layer & GameData.PHYSICS_LAYER_HURTABLE:
-				AudioPlayer.play_sound_random(bullet_hit_sfx, global_position)
+				AudioPlayer.play_sound_random(bullet_hit_sfx, position)
 				if explosion_radius <= 1:
 					target_hit.take_hit(damage)
 				else:

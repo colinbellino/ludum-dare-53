@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var bus_main : int
 var bus_music : int
@@ -21,22 +21,29 @@ func _ready():
 	audio_player_sound = get_node("%SoundPlayer")
 	assert(audio_player_sound != null, "audio_player_sound not initialized correctly.")
 
-func play_sound(stream: AudioStream, position: Vector2 = Vector2(120, 72), loop: bool = false, pitch_scale : float = 1.0) -> void:
+func _process(_delta):
+	if GameData.level && GameData.level.ship:
+		self.global_position = GameData.level.ship.global_position
+
+		audio_player_music.pitch_scale = Engine.get_time_scale()
+
+func play_sound(stream: AudioStream, sound_position: Vector2 = get_viewport_rect().size / 2, loop: bool = false, pitch_scale : float = 1.0) -> void:
 	if stream is AudioStreamWAV == false:
 		stream.loop = loop
 
 	var player := spawn_audio_player()
 	player.position = position
+	player.position = sound_position
 	player.pitch_scale = pitch_scale
 	player.stream = stream
 	player.play()
 
-func play_sound_random(streams: Array[AudioStream], position: Vector2 = Vector2(120, 72), loop: bool = false) -> void:
+func play_sound_random(streams: Array, sound_position: Vector2, loop: bool = false) -> void:
 	if streams.size() == 0:
 		return
 	var index := randi() % streams.size()
-	var stream := streams[index]
-	play_sound(stream, position, loop, randf_range(0.8, 1.2))
+	var stream = streams[index]
+	play_sound(stream, sound_position, loop, randf_range(0.8, 1.2))
 
 func play_music(stream: AudioStream, loop: bool = true) -> void:
 	stream.set_loop(loop)
@@ -59,16 +66,16 @@ func spawn_audio_player() -> AudioStreamPlayer2D:
 	return audio_player
 
 func play_ui_hover_sound() -> void:
-	play_sound(preload("res://assets/audio/button_hover.wav"));
+	play_sound(preload("res://assets/audio/button_hover.wav"), position);
 
 func play_ui_button_sound() -> void:
-	play_sound(preload("res://assets/audio/button_click.wav"));
+	play_sound(preload("res://assets/audio/button_click.wav"), position);
 
 func play_ui_error_sound() -> void:
-	play_sound(preload("res://assets/audio/error.wav"));
+	play_sound(preload("res://assets/audio/error.wav"), position);
 
 func play_ui_money_sound() -> void:
-	play_sound(preload("res://assets/audio/money.wav"));
+	play_sound(preload("res://assets/audio/money.wav"), position);
 
 func play_ui_repair_sound() -> void:
-	play_sound(preload("res://assets/audio/repair.wav"));
+	play_sound(preload("res://assets/audio/repair.wav"), position);
