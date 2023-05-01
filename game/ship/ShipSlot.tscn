@@ -1,14 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://capgpw4kxltue"]
+[gd_scene load_steps=7 format=3 uid="uid://capgpw4kxltue"]
 
 [ext_resource type="Script" path="res://game/ship/ShipSlot.gd" id="1_u6qth"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_nwp01"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvllh"]
 atlas = ExtResource("2_nwp01")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2dm5"]
 size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx8rc"]
+bg_color = Color(0.0823529, 0.0980392, 0.243137, 1)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.0823529, 0.0980392, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u54hb"]
+bg_color = Color(0.2, 0.8, 0.45098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0823529, 0.0980392, 0.243137, 1)
 
 [node name="ShipSlot" type="Area2D"]
 collision_layer = 2
@@ -20,3 +34,17 @@ texture = SubResource("AtlasTexture_lvllh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_d2dm5")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mx8rc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u54hb")
+max_value = 1.0
+value = 0.5
+show_percentage = false

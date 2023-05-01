@@ -159,6 +159,7 @@ region_rect = Rect2(0, 80, 16, 16)
 
 [node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 texture = ExtResource("2_cryvg")
 offset = Vector2(-3, 0)
 region_enabled = true

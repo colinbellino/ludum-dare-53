@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwkdkc4usw3yn"]
+[gd_scene load_steps=12 format=3 uid="uid://dwkdkc4usw3yn"]
 
 [ext_resource type="Script" path="res://game/ship/Ship.gd" id="1_p4bv2"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_prb85"]
 [ext_resource type="PackedScene" uid="uid://capgpw4kxltue" path="res://game/ship/ShipSlot.tscn" id="3_o36rr"]
-[ext_resource type="PackedScene" uid="uid://mntot2ajrptc" path="res://game/turrets/PlasmaTurret.tscn" id="4_gkmru"]
 [ext_resource type="Texture2D" uid="uid://db6r24bbn2hbn" path="res://assets/sprites/cart/misc/thruster-sheet.png" id="4_vnr4m"]
-[ext_resource type="PackedScene" uid="uid://be5fk04vsboo8" path="res://game/turrets/Cargo.tscn" id="5_tbm5p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpml2"]
 atlas = ExtResource("2_prb85")
@@ -56,30 +54,29 @@ _data = {
 "thruster fire": SubResource("Animation_lavhm")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_astbv"]
+size = Vector2(62, 80)
+
 [node name="Ship" type="AnimatableBody2D"]
 z_index = 2
-sync_to_physics = false
 script = ExtResource("1_p4bv2")
 
 [node name="section_main" type="Sprite2D" parent="."]
 z_index = 1
 texture = SubResource("AtlasTexture_lpml2")
+offset = Vector2(1, 1.5)
 
 [node name="ShipSlot" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(-7, -35)
-current_structure = ExtResource("4_gkmru")
 
 [node name="ShipSlot2" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(9, -35)
-current_structure = ExtResource("4_gkmru")
 
 [node name="ShipSlot3" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(-7, -19)
-current_structure = ExtResource("5_tbm5p")
 
 [node name="ShipSlot4" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(9, -19)
-current_structure = ExtResource("5_tbm5p")
 
 [node name="ShipSlot5" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(9, -3)
@@ -94,10 +91,10 @@ position = Vector2(-7, 13)
 position = Vector2(9, 13)
 
 [node name="ShipSlot9" parent="section_main" instance=ExtResource("3_o36rr")]
-position = Vector2(25, -27)
+position = Vector2(25, -26)
 
 [node name="ShipSlot10" parent="section_main" instance=ExtResource("3_o36rr")]
-position = Vector2(25, -11)
+position = Vector2(25, -10)
 
 [node name="ShipSlot11" parent="section_main" instance=ExtResource("3_o36rr")]
 position = Vector2(-23, -10)
@@ -109,33 +106,35 @@ position = Vector2(-23, -26)
 z_index = 1
 position = Vector2(0, 53)
 texture = SubResource("AtlasTexture_j7t37")
+offset = Vector2(0.5, 0.5)
 
 [node name="ShipSlot13" parent="section_3x1" instance=ExtResource("3_o36rr")]
-position = Vector2(-16, -14)
+position = Vector2(-15, -14)
 
 [node name="ShipSlot14" parent="section_3x1" instance=ExtResource("3_o36rr")]
-position = Vector2(0, -14)
+position = Vector2(1, -14)
 
 [node name="ShipSlot15" parent="section_3x1" instance=ExtResource("3_o36rr")]
-position = Vector2(16, -14)
+position = Vector2(17, -14)
 
 [node name="section_3x13" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(-46, 48)
 texture = ExtResource("2_prb85")
 centered = false
+offset = Vector2(1, 1)
 region_enabled = true
 region_rect = Rect2(168, 129, 92, 53)
 
 [node name="ShipSlot16" parent="section_3x13" instance=ExtResource("3_o36rr")]
-position = Vector2(39, 17)
+position = Vector2(39, 18)
 
 [node name="ShipSlot17" parent="section_3x13" instance=ExtResource("3_o36rr")]
-position = Vector2(55, 17)
+position = Vector2(55, 18)
 
 [node name="section_boosters" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-49, 74)
+position = Vector2(-48, 74)
 texture = ExtResource("2_prb85")
 centered = false
 region_enabled = true
@@ -152,6 +151,10 @@ autoplay = "thruster fire"
 libraries = {
 "": SubResource("AnimationLibrary_cf7ph")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_astbv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

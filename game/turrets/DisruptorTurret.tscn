@@ -152,7 +152,6 @@ hitpoints = 100.0
 damage = 50.0
 projectile_sprite = SubResource("AnimatedTexture_amt8o")
 max_range = 318.0
-animation_bullet_spawn_offset = 0.25
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_6jpqw")
@@ -161,6 +160,7 @@ region_rect = Rect2(16, 80, 16, 16)
 
 [node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 texture = ExtResource("2_6jpqw")
 centered = false
 offset = Vector2(-8, -6)
@@ -169,7 +169,7 @@ region_rect = Rect2(17, 117, 15, 12)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
-position = Vector2(-7, 0)
+position = Vector2(-10, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 modulate = Color(0.26, 1, 0.901333, 1)
