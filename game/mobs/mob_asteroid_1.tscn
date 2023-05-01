@@ -17,10 +17,10 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
-lock_rotation = true
+angular_velocity = 10.0
 script = ExtResource("1_sf168")
-launch_speed_min = 200
-launch_speed_max = 300
+launch_speed_min = 300
+launch_speed_max = 400
 launch_direction_randomness = 50
 
 [node name="Sprite" type="Sprite2D" parent="."]

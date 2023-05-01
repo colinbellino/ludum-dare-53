@@ -18,7 +18,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that g
 func _physics_process(delta):
 	if !initialized:
 		var target_position = GameData.level.ship.global_position + Vector2(randf_range(-launch_direction_randomness, launch_direction_randomness), randf_range(-launch_direction_randomness, launch_direction_randomness))
-		linear_velocity = global_position.direction_to(target_position) * randf_range(launch_speed_min, launch_speed_max)
+		linear_velocity = global_position.direction_to(target_position) * randf_range(launch_speed_min, launch_speed_max) + GameData.level.ship.velocity
 		initialized = true
 		
 	if contact_monitor:
