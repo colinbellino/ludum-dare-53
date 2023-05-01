@@ -64,7 +64,10 @@ func _physics_process(delta):
 		aquire_target()
 
 	if current_target:
-		var aim = current_target.global_position + current_target.linear_velocity * aim_lookahead
+		var distance = global_position.distance_to(current_target.global_position)
+		var aim = current_target.global_position
+		if not projectile_is_beam:
+			aim += current_target.linear_velocity * (distance / projectile_speed)
 		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
 		target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
 		current_rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
