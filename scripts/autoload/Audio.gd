@@ -58,14 +58,14 @@ func spawn_audio_player() -> AudioStreamPlayer2D:
 	self.add_child(audio_player)
 	return audio_player
 
+func play_ui_hover_sound() -> void:
+	play_sound(preload("res://assets/audio/button_hover.wav"));
+
 func play_ui_button_sound() -> void:
-	play_sound(preload("res://assets/audio/fft-text.mp3"));
+	play_sound(preload("res://assets/audio/button_click.wav"));
 
 func play_ui_error_sound() -> void:
 	play_sound(preload("res://assets/audio/error.wav"));
 
 func play_ui_money_sound() -> void:
 	play_sound(preload("res://assets/audio/money.wav"));
-
-func play_ui_turret_sound() -> void:
-	play_sound(preload("res://assets/audio/place_turret.wav"));

@@ -18,9 +18,7 @@ func setup_ui_node(new_node:Node)->void:
 				new_node.grab_focus()
 
 func ui_pointer():
-	# TODO: UI Feedback sounds
-	pass
+	AudioPlayer.play_ui_hover_sound()
 
 func ui_confirm():
-	# TODO: UI Feedback sounds
-	pass
+	AudioPlayer.play_ui_button_sound()

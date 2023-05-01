@@ -23,5 +23,5 @@ func on_continue_pressed():
 	if GameData.level.cargo_worth() < GameData.level.cargo_required:
 		AudioPlayer.play_ui_error_sound()
 	else:
-		AudioPlayer.play_ui_button_sound()
+		AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
 		queue_free()
