@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5t10q702fd4"]
+[gd_scene load_steps=4 format=3 uid="uid://bi5t10q702fd4"]
 
 [ext_resource type="Script" path="res://game/ship/slot_action_button.gd" id="1_1ygea"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_8sl0r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03h2a"]
 bg_color = Color(1, 1, 1, 0.839216)
@@ -18,6 +19,7 @@ self_modulate = Color(0.231373, 0.231373, 0.231373, 0.839216)
 offset_right = 155.0
 offset_bottom = 24.0
 focus_mode = 2
+theme = ExtResource("1_8sl0r")
 theme_override_styles/panel = SubResource("StyleBoxFlat_03h2a")
 script = ExtResource("1_1ygea")
 
@@ -41,6 +43,7 @@ stretch_mode = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Layout/VBoxContainer"]
@@ -49,13 +52,17 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Layout/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("1_8sl0r")
+vertical_alignment = 2
 
 [node name="Cost" type="Label" parent="Layout/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
+theme = ExtResource("1_8sl0r")
 theme_override_colors/font_color = Color(0.392157, 0.584314, 0.929412, 1)
 text = "50$"
+vertical_alignment = 2
 
 [node name="Extra" type="HBoxContainer" parent="Layout/VBoxContainer"]
 unique_name_in_owner = true
@@ -64,11 +71,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Layout/VBoxContainer/Extra"]
 layout_mode = 2
+theme = ExtResource("1_8sl0r")
 text = "Value"
+vertical_alignment = 2
 
 [node name="Value" type="Label" parent="Layout/VBoxContainer/Extra"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
+theme = ExtResource("1_8sl0r")
 theme_override_colors/font_color = Color(0.643137, 1, 0.807843, 1)
 text = "+200$"
+vertical_alignment = 2
