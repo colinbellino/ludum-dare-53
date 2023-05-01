@@ -28,6 +28,8 @@ var max_hitpoints
 
 @export var animation_bullet_spawn_offset = 0.0
 
+@export var debris_sprite : Texture
+
 var current_target = null
 var shot_cooldown = 0.0
 var target_rotation = 0.0
@@ -105,7 +107,7 @@ func take_hit(hit_damage: float):
 		destroyed()
 
 func destroyed():
-	get_parent().clear()
+	get_parent().destroy()
 
 func is_valid_target(mob):
 	return (

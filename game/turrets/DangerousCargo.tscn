@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpaxaptqt1c48"]
+[gd_scene load_steps=8 format=3 uid="uid://bpaxaptqt1c48"]
 
 [ext_resource type="Script" path="res://game/turrets/Cargo.gd" id="1_ugg02"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_xw5xi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbd2c"]
+atlas = ExtResource("2_xw5xi")
+region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="Animation" id="Animation_qucwf"]
 resource_name = "Fire"
@@ -27,6 +31,7 @@ script = ExtResource("1_ugg02")
 delievery_value = 500
 attract_danger = 1
 hitpoints = 50.0
+debris_sprite = SubResource("AtlasTexture_fbd2c")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_xw5xi")

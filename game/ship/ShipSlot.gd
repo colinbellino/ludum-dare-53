@@ -34,6 +34,13 @@ func clear():
 		current_structure_node.queue_free()
 		current_structure_node = null
 	current_structure = null
+	
+func destroy():
+	if current_structure_node and is_instance_valid(current_structure_node):
+		if current_structure_node.debris_sprite != null:
+			$Sprite2D.texture = current_structure_node.debris_sprite
+			$Sprite2D.self_modulate = Color.GRAY
+	clear()
 
 func deselect():
 	is_selected = false
