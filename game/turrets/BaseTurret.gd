@@ -117,11 +117,13 @@ func aquire_target():
 
 func take_hit(hit_damage: float):
 	hitpoints -= hit_damage
-	AudioPlayer.play_sound_random([preload("res://assets/audio/player_hit.wav")], global_position)
 	emit_signal("damaged", hit_damage)
 	print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
 	if hitpoints <= 0:
+		AudioPlayer.play_sound_random([preload("res://assets/audio/player_hit.wav")], global_position)
 		destroyed()
+	else:
+		AudioPlayer.play_sound_random([preload("res://assets/audio/component_destroyed.wav")], global_position)
 
 func destroyed():
 	get_parent().destroy()
