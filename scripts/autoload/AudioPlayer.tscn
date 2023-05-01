@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://crf3n3w3ocd4u"]
+[gd_scene load_steps=3 format=3 uid="uid://0dr0tuufq6ga"]
 
-[ext_resource type="Script" path="res://scripts/autoload/Audio.gd" id="1_bitw8"]
+[ext_resource type="Script" path="res://scripts/autoload/AudioPlayer.gd" id="1_g31op"]
 [ext_resource type="Script" path="res://scripts/snippets/SoundPlayerOneShot.gd" id="2_nvlsx"]
 
-[node name="Audio" type="Node"]
-script = ExtResource("1_bitw8")
+[node name="AudioPlayer" type="Node2D"]
+script = ExtResource("1_g31op")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true

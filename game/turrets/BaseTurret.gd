@@ -80,7 +80,7 @@ func _physics_process(delta):
 			shot_cooldown -= delta
 		if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
 			$AnimationPlayer.play("Fire")
-			AudioPlayer.play_sound_random(fire_sfx, global_position)
+			AudioPlayer.play_sound_random(fire_sfx, position)
 			if animation_bullet_spawn_offset <= 0.01:
 				spawn_bullet()
 			else:
@@ -126,10 +126,10 @@ func take_hit(hit_damage: float):
 	emit_signal("damaged", hit_damage)
 	print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
 	if hitpoints <= 0:
-		AudioPlayer.play_sound_random([preload("res://assets/audio/player_hit.wav")], global_position)
+		AudioPlayer.play_sound_random([preload("res://assets/audio/player_hit.wav")], position)
 		destroyed()
 	else:
-		AudioPlayer.play_sound_random([preload("res://assets/audio/component_destroyed.wav")], global_position)
+		AudioPlayer.play_sound_random([preload("res://assets/audio/component_destroyed.wav")], position)
 
 func destroyed():
 	get_parent().destroy()

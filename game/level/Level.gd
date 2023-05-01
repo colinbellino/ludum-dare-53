@@ -137,9 +137,7 @@ func on_checkpoint_continue_pressed():
 	wave_index = 0
 	waves = $WaveDirector.generate_waves(calc_difficulty())
 
-	print("BEFORE")
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
-	print("AFTER")
 	%MobSpawner.start_wave(waves.waves, wave_index)
 
 func on_cargo_destroyed(_cargo: Cargo):
@@ -165,7 +163,7 @@ func on_cargo_destroyed(_cargo: Cargo):
 				AudioPlayer.play_sound_random([
 					preload("res://assets/audio/player_explode02.wav"),
 					preload("res://assets/audio/explosion01.wav"),
-				])
+				], position)
 			await get_tree().create_timer(0.2).timeout
 
 		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
