@@ -6,15 +6,15 @@
 [node name="AudioPlayer" type="Node2D"]
 script = ExtResource("1_g31op")
 
-[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 bus = &"Music"
 
-[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 bus = &"Sound"
 
-[node name="SoundPlayerOneShot" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundPlayerOneShot" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 bus = &"Sound"
 script = ExtResource("2_nvlsx")
