@@ -50,14 +50,14 @@ func _exit_tree():
 	GameData.level = null
 
 func _process(_delta: float):
+	if Input.is_action_just_released("debug_1"):
+		GameData.money += 1000
+		AudioPlayer.play_ui_money_sound()
+
 	if OS.is_debug_build():
 		if Input.is_action_just_released("ui_cancel"):
 			get_tree().quit()
 
-		if Input.is_action_just_released("debug_1"):
-			GameData.money += 1000
-			AudioPlayer.play_ui_money_sound()
-			print("Money: ", GameData.money)
 
 		if Input.is_key_pressed(KEY_F12):
 			Engine.set_time_scale(20)
