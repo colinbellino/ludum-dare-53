@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5pa8k780rhko"]
+[gd_scene load_steps=10 format=3 uid="uid://c5pa8k780rhko"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_86668"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_gmovn"]
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_mtuoj"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_0leu7"]
 [ext_resource type="Texture2D" uid="uid://dvjo27bjwo83e" path="res://assets/sprites/enemies/chomper-sheet.png" id="5_iodfm"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
@@ -29,7 +27,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/path = NodePath("Pivot:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +65,7 @@ contact_monitor = true
 lock_rotation = true
 script = ExtResource("2_gmovn")
 hitpoints = 30.0
-speed = 300
+speed = 150
 approach_distance = 100
 accleration = 4.0
 movement_type = 1
@@ -77,29 +75,20 @@ movement_type_when_in_range = 1
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
-[node name="MonsterTurret" type="Node2D" parent="."]
-script = ExtResource("3_mtuoj")
-damage = 10.0
-projectile_sprite = ExtResource("4_0leu7")
-max_range = 318.0
-
-[node name="SaucerAnim" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="SaucerAnim" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
-[node name="Dangersaucer" type="Sprite2D" parent="MonsterTurret"]
+[node name="Pivot" type="Sprite2D" parent="."]
 position = Vector2(-0.0692201, 0)
 texture = ExtResource("5_iodfm")
 hframes = 4
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
-unique_name_in_owner = true
-position = Vector2(18, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_bm0np")
 }

@@ -1,21 +1,40 @@
-[gd_scene load_steps=17 format=3 uid="uid://coaiy7267rcni"]
+[gd_scene load_steps=23 format=3 uid="uid://coaiy7267rcni"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="3_hw343"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
+[ext_resource type="PackedScene" uid="uid://c5pa8k780rhko" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="6_0nmcj"]
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="6_fpj6r"]
 [ext_resource type="Script" path="res://game/level/WaveDirector.gd" id="6_hy6mm"]
 [ext_resource type="PackedScene" uid="uid://d07to3piph5o8" path="res://game/mobs/mob_asteroid_1.tscn" id="7_3g4fd"]
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="8_5jho8"]
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
 [ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="9_n50sm"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" path="res://game/level/bg.tscn" id="14_xp8p3"]
+=======
+[ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_vx5ll"]
+[ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
+[ext_resource type="PackedScene" uid="uid://bb1lsd0kwhogc" path="res://game/new_mobs/mob_watcher_1.tscn" id="18_ih6xm"]
+
+[sub_resource type="Resource" id="Resource_fl0e0"]
+script = ExtResource("6_fpj6r")
+repeat_n_times = 10
+mob_timer = 0.2
+wait_timer = 2.0
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("3_hw343"), ExtResource("6_0nmcj"), ExtResource("18_ih6xm"), ExtResource("12_vx5ll")])
+is_checkpoint = false
+total_wave_time = 4.0
+>>>>>>> Stashed changes
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
-waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("5_ymyxe")])
+waves = Array[ExtResource("6_fpj6r")]([SubResource("Resource_fl0e0"), ExtResource("5_ymyxe")])
 
 [sub_resource type="Resource" id="Resource_6y3ld"]
 script = ExtResource("8_5jho8")

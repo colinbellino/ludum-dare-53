@@ -3,7 +3,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_53ho5"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_cm37q"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_miq4w"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_slxxg"]
+[ext_resource type="Texture2D" uid="uid://deoppxk1pd36d" path="res://assets/sprites/enemies/bullet_watcher_single.png" id="4_yl6tx"]
 [ext_resource type="Texture2D" uid="uid://bu1cqx47q74bj" path="res://assets/sprites/enemies/Watcher_red-sheet.png" id="5_cqxq8"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
@@ -79,7 +79,7 @@ scale = Vector2(17.4, 16.75)
 [node name="MonsterTurret" type="Node2D" parent="."]
 script = ExtResource("3_miq4w")
 damage = 10.0
-projectile_sprite = ExtResource("4_slxxg")
+projectile_sprite = ExtResource("4_yl6tx")
 max_range = 318.0
 
 [node name="mobidle" type="AnimationPlayer" parent="MonsterTurret"]
