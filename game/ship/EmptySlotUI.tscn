@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dr5vof8fbp5r7"]
+[gd_scene load_steps=17 format=3 uid="uid://dr5vof8fbp5r7"]
 
 [ext_resource type="Script" path="res://game/ship/EmptySlotUI.gd" id="1_shr7f"]
 [ext_resource type="PackedScene" uid="uid://bi5t10q702fd4" path="res://game/ship/slot_action_button.tscn" id="2_jsqkk"]
+[ext_resource type="StyleBox" uid="uid://1h6ligiv0les" path="res://game/ship/transparent_button.tres" id="2_t8n4t"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="3_mxlek"]
 [ext_resource type="PackedScene" uid="uid://mntot2ajrptc" path="res://game/turrets/PlasmaTurret.tscn" id="4_owwvp"]
 [ext_resource type="PackedScene" uid="uid://dwxaob5dlen7i" path="res://game/turrets/RailbeamTurret.tscn" id="5_nlgx1"]
@@ -36,6 +37,18 @@ region = Rect2(32, 32, 16, 16)
 
 [node name="ShipSlotUI" type="Node2D"]
 script = ExtResource("1_shr7f")
+
+[node name="Close" type="Button" parent="."]
+offset_left = -295.0
+offset_top = -283.0
+offset_right = -247.0
+offset_bottom = -252.0
+scale = Vector2(18.5449, 25.1144)
+theme_override_styles/normal = ExtResource("2_t8n4t")
+theme_override_styles/hover = ExtResource("2_t8n4t")
+theme_override_styles/pressed = ExtResource("2_t8n4t")
+theme_override_styles/disabled = ExtResource("2_t8n4t")
+theme_override_styles/focus = ExtResource("2_t8n4t")
 
 [node name="SlotActionButton" parent="." instance=ExtResource("2_jsqkk")]
 offset_left = 22.0
