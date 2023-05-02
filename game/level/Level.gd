@@ -12,7 +12,7 @@ var cargo_required = 50
 
 @export var waves : WaveList
 
-var CHECKPOINT_WAVE_DELAY := 25
+var CHECKPOINT_WAVE_DELAY := 5
 
 enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
 
