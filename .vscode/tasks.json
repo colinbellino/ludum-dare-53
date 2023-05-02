@@ -4,49 +4,49 @@
         {
             "label": "Windows: build (debug)",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-debug 'Windows' ./builds/Windows/$date_time/LD53.exe && ./builds/Windows/$date_time/LD53.exe",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-debug 'Windows' ./builds/Windows/$date_time/SpaceHaulers.exe && ./builds/Windows/$date_time/SpaceHaulers.exe",
             "problemMatcher": []
         },
         {
             "label": "Windows: build (release)",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-release 'Windows' ./builds/Windows/$date_time/LD53.exe && ./builds/Windows/$date_time/LD53.exe",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-release 'Windows' ./builds/Windows/$date_time/SpaceHaulers.exe && ./builds/Windows/$date_time/SpaceHaulers.exe",
             "problemMatcher": []
         },
         {
             "label": "Windows: build (release) + deploy",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-release 'Windows' ./builds/Windows/$date_time/LD53.exe && butler push ./builds/Windows/$date_time colinbellino/ludum-dare-53:win",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Windows/$date_time && godot --headless --export-release 'Windows' ./builds/Windows/$date_time/SpaceHaulers.exe && butler push ./builds/Windows/$date_time colinbellino/space-haulers:win",
             "problemMatcher": []
         },
         {
             "label": "Windows: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Windows/${input:folder} colinbellino/ludum-dare-53:win",
+            "command": "butler push ./builds/Windows/${input:folder} colinbellino/space-haulers:win",
             "problemMatcher": []
         },
         {
             "label": "Mac: build (debug)",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-debug 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-debug 'Mac' ./builds/Mac/$date_time/SpaceHaulers.app && open ./builds/Mac/$date_time/SpaceHaulers.app",
             "problemMatcher": []
         },
         {
             "label": "Mac: build (release)",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/LD53.app && open ./builds/Mac/$date_time/LD53.app",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/SpaceHaulers.app && open ./builds/Mac/$date_time/SpaceHaulers.app",
             "problemMatcher": []
         },
         {
             "label": "Mac: build (release) + deploy",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/LD53.app && butler push ./builds/Mac/$date_time colinbellino/ludum-dare-53:mac",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Mac/$date_time && godot --headless --export-release 'Mac' ./builds/Mac/$date_time/SpaceHaulers.app && butler push ./builds/Mac/$date_time colinbellino/space-haulers:mac",
             "problemMatcher": []
         },
         {
             "label": "Mac: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Mac/${input:folder} colinbellino/ludum-dare-53:mac",
+            "command": "butler push ./builds/Mac/${input:folder} colinbellino/space-haulers:mac",
             "problemMatcher": []
         },
         {
@@ -64,31 +64,31 @@
         {
             "label": "Web: build (release) + deploy",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Web/$date_time && godot --headless --export-release 'Web' ./builds/Web/$date_time/index.html && butler push ./builds/Web/$date_time colinbellino/ludum-dare-53:web",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Web/$date_time && godot --headless --export-release 'Web' ./builds/Web/$date_time/index.html && butler push ./builds/Web/$date_time colinbellino/space-haulers:web",
             "problemMatcher": []
         },
         {
             "label": "Web: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Web/${input:folder} colinbellino/ludum-dare-53:web",
+            "command": "butler push ./builds/Web/${input:folder} colinbellino/space-haulers:web",
             "problemMatcher": []
         },
         {
             "label": "Linux: build (release)",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --headless --export-release 'Linux' ./builds/Linux/$date_time/LD53 && ./builds/Linux/$date_time/LD53",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --headless --export-release 'Linux' ./builds/Linux/$date_time/SpaceHaulers && ./builds/Linux/$date_time/SpaceHaulers",
             "problemMatcher": []
         },
         {
             "label": "Linux: build (release) + deploy",
             "type": "shell",
-            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --headless --export-release 'Linux' ./builds/Linux/$date_time/LD53 && butler push ./builds/Linux/$date_time colinbellino/ludum-dare-53:linux",
+            "command": "date_time=$(date +%Y-%m-%d_%H-%M) && echo $date_time && ./build_version.sh && mkdir -p ./builds/Linux/$date_time && godot --headless --export-release 'Linux' ./builds/Linux/$date_time/SpaceHaulers && butler push ./builds/Linux/$date_time colinbellino/space-haulers:linux",
             "problemMatcher": []
         },
         {
             "label": "Linux: deploy",
             "type": "shell",
-            "command": "butler push ./builds/Linux/${input:folder} colinbellino/ludum-dare-53:linux",
+            "command": "butler push ./builds/Linux/${input:folder} colinbellino/space-haulers:linux",
             "problemMatcher": []
         },
         {
