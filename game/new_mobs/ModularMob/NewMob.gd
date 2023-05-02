@@ -60,7 +60,7 @@ func _physics_process(delta):
 			target_position = ship_position + Vector2.UP.rotated(current_angle + PI / 100) * approach_distance
 	target_velocity = (target_position - global_position).normalized() * speed + ship_velocity
 
-	if abs(target_velocity.x) > 150.0 && has_node("Pivot"):
+	if abs(target_velocity.x) > 25.0 && has_node("Pivot"):
 		$Pivot.scale.x = signf(target_velocity.x)
 
 func _integrate_forces(state):
