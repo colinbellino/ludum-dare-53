@@ -61,8 +61,8 @@ func _integrate_forces(state):
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))
 	queue_redraw()
 
-func _draw():
-	draw_rect(Rect2(target_position - global_position, Vector2(4, 4)), Color.RED)
+# func _draw():
+# 	draw_rect(Rect2(target_position - global_position, Vector2(4, 4)), Color.RED)
 
 func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that go off screen
 	queue_free()
