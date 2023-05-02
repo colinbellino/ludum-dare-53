@@ -100,4 +100,4 @@ cost = 100
 meta = ExtResource("9_riluh")
 bg_color = Color(0.647059, 0, 0.101961, 0.839216)
 value = 500
-label = "Dangr Cargo"
+label = "Danger Cargo"
