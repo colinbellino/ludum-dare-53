@@ -78,7 +78,8 @@ scale = Vector2(17.4, 16.75)
 
 [node name="MonsterTurret" type="Node2D" parent="."]
 script = ExtResource("3_t3ca3")
-damage = 10.0
+fire_rate = 0.75
+damage = 2.0
 projectile_sprite = ExtResource("4_s31l5")
 max_range = 318.0
 

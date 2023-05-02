@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/mob_spawner.tscn" id="5_ih7dg"]
-[ext_resource type="PackedScene" uid="uid://coqwkh04kxb13" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="5_terfg"]
+[ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="5_terfg"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
-[ext_resource type="PackedScene" uid="uid://n28k84g7askr" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="6_ehvou"]
+[ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="6_ehvou"]
 [ext_resource type="Script" path="res://game/level/WaveDirector.gd" id="6_hy6mm"]
-[ext_resource type="PackedScene" uid="uid://rc1ev6osfawf" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="7_ourkk"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="7_ourkk"]
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="8_5jho8"]
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
-[ext_resource type="PackedScene" uid="uid://bemf8amw17phy" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="9_6btbe"]
-[ext_resource type="PackedScene" path="res://game/new_mobs/mob_watcher_1.tscn" id="10_ymv7o"]
-[ext_resource type="PackedScene" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_l6uy8"]
+[ext_resource type="PackedScene" uid="uid://c5pa8k780rhko" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="9_6btbe"]
+[ext_resource type="PackedScene" uid="uid://bb1lsd0kwhogc" path="res://game/new_mobs/mob_watcher_1.tscn" id="10_ymv7o"]
+[ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_l6uy8"]
 [ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
@@ -39,6 +39,7 @@ mob_timer_floor = 0.05
 wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.01
 wait_timer_floor = 0.05
+skip_chance = 0.0
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("5_terfg"), ExtResource("6_ehvou"), ExtResource("7_ourkk")])
 
@@ -60,6 +61,7 @@ mob_timer_floor = 0.05
 wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
+skip_chance = 0.0
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("9_6btbe"), ExtResource("7_ourkk"), ExtResource("6_ehvou"), ExtResource("5_terfg"), ExtResource("9_6btbe")])
 
@@ -81,6 +83,7 @@ mob_timer_floor = 0.05
 wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
+skip_chance = 0.0
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("10_ymv7o"), ExtResource("10_ymv7o"), ExtResource("6_ehvou"), ExtResource("5_terfg"), ExtResource("7_ourkk")])
 
@@ -102,6 +105,7 @@ mob_timer_floor = 0.05
 wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
+skip_chance = 0.0
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("8_75juw"), ExtResource("5_terfg"), ExtResource("6_ehvou"), ExtResource("7_ourkk"), ExtResource("12_l6uy8")])
 
@@ -123,6 +127,7 @@ mob_timer_floor = 0.05
 wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
+skip_chance = 0.0
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("9_6btbe"), ExtResource("12_l6uy8"), ExtResource("10_ymv7o"), ExtResource("10_ymv7o"), ExtResource("9_6btbe"), ExtResource("9_6btbe")])
 
