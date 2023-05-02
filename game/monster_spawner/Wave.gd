@@ -5,6 +5,7 @@ class_name Wave extends Resource
 ## In seconds
 @export var mob_timer : float = 0.9
 @export var wait_timer : float = 0.1
+@export var skip_chance : float = 0.0
 @export var spawn_pattern : SpawnPatterns
 @export var mobs : Array[PackedScene]
 @export var is_checkpoint : bool

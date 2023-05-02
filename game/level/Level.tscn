@@ -1,16 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://coaiy7267rcni"]
+[gd_scene load_steps=23 format=3 uid="uid://coaiy7267rcni"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
 [ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
 [ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/mob_spawner.tscn" id="5_ih7dg"]
+[ext_resource type="PackedScene" uid="uid://coqwkh04kxb13" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="5_terfg"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
+[ext_resource type="PackedScene" uid="uid://n28k84g7askr" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="6_ehvou"]
 [ext_resource type="Script" path="res://game/level/WaveDirector.gd" id="6_hy6mm"]
-[ext_resource type="PackedScene" uid="uid://d07to3piph5o8" path="res://game/mobs/mob_asteroid_1.tscn" id="7_3g4fd"]
+[ext_resource type="PackedScene" uid="uid://rc1ev6osfawf" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="7_ourkk"]
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="8_5jho8"]
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
-[ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="9_n50sm"]
+[ext_resource type="PackedScene" uid="uid://bemf8amw17phy" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="9_6btbe"]
+[ext_resource type="PackedScene" path="res://game/new_mobs/mob_watcher_1.tscn" id="10_ymv7o"]
+[ext_resource type="PackedScene" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_l6uy8"]
 [ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
@@ -18,29 +22,35 @@ script = ExtResource("2_n8tay")
 waves = Array[Resource("res://game/monster_spawner/Wave.gd")]([ExtResource("5_ymyxe")])
 
 [sub_resource type="Resource" id="Resource_6y3ld"]
+resource_name = "Just Asteroids"
 script = ExtResource("8_5jho8")
 min_difficulty = 0.0
-max_difficulty = 100.0
-selection_weight_at_min = 1.0
-selection_weight_at_max = 0.25
-repeat_n_times_base = 4
-repeat_increase_per_difficulty = 0.5
-repeat_randomness = 0
-mob_timer = 0.2
+mid_difficulty = 4999.0
+max_difficulty = 9999.0
+selection_weight_at_min = 0.5
+selection_weight_at_mid = 0.5
+selection_weight_at_max = 0.5
+repeat_n_times_base = 10
+repeat_increase_per_difficulty = 0.25
+repeat_randomness = 3
+mob_timer = 0.25
 mob_timer_increase_per_difficulty = -0.05
-mob_timer_floor = 0.02
+mob_timer_floor = 0.05
 wait_timer = 0.5
-wait_timer_increase_per_difficulty = -0.05
+wait_timer_increase_per_difficulty = -0.01
 wait_timer_floor = 0.05
 spawn_pattern = 0
-mobs = Array[PackedScene]([ExtResource("7_3g4fd")])
+mobs = Array[PackedScene]([ExtResource("5_terfg"), ExtResource("6_ehvou"), ExtResource("7_ourkk")])
 
 [sub_resource type="Resource" id="Resource_p3ya4"]
+resource_name = "Chompers"
 script = ExtResource("8_5jho8")
-min_difficulty = 0.0
-max_difficulty = 100.0
-selection_weight_at_min = 0.25
-selection_weight_at_max = 1.0
+min_difficulty = 1.0
+mid_difficulty = 4.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.5
+selection_weight_at_mid = 1.5
+selection_weight_at_max = 0.25
 repeat_n_times_base = 3
 repeat_increase_per_difficulty = 0.25
 repeat_randomness = 2
@@ -51,14 +61,38 @@ wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
 spawn_pattern = 0
-mobs = Array[PackedScene]([ExtResource("9_n50sm")])
+mobs = Array[PackedScene]([ExtResource("9_6btbe"), ExtResource("7_ourkk"), ExtResource("6_ehvou"), ExtResource("5_terfg"), ExtResource("9_6btbe")])
 
-[sub_resource type="Resource" id="Resource_xp0y3"]
+[sub_resource type="Resource" id="Resource_wy7jo"]
+resource_name = "Watchers"
 script = ExtResource("8_5jho8")
 min_difficulty = 2.0
-max_difficulty = 1000.0
-selection_weight_at_min = 1.0
-selection_weight_at_max = 1.0
+mid_difficulty = 5.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.25
+selection_weight_at_mid = 1.0
+selection_weight_at_max = 0.25
+repeat_n_times_base = 2
+repeat_increase_per_difficulty = 0.1
+repeat_randomness = 0
+mob_timer = 0.5
+mob_timer_increase_per_difficulty = -0.1
+mob_timer_floor = 0.05
+wait_timer = 0.5
+wait_timer_increase_per_difficulty = -0.05
+wait_timer_floor = 0.05
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("10_ymv7o"), ExtResource("10_ymv7o"), ExtResource("6_ehvou"), ExtResource("5_terfg"), ExtResource("7_ourkk")])
+
+[sub_resource type="Resource" id="Resource_xp0y3"]
+resource_name = "Grabbers"
+script = ExtResource("8_5jho8")
+min_difficulty = 3.0
+mid_difficulty = 7.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.25
+selection_weight_at_mid = 1.0
+selection_weight_at_max = 0.25
 repeat_n_times_base = 4
 repeat_increase_per_difficulty = 0.0
 repeat_randomness = 0
@@ -69,7 +103,28 @@ wait_timer = 0.5
 wait_timer_increase_per_difficulty = -0.05
 wait_timer_floor = 0.05
 spawn_pattern = 0
-mobs = Array[PackedScene]([ExtResource("8_75juw")])
+mobs = Array[PackedScene]([ExtResource("8_75juw"), ExtResource("5_terfg"), ExtResource("6_ehvou"), ExtResource("7_ourkk"), ExtResource("12_l6uy8")])
+
+[sub_resource type="Resource" id="Resource_papjn"]
+resource_name = "ManegeATrois"
+script = ExtResource("8_5jho8")
+min_difficulty = 4.0
+mid_difficulty = 10.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.1
+selection_weight_at_mid = 2.0
+selection_weight_at_max = 0.1
+repeat_n_times_base = 2
+repeat_increase_per_difficulty = 0.0
+repeat_randomness = 2
+mob_timer = 0.5
+mob_timer_increase_per_difficulty = -0.1
+mob_timer_floor = 0.05
+wait_timer = 0.5
+wait_timer_increase_per_difficulty = -0.05
+wait_timer_floor = 0.05
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("9_6btbe"), ExtResource("12_l6uy8"), ExtResource("10_ymv7o"), ExtResource("10_ymv7o"), ExtResource("9_6btbe"), ExtResource("9_6btbe")])
 
 [node name="Level" type="Node"]
 script = ExtResource("1_2gnls")
@@ -77,7 +132,7 @@ waves = SubResource("Resource_gghpq")
 
 [node name="WaveDirector" type="Node" parent="."]
 script = ExtResource("6_hy6mm")
-templates = Array[ExtResource("8_5jho8")]([SubResource("Resource_6y3ld"), SubResource("Resource_p3ya4"), SubResource("Resource_xp0y3")])
+templates = Array[ExtResource("8_5jho8")]([SubResource("Resource_6y3ld"), SubResource("Resource_p3ya4"), SubResource("Resource_wy7jo"), SubResource("Resource_xp0y3"), SubResource("Resource_papjn")])
 checkpoint_wave = ExtResource("5_ymyxe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

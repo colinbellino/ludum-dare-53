@@ -17,8 +17,10 @@ func start_wave(waves, wave_index):
 
 	while true:
 		var wave = waves[wave_index]
-		for mob_scene in wave.mobs:
-			for i in wave.repeat_n_times:
+		for i in wave.repeat_n_times:
+			for mob_scene in wave.mobs:
+				if randf() < wave.skip_chance:
+					continue
 				spawn_mob(mob_scene, wave, i)
 				if get_tree() == null:
 					return
