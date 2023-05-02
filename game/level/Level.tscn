@@ -14,9 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
 [ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
 [ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="9_n50sm"]
-<<<<<<< Updated upstream
 [ext_resource type="PackedScene" path="res://game/level/bg.tscn" id="14_xp8p3"]
-=======
 [ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_vx5ll"]
 [ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
 [ext_resource type="PackedScene" uid="uid://bb1lsd0kwhogc" path="res://game/new_mobs/mob_watcher_1.tscn" id="18_ih6xm"]
@@ -30,7 +28,6 @@ spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("3_hw343"), ExtResource("6_0nmcj"), ExtResource("18_ih6xm"), ExtResource("12_vx5ll")])
 is_checkpoint = false
 total_wave_time = 4.0
->>>>>>> Stashed changes
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
