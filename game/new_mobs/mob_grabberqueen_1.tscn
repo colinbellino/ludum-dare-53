@@ -1,14 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6vym1y2my4gm"]
+[gd_scene load_steps=15 format=3 uid="uid://b6vym1y2my4gm"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_2qirp"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_pf0og"]
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_vrjjs"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_j8ya2"]
 [ext_resource type="Texture2D" uid="uid://brsmwcvmoraa2" path="res://assets/sprites/enemies/Grabberqueen.png" id="5_4xfjy"]
 [ext_resource type="Texture2D" uid="uid://72nvlb0h4hr8" path="res://assets/sprites/enemies/Grabberqueen_veins.png" id="6_53hke"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jygm8"]
 blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_8uhec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0.0156863, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_iq3y2"]
 resource_name = "veinsssafieufbgewtfef"
@@ -25,21 +38,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0.0156863, 1), Color(1, 1, 0.380392, 0.513726)]
-}
-
-[sub_resource type="Animation" id="Animation_8uhec"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0.0156863, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r2odj"]
@@ -165,43 +163,34 @@ movement_type = 1
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
-[node name="MonsterTurret" type="Node2D" parent="."]
-script = ExtResource("3_vrjjs")
-damage = 10.0
-projectile_sprite = ExtResource("4_j8ya2")
-max_range = 318.0
+[node name="Pivot" type="Node2D" parent="."]
 
-[node name="THE QUEEN" type="Node2D" parent="MonsterTurret"]
-
-[node name="spryter" type="Sprite2D" parent="MonsterTurret/THE QUEEN"]
+[node name="spryter" type="Sprite2D" parent="Pivot"]
 position = Vector2(-0.0692201, 0)
 texture = ExtResource("5_4xfjy")
 
-[node name="spryter2" type="Sprite2D" parent="MonsterTurret/THE QUEEN"]
+[node name="spryter2" type="Sprite2D" parent="Pivot"]
 modulate = Color(1, 0, 0.0156863, 1)
 material = SubResource("CanvasItemMaterial_jygm8")
 position = Vector2(-0.0692201, 0)
 texture = ExtResource("6_53hke")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret/THE QUEEN/spryter2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/spryter2"]
 autoplay = "veinsssafieufbgewtfef"
 libraries = {
 "": SubResource("AnimationLibrary_r2odj")
 }
 
-[node name="mobidle" type="AnimationPlayer" parent="MonsterTurret/THE QUEEN"]
-root_node = NodePath("../..")
+[node name="mobidle" type="AnimationPlayer" parent="Pivot"]
+root_node = NodePath("")
 autoplay = "idle"
 speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
-unique_name_in_owner = true
-position = Vector2(18, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_bm0np")
 }

@@ -28,12 +28,12 @@ func start_wave(waves, wave_index):
 				await get_tree().create_timer(wave.mob_timer).timeout
 		await get_tree().create_timer(wave.wait_timer).timeout
 
-		print("Wave " + str(wave_index) + " over     --------------------------")
+		# print("Wave " + str(wave_index) + " over     --------------------------")
 		emit_signal("wave_over", wave, wave_index)
 		wave_index += 1
 
 		if wave.is_checkpoint:
-			print("- Checkpoint reached!")
+			# print("- Checkpoint reached!")
 			break
 
 	emit_signal("all_waves_over")
@@ -66,6 +66,6 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Node2D:
 
 	mob.global_position = position + global_position
 
-	print(" - Spawning mob: %s at %s (pattern: %s, mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
+	# print(" - Spawning mob: %s at %s (pattern: %s, mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
 
 	return mob

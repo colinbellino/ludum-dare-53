@@ -3,7 +3,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_ydpnl"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_cpoo6"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_a5qh5"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_1d6nq"]
+[ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="4_wi77g"]
 [ext_resource type="Texture2D" uid="uid://cun5eu6ibt6nm" path="res://assets/sprites/enemies/stork_nobag-sheet.png" id="5_jd8qc"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
@@ -80,8 +80,9 @@ scale = Vector2(17.4, 16.75)
 [node name="MonsterTurret" type="Node2D" parent="."]
 script = ExtResource("3_a5qh5")
 damage = 10.0
-projectile_sprite = ExtResource("4_1d6nq")
-max_range = 318.0
+explosion_radius = 20.0
+projectile_sprite = ExtResource("4_wi77g")
+max_range = 338.0
 
 [node name="mobidle" type="AnimationPlayer" parent="MonsterTurret"]
 autoplay = "idle"

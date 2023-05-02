@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjsp08y4mcbbp"]
+[gd_scene load_steps=9 format=3 uid="uid://bjsp08y4mcbbp"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_nla2m"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/Asteroid.gd" id="2_6lltq"]
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_gllx5"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_0tu7l"]
 [ext_resource type="Texture2D" uid="uid://htpq5ussgg61" path="res://assets/sprites/enemies/ss_asteroids_placeholder.png" id="5_7jiqe"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
@@ -57,36 +55,32 @@ physics_material_override = ExtResource("1_nla2m")
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
-angular_velocity = 3.0
+angular_velocity = 5.0
+angular_damp = -1.0
 script = ExtResource("2_6lltq")
 collision_discriminate_enemies = true
+launch_speed_min = 50
+launch_speed_max = 125
+launch_direction_randomness = 50
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
-[node name="MonsterTurret" type="Node2D" parent="."]
-script = ExtResource("3_gllx5")
-damage = 10.0
-projectile_sprite = ExtResource("4_0tu7l")
-max_range = 318.0
-
-[node name="mobidle" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="mobidle" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
-[node name="Dangersaucer" type="Sprite2D" parent="MonsterTurret"]
+[node name="Dangersaucer" type="Sprite2D" parent="."]
 position = Vector2(-0.0692201, 0)
 texture = ExtResource("5_7jiqe")
 region_enabled = true
 region_rect = Rect2(3, 3, 22, 24)
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
-unique_name_in_owner = true
-position = Vector2(18, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_bm0np")
 }

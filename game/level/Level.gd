@@ -80,17 +80,15 @@ func _process(_delta: float):
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
-	#if wave_index > waves.waves.size() - 1:
-	#	print("End of the game reached!")
-	#	Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
-	#	return
-
 	if wave.is_checkpoint:
 		AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
 		state = LevelStates.CHECKPOINT
 		deliever_cargo()
 		checkpoint_ui = get_node("%CheckpointUI").create_instance()
 		checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
+
+		await get_tree().create_timer(2.3).timeout
+		AudioPlayer.play_music(preload("res://assets/audio/Ludum_intermission02.ogg"))
 
 func is_at_checkpoint()->bool:
 	return state == LevelStates.CHECKPOINT

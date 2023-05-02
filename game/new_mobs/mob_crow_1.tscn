@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2p324c0o7ias"]
+[gd_scene load_steps=10 format=3 uid="uid://d2p324c0o7ias"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_mukar"]
 [ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_qbx2b"]
-[ext_resource type="Script" path="res://game/new_mobs/ModularMob/MonsterTurret.gd" id="3_m5ome"]
-[ext_resource type="Texture2D" uid="uid://cjy7b03mantbo" path="res://assets/sprites/cart/misc/bulletgold.png" id="4_nmiln"]
 [ext_resource type="Texture2D" uid="uid://dvogywoxcpu0u" path="res://assets/sprites/enemies/crow-sheet.png" id="5_0i3sg"]
 
 [sub_resource type="Animation" id="Animation_m3qnl"]
@@ -76,30 +74,22 @@ movement_type_when_in_range = 1
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
-[node name="MonsterTurret" type="Node2D" parent="."]
-script = ExtResource("3_m5ome")
-damage = 10.0
-projectile_sprite = ExtResource("4_nmiln")
-max_range = 318.0
-
-[node name="mobidle" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="mobidle" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 autoplay = "idle"
 speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_jdr8w")
 }
 
-[node name="Dangersaucer" type="Sprite2D" parent="MonsterTurret"]
+[node name="Pivot" type="Sprite2D" parent="."]
 position = Vector2(-0.0692201, 0)
 rotation = -1.57079
 texture = ExtResource("5_0i3sg")
 hframes = 3
 
-[node name="BulletSpawnPosition" type="Marker2D" parent="MonsterTurret"]
-unique_name_in_owner = true
-position = Vector2(17, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MonsterTurret"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_bm0np")
 }
