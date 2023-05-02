@@ -28,3 +28,7 @@ Plating,Plating,Blindage,TODO
 Cargo,Cargo,Cargaison,TODO
 Danger Cargo,Danger cargo,Cargaison dangereuse,TODO
 Total destruction!,Total destruction!,Destruction totale!,TODO
+[color=gray]Contract fulfilled.[/color] Shipped [color=green]%s$[/color] worth of Cargo. [color=gray]The amount has been added to your account.[/color],[color=gray]Contract fulfilled.[/color] Shipped [color=green]%s$[/color] worth of Cargo. [color=gray]The amount has been added to your account.[/color],[color=gray]Contrat rempli.[/color] Transporté [color=green]%s$[/color] de cargaison. [color=gray]Le montant a été versé sur votre compte.[/color],TODO
+Current Cargo worth: [color=green]%s$[/color]     [color=gray]Difficulty Multiplier: %s%%[/color],Current Cargo worth: [color=green]%s$[/color]     [color=gray]Difficulty Multiplier: %s%%[/color],Valeur de la cargaison: [color=green]%s$[/color]     [color=gray]Multiplicateur de difficulté: %s%%[/color],TODO
+Place at least %s$ worth of cargo before embarking.,Place at least %s$ worth of cargo before embarking.,Placez au moins %s$ de cargaison sur votre vaisseau.,TODO
+Embark,Embark,Embarquer,TODO

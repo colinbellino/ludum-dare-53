@@ -46,7 +46,6 @@ func play_sound_random(streams: Array, sound_position: Vector2, loop: bool = fal
 
 func play_music(stream: AudioStream, loop: bool = true) -> void:
 	stream.set_loop(loop)
-	print("play_music", stream)
 
 	audio_player_music.stream = stream
 	if audio_player_music.playing:

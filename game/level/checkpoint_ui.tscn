@@ -90,8 +90,7 @@ fit_content = true
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
-text = "Current Cargo worth: [color=green]%s$[/color]
-[color=gray]Difficulty Multiplier: %s%%[/color]"
+text = "Current Cargo worth: [color=green]%s$[/color]     [color=gray]Difficulty Multiplier: %s%%[/color]"
 fit_content = true
 
 [node name="cargo_req" type="RichTextLabel" parent="items"]
