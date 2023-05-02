@@ -50,6 +50,7 @@ func repair():
 	GameData.money -= current_structure_node.calculate_cost("repair")
 	current_structure_node.hitpoints = current_structure_node.max_hitpoints
 	AudioPlayer.play_ui_repair_sound()
+	update_healthbar()
 
 func clear():
 	health_bar.visible = false
@@ -70,6 +71,9 @@ func deselect():
 	is_selected = false
 
 func on_structure_damaged(_damage: float):
+	update_healthbar()
+
+func update_healthbar():
 	var value : float = current_structure_node.hitpoints / current_structure_node.max_hitpoints
 	var bg = health_bar.get("theme_override_styles/fill").duplicate()
 
