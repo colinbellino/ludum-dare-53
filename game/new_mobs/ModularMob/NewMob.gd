@@ -8,11 +8,14 @@ class_name NewMob extends RigidBody2D
 @export var hitpoints = 10.0
 @export var speed = 200
 @export var approach_distance = 50
+@export var approach_distance_occilation_period = 1.0
+@export var approach_distance_occilation_amplitude = 0.0
 @export var accleration = 1.0
 @export var movement_type : MovementTypes
 @export var movement_type_when_in_range : MovementTypes
 
 var shot_cooldown = 0.0
+var occilation_timer = 0.0
 var direction_established : bool
 
 enum MovementTypes { TowardsShip, CircleShip }
@@ -31,8 +34,6 @@ func _physics_process(delta):
 	var ship_position = GameData.level.ship.global_position
 	var ship_velocity = GameData.level.ship.velocity
 	var distance_to_target = global_position.distance_to(target_position)
-	if distance_to_target < approach_distance:
-		movement_type = movement_type_when_in_range
 		
 	if contact_monitor:
 		for body in get_colliding_bodies():
@@ -50,6 +51,11 @@ func _physics_process(delta):
 						contact_monitor = true
 				)
 
+	if distance_to_target < approach_distance:
+		movement_type = movement_type_when_in_range
+		occilation_timer += delta
+
+	var target_distance = approach_distance + sin(occilation_timer * PI / approach_distance_occilation_period) * approach_distance_occilation_amplitude
 	match movement_type:
 		MovementTypes.TowardsShip:
 			side_of_ship = signf(global_position.x - ship_position.x)
@@ -57,7 +63,7 @@ func _physics_process(delta):
 			target_position.y = clamp(global_position.y, ship_position.y-100.0, ship_position.y+100.0)
 		MovementTypes.CircleShip:
 			var current_angle = (ship_position - global_position).normalized().angle()
-			target_position = ship_position + Vector2.UP.rotated(current_angle + PI / 100) * approach_distance
+			target_position = ship_position + Vector2.UP.rotated(current_angle + PI / 100) * target_distance
 	target_velocity = (target_position - global_position).normalized() * speed + ship_velocity
 
 	if abs(target_velocity.x) > 25.0 && has_node("Pivot"):

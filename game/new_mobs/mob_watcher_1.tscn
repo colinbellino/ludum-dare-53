@@ -66,7 +66,10 @@ max_contacts_reported = 1
 contact_monitor = true
 lock_rotation = true
 script = ExtResource("2_esrik")
-hitpoints = 30.0
+collision_damage = 2
+collision_self_damage = 2
+collision_discriminate_enemies = false
+hitpoints = 100.0
 speed = 100
 approach_distance = 100
 accleration = 4.0
@@ -79,7 +82,6 @@ scale = Vector2(17.4, 16.75)
 [node name="MonsterTurret" type="Node2D" parent="."]
 script = ExtResource("3_t3ca3")
 fire_rate = 0.75
-damage = 2.0
 projectile_sprite = ExtResource("4_s31l5")
 max_range = 318.0
 

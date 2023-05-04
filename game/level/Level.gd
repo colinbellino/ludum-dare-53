@@ -8,13 +8,13 @@ var checkpoint_index : int = 1
 var wave_index : int
 
 var last_checkpoint_cargo_worth = 0
-var cargo_required = 50
+var cargo_required = 150
 
 @export var waves : WaveList
 
 var CHECKPOINT_WAVE_DELAY := 5
 
-enum LevelStates { TITLE, MOVING, CHECKPOINT, GAME_OVER }
+enum LevelStates { TITLE, MOVING, ENTER_CHECKPOINT, CHECKPOINT, GAME_OVER }
 
 func _ready():
 	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
@@ -34,17 +34,17 @@ func _ready():
 	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
 	title_node.connect("tree_exited", start_game)
 
+	%MobSpawner.connect("wave_over", on_wave_over)
+	%MobSpawner.connect("wave_spawn", on_wave_spawn)
+
 func start_game():
 	if GameData.voice_played == false:
 		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
 		GameData.voice_played = true
 
 	%HUD.visible = true
-
-	%MobSpawner.connect("wave_over", on_wave_over)
-	%MobSpawner.start_wave(waves.waves, wave_index)
-
 	state = LevelStates.MOVING
+	%MobSpawner.start_wave(waves.waves, wave_index)
 
 func _exit_tree():
 	GameData.level = null
@@ -70,6 +70,10 @@ func _process(_delta: float):
 
 		LevelStates.MOVING:
 			ship.movement_mult = 1.0
+			GameData.money += _delta * 5.0
+
+		LevelStates.ENTER_CHECKPOINT:
+			ship.movement_mult = 1.0
 
 		LevelStates.CHECKPOINT:
 			ship.movement_mult = 0.0
@@ -77,10 +81,16 @@ func _process(_delta: float):
 		LevelStates.GAME_OVER:
 			ship.movement_mult = 0.0
 
+func on_wave_spawn(wave):
+	if wave.is_checkpoint:
+		print("ENTER_CHECKPOINT")
+		state = LevelStates.ENTER_CHECKPOINT
+
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
 	if wave.is_checkpoint:
+		print("CHECKPOINT")
 		AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
 		state = LevelStates.CHECKPOINT
 		deliever_cargo()
@@ -110,7 +120,7 @@ func calc_difficulty_multiplier():
 	return difficulty_multiplier
 
 func calc_difficulty():
-	return checkpoint_index + (10 + checkpoint_index) * (calc_difficulty_multiplier()-1.0)
+	return checkpoint_index + (4 + checkpoint_index) * (calc_difficulty_multiplier()-1.0)
 
 func cargo_worth():
 	var value = 0.0
@@ -133,7 +143,7 @@ func on_checkpoint_continue_pressed():
 
 	state = LevelStates.MOVING
 	wave_index = 0
-	waves = $WaveDirector.generate_waves(calc_difficulty())
+	waves = $WaveDirector.generate_waves(calc_difficulty(), 60.0)
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	%MobSpawner.start_wave(waves.waves, wave_index)

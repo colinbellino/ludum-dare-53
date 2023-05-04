@@ -3,6 +3,7 @@ class_name MobSpawner extends Node2D
 var level = null
 @export var spawn_area : Rect2 = Rect2(Vector2(-960.0/2.0, -540.0/2.0), Vector2(960.0, 540.0))
 
+signal wave_spawn(wave)
 signal wave_over(wave, index)
 signal all_waves_over()
 
@@ -17,6 +18,7 @@ func start_wave(waves, wave_index):
 
 	while true:
 		var wave = waves[wave_index]
+		emit_signal("wave_spawn", wave)
 		for i in wave.repeat_n_times:
 			for mob_scene in wave.mobs:
 				if randf() < wave.skip_chance:
