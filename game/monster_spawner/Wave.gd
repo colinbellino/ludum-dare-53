@@ -10,6 +10,6 @@ class_name Wave extends Resource
 @export var mobs : Array[PackedScene]
 @export var is_checkpoint : bool
 @export var total_wave_time : float:
-	get: return mob_timer * repeat_n_times + wait_timer
+	get: return mob_timer * repeat_n_times * (mobs.size() * 1.0 - skip_chance) + wait_timer
 
 enum SpawnPatterns { RandomSide, TopCenter }
