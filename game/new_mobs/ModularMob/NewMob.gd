@@ -32,15 +32,15 @@ func _physics_process(delta):
 		return
 
 	var ship_position = GameData.level.ship.global_position
-	var ship_velocity = GameData.level.ship.velocity
+	var ship_velocity = GameData.level.ship.linear_velocity
 	var distance_to_target = global_position.distance_to(target_position)
-		
+
 	if contact_monitor:
 		for body in get_colliding_bodies():
 			var apply_damage = true
 			if collision_discriminate_enemies:
 				apply_damage = body.collision_layer & GameData.PHYSICS_LAYER_SHIP_HURTABLE
-			
+
 			if body.has_method("take_hit") and apply_damage:
 				print("- Collided with ", body)
 				body.take_hit(collision_damage)

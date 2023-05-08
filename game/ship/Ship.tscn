@@ -55,8 +55,9 @@ _data = {
 "thruster fire": SubResource("Animation_lavhm")
 }
 
-[node name="Ship" type="AnimatableBody2D"]
+[node name="Ship" type="RigidBody2D"]
 z_index = 2
+gravity_scale = 0.0
 script = ExtResource("1_p4bv2")
 
 [node name="section_main" type="Sprite2D" parent="."]

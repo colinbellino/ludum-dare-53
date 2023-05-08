@@ -34,7 +34,7 @@ func _physics_process(delta):
 
 	match movement_type:
 		MovementTypes.Stationary:
-			target_velocity.y = -GameData.level.ship.velocity.y
+			target_velocity.y = -GameData.level.ship.linear_velocity.y
 
 		MovementTypes.HorizontalLine:
 			if direction_established == false:

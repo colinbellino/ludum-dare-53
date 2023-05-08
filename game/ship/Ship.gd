@@ -1,9 +1,8 @@
-class_name Ship extends AnimatableBody2D
+class_name Ship extends RigidBody2D
 
 @export var movement_speed := Vector2(0, -100)
 @export var movement_mult := 1.0
 
-var velocity : Vector2
 var current_ui_node = null
 
 func _ready():
@@ -12,8 +11,8 @@ func _ready():
 			node.connect("selected", self.on_slot_selected.bind(node))
 
 func _process(_delta):
-	velocity = movement_speed * movement_mult
-	position += velocity * _delta
+	linear_velocity = movement_speed * movement_mult
+	# position += linear_velocity * _delta
 
 func on_slot_selected(slot:ShipSlot):
 	if current_ui_node and is_instance_valid(current_ui_node):
