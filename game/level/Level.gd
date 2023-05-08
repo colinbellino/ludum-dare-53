@@ -83,14 +83,12 @@ func _process(_delta: float):
 
 func on_wave_spawn(wave):
 	if wave.is_checkpoint:
-		print("ENTER_CHECKPOINT")
 		state = LevelStates.ENTER_CHECKPOINT
 
 func on_wave_over(wave, index):
 	wave_index = index + 1
 
 	if wave.is_checkpoint:
-		print("CHECKPOINT")
 		AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
 		state = LevelStates.CHECKPOINT
 		deliever_cargo()
@@ -150,9 +148,9 @@ func on_checkpoint_continue_pressed():
 
 func on_cargo_destroyed(_cargo: Cargo):
 	var all_cargo_destroyed := is_all_cargo_destroyed()
-	print("all_cargo_destroyed: ", all_cargo_destroyed)
 
 	if state != LevelStates.GAME_OVER && all_cargo_destroyed:
+		print("Game over")
 		state = LevelStates.GAME_OVER
 
 		var center = ship.position
