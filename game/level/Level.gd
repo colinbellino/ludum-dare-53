@@ -70,6 +70,7 @@ func _process(_delta: float):
 
 		LevelStates.MOVING:
 			ship.movement_mult = 1.0
+			GameData.money += _delta * 5.0
 
 		LevelStates.CHECKPOINT:
 			ship.movement_mult = 0.0
