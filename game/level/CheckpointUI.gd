@@ -19,7 +19,7 @@ func set_text(node:RichTextLabel, values:Array):
 		templates[node] = node.text
 	node.text = templates[node] % values
 
-func _process(delta):
+func _process(_delta):
 	%cargo_worth.text = tr(cargo_text) % [GameData.level.cargo_worth(), GameData.level.calc_difficulty_multiplier()*100.0]
 
 func on_continue_pressed():

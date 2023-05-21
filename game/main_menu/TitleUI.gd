@@ -2,7 +2,6 @@ extends CanvasLayer
 
 func _ready():
 	Settings.load_all()
-
 	%Start.grab_focus()
 
 func _process(_delta: float):

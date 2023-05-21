@@ -40,7 +40,7 @@ func start_wave(waves, wave_index):
 
 	emit_signal("all_waves_over")
 
-func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Node2D:
+func spawn_mob(mob_scene: PackedScene, wave: Wave, _mob_index) -> Node2D:
 	if mob_scene == null:
 		return
 
@@ -51,23 +51,23 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave, mob_index) -> Node2D:
 	level.add_child(mob)
 	var spawn_offset = Vector2(32, 32)
 
-	var position : Vector2 = Vector2.ZERO
+	var new_position : Vector2 = Vector2.ZERO
 
 	# TODO: When we want different spawn patterns, add them here :)
 	match wave.spawn_pattern:
 		Wave.SpawnPatterns.RandomSide:
-			position.y = randf_range(spawn_area.position.y, spawn_area.end.y)
+			new_position.y = randf_range(spawn_area.position.y, spawn_area.end.y)
 			if randf() > 0.5:
-				position.x = spawn_area.end.x + spawn_offset.x / 2
+				new_position.x = spawn_area.end.x + spawn_offset.x / 2
 			else:
-				position.x = spawn_area.position.x - spawn_offset.x / 2
+				new_position.x = spawn_area.position.x - spawn_offset.x / 2
 
 		Wave.SpawnPatterns.TopCenter:
-			position.x = spawn_area.get_center().x
-			position.y = spawn_area.position.y - spawn_offset.y / 2
+			new_position.x = spawn_area.get_center().x
+			new_position.y = spawn_area.position.y - spawn_offset.y / 2
 
-	mob.global_position = position + global_position
+	mob.global_position = new_position + global_position
 
-	# print(" - Spawning mob: %s at %s (pattern: %s, mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
+	# print(" - Spawning mob: %s at %s (pattern: %s, _mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
 
 	return mob

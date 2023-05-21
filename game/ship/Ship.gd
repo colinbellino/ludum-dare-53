@@ -27,8 +27,8 @@ func on_slot_selected(slot:ShipSlot):
 	current_ui_node = node
 
 func player_action(action_name:String, meta, target:ShipSlot):
-	var old_structure = target.current_structure
-	var old_health = target.health
+	# var old_structure = target.current_structure
+	# var old_health = target.health
 	match action_name:
 		"build":
 			target.build_structure(meta)

@@ -27,12 +27,12 @@ func _process(_delta):
 
 		audio_player_music.pitch_scale = Engine.get_time_scale()
 
-func play_sound(stream: AudioStream, sound_position: Vector2 = position, loop: bool = false, pitch_scale : float = 1.0) -> void:
+func play_sound(stream: AudioStream, _sound_position: Vector2 = position, loop: bool = false, pitch_scale : float = 1.0) -> void:
 	if stream is AudioStreamWAV == false:
 		stream.loop = loop
 
 	var player := spawn_audio_player()
-	# player.position = sound_position
+	# player.position = _sound_position
 	player.pitch_scale = pitch_scale
 	player.stream = stream
 	player.play()

@@ -16,7 +16,7 @@ func emit_action(child):
 	emit_signal("action_pressed", child.action, child.meta)
 	queue_free()
 
-func open(slot: ShipSlot):
+func open(_slot: ShipSlot):
 	for child in get_children():
 		if child is Button:
 			continue
