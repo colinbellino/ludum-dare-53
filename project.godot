@@ -242,6 +242,8 @@ locale/translations=PackedStringArray("res://assets/locale/text.en.translation",
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="ShipHurtable"
 2d_physics/layer_3="MonstersHurtable"
+2d_physics/layer_4="Checkpoint"
+2d_physics/layer_5="Ship"
 
 [physics]
 

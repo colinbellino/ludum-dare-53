@@ -15,6 +15,9 @@ var mob_spawner: MobSpawner
 
 var CHECKPOINT_WAVE_DELAY := 5
 
+signal checkpoint_reached()
+signal checkpoint_departed()
+
 enum LevelStates { TITLE, MOVING, ENTER_CHECKPOINT, CHECKPOINT, GAME_OVER }
 
 func _ready():
@@ -93,20 +96,22 @@ func on_wave_spawn(wave):
 	if wave.is_checkpoint:
 		state = LevelStates.ENTER_CHECKPOINT
 
-func on_wave_over(wave, index):
+func on_wave_over(wave: Wave, index: int) -> void:
 	wave_index = index + 1
 
-	if wave.is_checkpoint:
-		AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
-		state = LevelStates.CHECKPOINT
-		deliever_cargo()
-		checkpoint_ui = get_node("%CheckpointUI").create_instance()
-		checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
+func trigger_checkpoint_reached() -> void:
+	emit_signal("checkpoint_reached")
 
-		await get_tree().create_timer(2.3).timeout
-		AudioPlayer.play_music(preload("res://assets/audio/Ludum_intermission02.ogg"))
+	AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
+	state = LevelStates.CHECKPOINT
+	deliever_cargo()
+	checkpoint_ui = get_node("%CheckpointUI").create_instance()
+	checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
 
-func is_at_checkpoint()->bool:
+	await get_tree().create_timer(2.3).timeout
+	AudioPlayer.play_music(preload("res://assets/audio/Ludum_intermission02.ogg"))
+
+func is_at_checkpoint() -> bool:
 	return state == LevelStates.CHECKPOINT
 
 func deliever_cargo():
@@ -140,6 +145,8 @@ func on_checkpoint_continue_pressed():
 	if not is_inside_tree():
 		return
 
+	emit_signal("checkpoint_departed")
+
 	AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
 	await get_tree().create_timer(2).timeout
 
@@ -153,6 +160,7 @@ func on_checkpoint_continue_pressed():
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	mob_spawner.start_wave(waves.waves, wave_index)
+	breakpoint
 
 func on_cargo_destroyed(_cargo: Cargo):
 	var all_cargo_destroyed := is_all_cargo_destroyed()

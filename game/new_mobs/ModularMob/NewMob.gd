@@ -32,7 +32,6 @@ func _physics_process(delta):
 		return
 
 	var ship_position = GameData.level.ship.global_position
-	var ship_velocity = GameData.level.ship.linear_velocity
 	var distance_to_target = global_position.distance_to(target_position)
 
 	if contact_monitor:
@@ -63,7 +62,7 @@ func _physics_process(delta):
 		MovementTypes.CircleShip:
 			var current_angle = (ship_position - global_position).normalized().angle()
 			target_position = ship_position + Vector2.UP.rotated(current_angle + PI / 100) * target_distance
-	target_velocity = (target_position - global_position).normalized() * speed + ship_velocity
+	target_velocity = (target_position - global_position).normalized() * speed
 
 	if abs(target_velocity.x) > 25.0 && has_node("Pivot"):
 		$Pivot.scale.x = signf(target_velocity.x)
@@ -78,4 +77,4 @@ func take_hit(hit: float):
 	hitpoints -= hit
 	if hitpoints <= 0:
 		queue_free()
-		#Play some animation or emit particles for destroying it
+		# TODO: Play some animation or emit particles for destroying it

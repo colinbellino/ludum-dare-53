@@ -1,6 +1,5 @@
 class_name Mob extends RigidBody2D
 
-#@export var projectile : PackedScene
 @export var damage : float = 1.0
 @export var spread : float = 1.0
 
@@ -33,9 +32,6 @@ func _physics_process(delta):
 		return
 
 	match movement_type:
-		MovementTypes.Stationary:
-			target_velocity.y = -GameData.level.ship.linear_velocity.y
-
 		MovementTypes.HorizontalLine:
 			if direction_established == false:
 				target_velocity = (GameData.level.ship.global_position - global_position).normalized() * speed
@@ -61,24 +57,9 @@ func _integrate_forces(state):
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))
 	queue_redraw()
 
-# func _draw():
-# 	draw_rect(Rect2(target_position - global_position, Vector2(4, 4)), Color.RED)
-
-func _on_visible_on_screen_notifier_2d_screen_exited(): # Removes enemies that go off screen
+# Removes enemies that go off screen
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-
-#func ranged_attack():
-#	if has_node("AttackTimer") == false:
-#		return
-#
-#	if $AttackTimer.is_stopped():
-#		var p = projectile.instantiate()
-#		get_parent().add_child(p)
-#		p.global_position = %BulletSpawnPosition.global_position
-#		p.bullet_damage = damage
-#		p.rotation = 0.0 if $Pivot.scale.x > 0 else PI
-#		p.rotation_degrees += randf_range(-spread,spread)
-#		$AttackTimer.start()
 
 func spawn_bullet():
 	var level = GameData.level
@@ -86,9 +67,6 @@ func spawn_bullet():
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage
-#	bullet.pierce = pierce
-#	bullet.explosion_radius = explosion_radius
-#	bullet.knockback = knockback
 	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
 	level.add_child(bullet)
 	bullet.global_position = %BulletSpawnPosition.global_position
@@ -97,7 +75,7 @@ func take_hit(hit: float):
 	hitpoints -= hit
 	if hitpoints <= 0:
 		queue_free()
-		#Play some animation or emit particles for destroying it
+		# TODO: Play some animation or emit particles for destroying it
 
 func _on_attack_area_body_entered(body):
 	if attack_type == AttackTypes.Collision:
