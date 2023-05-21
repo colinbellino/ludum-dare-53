@@ -5,7 +5,7 @@
 
 [node name="Settings" type="CanvasLayer"]
 unique_name_in_owner = true
-layer = 3
+layer = 9
 script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]

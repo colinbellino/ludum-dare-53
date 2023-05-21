@@ -5,7 +5,7 @@
 
 [node name="Pause" type="CanvasLayer"]
 unique_name_in_owner = true
-layer = 3
+layer = 5
 script = ExtResource("1_1o23m")
 
 [node name="Background" type="ColorRect" parent="."]

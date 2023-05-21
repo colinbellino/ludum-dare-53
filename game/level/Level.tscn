@@ -141,7 +141,7 @@ templates = Array[ExtResource("8_5jho8")]([SubResource("Resource_6y3ld"), SubRes
 checkpoint_wave = ExtResource("5_ymyxe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 99
+layer = 4
 
 [node name="CheckpointUI" parent="CanvasLayer" instance_placeholder="res://game/level/checkpoint_ui.tscn"]
 unique_name_in_owner = true
