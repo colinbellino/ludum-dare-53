@@ -9,6 +9,7 @@ var wave_index : int
 
 var last_checkpoint_cargo_worth = 0
 var cargo_required = 150
+var mob_spawner: MobSpawner
 
 @export var waves : WaveList
 
@@ -21,7 +22,7 @@ func _ready():
 
 	wave_index = 0
 	var version = Utils.load_file("res://version.txt")
-	print("version: ", version)
+	print("version: ", version.strip_edges())
 
 	%HUD.visible = false
 
@@ -30,12 +31,14 @@ func _ready():
 
 	ship = get_node("%Ship")
 	assert(ship != null, "Missing ship from level.")
+	mob_spawner = get_node("%MobSpawner")
+	assert(mob_spawner != null, "Missing mob_spawner from level.")
 
 	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
 	title_node.connect("tree_exited", start_game)
 
-	%MobSpawner.connect("wave_over", on_wave_over)
-	%MobSpawner.connect("wave_spawn", on_wave_spawn)
+	mob_spawner.connect("wave_over", on_wave_over)
+	mob_spawner.connect("wave_spawn", on_wave_spawn)
 
 func start_game():
 	if GameData.voice_played == false:
@@ -44,7 +47,7 @@ func start_game():
 
 	%HUD.visible = true
 	state = LevelStates.MOVING
-	%MobSpawner.start_wave(waves.waves, wave_index)
+	mob_spawner.start_wave(waves.waves, wave_index)
 
 func _exit_tree():
 	GameData.level = null
@@ -54,11 +57,8 @@ func _process(_delta: float):
 		GameData.money += 1000
 		AudioPlayer.play_ui_money_sound()
 
-	if Input.is_action_just_released("ui_cancel"):
-		Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
-
 	if OS.is_debug_build():
-		if Input.is_key_pressed(KEY_F12):
+		if Input.is_key_pressed(KEY_F12) || Input.is_key_pressed(KEY_SHIFT):
 			Engine.set_time_scale(20)
 		else:
 			Engine.set_time_scale(1)
@@ -68,13 +68,22 @@ func _process(_delta: float):
 			pass
 
 		LevelStates.MOVING:
+			if Input.is_action_just_released("ui_cancel"):
+				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+
 			ship.movement_mult = 1.0
 			GameData.money += _delta * 5.0
 
 		LevelStates.ENTER_CHECKPOINT:
+			if Input.is_action_just_released("ui_cancel"):
+				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+
 			ship.movement_mult = 1.0
 
 		LevelStates.CHECKPOINT:
+			if Input.is_action_just_released("ui_cancel"):
+				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+
 			ship.movement_mult = 0.0
 
 		LevelStates.GAME_OVER:
@@ -143,7 +152,7 @@ func on_checkpoint_continue_pressed():
 	waves = $WaveDirector.generate_waves(calc_difficulty(), 60.0)
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
-	%MobSpawner.start_wave(waves.waves, wave_index)
+	mob_spawner.start_wave(waves.waves, wave_index)
 
 func on_cargo_destroyed(_cargo: Cargo):
 	var all_cargo_destroyed := is_all_cargo_destroyed()

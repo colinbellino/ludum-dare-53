@@ -70,6 +70,10 @@ func _ready() -> void:
 	# if show_quit_button:
 	# 	button_quit.visible = true
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("ui_cancel"):
+		close()
+
 func close() -> void:
 	closed.emit()
 	Settings.save_all()

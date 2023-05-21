@@ -12,8 +12,7 @@ func _ready():
 
 # Notes: this is weird but we MUST have a wave with is_checkpoint to true at the end or the game will crash
 func start_wave(waves, wave_index):
-	print("Wave " + str(wave_index) + " starting --------------------------")
-
+	# print("Wave " + str(wave_index) + " starting --------------------------")
 	assert(waves[waves.size() - 1].is_checkpoint == true, "Invalid waves: last wave must be a checkpoint (is_checkpoint=true)")
 
 	while true:
@@ -27,8 +26,8 @@ func start_wave(waves, wave_index):
 				if get_tree() == null:
 					return
 
-				await get_tree().create_timer(wave.mob_timer).timeout
-		await get_tree().create_timer(wave.wait_timer).timeout
+				await get_tree().create_timer(wave.mob_timer, false).timeout
+		await get_tree().create_timer(wave.wait_timer, false).timeout
 
 		# print("Wave " + str(wave_index) + " over     --------------------------")
 		emit_signal("wave_over", wave, wave_index)
@@ -68,6 +67,6 @@ func spawn_mob(mob_scene: PackedScene, wave: Wave, _mob_index) -> Node2D:
 
 	mob.global_position = new_position + global_position
 
-	# print(" - Spawning mob: %s at %s (pattern: %s, _mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, mob_index])
+	# print(" - Spawning mob: %s at %s (pattern: %s, mob_index: %s)" % [mob.name, mob.global_position, wave.spawn_pattern, _mob_index])
 
 	return mob

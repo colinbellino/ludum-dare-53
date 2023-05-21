@@ -4,6 +4,7 @@ var button_close: Button
 var button_settings: Button
 var button_title: Button
 var button_quit: Button
+var child_node: Node
 
 signal closed
 
@@ -17,15 +18,24 @@ func _ready() -> void:
 	button_quit = get_node("%Quit")
 	button_quit.connect("pressed", button_quit_pressed)
 
-func button_close_pressed() -> void:
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("ui_cancel"):
+		if child_node == null:
+			close()
+
+func close() -> void:
 	closed.emit()
 	queue_free()
 
+func button_close_pressed() -> void:
+	close()
+
 func button_settings_pressed() -> void:
-	Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"), false)
+	child_node = Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"))
 
 func button_title_pressed() -> void:
-	print("button_title_pressed")
+	queue_free()
+	Overlay.transition("res://game/level/Level.tscn")
 
 func button_quit_pressed() -> void:
 	get_tree().quit()
