@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4yyoo1irqmu6"]
 
 [ext_resource type="Script" path="res://game/ship/ConstructedSlotUI.gd" id="1_r3563"]
-[ext_resource type="PackedScene" uid="uid://bi5t10q702fd4" path="res://game/ship/slot_action_button.tscn" id="2_rtrqw"]
+[ext_resource type="PackedScene" uid="uid://65mdvujg2j2t" path="res://game/ship/slot_action_button.tscn" id="2_rtrqw"]
 [ext_resource type="StyleBox" uid="uid://1h6ligiv0les" path="res://game/ship/transparent_button.tres" id="3_j2df1"]
 
 [node name="ShipSlotUI" type="Node2D"]
 script = ExtResource("1_r3563")
 
 [node name="Close" type="Button" parent="."]
+unique_name_in_owner = true
 offset_left = -245.0
 offset_top = -277.0
 offset_right = -197.0

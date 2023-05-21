@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0, 0, 0, 0.784314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7p1d"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,6 +44,36 @@ text = "Currency: 9999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DebugPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 175.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7vs4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 11.5
+offset_right = 76.0
+offset_bottom = 62.5
+grow_horizontal = 2
+
+[node name="Debug" type="Label" parent="DebugPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_i5mdm")
+text = "- F1 : Money
+- F11: Skip checkpoints
+- F12: Invincibility"
+vertical_alignment = 1
+
 [node name="Wave" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -64,11 +94,7 @@ vertical_alignment = 1
 [node name="Pause" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -100.0
+offset_right = 100.0
 offset_bottom = 30.0
-grow_horizontal = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_e7p1d")
 text = "Pause"

@@ -1,9 +1,9 @@
-extends Node
+class_name WaveDirector extends Node
 
 @export var templates : Array[WaveTemplate] = []
 @export var checkpoint_wave : Wave
 
-func generate_waves(base_difficulty:float, length := 60.0):
+func generate_waves(base_difficulty: float, length : float = 60.0) -> WaveList:
 	var waves : WaveList = WaveList.new()
 	var total_length = 0
 	while total_length < length:

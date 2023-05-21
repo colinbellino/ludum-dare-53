@@ -2,7 +2,6 @@ class_name Mob extends RigidBody2D
 
 @export var damage : float = 1.0
 @export var spread : float = 1.0
-
 @export var hitpoints = 10.0
 @export var speed = 200
 @export var approach_distance = 50
@@ -10,22 +9,26 @@ class_name Mob extends RigidBody2D
 @export var accleration = 1.0
 @export var movement_type : MovementTypes
 @export var attack_type : AttackTypes
-
 @export var projectile_sprite : Texture
 @export var projectile_speed = 200.0
 
 var shot_cooldown = 0.0
 var direction_established : bool
-
-enum MovementTypes { Stationary, HorizontalLine, TowardsShip }
-enum AttackTypes { Ranged, Collision, Touch, Bomb }
-
 var current_target = null
 var target_position = Vector2(0, 0)
 var target_velocity = Vector2(0, 0)
 var target_rotation = 0.0
 var current_rotation = 0.0
 var side_of_ship = -1
+var pivot : Node2D
+var bullet_spawn_position : Marker2D
+
+enum MovementTypes { Stationary, HorizontalLine, TowardsShip }
+enum AttackTypes { Ranged, Collision, Touch, Bomb }
+
+func _ready() -> void:
+	pivot = get_node_or_null("Pivot")
+	bullet_spawn_position = get_node("%BulletSpawnPosition")
 
 func _physics_process(delta):
 	if not GameData.level:
@@ -50,8 +53,8 @@ func _physics_process(delta):
 				spawn_bullet()
 				shot_cooldown = 1.0
 
-	if abs(target_velocity.x) > 150.0 && has_node("Pivot"):
-		$Pivot.scale.x = signf(target_velocity.x)
+	if abs(target_velocity.x) > 150.0 && pivot != null:
+		pivot.scale.x = signf(target_velocity.x)
 
 func _integrate_forces(state):
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))
@@ -67,11 +70,11 @@ func spawn_bullet():
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage
-	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
+	bullet.direction = Vector2.ZERO.direction_to(bullet_spawn_position.position).rotated(current_rotation)
 	level.add_child(bullet)
-	bullet.global_position = %BulletSpawnPosition.global_position
+	bullet.global_position = bullet_spawn_position.global_position
 
-func take_hit(hit: float):
+func take_hit(hit: int):
 	hitpoints -= hit
 	if hitpoints <= 0:
 		queue_free()
@@ -84,8 +87,10 @@ func _on_attack_area_body_entered(body):
 			queue_free()
 	if shot_cooldown <= 0.0 and attack_type == AttackTypes.Touch:
 		if body.has_method("take_hit") and not body.is_in_group("Monsters"):
-			body.take_hit(damage)
-			$AttackTimer.start()
+			# No idea where we would reach this atm?
+			breakpoint
+			# body.take_hit(damage)
+			# $AttackTimer.start()
 
 func aquire_target():
 	var ship_part = get_tree().get_nodes_in_group("ShipParts")

@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi5t10q702fd4"]
+[gd_scene load_steps=4 format=3 uid="uid://65mdvujg2j2t"]
 
-[ext_resource type="Script" path="res://game/ship/slot_action_button.gd" id="1_1ygea"]
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_8sl0r"]
+[ext_resource type="Script" path="res://game/ship/SlotActionButton.gd" id="2_ii8vb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03h2a"]
 bg_color = Color(1, 1, 1, 0.839216)
@@ -21,7 +21,7 @@ offset_bottom = 24.0
 focus_mode = 2
 theme = ExtResource("1_8sl0r")
 theme_override_styles/panel = SubResource("StyleBoxFlat_03h2a")
-script = ExtResource("1_1ygea")
+script = ExtResource("2_ii8vb")
 
 [node name="Layout" type="HBoxContainer" parent="."]
 layout_mode = 1

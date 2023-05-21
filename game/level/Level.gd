@@ -1,19 +1,20 @@
 class_name Level extends Node
 
+@export var waves : WaveList
+
 var ship : Ship
 var state : LevelStates
 var chunks : Array[Node]
 var checkpoint_ui : CheckpointUI
 var checkpoint_index : int = 1
 var wave_index : int
+var last_checkpoint_cargo_worth : int = 0
+var cargo_required : int = 150
+var mob_spawner : MobSpawner
+var wave_director : WaveDirector
+var hud : Control
 
-var last_checkpoint_cargo_worth = 0
-var cargo_required = 150
-var mob_spawner: MobSpawner
-
-@export var waves : WaveList
-
-var CHECKPOINT_WAVE_DELAY := 5
+const CHECKPOINT_WAVE_DELAY := 5
 
 signal checkpoint_reached()
 signal checkpoint_departed()
@@ -21,21 +22,24 @@ signal checkpoint_departed()
 enum LevelStates { TITLE, MOVING, ENTER_CHECKPOINT, CHECKPOINT, GAME_OVER }
 
 func _ready():
+	Engine.set_time_scale(1)
+
+	wave_director = get_node("%WaveDirector")
+
 	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
 
 	wave_index = 0
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version.strip_edges())
 
-	%HUD.visible = false
+	hud = get_node("%HUD")
+	hud.visible = false
 
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
 
 	ship = get_node("%Ship")
-	assert(ship != null, "Missing ship from level.")
 	mob_spawner = get_node("%MobSpawner")
-	assert(mob_spawner != null, "Missing mob_spawner from level.")
 
 	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
 	title_node.connect("tree_exited", start_game)
@@ -48,7 +52,7 @@ func start_game():
 		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
 		GameData.voice_played = true
 
-	%HUD.visible = true
+	hud.visible = true
 	state = LevelStates.MOVING
 	mob_spawner.start_wave(waves.waves, wave_index)
 
@@ -61,7 +65,12 @@ func _process(_delta: float):
 		AudioPlayer.play_ui_money_sound()
 
 	if OS.is_debug_build():
-		if Input.is_key_pressed(KEY_F12) || Input.is_key_pressed(KEY_SHIFT):
+		if Input.is_action_just_released("debug_12"):
+			GameData.cheat_invincible = !GameData.cheat_invincible
+		if Input.is_action_just_released("debug_11"):
+			GameData.cheat_skip_checkpoint = !GameData.cheat_skip_checkpoint
+
+		if Input.is_key_pressed(KEY_SHIFT):
 			Engine.set_time_scale(20)
 		else:
 			Engine.set_time_scale(1)
@@ -96,7 +105,7 @@ func on_wave_spawn(wave):
 	if wave.is_checkpoint:
 		state = LevelStates.ENTER_CHECKPOINT
 
-func on_wave_over(wave: Wave, index: int) -> void:
+func on_wave_over(_wave: Wave, index: int) -> void:
 	wave_index = index + 1
 
 func trigger_checkpoint_reached() -> void:
@@ -104,7 +113,11 @@ func trigger_checkpoint_reached() -> void:
 
 	AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
 	state = LevelStates.CHECKPOINT
-	deliever_cargo()
+	if GameData.cheat_skip_checkpoint:
+		on_checkpoint_continue_pressed()
+		return
+
+	deliver_cargo()
 	checkpoint_ui = get_node("%CheckpointUI").create_instance()
 	checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
 
@@ -114,7 +127,7 @@ func trigger_checkpoint_reached() -> void:
 func is_at_checkpoint() -> bool:
 	return state == LevelStates.CHECKPOINT
 
-func deliever_cargo():
+func deliver_cargo():
 	last_checkpoint_cargo_worth = cargo_worth()
 	if get_tree():
 		for node in get_tree().get_nodes_in_group("ShipParts"):
@@ -156,7 +169,7 @@ func on_checkpoint_continue_pressed():
 
 	state = LevelStates.MOVING
 	wave_index = 0
-	waves = $WaveDirector.generate_waves(calc_difficulty(), 60.0)
+	waves = wave_director.generate_waves(calc_difficulty(), 60.0)
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	mob_spawner.start_wave(waves.waves, wave_index)

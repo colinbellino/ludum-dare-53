@@ -16,7 +16,7 @@ extends ShapeCast2D
 	set(val):
 		sprite = val
 		if is_inside_tree() and val:
-			$Sprite.texture = val
+			sprite.texture = val
 
 @export var is_beam := false
 @export var rotate_projectile := true
@@ -31,17 +31,18 @@ extends ShapeCast2D
 @export var expiration_time = 9999.999
 @export var bullet_hit_sfx : Array[AudioStream]
 
-var frames_alive = 0
-var time_alive = 0.0
-var num_targets_pierced = 0
+var frames_alive : int = 0
+var time_alive : float = 0.0
+var num_targets_pierced : int = 0
+var sprite2d : Sprite2D
 
 func _ready():
-	sprite = sprite
+	sprite2d = get_node("%Sprite")
 	if rotate_projectile:
-		$Sprite.rotation = Vector2.RIGHT.angle_to(direction)
+		sprite2d.rotation = Vector2.RIGHT.angle_to(direction)
 	if is_beam:
-		$Sprite.position.x -= speed * 0.5
-		$Sprite.scale.x = speed / sprite.get_width()
+		sprite2d.position.x -= speed * 0.5
+		sprite2d.scale.x = speed / sprite.get_width()
 
 func _physics_process(delta):
 	var velocity = direction * speed * delta

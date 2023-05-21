@@ -1,25 +1,20 @@
 @tool
-class_name BaseTurret
-extends AnimatableBody2D
+class_name BaseTurret extends AnimatableBody2D
 
 @export var cost = 100.0
 @export var upgrade_cost_mult = 4.0
 @export var upgrade_fire_rate_mult = 1.5
 @export var upgrade_health_mult = 1.5
 @export var upgrade_damage_mult = 1.5
-
 @export var fire_rate = 1.0
 @export var hitpoints = 10.0
-var max_hitpoints : float = 10.0
 @export var turn_speed = 1.0
 @export var aim_lookahead = 1.0
 @export var damage = 5.0
-
 @export var pierce = 0
 @export var explosion_radius = 0.0
 @export var explosion_knockback = 20.0
 @export var knockback = 2.5
-
 @export var projectile_sprite : Texture
 @export var projectile_is_beam := false
 @export var projectile_speed = 200.0
@@ -27,21 +22,22 @@ var max_hitpoints : float = 10.0
 @export var projectile_rotate := true
 @export var fire_sfx : Array[AudioStream]
 @export var bullet_hit_sfx : Array[AudioStream]
-
 @export var max_range : float:
 	get:
 		if projectile_is_beam:
 			return projectile_speed
 		return projectile_speed*projectile_lifetime+18+explosion_radius
-
 @export var animation_bullet_spawn_offset = 0.0
-
 @export var debris_sprite : Texture
 
-var current_target = null
-var shot_cooldown = 0.0
-var target_rotation = 0.0
-var current_rotation = 0.0
+var max_hitpoints : float = 10.0
+var current_target : Node2D = null
+var shot_cooldown : float = 0.0
+var target_rotation : float = 0.0
+var current_rotation : float = 0.0
+var animation_player : AnimationPlayer
+var bullet_spawn_position : Marker2D
+var node_turret : Node2D
 
 signal damaged(damage)
 
@@ -49,6 +45,10 @@ func _init():
 	max_hitpoints = hitpoints
 
 func _ready():
+	animation_player = get_node("AnimationPlayer")
+	bullet_spawn_position = get_node("%BulletSpawnPosition")
+	node_turret = get_node("%Turret")
+
 	max_hitpoints = hitpoints
 	sync_to_physics = false
 	add_to_group("ShipParts")
@@ -71,15 +71,15 @@ func _physics_process(delta):
 		var aim = current_target.global_position
 		if not projectile_is_beam:
 			aim += current_target.linear_velocity * (distance / projectile_speed)
-		var barrel_orientation = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
-		target_rotation = barrel_orientation.angle_to(aim - %Turret.global_position)
-		current_rotation = Utils.move_towards_angle(%Turret.rotation, target_rotation, delta * turn_speed * TAU)
-		%Turret.rotation = current_rotation
+		var barrel_orientation = Vector2.ZERO.direction_to(bullet_spawn_position.position)
+		target_rotation = barrel_orientation.angle_to(aim - node_turret.global_position)
+		current_rotation = Utils.move_towards_angle(node_turret.rotation, target_rotation, delta * turn_speed * TAU)
+		node_turret.rotation = current_rotation
 
 		if shot_cooldown > 0.0:
 			shot_cooldown -= delta
 		if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
-			$AnimationPlayer.play("Fire")
+			animation_player.play("Fire")
 			AudioPlayer.play_sound_random(fire_sfx, position)
 			if animation_bullet_spawn_offset <= 0.01:
 				spawn_bullet()
@@ -97,17 +97,17 @@ func spawn_bullet():
 	bullet.explosion_radius = explosion_radius
 	bullet.explosion_knockback = explosion_knockback
 	bullet.knockback = knockback
-	bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position).rotated(current_rotation)
+	bullet.direction = Vector2.ZERO.direction_to(bullet_spawn_position.position).rotated(current_rotation)
 	bullet.expiration_time = projectile_lifetime
 	bullet.is_beam = projectile_is_beam
 	bullet.rotate_projectile = projectile_rotate
 	bullet.bullet_hit_sfx = bullet_hit_sfx
 	if bullet.is_beam:
-		bullet.direction = Vector2.ZERO.direction_to(%BulletSpawnPosition.position)
-		%Turret.add_child(bullet)
+		bullet.direction = Vector2.ZERO.direction_to(bullet_spawn_position.position)
+		node_turret.add_child(bullet)
 	else:
 		level.add_child(bullet)
-	bullet.global_position = %BulletSpawnPosition.global_position
+	bullet.global_position = bullet_spawn_position.global_position
 
 func aquire_target():
 	var mobs = get_tree().get_nodes_in_group("Monsters")
@@ -121,7 +121,10 @@ func aquire_target():
 		if mobs[0].global_position.distance_to(global_position) < max_range:
 			current_target = mobs[0]
 
-func take_hit(hit_damage: float):
+func take_hit(hit_damage: int):
+	if GameData.cheat_invincible:
+		return
+
 	hitpoints -= hit_damage
 	emit_signal("damaged", hit_damage)
 	# print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])

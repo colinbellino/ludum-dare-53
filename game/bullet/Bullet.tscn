@@ -11,7 +11,7 @@ z_index = 15
 z_as_relative = false
 shape = SubResource("RectangleShape2D_4neab")
 exclude_parent = false
-target_position = Vector2(0.833333, 0)
+target_position = Vector2(1.66667, 0)
 max_results = 4
 collision_mask = 5
 script = ExtResource("1_1u11q")
@@ -20,6 +20,7 @@ sprite = ExtResource("2_djscc")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_djscc")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_exit_screen"]

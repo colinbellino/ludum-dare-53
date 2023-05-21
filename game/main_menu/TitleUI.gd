@@ -1,8 +1,11 @@
 extends CanvasLayer
 
+var button_start :  Button
+
 func _ready():
 	Settings.load_all()
-	%Start.grab_focus()
+	button_start = get_node("%Start")
+	button_start.grab_focus()
 
 func _process(_delta: float):
 	if Input.is_action_just_released("ui_cancel"):

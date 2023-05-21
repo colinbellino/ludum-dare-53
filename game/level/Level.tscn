@@ -136,6 +136,7 @@ script = ExtResource("1_2gnls")
 waves = SubResource("Resource_gghpq")
 
 [node name="WaveDirector" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("6_hy6mm")
 templates = Array[ExtResource("8_5jho8")]([SubResource("Resource_6y3ld"), SubResource("Resource_p3ya4"), SubResource("Resource_wy7jo"), SubResource("Resource_xp0y3"), SubResource("Resource_papjn")])
 checkpoint_wave = ExtResource("5_ymyxe")
@@ -153,7 +154,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(480, 270)
 
-[node name="MobSpawner" parent="Ship" instance=ExtResource("5_ih7dg")]
+[node name="MobSpawner" parent="." instance=ExtResource("5_ih7dg")]
 unique_name_in_owner = true
+position = Vector2(480, 270)
 
 [node name="BG" parent="." instance=ExtResource("14_xp8p3")]

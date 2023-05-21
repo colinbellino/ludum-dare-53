@@ -16,6 +16,8 @@ var category_defaults := {}
 var level: Level
 var money : float # Initialized in Level.ready
 var voice_played := false
+var cheat_invincible : bool
+var cheat_skip_checkpoint : bool
 
 func _ready():
 	add_category("Turrets", BaseTurret)

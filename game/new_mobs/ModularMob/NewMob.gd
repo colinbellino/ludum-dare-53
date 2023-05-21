@@ -4,7 +4,6 @@ class_name NewMob extends RigidBody2D
 @export var collision_self_damage := 5
 @export var collision_discriminate_enemies := true
 @export var collision_cooldown = 0.5
-
 @export var hitpoints = 10.0
 @export var speed = 200
 @export var approach_distance = 50
@@ -14,18 +13,21 @@ class_name NewMob extends RigidBody2D
 @export var movement_type : MovementTypes
 @export var movement_type_when_in_range : MovementTypes
 
-var shot_cooldown = 0.0
-var occilation_timer = 0.0
+var shot_cooldown : float = 0.0
+var occilation_timer : float = 0.0
 var direction_established : bool
+var pivot : Node2D
+var current_target : Node2D = null
+var target_position : Vector2 = Vector2(0, 0)
+var target_velocity : Vector2 = Vector2(0, 0)
+var target_rotation : float = 0.0
+var current_rotation : float = 0.0
+var side_of_ship : int = -1
 
 enum MovementTypes { TowardsShip, CircleShip }
 
-var current_target = null
-var target_position = Vector2(0, 0)
-var target_velocity = Vector2(0, 0)
-var target_rotation = 0.0
-var current_rotation = 0.0
-var side_of_ship = -1
+func _ready() -> void:
+	pivot = get_node_or_null("Pivot")
 
 func _physics_process(delta):
 	if not GameData.level:
@@ -56,7 +58,7 @@ func _physics_process(delta):
 	var target_distance = approach_distance + sin(occilation_timer * PI / approach_distance_occilation_period) * approach_distance_occilation_amplitude
 	match movement_type:
 		MovementTypes.TowardsShip:
-			side_of_ship = signf(global_position.x - ship_position.x)
+			side_of_ship = int(signf(global_position.x - ship_position.x))
 			target_position.x = ship_position.x + approach_distance * side_of_ship
 			target_position.y = clamp(global_position.y, ship_position.y-100.0, ship_position.y+100.0)
 		MovementTypes.CircleShip:
@@ -64,8 +66,8 @@ func _physics_process(delta):
 			target_position = ship_position + Vector2.UP.rotated(current_angle + PI / 100) * target_distance
 	target_velocity = (target_position - global_position).normalized() * speed
 
-	if abs(target_velocity.x) > 25.0 && has_node("Pivot"):
-		$Pivot.scale.x = signf(target_velocity.x)
+	if abs(target_velocity.x) > 25.0 && pivot != null:
+		pivot.scale.x = signf(target_velocity.x)
 
 func _integrate_forces(state):
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))

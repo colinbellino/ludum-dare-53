@@ -124,6 +124,7 @@ script = ExtResource("2_i63lo")
 shape = SubResource("CircleShape2D_m8phg")
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 99
 sprite_frames = SubResource("SpriteFrames_urnuv")
 frame = 13

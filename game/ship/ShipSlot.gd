@@ -1,20 +1,21 @@
-class_name ShipSlot
-extends Area2D
-
-var health_bar : ProgressBar
-
-signal selected()
+class_name ShipSlot extends Area2D
 
 @export var current_structure:PackedScene = null
 @export var health = 1.0 # Percentage health, scales with max health of structure
 
-var current_structure_node = null
+var health_bar : ProgressBar
+var sprite : Sprite2D
+var current_structure_node : Node = null
+var is_selected : bool = false
 
-var is_selected = false
+signal selected()
 
 func _ready():
 	health_bar = get_node("%HealthBar")
 	health_bar.visible = false
+
+	sprite = get_node("%Sprite2D")
+
 	add_to_group("Selectable")
 	if current_structure:
 		build_structure(current_structure, true)
@@ -63,8 +64,8 @@ func clear():
 func destroy():
 	if current_structure_node and is_instance_valid(current_structure_node):
 		if current_structure_node.debris_sprite != null:
-			$Sprite2D.texture = current_structure_node.debris_sprite
-			$Sprite2D.self_modulate = Color.GRAY
+			sprite.texture = current_structure_node.debris_sprite
+			sprite.self_modulate = Color.GRAY
 	clear()
 
 func deselect():

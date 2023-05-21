@@ -1,7 +1,8 @@
 extends Area2D
 
-var bullet_damage;
-@export var speed = 1000;
+var bullet_damage : int;
+
+@export var speed : int = 1000;
 
 func _physics_process(delta):
 	position += Vector2(1.0, 0.0).rotated(rotation) * speed * delta

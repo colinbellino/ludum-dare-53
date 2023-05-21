@@ -57,7 +57,7 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lkqt8"]
 
-[node name="Ship" type="StaticBody2D"]
+[node name="Ship" type="Node2D"]
 z_index = 2
 script = ExtResource("1_p4bv2")
 

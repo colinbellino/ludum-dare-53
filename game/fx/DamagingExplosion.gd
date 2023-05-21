@@ -4,18 +4,20 @@ extends Area2D
 @export var damage = 10.0
 @export var knockback = 20.0
 
-func _ready():
+var anim : AnimatedSprite2D
+
+func _ready() -> void:
+	anim = get_node("%Anim")
 	scale *= radius / 16.0
-	#$CollisionShape2D.shape.radius = radius
-	$Anim.play("default")
-	$Anim.connect("frame_changed", self.on_frame_changed)
-	$Anim.connect("animation_finished", self.queue_free)
-	
-func on_frame_changed():
-	if $Anim.frame == 3:
+	anim.play("default")
+	anim.connect("frame_changed", self.on_frame_changed)
+	anim.connect("animation_finished", self.queue_free)
+
+func on_frame_changed() -> void:
+	if anim.frame == 3:
 		apply_damage()
-		
-func apply_damage():
+
+func apply_damage() -> void:
 	for body in get_overlapping_bodies():
 		var hit_direction = global_position.direction_to(body.global_position)
 		if body.has_method("take_hit"):

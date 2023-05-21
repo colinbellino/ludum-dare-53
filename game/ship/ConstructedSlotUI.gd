@@ -1,9 +1,12 @@
-extends Node2D
+class_name ConstructedSlotUI extends Node2D
+
+var button_close : Button
 
 signal action_pressed(action, meta)
 
 func _ready():
-	$Close.connect("pressed", close_menu)
+	button_close = get_node("%Close")
+	button_close.connect("pressed", close_menu)
 
 func close_menu():
 	queue_free()
