@@ -160,7 +160,6 @@ func on_checkpoint_continue_pressed():
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	mob_spawner.start_wave(waves.waves, wave_index)
-	breakpoint
 
 func on_cargo_destroyed(_cargo: Cargo):
 	var all_cargo_destroyed := is_all_cargo_destroyed()

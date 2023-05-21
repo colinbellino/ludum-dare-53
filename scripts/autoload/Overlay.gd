@@ -8,8 +8,10 @@ func transition(new_scene: String):
 	var next_scene = load(new_scene)
 	get_tree().change_scene_to_packed(next_scene)
 	# We maybe need to close all modals here?
+	focus_stack = []
 
 func show_modal(scene:PackedScene, pause : bool = true)->Node:
+	print("focus_stack: ", [focus_stack])
 	if num_modals_open == 0 && pause:
 		get_tree().paused = true
 	num_modals_open += 1
