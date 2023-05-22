@@ -13,8 +13,10 @@ var cargo_required : int = 150
 var mob_spawner : MobSpawner
 var wave_director : WaveDirector
 var hud : Control
+var parallax_bg : ParallaxBackground
 
-const CHECKPOINT_WAVE_DELAY := 5
+const CHECKPOINT_WAVE_DELAY : int = 5
+const PARALLAX_SPEED : int = 30
 
 signal checkpoint_reached()
 signal checkpoint_departed()
@@ -25,6 +27,7 @@ func _ready() -> void:
 	Engine.set_time_scale(1)
 
 	wave_director = get_node("%WaveDirector")
+	parallax_bg = get_node("%BG")
 
 	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
 
@@ -50,7 +53,9 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	GameData.level = null
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	parallax_bg.scroll_base_offset += parallax_bg.scroll_base_scale * delta * ship.movement_mult * PARALLAX_SPEED
+
 	if Input.is_action_just_released("debug_1"):
 		GameData.money += 1000
 		AudioPlayer.play_ui_money_sound()
@@ -75,7 +80,7 @@ func _process(_delta: float) -> void:
 				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
 
 			ship.movement_mult = 1.0
-			GameData.money += _delta * 5.0
+			GameData.money += delta * 5.0
 
 		LevelStates.ENTER_CHECKPOINT:
 			if Input.is_action_just_released("ui_cancel"):

@@ -159,3 +159,4 @@ unique_name_in_owner = true
 position = Vector2(480, 270)
 
 [node name="BG" parent="." instance=ExtResource("14_xp8p3")]
+unique_name_in_owner = true
