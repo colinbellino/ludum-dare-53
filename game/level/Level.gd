@@ -7,7 +7,7 @@ var state : LevelStates
 var chunks : Array[Node]
 var checkpoint_ui : CheckpointUI
 var checkpoint_index : int = 1
-var wave_index : int
+var next_wave_index : int
 var last_checkpoint_cargo_worth : int
 var cargo_required : int = 150
 var mob_spawner : MobSpawner
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
 
-	wave_index = 0
+	next_wave_index = 0
 	var version = Utils.load_file("res://version.txt")
 	print("version: ", version.strip_edges())
 
@@ -104,14 +104,14 @@ func start_game() -> void:
 
 	hud.visible = true
 	state = LevelStates.MOVING
-	mob_spawner.start_wave(waves.waves, wave_index)
+	mob_spawner.start_wave(waves.waves, next_wave_index)
 
-func on_wave_spawn(wave) -> void:
+func on_wave_spawn(wave: Wave, _wave_index: int, _wave_length: int) -> void:
 	if wave.is_checkpoint:
 		state = LevelStates.ENTER_CHECKPOINT
 
-func on_wave_over(_wave: Wave, index: int) -> void:
-	wave_index = index + 1
+func on_wave_over(_wave: Wave, wave_index: int, _wave_length: int) -> void:
+	next_wave_index = wave_index + 1
 
 func trigger_checkpoint_reached() -> void:
 	emit_signal("checkpoint_reached")
@@ -173,11 +173,11 @@ func on_checkpoint_continue_pressed() -> void:
 	checkpoint_index += 1
 
 	state = LevelStates.MOVING
-	wave_index = 0
+	next_wave_index = 0
 	waves = wave_director.generate_waves(calc_difficulty(), 60.0)
 
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
-	mob_spawner.start_wave(waves.waves, wave_index)
+	mob_spawner.start_wave(waves.waves, next_wave_index)
 
 func on_cargo_destroyed(_cargo: Cargo) -> void:
 	var all_cargo_destroyed := is_all_cargo_destroyed()

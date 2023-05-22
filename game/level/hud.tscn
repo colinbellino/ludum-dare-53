@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0t354m6rhmk5"]
+[gd_scene load_steps=6 format=3 uid="uid://b0t354m6rhmk5"]
 
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_i5mdm"]
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
 bg_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xsws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7p1d"]
 bg_color = Color(0, 0, 0, 1)
@@ -25,8 +27,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -65.0
-offset_right = 65.0
+offset_left = -110.0
+offset_right = 110.0
 offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7vs4")
@@ -37,12 +39,32 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i5mdm")
 text = "Currency: 9999"
-horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Wave" type="ProgressBar" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -8.0
+offset_right = -10.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_3xsws")
+max_value = 1.0
+value = 0.5
+show_percentage = false
 
 [node name="DebugPanel" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -72,23 +94,6 @@ theme = ExtResource("1_i5mdm")
 text = "- F1 : Money
 - F11: Skip checkpoints
 - F12: Invincibility"
-vertical_alignment = 1
-
-[node name="Wave" type="Label" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -57.0
-offset_top = 3.0
-offset_right = -4.0
-offset_bottom = 20.0
-grow_horizontal = 0
-theme = ExtResource("1_i5mdm")
-text = "Wave:999"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pause" type="Button" parent="."]

@@ -2,18 +2,19 @@ class_name MobSpawner extends Node2D
 
 @export var spawn_area : Rect2 = Rect2(Vector2(-960.0/2.0, -540.0/2.0), Vector2(960.0, 540.0))
 
-signal wave_spawn(wave)
-signal wave_over(wave, index)
+signal wave_spawn(wave, wave_index, wave_length)
+signal wave_over(wave, wave_index, wave_length)
 signal all_waves_over()
 
 # Notes: this is weird but we MUST have a wave with is_checkpoint to true at the end or the game will crash
 func start_wave(waves: Array[Wave], wave_index: int) -> void:
 	# print("Wave " + str(wave_index) + " starting --------------------------")
-	assert(waves[waves.size() - 1].is_checkpoint == true, "Invalid waves: last wave must be a checkpoint (is_checkpoint=true)")
+	var wave_length := waves.size()
+	assert(waves[wave_length - 1].is_checkpoint == true, "Invalid waves: last wave must be a checkpoint (is_checkpoint=true)")
 
-	while wave_index < waves.size():
+	while wave_index < wave_length:
 		var wave = waves[wave_index]
-		emit_signal("wave_spawn", wave)
+		emit_signal("wave_spawn", wave, wave_index, wave_length)
 		for i in wave.repeat_n_times:
 			for mob_scene in wave.mobs:
 				if randf() < wave.skip_chance:
@@ -26,7 +27,7 @@ func start_wave(waves: Array[Wave], wave_index: int) -> void:
 		await get_tree().create_timer(wave.wait_timer, false).timeout
 
 		# print("Wave " + str(wave_index) + " over     --------------------------")
-		emit_signal("wave_over", wave, wave_index)
+		emit_signal("wave_over", wave, wave_index, wave_length)
 		wave_index += 1
 
 		# if wave.is_checkpoint:
