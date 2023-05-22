@@ -8,10 +8,10 @@ func can_change_resolution() -> bool:
 func can_fullscreen() -> bool:
 	return OS.has_feature("pc")
 
-func save_all():
+func save_all() -> void:
 	Utils.write_settings(resource);
 
-func load_all():
+func load_all() -> void:
 	resource = Utils.read_settings()
 	# print("- window_fullscreen: ", resource.window_fullscreen)
 	# print("- resolution: ", resource.resolution)

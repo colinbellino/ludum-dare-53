@@ -31,7 +31,7 @@ func _ready() -> void:
 	animation_player = get_node("AnimationPlayer")
 	bullet_spawn_position = get_node("%BulletSpawnPosition")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -58,7 +58,7 @@ func _physics_process(delta):
 				get_tree().create_timer(animation_bullet_spawn_offset, false, true).timeout.connect(self.spawn_bullet)
 			shot_cooldown = 1.0 / fire_rate
 
-func spawn_bullet():
+func spawn_bullet() -> void:
 	var level = GameData.level
 	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
 	bullet.sprite = projectile_sprite
@@ -80,7 +80,7 @@ func spawn_bullet():
 		level.add_child(bullet)
 	bullet.global_position = bullet_spawn_position.global_position
 
-func aquire_target():
+func aquire_target() -> void:
 	var targets = get_tree().get_nodes_in_group("ShipParts")
 	targets = targets.filter(is_valid_target)
 	targets.sort_custom(
@@ -92,7 +92,7 @@ func aquire_target():
 		if targets[0].global_position.distance_to(global_position) < max_range:
 			current_target = targets[0]
 
-func is_valid_target(target):
+func is_valid_target(target: Node) -> bool:
 	return (
 		is_instance_valid(target)
 		&& target.hitpoints > 0

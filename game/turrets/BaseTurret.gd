@@ -1,25 +1,25 @@
 @tool
 class_name BaseTurret extends AnimatableBody2D
 
-@export var cost = 100.0
-@export var upgrade_cost_mult = 4.0
-@export var upgrade_fire_rate_mult = 1.5
-@export var upgrade_health_mult = 1.5
-@export var upgrade_damage_mult = 1.5
-@export var fire_rate = 1.0
-@export var hitpoints = 10.0
-@export var turn_speed = 1.0
-@export var aim_lookahead = 1.0
-@export var damage = 5.0
-@export var pierce = 0
-@export var explosion_radius = 0.0
-@export var explosion_knockback = 20.0
-@export var knockback = 2.5
+@export var cost : int = 100
+@export var upgrade_cost_mult : float = 4.0
+@export var upgrade_fire_rate_mult : float = 1.5
+@export var upgrade_health_mult : float = 1.5
+@export var upgrade_damage_mult : float = 1.5
+@export var fire_rate : float = 1.0
+@export var hitpoints : int = 10
+@export var turn_speed : float = 1.0
+@export var aim_lookahead : float = 1.0
+@export var damage : int = 5
+@export var pierce : int = 0
+@export var explosion_radius : float = 0.0
+@export var explosion_knockback : float = 20.0
+@export var knockback : float = 2.5
 @export var projectile_sprite : Texture
-@export var projectile_is_beam := false
-@export var projectile_speed = 200.0
-@export var projectile_lifetime = 1.5
-@export var projectile_rotate := true
+@export var projectile_is_beam : bool
+@export var projectile_speed : float = 200.0
+@export var projectile_lifetime : float = 1.5
+@export var projectile_rotate : bool = true
 @export var fire_sfx : Array[AudioStream]
 @export var bullet_hit_sfx : Array[AudioStream]
 @export var max_range : float:
@@ -27,11 +27,11 @@ class_name BaseTurret extends AnimatableBody2D
 		if projectile_is_beam:
 			return projectile_speed
 		return projectile_speed*projectile_lifetime+18+explosion_radius
-@export var animation_bullet_spawn_offset = 0.0
+@export var animation_bullet_spawn_offset : float
 @export var debris_sprite : Texture
 
 var max_hitpoints : float = 10.0
-var current_target : Node2D = null
+var current_target : Node
 var shot_cooldown : float = 0.0
 var target_rotation : float = 0.0
 var current_rotation : float = 0.0
@@ -41,10 +41,10 @@ var node_turret : Node2D
 
 signal damaged(damage)
 
-func _init():
+func _init() -> void:
 	max_hitpoints = hitpoints
 
-func _ready():
+func _ready() -> void:
 	animation_player = get_node("AnimationPlayer")
 	bullet_spawn_position = get_node("%BulletSpawnPosition")
 	node_turret = get_node("%Turret")
@@ -53,7 +53,7 @@ func _ready():
 	sync_to_physics = false
 	add_to_group("ShipParts")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -87,7 +87,7 @@ func _physics_process(delta):
 				get_tree().create_timer(animation_bullet_spawn_offset, false, true).timeout.connect(self.spawn_bullet)
 			shot_cooldown = 1.0 / fire_rate
 
-func spawn_bullet():
+func spawn_bullet() -> void:
 	var level = GameData.level
 	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
 	bullet.sprite = projectile_sprite
@@ -109,7 +109,7 @@ func spawn_bullet():
 		level.add_child(bullet)
 	bullet.global_position = bullet_spawn_position.global_position
 
-func aquire_target():
+func aquire_target() -> void:
 	var mobs = get_tree().get_nodes_in_group("Monsters")
 	mobs = mobs.filter(is_valid_target)
 	mobs.sort_custom(
@@ -121,7 +121,7 @@ func aquire_target():
 		if mobs[0].global_position.distance_to(global_position) < max_range:
 			current_target = mobs[0]
 
-func take_hit(hit_damage: int):
+func take_hit(hit_damage: int) -> void:
 	if GameData.cheat_invincible:
 		return
 
@@ -134,17 +134,17 @@ func take_hit(hit_damage: int):
 	else:
 		AudioPlayer.play_sound_random([preload("res://assets/audio/component_destroyed.wav")], position)
 
-func destroyed():
+func destroyed() -> void:
 	get_parent().destroy()
 
-func is_valid_target(mob):
+func is_valid_target(mob: Node) -> bool:
 	return (
 		is_instance_valid(mob)
 		&& mob.hitpoints > 0
 		&& global_position.distance_to(mob.global_position) < max_range
 	)
 
-func calculate_cost(mode: String):
+func calculate_cost(mode: String) -> int:
 	if mode == "build":
 		return cost
 	if mode == "sell":

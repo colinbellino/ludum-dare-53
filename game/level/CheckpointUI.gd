@@ -1,7 +1,5 @@
 class_name CheckpointUI extends Control
 
-signal continue_pressed()
-
 var cargo_text_default : String
 var text_cargo_shipped : RichTextLabel
 var text_cargo_req : RichTextLabel
@@ -10,7 +8,9 @@ var button_continue : Button
 var label_title : Label
 var templates : Dictionary = {}
 
-func _ready():
+signal continue_pressed()
+
+func _ready() -> void:
 	button_continue = get_node("%Continue")
 	button_continue.grab_focus()
 
@@ -27,15 +27,15 @@ func _ready():
 	text_cargo_worth = get_node("%cargo_worth")
 	cargo_text_default = text_cargo_worth.text
 
-func set_text(node:RichTextLabel, values:Array):
+func _process(_delta: float) -> void:
+	text_cargo_worth.text = tr(cargo_text_default) % [GameData.level.cargo_worth(), GameData.level.calc_difficulty_multiplier()*100.0]
+
+func set_text(node: RichTextLabel, values: Array) -> void:
 	if not templates.has(node):
 		templates[node] = node.text
 	node.text = templates[node] % values
 
-func _process(_delta):
-	text_cargo_worth.text = tr(cargo_text_default) % [GameData.level.cargo_worth(), GameData.level.calc_difficulty_multiplier()*100.0]
-
-func on_continue_pressed():
+func on_continue_pressed() -> void:
 	if GameData.level.cargo_worth() < GameData.level.cargo_required:
 		AudioPlayer.play_ui_error_sound()
 	else:

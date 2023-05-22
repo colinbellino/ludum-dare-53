@@ -12,7 +12,6 @@ var button_fullscreen: CheckButton
 var button_resolution: OptionButton
 var button_locale: OptionButton
 var button_close: Button
-# var button_quit: Button
 var slider_volume_main : Slider
 var slider_volume_music : Slider
 var slider_volume_sound : Slider
@@ -24,7 +23,6 @@ func _ready() -> void:
 	button_resolution = get_node("%Resolution")
 	button_locale = get_node("%Locale")
 	button_close = get_node("%Close")
-	# button_quit = get_node("%Quit")
 	slider_volume_main = get_node("%VolumeMain")
 	slider_volume_music = get_node("%VolumeMusic")
 	slider_volume_sound = get_node("%VolumeSound")
@@ -33,7 +31,6 @@ func _ready() -> void:
 	button_resolution.connect("item_selected", button_resolution_item_selected)
 	button_locale.connect("item_selected", button_locale_item_selected)
 	button_close.connect("pressed", button_close_pressed)
-	# button_quit.connect("pressed", button_quit_pressed)
 	slider_volume_main.connect("value_changed", slider_volume_main_changed)
 	slider_volume_music.connect("value_changed", slider_volume_music_changed)
 	slider_volume_sound.connect("value_changed", slider_volume_sound_changed)
@@ -66,10 +63,6 @@ func _ready() -> void:
 		button_locale.add_item("locale_" + locale)
 	button_locale.selected = locales.find(Settings.resource.locale)
 
-	# button_quit.visible = false
-	# if show_quit_button:
-	# 	button_quit.visible = true
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("ui_cancel"):
 		close()
@@ -95,11 +88,6 @@ func button_locale_item_selected(locale_index: int) -> void:
 func button_close_pressed() -> void:
 	Utils.write_settings(Settings.resource)
 	close()
-
-# func button_quit_pressed() -> void:
-# 	Utils.write_settings(Settings.resource)
-# 	# FIXME:
-# 	# Game.quit_game()
 
 func slider_volume_main_changed(value: float) -> void:
 	Settings.resource.volume_main = value

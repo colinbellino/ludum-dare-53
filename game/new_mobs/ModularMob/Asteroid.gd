@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name Asteroid extends RigidBody2D
 
 @export var collision_damage : int = 10
 @export var collision_self_damage : int = 5

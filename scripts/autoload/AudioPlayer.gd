@@ -7,7 +7,7 @@ var audio_player_sound_one_shot : AudioStreamPlayer
 var audio_player_sound : AudioStreamPlayer
 var audio_player_music : AudioStreamPlayer
 
-func _ready():
+func _ready() -> void:
 	bus_main = AudioServer.get_bus_index("Master")
 	assert(bus_main != null, "bus_main not initialized correctly.")
 	bus_music = AudioServer.get_bus_index("Music")
@@ -21,13 +21,13 @@ func _ready():
 	audio_player_sound = get_node("%SoundPlayer")
 	assert(audio_player_sound != null, "audio_player_sound not initialized correctly.")
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if GameData.level && GameData.level.ship:
 		# self.global_position = GameData.level.ship.global_position
 
 		audio_player_music.pitch_scale = Engine.get_time_scale()
 
-func play_sound(stream: AudioStream, _sound_position: Vector2 = position, loop: bool = false, pitch_scale : float = 1.0) -> void:
+func play_sound(stream: AudioStream, _sound_position: Vector2 = position, loop: bool = false, pitch_scale: float = 1.0) -> void:
 	if stream is AudioStreamWAV == false:
 		stream.loop = loop
 

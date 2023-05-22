@@ -8,7 +8,7 @@ class_name SettingsResource extends Resource
 @export var locale : String = "en"
 @export var level : String = "Level"
 
-func _init():
+func _init() -> void:
 	if Settings.can_fullscreen():
 		resolution = Vector2(1920, 1080)
 	else:

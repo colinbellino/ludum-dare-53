@@ -2,12 +2,12 @@ extends CanvasLayer
 
 var label_team : Label
 
-func _ready():
+func _ready() -> void:
 	label_team = get_node("%Team")
 	label_team.text = Utils.load_file("res://credits.txt", "")
 
-func close():
+func close() -> void:
 	queue_free()
 
-func open_link(meta):
+func open_link(meta: String) -> void:
 	OS.shell_open(meta)

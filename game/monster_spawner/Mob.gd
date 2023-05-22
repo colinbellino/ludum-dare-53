@@ -2,24 +2,24 @@ class_name Mob extends RigidBody2D
 
 @export var damage : float = 1.0
 @export var spread : float = 1.0
-@export var hitpoints = 10.0
-@export var speed = 200
-@export var approach_distance = 50
-@export var attack_distance = 200
-@export var accleration = 1.0
+@export var hitpoints : int = 10
+@export var speed : int = 200
+@export var approach_distance : int = 50
+@export var attack_distance : int = 200
+@export var accleration : float = 1.0
 @export var movement_type : MovementTypes
 @export var attack_type : AttackTypes
 @export var projectile_sprite : Texture
-@export var projectile_speed = 200.0
+@export var projectile_speed : float = 200.0
 
-var shot_cooldown = 0.0
+var shot_cooldown : float = 0.0
 var direction_established : bool
-var current_target = null
-var target_position = Vector2(0, 0)
-var target_velocity = Vector2(0, 0)
-var target_rotation = 0.0
-var current_rotation = 0.0
-var side_of_ship = -1
+var current_target : Node2D
+var target_position : Vector2 = Vector2(0, 0)
+var target_velocity : Vector2 = Vector2(0, 0)
+var target_rotation : float = 0.0
+var current_rotation : float = 0.0
+var side_of_ship : int = -1
 var pivot : Node2D
 var bullet_spawn_position : Marker2D
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 	pivot = get_node_or_null("Pivot")
 	bullet_spawn_position = get_node("%BulletSpawnPosition")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if not GameData.level:
 		return
 
@@ -41,7 +41,7 @@ func _physics_process(delta):
 				direction_established = true
 
 		MovementTypes.TowardsShip:
-			side_of_ship = signf(global_position.x - GameData.level.ship.global_position.x)
+			side_of_ship = int(signf(global_position.x - GameData.level.ship.global_position.x))
 			target_position.x = GameData.level.ship.global_position.x + approach_distance * side_of_ship
 			target_position.y = clamp(global_position.y, GameData.level.ship.global_position.y-100.0, GameData.level.ship.global_position.y+100.0)
 			target_velocity = (target_position - global_position).normalized() * speed
@@ -56,15 +56,15 @@ func _physics_process(delta):
 	if abs(target_velocity.x) > 150.0 && pivot != null:
 		pivot.scale.x = signf(target_velocity.x)
 
-func _integrate_forces(state):
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	state.set_constant_force((target_velocity - state.linear_velocity).limit_length(accleration * speed))
 	queue_redraw()
 
 # Removes enemies that go off screen
-func _on_visible_on_screen_notifier_2d_screen_exited():
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
-func spawn_bullet():
+func spawn_bullet() -> void:
 	var level = GameData.level
 	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
 	bullet.sprite = projectile_sprite
@@ -74,25 +74,25 @@ func spawn_bullet():
 	level.add_child(bullet)
 	bullet.global_position = bullet_spawn_position.global_position
 
-func take_hit(hit: int):
+func take_hit(hit: int) -> void:
 	hitpoints -= hit
 	if hitpoints <= 0:
 		queue_free()
 		# TODO: Play some animation or emit particles for destroying it
 
-func _on_attack_area_body_entered(body):
+func _on_attack_area_body_entered(body: Node) -> void:
 	if attack_type == AttackTypes.Collision:
 		if body.has_method("take_hit"):
 			body.take_hit(damage)
 			queue_free()
 	if shot_cooldown <= 0.0 and attack_type == AttackTypes.Touch:
 		if body.has_method("take_hit") and not body.is_in_group("Monsters"):
-			# No idea where we would reach this atm?
+			# FIXME: No idea where we would reach this atm?
 			breakpoint
 			# body.take_hit(damage)
 			# $AttackTimer.start()
 
-func aquire_target():
+func aquire_target() -> void:
 	var ship_part = get_tree().get_nodes_in_group("ShipParts")
 	ship_part = ship_part.filter(is_valid_target)
 	ship_part.sort_custom(
@@ -103,7 +103,7 @@ func aquire_target():
 		if ship_part[0].global_position.distance_to(global_position) < attack_distance:
 			current_target = ship_part[0]
 
-func is_valid_target(ship_part):
+func is_valid_target(ship_part) -> bool:
 	return (
 		is_instance_valid(ship_part)
 		&& ship_part.hitpoints > 0

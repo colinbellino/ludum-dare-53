@@ -1,40 +1,42 @@
 class_name SlotActionButton extends Panel
 
 @export var icon : Texture
-@export var cost := 0
-@export var action := "build"
+@export var cost : int = 0
+@export var action : String = "build"
 @export var meta : Resource
-@export var bg_color := Color("3b3b3bd6")
-@export var value := 0
-@export var label := ""
+@export var bg_color : Color = Color("3b3b3bd6")
+@export var value : int = 0
+@export var label : String = ""
 
 var target : ShipSlot
 var control_extra : Control
 var label_name : Label
 var label_cost : Label
 var label_value : Label
+var texture_icon : TextureRect
 
 signal pressed()
 
-func _ready():
+func _ready() -> void:
 	control_extra = get_node("%Extra")
 	label_name = get_node("%Label")
 	label_cost = get_node("%Cost")
 	label_value = get_node("%Cost")
+	texture_icon = get_node("%Icon")
 	upd()
 
-func _gui_input(event):
+func _gui_input(event) -> void:
 	if has_focus() or event is InputEventMouse:
 		if event.is_action_released("ui_accept") or event.is_action_released("mouse_left"):
 			pressed.emit()
 
 # Too tired for this shit
-func upd2(_meta):
+func upd2(_meta) -> void:
 	meta = _meta
 	upd()
 
-func upd():
-	%Icon.texture = icon
+func upd() -> void:
+	texture_icon.texture = icon
 	if target:
 		cost = target.calculate_cost(action)
 	elif action == "build":

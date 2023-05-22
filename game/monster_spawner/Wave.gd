@@ -2,8 +2,7 @@
 class_name Wave extends Resource
 
 @export var repeat_n_times : int = 1
-## In seconds
-@export var mob_timer : float = 0.9
+@export var mob_timer : float = 0.9 ## In seconds
 @export var wait_timer : float = 0.1
 @export var skip_chance : float = 0.0
 @export var spawn_pattern : SpawnPatterns

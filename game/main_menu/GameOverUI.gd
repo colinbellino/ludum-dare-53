@@ -4,7 +4,7 @@ var button_close : Button
 var control_root : Control
 var control_content : Control
 
-func _ready():
+func _ready() -> void:
 	AudioPlayer.play_music(preload("res://assets/audio/gameover.ogg"), false)
 
 	button_close = get_node("%Close")
@@ -32,5 +32,5 @@ func close() -> void:
 
 	queue_free()
 
-func on_close_pressed():
+func on_close_pressed() -> void:
 	Overlay.transition("res://game/level/Level.tscn")

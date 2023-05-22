@@ -1,25 +1,24 @@
 extends Node
 
-const PHYSICS_LAYER_MONSTER_HURTABLE = 4
-const PHYSICS_LAYER_SHIP_HURTABLE = 2
-const PHYSICS_LAYER_BLOCKER = 1
-const PHYSICS_LAYER_HURTABLE = PHYSICS_LAYER_MONSTER_HURTABLE | PHYSICS_LAYER_SHIP_HURTABLE
-const STARTING_MONEY = 200
+const PHYSICS_LAYER_MONSTER_HURTABLE := 4
+const PHYSICS_LAYER_SHIP_HURTABLE := 2
+const PHYSICS_LAYER_BLOCKER := 1
+const PHYSICS_LAYER_HURTABLE := PHYSICS_LAYER_MONSTER_HURTABLE | PHYSICS_LAYER_SHIP_HURTABLE
+const STARTING_MONEY := 200
+var COLOR_GREEN := Color.html("33cc73")
+var COLOR_ORANGE := Color.html("c5cc28")
+var COLOR_RED := Color.html("a02c1b")
 
-var COLOR_GREEN = Color.html("33cc73")
-var COLOR_ORANGE = Color.html("c5cc28")
-var COLOR_RED = Color.html("a02c1b")
-
-var scene_properties := {}
-var scene_by_category := {}
-var category_defaults := {}
+var scene_properties : Dictionary = {}
+var scene_by_category : Dictionary = {}
+var category_defaults : Dictionary = {}
 var level: Level
 var money : float # Initialized in Level.ready
-var voice_played := false
+var voice_played : bool
 var cheat_invincible : bool
 var cheat_skip_checkpoint : bool
 
-func _ready():
+func _ready() -> void:
 	add_category("Turrets", BaseTurret)
 	add_to_db("Turrets", preload("res://game/turrets/PlasmaTurret.tscn"))
 	add_to_db("Turrets", preload("res://game/turrets/DisruptorTurret.tscn"))
@@ -28,7 +27,7 @@ func _ready():
 	add_to_db("Turrets", preload("res://game/turrets/Cargo.tscn"))
 	add_to_db("Turrets", preload("res://game/turrets/DangerousCargo.tscn"))
 
-func add_to_db(category:String, scene:PackedScene):
+func add_to_db(category: String, scene: PackedScene) -> void:
 	var properties = category_defaults[category].duplicate()
 	# Scene overrides
 	var scene_state = scene.get_state()
@@ -40,7 +39,7 @@ func add_to_db(category:String, scene:PackedScene):
 	scene_properties[scene.resource_path] = properties
 	scene_by_category[category].push_back(scene.resource_path)
 
-func add_category(category:String, base_class:Script):
+func add_category(category: String, base_class: Script) -> void:
 	scene_by_category[category] = []
 	var defaults = {}
 	var instance = base_class.new()
@@ -49,4 +48,3 @@ func add_category(category:String, base_class:Script):
 			defaults[p.name] = instance.get(p.name)
 	instance.free()
 	category_defaults[category] = defaults
-

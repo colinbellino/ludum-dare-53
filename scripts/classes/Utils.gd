@@ -1,6 +1,7 @@
 class_name Utils
 
 const settings_path : String = "user://settings.tres"
+const UI_VALUE_PROPERTIES : Array[String] = ["value", "color", "selected_id", "selected", "pressed", "text", "bbcode"]
 
 static func load_file(filepath: String, default_value: String = "") -> String:
 	var file := FileAccess.open(filepath, FileAccess.READ)
@@ -10,33 +11,32 @@ static func load_file(filepath: String, default_value: String = "") -> String:
 	var data = file.get_as_text()
 	return data
 
-const UI_VALUE_PROPERTIES = ["value", "color", "selected_id", "selected", "pressed", "text", "bbcode"]
-
-static func ui_set_value(ui_node:Control, new_value)->void:
+static func ui_set_value(ui_node: Control, new_value: Object) -> void:
 	for prop in UI_VALUE_PROPERTIES:
 		if prop in ui_node:
 			return ui_node.set(prop, new_value)
 	push_error("ui_node doesn't have a recognized value property.")
 
-static func ui_get_value(ui_node:Control):
+static func ui_get_value(ui_node: Control) -> Object:
 	for prop in UI_VALUE_PROPERTIES:
 		if prop in ui_node:
 			return ui_node.get(prop)
 	push_error("ui_node doesn't have a recognized value property.")
+	return null
 
-static func sync_from_ui(mapping:Dictionary, target:Object):
+static func sync_from_ui(mapping: Dictionary, target: Object) -> void:
 	for node in mapping:
 		target.set(mapping[node], ui_get_value(node))
 
-static func sync_to_ui(mapping:Dictionary, source:Object):
+static func sync_to_ui(mapping: Dictionary, source: Object) -> void:
 	for node in mapping:
 		ui_set_value(node, source.get(mapping[node]))
 
-static func angle_difference(from:float, to:float):
+static func angle_difference(from: float, to: float) -> float:
 	var diff = fmod(to - from, TAU)
 	return fmod(2.0 * diff, TAU) - diff
 
-static func move_towards_angle(from:float, to:float, delta:float):
+static func move_towards_angle(from: float, to: float, delta: float) -> float:
 	var diff = angle_difference(from, to)
 	return from + minf(abs(diff), delta) * signf(diff)
 
@@ -83,7 +83,7 @@ static func set_linear_db(bus_index: int, linear_db: float) -> void:
 static func set_resolution(resolution: Vector2) -> void:
 	DisplayServer.window_set_size(resolution)
 
-static func rand_element_weighted(dict):
+static func rand_element_weighted(dict: Dictionary) -> Object:
 	var total_weight = 0
 	var stacked = []
 	for key in dict.keys():

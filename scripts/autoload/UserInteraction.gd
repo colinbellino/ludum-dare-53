@@ -1,6 +1,6 @@
 extends Node
 
-func _ready():
+func _ready() -> void:
 	get_tree().node_added.connect(self.setup_ui_node)
 	var node_stack = get_tree().current_scene.get_children()
 	while not node_stack.is_empty():
@@ -8,7 +8,7 @@ func _ready():
 		setup_ui_node(child)
 		node_stack.append_array(child.get_children())
 
-func setup_ui_node(new_node:Node)->void:
+func setup_ui_node(new_node: Node) -> void:
 	if new_node is Control:
 		if new_node.focus_mode == Control.FOCUS_ALL:
 			new_node.focus_entered.connect(self.ui_pointer)
@@ -17,8 +17,8 @@ func setup_ui_node(new_node:Node)->void:
 			if get_viewport().gui_get_focus_owner() == null:
 				new_node.grab_focus()
 
-func ui_pointer():
+func ui_pointer() -> void:
 	AudioPlayer.play_ui_hover_sound()
 
-func ui_confirm():
+func ui_confirm() -> void:
 	AudioPlayer.play_ui_button_sound()

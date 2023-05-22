@@ -1,34 +1,30 @@
 @tool
-class_name Bullet
-extends ShapeCast2D
+class_name Bullet extends ShapeCast2D
 
-@export var damage = 10
-@export var speed = 100
-@export var explosion_radius = 0
-@export var explosion_knockback = 20.0
-@export var pierce = 0:
+@export var damage : int = 10
+@export var speed : int = 100
+@export var explosion_radius : int = 0
+@export var explosion_knockback : float = 20.0
+@export var pierce : int = 0:
 	set(val):
 		pierce = val
 		max_results = maxi(pierce, 4)
-
-@export var knockback = 2.5
+@export var knockback : float = 2.5
 @export var sprite : Texture:
 	set(val):
 		sprite = val
 		if is_inside_tree() and val:
 			sprite.texture = val
-
-@export var is_beam := false
-@export var rotate_projectile := true
-
+@export var is_beam : bool = false
+@export var rotate_projectile : bool = true
 # Set these before adding to scene
 @export_category("Initialization")
-@export var monster_bullet := false:
+@export var monster_bullet : bool = false:
 	set(val):
 		monster_bullet = val
 		collision_mask = (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_SHIP_HURTABLE) if monster_bullet else (GameData.PHYSICS_LAYER_BLOCKER | GameData.PHYSICS_LAYER_MONSTER_HURTABLE)
-@export var direction = Vector2(1.0, 0.0)
-@export var expiration_time = 9999.999
+@export var direction : Vector2 = Vector2(1.0, 0.0)
+@export var expiration_time : float = 9999.999
 @export var bullet_hit_sfx : Array[AudioStream]
 
 var frames_alive : int = 0
@@ -36,7 +32,7 @@ var time_alive : float = 0.0
 var num_targets_pierced : int = 0
 var sprite2d : Sprite2D
 
-func _ready():
+func _ready() -> void:
 	sprite2d = get_node("%Sprite")
 	if rotate_projectile:
 		sprite2d.rotation = Vector2.RIGHT.angle_to(direction)
@@ -44,7 +40,7 @@ func _ready():
 		sprite2d.position.x -= speed * 0.5
 		sprite2d.scale.x = speed / sprite.get_width()
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	var velocity = direction * speed * delta
 	if is_beam:
 		velocity = direction * speed
@@ -79,7 +75,7 @@ func _physics_process(delta):
 			spawn_explosion(global_position)
 		queue_free()
 
-func spawn_explosion(pos):
+func spawn_explosion(pos: Vector2) -> void:
 	var explosion = preload("res://game/fx/DamagingExplosion.tscn").instantiate()
 	explosion.radius = explosion_radius
 	explosion.knockback = explosion_knockback
@@ -89,6 +85,6 @@ func spawn_explosion(pos):
 	explosion.global_position = pos
 
 
-func on_exit_screen():
+func on_exit_screen() -> void:
 	if not Engine.is_editor_hint():
 		queue_free()

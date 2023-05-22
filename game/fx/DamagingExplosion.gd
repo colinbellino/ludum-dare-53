@@ -1,8 +1,8 @@
-extends Area2D
+class_name DamagingExplosion extends Area2D
 
-@export var radius = 16.0
-@export var damage = 10.0
-@export var knockback = 20.0
+@export var radius : float = 16.0
+@export var damage : float = 10.0
+@export var knockback : float = 20.0
 
 var anim : AnimatedSprite2D
 

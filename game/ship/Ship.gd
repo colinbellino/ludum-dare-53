@@ -1,7 +1,7 @@
 class_name Ship extends Node2D
 
-@export var movement_speed := Vector2(0, -100)
-@export var movement_mult := 1.0
+@export var movement_speed : Vector2 = Vector2(0, -100)
+@export var movement_mult : float = 1.0
 
 var current_ui_node : Node2D
 var menu_construct : InstancePlaceholder
@@ -27,7 +27,7 @@ func on_slot_selected(slot: ShipSlot) -> void:
 	node.action_pressed.connect(self.player_action.bind(slot))
 	current_ui_node = node
 
-func player_action(action_name: String, meta, target: ShipSlot) -> void:
+func player_action(action_name: String, meta: Object, target: ShipSlot) -> void:
 	match action_name:
 		"build":
 			target.build_structure(meta)

@@ -8,7 +8,7 @@ var chunks : Array[Node]
 var checkpoint_ui : CheckpointUI
 var checkpoint_index : int = 1
 var wave_index : int
-var last_checkpoint_cargo_worth : int = 0
+var last_checkpoint_cargo_worth : int
 var cargo_required : int = 150
 var mob_spawner : MobSpawner
 var wave_director : WaveDirector
@@ -21,7 +21,7 @@ signal checkpoint_departed()
 
 enum LevelStates { TITLE, MOVING, ENTER_CHECKPOINT, CHECKPOINT, GAME_OVER }
 
-func _ready():
+func _ready() -> void:
 	Engine.set_time_scale(1)
 
 	wave_director = get_node("%WaveDirector")
@@ -47,19 +47,10 @@ func _ready():
 	mob_spawner.connect("wave_over", on_wave_over)
 	mob_spawner.connect("wave_spawn", on_wave_spawn)
 
-func start_game():
-	if GameData.voice_played == false:
-		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
-		GameData.voice_played = true
-
-	hud.visible = true
-	state = LevelStates.MOVING
-	mob_spawner.start_wave(waves.waves, wave_index)
-
-func _exit_tree():
+func _exit_tree() -> void:
 	GameData.level = null
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	if Input.is_action_just_released("debug_1"):
 		GameData.money += 1000
 		AudioPlayer.play_ui_money_sound()
@@ -101,7 +92,16 @@ func _process(_delta: float):
 		LevelStates.GAME_OVER:
 			ship.movement_mult = 0.0
 
-func on_wave_spawn(wave):
+func start_game() -> void:
+	if GameData.voice_played == false:
+		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
+		GameData.voice_played = true
+
+	hud.visible = true
+	state = LevelStates.MOVING
+	mob_spawner.start_wave(waves.waves, wave_index)
+
+func on_wave_spawn(wave) -> void:
 	if wave.is_checkpoint:
 		state = LevelStates.ENTER_CHECKPOINT
 
@@ -127,7 +127,7 @@ func trigger_checkpoint_reached() -> void:
 func is_at_checkpoint() -> bool:
 	return state == LevelStates.CHECKPOINT
 
-func deliver_cargo():
+func deliver_cargo() -> void:
 	last_checkpoint_cargo_worth = cargo_worth()
 	if get_tree():
 		for node in get_tree().get_nodes_in_group("ShipParts"):
@@ -135,7 +135,7 @@ func deliver_cargo():
 				node.get_parent().clear()
 	GameData.money += last_checkpoint_cargo_worth
 
-func calc_difficulty_multiplier():
+func calc_difficulty_multiplier() -> float:
 	var difficulty_multiplier = 1.0
 	if get_tree():
 		for node in get_tree().get_nodes_in_group("ShipParts"):
@@ -143,18 +143,18 @@ func calc_difficulty_multiplier():
 				difficulty_multiplier += node.attract_danger
 	return difficulty_multiplier
 
-func calc_difficulty():
+func calc_difficulty() -> float:
 	return checkpoint_index + (4 + checkpoint_index) * (calc_difficulty_multiplier()-1.0)
 
-func cargo_worth():
-	var value = 0.0
+func cargo_worth() -> int:
+	var value = 0
 	if get_tree():
 		for node in get_tree().get_nodes_in_group("ShipParts"):
 			if ship.is_ancestor_of(node) and node is Cargo:
 				value += node.delievery_value
 	return value
 
-func on_checkpoint_continue_pressed():
+func on_checkpoint_continue_pressed() -> void:
 	if not is_inside_tree():
 		return
 
@@ -174,7 +174,7 @@ func on_checkpoint_continue_pressed():
 	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
 	mob_spawner.start_wave(waves.waves, wave_index)
 
-func on_cargo_destroyed(_cargo: Cargo):
+func on_cargo_destroyed(_cargo: Cargo) -> void:
 	var all_cargo_destroyed := is_all_cargo_destroyed()
 
 	if state != LevelStates.GAME_OVER && all_cargo_destroyed:
