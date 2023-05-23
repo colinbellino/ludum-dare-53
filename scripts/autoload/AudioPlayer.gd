@@ -3,36 +3,30 @@ extends Node2D
 var bus_main : int
 var bus_music : int
 var bus_sound : int
-var audio_player_sound_one_shot : AudioStreamPlayer
-var audio_player_sound : AudioStreamPlayer
-var audio_player_music : AudioStreamPlayer
+var audio_player_sound_one_shot : AudioStreamPlayer2D
+var audio_player_sound : AudioStreamPlayer2D
+var audio_player_music : AudioStreamPlayer2D
 
 func _ready() -> void:
 	bus_main = AudioServer.get_bus_index("Master")
 	assert(bus_main != null, "bus_main not initialized correctly.")
 	bus_music = AudioServer.get_bus_index("Music")
 	assert(bus_music != null, "bus_music not initialized correctly.")
-	audio_player_sound_one_shot = get_node("%SoundPlayerOneShot")
-	assert(audio_player_sound_one_shot != null, "audio_player_sound_one_shot not initialized correctly.")
 	bus_sound = AudioServer.get_bus_index("Sound")
 	assert(bus_sound != null, "bus_sound not initialized correctly.")
+	audio_player_sound_one_shot = get_node("%SoundPlayerOneShot")
 	audio_player_music = get_node("%MusicPlayer")
-	assert(audio_player_music != null, "audio_player_music not initialized correctly.")
 	audio_player_sound = get_node("%SoundPlayer")
-	assert(audio_player_sound != null, "audio_player_sound not initialized correctly.")
 
 func _process(_delta: float) -> void:
-	if GameData.level && GameData.level.ship:
-		# self.global_position = GameData.level.ship.global_position
+	audio_player_music.pitch_scale = Engine.get_time_scale()
 
-		audio_player_music.pitch_scale = Engine.get_time_scale()
-
-func play_sound(stream: AudioStream, _sound_position: Vector2 = position, loop: bool = false, pitch_scale: float = 1.0) -> void:
+func play_sound(stream: AudioStream, sound_position: Vector2 = position, loop: bool = false, pitch_scale: float = 1.0) -> void:
 	if stream is AudioStreamWAV == false:
 		stream.loop = loop
 
 	var player := spawn_audio_player()
-	# player.position = _sound_position
+	player.position = sound_position
 	player.pitch_scale = pitch_scale
 	player.stream = stream
 	player.play()
@@ -56,7 +50,7 @@ func play_music(stream: AudioStream, loop: bool = true) -> void:
 func stop_music() -> void:
 	audio_player_music.stop()
 
-func spawn_audio_player() -> AudioStreamPlayer:
+func spawn_audio_player() -> AudioStreamPlayer2D:
 	var audio_player = audio_player_sound_one_shot.duplicate()
 	if Engine.time_scale > 0:
 		audio_player.pitch_scale = Engine.time_scale

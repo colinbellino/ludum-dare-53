@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	if fire_rate <= 0.0:
 		return
 
-	if not is_valid_target(current_target):
+	if not is_instance_valid(current_target) or not is_valid_target(current_target):
 		current_target = null
 
 	if not current_target:
@@ -139,8 +139,7 @@ func destroyed() -> void:
 
 func is_valid_target(mob: Node) -> bool:
 	return (
-		is_instance_valid(mob)
-		&& mob.hitpoints > 0
+		mob.hitpoints > 0
 		&& global_position.distance_to(mob.global_position) < max_range
 	)
 

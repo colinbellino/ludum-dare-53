@@ -4,17 +4,18 @@
 [ext_resource type="Script" path="res://scripts/snippets/SoundPlayerOneShot.gd" id="2_nvlsx"]
 
 [node name="AudioPlayer" type="Node2D"]
+position = Vector2(480, 270)
 script = ExtResource("1_g31op")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 bus = &"Music"
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 bus = &"Sound"
 
-[node name="SoundPlayerOneShot" type="AudioStreamPlayer" parent="."]
+[node name="SoundPlayerOneShot" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 bus = &"Sound"
 script = ExtResource("2_nvlsx")
