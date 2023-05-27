@@ -3,21 +3,26 @@ class_name DamagingExplosion extends Area2D
 @export var radius : float = 16.0
 @export var damage : float = 10.0
 @export var knockback : float = 20.0
+@export var damage_frame : int = 3
 
 var anim : AnimatedSprite2D
 
 func _ready() -> void:
-	anim = get_node("%Anim")
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	scale *= radius / 16.0
+
+	anim = get_node("%Anim")
 	anim.play("default")
 	anim.connect("frame_changed", self.on_frame_changed)
-	anim.connect("animation_finished", self.queue_free)
+
+	await self.animation_finished
+	queue_free()
 
 func on_frame_changed() -> void:
-	if anim.frame == 3:
-		apply_damage()
+	if anim.frame == damage_frame:
+		_apply_damage()
 
-func apply_damage() -> void:
+func _apply_damage() -> void:
 	for body in get_overlapping_bodies():
 		var hit_direction = global_position.direction_to(body.global_position)
 		if body.has_method("take_hit"):

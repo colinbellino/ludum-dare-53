@@ -1,62 +1,62 @@
-[gd_scene load_steps=18 format=3 uid="uid://4if02n6n1oob"]
+[gd_scene load_steps=18 format=3 uid="uid://bva556rgses75"]
 
-[ext_resource type="Texture2D" uid="uid://bnh2aileygb3i" path="res://assets/fx/ssanim_explosion_bysquid.png" id="1_ctfjl"]
-[ext_resource type="Script" path="res://game/fx/Explosion.gd" id="2_tcyr3"]
+[ext_resource type="Texture2D" uid="uid://bnh2aileygb3i" path="res://assets/fx/ssanim_explosion_bysquid.png" id="1_wblqu"]
+[ext_resource type="Script" path="res://game/PlayAnimationAndDestroy.gd" id="2_c1vu5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0phqw"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1fbc"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lh75t"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odj0a"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ein7r"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrn8x"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvws6"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5g7b"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbl2h"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vlgt"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmkcq"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_seb6q"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqf2t"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hlifk"]
-atlas = ExtResource("1_ctfjl")
+atlas = ExtResource("1_wblqu")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urnuv"]
@@ -109,7 +109,7 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Explosion1" type="AnimatedSprite2D"]
+[node name="ShipExplosion" type="AnimatedSprite2D"]
 z_index = 99
 sprite_frames = SubResource("SpriteFrames_urnuv")
-script = ExtResource("2_tcyr3")
+script = ExtResource("2_c1vu5")
