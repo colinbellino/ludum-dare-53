@@ -15,7 +15,7 @@ func _ready() -> void:
 	anim.play("default")
 	anim.connect("frame_changed", self.on_frame_changed)
 
-	await self.animation_finished
+	await anim.animation_finished
 	queue_free()
 
 func on_frame_changed() -> void:
