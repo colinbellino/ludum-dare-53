@@ -29,6 +29,7 @@ Overlay="*res://scripts/autoload/Overlay.tscn"
 UserInteraction="*res://scripts/autoload/UserInteraction.gd"
 GameData="*res://scripts/autoload/GameData.gd"
 FxSpawner="*res://scripts/autoload/FX.gd"
+Res="*res://scripts/autoload/Res.gd"
 
 [debug]
 

@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 
 func spawn_bullet() -> void:
 	var level = GameData.level
-	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
+	var bullet = Res.SCENE_BULLET.instantiate()
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage

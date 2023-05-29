@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func spawn_explosion(pos: Vector2) -> void:
-	var explosion = preload("res://game/fx/DamagingExplosion.tscn").instantiate()
+	var explosion = Res.EXPLOSION_DAMAGING.instantiate()
 	explosion.radius = explosion_radius
 	explosion.knockback = explosion_knockback
 	explosion.damage = damage

@@ -31,11 +31,11 @@ func button_close_pressed() -> void:
 	close()
 
 func button_settings_pressed() -> void:
-	child_node = Overlay.show_modal(preload("res://game/main_menu/SettingsUI.tscn"))
+	child_node = Overlay.show_modal(Res.UI_SETTINGS)
 
 func button_title_pressed() -> void:
 	queue_free()
-	Overlay.transition("res://game/level/Level.tscn")
+	Overlay.transition(GameData.PATH_LEVEL)
 
 func button_quit_pressed() -> void:
 	get_tree().quit()

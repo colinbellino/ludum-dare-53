@@ -67,7 +67,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func spawn_bullet() -> void:
 	var level = GameData.level
-	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
+	var bullet = Res.SCENE_BULLET.instantiate()
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage

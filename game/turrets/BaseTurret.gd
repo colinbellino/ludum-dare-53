@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 
 func spawn_bullet() -> void:
 	var level = GameData.level
-	var bullet = preload("res://game/bullet/Bullet.tscn").instantiate()
+	var bullet = Res.SCENE_BULLET.instantiate()
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage
@@ -129,10 +129,10 @@ func take_hit(hit_damage: int) -> void:
 	emit_signal("damaged", hit_damage)
 	# print("%s taking hit_damage: %s (hp: %s)" % [self.name, hit_damage, hitpoints])
 	if hitpoints <= 0:
-		AudioPlayer.play_sound_random([preload("res://assets/audio/player_hit.wav")], position)
+		AudioPlayer.play_sound_random([Res.SFX_PLAYER_HIT], position)
 		destroyed()
 	else:
-		AudioPlayer.play_sound_random([preload("res://assets/audio/component_destroyed.wav")], position)
+		AudioPlayer.play_sound_random([Res.SFX_COMPONENT_HIT], position)
 
 func destroyed() -> void:
 	get_parent().destroy()

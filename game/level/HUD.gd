@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		label_money.text = tr("Currency: %d") % [GameData.money]
 
 func button_pause_pressed() -> void:
-	Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+	Overlay.show_modal(GameData.RESOUCE_UI_PAUSE)
 
 func on_wave_over(wave: Wave, wave_index: int, wave_length: int) -> void:
 	var bg = progress_wave.get("theme_override_styles/fill").duplicate()

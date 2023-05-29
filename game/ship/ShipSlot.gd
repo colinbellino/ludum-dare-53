@@ -33,9 +33,9 @@ func build_structure(new_structure: PackedScene, initial_build : bool = false) -
 
 		GameData.money -= node.cost
 		if node is Cargo:
-			AudioPlayer.play_sound(preload("res://assets/audio/place_crate.wav"));
+			AudioPlayer.play_sound(Res.SFX_PLACE_CARGO);
 		else:
-			AudioPlayer.play_sound(preload("res://assets/audio/place_turret.wav"));
+			AudioPlayer.play_sound(Res.SFX_PLACE_TURRET);
 
 	current_structure = new_structure
 	current_structure_node = node
@@ -100,7 +100,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		# Debug code to simulate take cargo
 		if event.is_action_pressed("mouse_middle"):
 			if current_structure_node == null:
-				var meta := preload("res://game/turrets/Cargo.tscn")
+				var meta := Res.TURRET_CARGO
 				GameData.level.ship.player_action("build", meta, self)
 
 		# Debug code to simulate damage

@@ -5,7 +5,7 @@ var control_root : Control
 var control_content : Control
 
 func _ready() -> void:
-	AudioPlayer.play_music(preload("res://assets/audio/gameover.ogg"), false)
+	AudioPlayer.play_music(Res.MUSIC_GAME_OVER, false)
 
 	button_close = get_node("%Close")
 	button_close.connect("pressed", on_close_pressed)
@@ -19,7 +19,7 @@ func _ready() -> void:
 	await tween.finished
 
 	await get_tree().create_timer(5).timeout
-	AudioPlayer.play_sound(preload("res://assets/audio/voice_total_destruction.wav"))
+	AudioPlayer.play_sound(Res.SFX_TOTAL_DESTRUCTION)
 
 	tween = create_tween()
 	tween.tween_property(control_content, "modulate", Color.WHITE, 1.0)
@@ -33,4 +33,4 @@ func close() -> void:
 	queue_free()
 
 func on_close_pressed() -> void:
-	Overlay.transition("res://game/level/Level.tscn")
+	Overlay.transition(GameData.PATH_LEVEL)

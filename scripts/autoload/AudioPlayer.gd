@@ -58,16 +58,16 @@ func spawn_audio_player() -> AudioStreamPlayer2D:
 	return audio_player
 
 func play_ui_hover_sound() -> void:
-	play_sound(preload("res://assets/audio/button_hover.wav"), position);
+	play_sound(Res.SFX_HOVER, position);
 
 func play_ui_button_sound() -> void:
-	play_sound(preload("res://assets/audio/button_click.wav"), position);
+	play_sound(Res.SFX_CLICK, position);
 
 func play_ui_error_sound() -> void:
-	play_sound(preload("res://assets/audio/error.wav"), position);
+	play_sound(Res.SFX_ERROR, position);
 
 func play_ui_money_sound() -> void:
-	play_sound(preload("res://assets/audio/money.wav"), position);
+	play_sound(Res.SFX_MONEY, position);
 
 func play_ui_repair_sound() -> void:
-	play_sound(preload("res://assets/audio/repair.wav"), position);
+	play_sound(Res.SFX_REPAIR, position);

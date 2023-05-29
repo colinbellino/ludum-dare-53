@@ -4,7 +4,7 @@ var label_team : Label
 
 func _ready() -> void:
 	label_team = get_node("%Team")
-	label_team.text = Utils.load_file("res://credits.txt", "")
+	label_team.text = Utils.load_file(GameData.PATH_CREDITS)
 
 func close() -> void:
 	queue_free()

@@ -29,10 +29,10 @@ func _ready() -> void:
 	wave_director = get_node("%WaveDirector")
 	parallax_bg = get_node("%BG")
 
-	AudioPlayer.play_music(preload("res://assets/audio/ludum_title.ogg"))
+	AudioPlayer.play_music(Res.MUSIC_TITLE)
 
 	next_wave_index = 0
-	var version = Utils.load_file("res://version.txt")
+	var version = Utils.load_file(Res.PATH_VERSION)
 	print("version: ", version.strip_edges())
 
 	hud = get_node("%HUD")
@@ -44,7 +44,7 @@ func _ready() -> void:
 	ship = get_node("%Ship")
 	mob_spawner = get_node("%MobSpawner")
 
-	var title_node = Overlay.show_modal(preload("res://game/main_menu/TitleUI.tscn"), false)
+	var title_node = Overlay.show_modal(Res.UI_TITLE, false)
 	title_node.connect("tree_exited", start_game)
 
 	mob_spawner.connect("wave_over", on_wave_over)
@@ -77,20 +77,20 @@ func _process(delta: float) -> void:
 
 		LevelStates.MOVING:
 			if Input.is_action_just_released("ui_cancel"):
-				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+				Overlay.show_modal(Res.UI_PAUSE)
 
 			ship.movement_mult = 1.0
 			GameData.money += delta * 5.0
 
 		LevelStates.ENTER_CHECKPOINT:
 			if Input.is_action_just_released("ui_cancel"):
-				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+				Overlay.show_modal(Res.UI_PAUSE)
 
 			ship.movement_mult = 1.0
 
 		LevelStates.CHECKPOINT:
 			if Input.is_action_just_released("ui_cancel"):
-				Overlay.show_modal(preload("res://game/main_menu/PauseUI.tscn"))
+				Overlay.show_modal(Res.UI_PAUSE)
 
 			ship.movement_mult = 0.0
 
@@ -99,7 +99,7 @@ func _process(delta: float) -> void:
 
 func start_game() -> void:
 	if GameData.voice_played == false:
-		AudioPlayer.play_sound(preload("res://assets/audio/voice_welcome_to_space_haulers.wav"))
+		AudioPlayer.play_sound(Res.SFX_WELCOME)
 		GameData.voice_played = true
 
 	hud.visible = true
@@ -116,7 +116,7 @@ func on_wave_over(_wave: Wave, wave_index: int, _wave_length: int) -> void:
 func trigger_checkpoint_reached() -> void:
 	emit_signal("checkpoint_reached")
 
-	AudioPlayer.play_music(preload("res://assets/audio/victory.ogg"), false)
+	AudioPlayer.play_music(Res.MUSIC_VICTORY, false)
 	state = LevelStates.CHECKPOINT
 	if GameData.cheat_skip_checkpoint:
 		on_checkpoint_continue_pressed()
@@ -127,7 +127,7 @@ func trigger_checkpoint_reached() -> void:
 	checkpoint_ui.connect("tree_exited", on_checkpoint_continue_pressed)
 
 	await get_tree().create_timer(2.3).timeout
-	AudioPlayer.play_music(preload("res://assets/audio/Ludum_intermission02.ogg"))
+	AudioPlayer.play_music(Res.MUSIC_INTERMISSION)
 
 func is_at_checkpoint() -> bool:
 	return state == LevelStates.CHECKPOINT
@@ -165,10 +165,10 @@ func on_checkpoint_continue_pressed() -> void:
 
 	emit_signal("checkpoint_departed")
 
-	AudioPlayer.play_sound(preload("res://assets/audio/voice_defend_the_cargo_captain.wav"))
+	AudioPlayer.play_sound(Res.SFX_DEFEND_CARGO)
 	await get_tree().create_timer(2).timeout
 
-	AudioPlayer.play_music(preload("res://assets/audio/ludum1_3.ogg"))
+	AudioPlayer.play_music(Res.MUSIC_ENCOUNTER)
 
 	checkpoint_index += 1
 
@@ -196,16 +196,16 @@ func on_cargo_destroyed(_cargo: Cargo) -> void:
 					randi_range(center.x - 60, center.x + 60),
 					randi_range(center.y - 60, center.y + 60)
 				)
-				FxSpawner.spawn_fx(preload("res://game/fx/ShipExplosion.tscn"), position)
+				FxSpawner.spawn_fx(Res.SFX_SHIP_EXPLOSION, position)
 				await get_tree().create_timer(0.02).timeout
 			if i < 8:
 				AudioPlayer.play_sound_random([
-					preload("res://assets/audio/player_explode02.wav"),
-					preload("res://assets/audio/explosion01.wav"),
+					Res.SFX_EXPLOSION_0,
+					Res.SFX_EXPLOSION_1,
 				], position)
 			await get_tree().create_timer(0.2).timeout
 
-		Overlay.show_modal(preload("res://game/main_menu/GameOverUI.tscn"))
+		Overlay.show_modal(Res.UI_GAME_OVER)
 
 func is_all_cargo_destroyed() -> bool:
 	var cargo := 0
