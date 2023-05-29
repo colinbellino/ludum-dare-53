@@ -27,8 +27,8 @@ func start_game() -> void:
 		AudioPlayer.play_sound(Res.SFX_WELCOME)
 		GameData.voice_played = true
 
-	queue_free()
-	Overlay.transition(Res.SCENE_LEVEL)
+	await get_tree().create_timer(0.1).timeout
+	Overlay.transition(Res.SCENE_WORLD_MAP)
 
 func settings() -> void:
 	Overlay.show_modal(Res.SCENE_SETTINGS, false)

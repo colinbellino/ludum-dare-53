@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dusxkafc3st0n"]
+[gd_scene load_steps=3 format=3 uid="uid://dusxkafc3st0n"]
 
 [ext_resource type="Script" path="res://game/world_map/WorldMapUI.gd" id="1_ihmcp"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="2_jecyv"]
 
 [node name="WorldMapUI" type="Control"]
 layout_mode = 3
@@ -10,3 +11,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ihmcp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 42.0
+offset_right = 30.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme = ExtResource("2_jecyv")
+text = "WORLD MAP"

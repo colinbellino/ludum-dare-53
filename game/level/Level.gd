@@ -40,7 +40,6 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	GameData.level = null
-	hud.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_cancel"):
