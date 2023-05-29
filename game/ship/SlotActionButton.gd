@@ -30,8 +30,7 @@ func _gui_input(event) -> void:
 		if event.is_action_released("ui_accept") or event.is_action_released("mouse_left"):
 			pressed.emit()
 
-# Too tired for this shit
-func upd2(_meta) -> void:
+func upd2(_meta: PackedScene) -> void:
 	meta = _meta
 	upd()
 

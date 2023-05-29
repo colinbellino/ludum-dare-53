@@ -15,7 +15,7 @@ func on_focus_changed(new_focus) -> void:
 	if not is_ancestor_of(new_focus):
 		queue_free()
 
-func emit_action(action: String, meta : Object = null) -> void:
+func emit_action(action: String, meta : PackedScene = null) -> void:
 	emit_signal("action_pressed", action, meta)
 	queue_free()
 

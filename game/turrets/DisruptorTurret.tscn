@@ -1,15 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2g1x8qio16mp"]
+[gd_scene load_steps=12 format=3 uid="uid://d2g1x8qio16mp"]
 
-[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_0kbl5"]
+[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_soohx"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_6jpqw"]
-[ext_resource type="Texture2D" uid="uid://dvlafc25dxnsk" path="res://assets/sprites/cart/misc/disruptorshot.png" id="2_mu5uv"]
-[ext_resource type="AudioStream" uid="uid://uixe0fbt4ssu" path="res://assets/audio/shot_disruptor.wav" id="3_464jr"]
+[ext_resource type="Texture2D" uid="uid://dvlafc25dxnsk" path="res://assets/sprites/cart/misc/disruptorshot.png" id="2_20hh0"]
+[ext_resource type="AudioStream" uid="uid://uixe0fbt4ssu" path="res://assets/audio/shot_disruptor.wav" id="3_gi3te"]
 [ext_resource type="Texture2D" uid="uid://cjaugs122auek" path="res://assets/sprites/cart/misc/ssanim_muzzle_disruptorturret.png" id="3_yss01"]
-[ext_resource type="AudioStream" uid="uid://don07c1qyx1ax" path="res://assets/audio/hit_disruptor.wav" id="4_1mvbu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3awsr"]
-atlas = ExtResource("2_6jpqw")
-region = Rect2(32, 96, 16, 16)
+[ext_resource type="AudioStream" uid="uid://don07c1qyx1ax" path="res://assets/audio/hit_disruptor.wav" id="4_i1l2p"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ta8nm"]
 lifetime_randomness = 0.13
@@ -137,23 +133,22 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 3
 sync_to_physics = false
-script = ExtResource("1_0kbl5")
-cost = 600.0
+script = ExtResource("1_soohx")
+cost = 600
 fire_rate = 4.0
-hitpoints = 100.0
+hitpoints = 100
 turn_speed = 4.0
 aim_lookahead = 2.0
-damage = 25.0
+damage = 25
 explosion_radius = 32.0
 explosion_knockback = 40.0
-projectile_sprite = ExtResource("2_mu5uv")
+projectile_sprite = ExtResource("2_20hh0")
 projectile_lifetime = 0.5
 projectile_rotate = false
-fire_sfx = Array[AudioStream]([ExtResource("3_464jr")])
-bullet_hit_sfx = Array[AudioStream]([ExtResource("4_1mvbu")])
+fire_sfx = Array[AudioStream]([ExtResource("3_gi3te")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("4_i1l2p")])
 max_range = 150.0
 animation_bullet_spawn_offset = 0.25
-debris_sprite = SubResource("AtlasTexture_3awsr")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_6jpqw")

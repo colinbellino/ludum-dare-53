@@ -1,5 +1,6 @@
 extends Node
 
+# TODO: Move to Game.gd
 const PHYSICS_LAYER_MONSTER_HURTABLE := 4
 const PHYSICS_LAYER_SHIP_HURTABLE := 2
 const PHYSICS_LAYER_BLOCKER := 1
@@ -12,7 +13,6 @@ var COLOR_RED : Color = Color.html("a02c1b")
 var scene_properties : Dictionary = {}
 var scene_by_category : Dictionary = {}
 var category_defaults : Dictionary = {}
-var level: Level
 var money : float # Initialized in Level.ready
 var voice_played : bool
 var cheat_invincible : bool

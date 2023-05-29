@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://v5lj0hdgdckn"]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bnh2aileygb3i" path="res://assets/fx/ssanim_explosion_bysquid.png" id="1_hncvg"]
-[ext_resource type="Script" path="res://game/fx/DamagingExplosion.gd" id="2_i63lo"]
+[ext_resource type="Script" path="res://game/vfx/DamagingExplosion.gd" id="2_i63lo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8phg"]
 radius = 16.0

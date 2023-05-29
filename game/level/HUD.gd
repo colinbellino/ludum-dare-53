@@ -1,4 +1,4 @@
-class_name HUD extends Control
+class_name HUD extends Node
 
 var button_pause: Button
 var panel_debug: Panel
@@ -14,14 +14,14 @@ func _ready() -> void:
 	progress_wave = get_node("%Wave")
 
 func _process(_delta: float) -> void:
-	if GameData.level:
-		if GameData.level.mob_spawner.is_connected("wave_over", on_wave_over) == false:
-			GameData.level.mob_spawner.connect("wave_over", on_wave_over)
+	if Game.level:
+		if Game.level.mob_spawner.is_connected("wave_over", on_wave_over) == false:
+			Game.level.mob_spawner.connect("wave_over", on_wave_over)
 
 		label_money.text = tr("Currency: %d") % [GameData.money]
 
 func button_pause_pressed() -> void:
-	Overlay.show_modal(GameData.RESOUCE_UI_PAUSE)
+	Overlay.show_modal(Res.SCENE_PAUSE)
 
 func on_wave_over(wave: Wave, wave_index: int, wave_length: int) -> void:
 	var bg = progress_wave.get("theme_override_styles/fill").duplicate()

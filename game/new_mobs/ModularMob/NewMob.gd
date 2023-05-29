@@ -30,10 +30,10 @@ func _ready() -> void:
 	pivot = get_node_or_null("Pivot")
 
 func _physics_process(delta: float) -> void:
-	if not GameData.level:
+	if not Game.level:
 		return
 
-	var ship_position = GameData.level.ship.global_position
+	var ship_position = Game.ship.global_position
 	var distance_to_target = global_position.distance_to(target_position)
 
 	if contact_monitor:

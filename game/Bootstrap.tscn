@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjn2wfb3vq5ib"]
+
+[ext_resource type="Script" path="res://game/Bootstrap.gd" id="1_uttyj"]
+
+[node name="Bootstrap" type="Node2D"]
+script = ExtResource("1_uttyj")

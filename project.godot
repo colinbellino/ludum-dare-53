@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Space Haulers"
-run/main_scene="res://game/level/Level.tscn"
+run/main_scene="res://game/Bootstrap.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -24,12 +24,12 @@ buses/default_bus_layout="res://assets/default_bus_layout.tres"
 
 AudioPlayer="*res://scripts/autoload/AudioPlayer.tscn"
 Settings="*res://scripts/autoload/Settings.gd"
-PlayerProfile="*res://scripts/autoload/PlayerProfile.gd"
 Overlay="*res://scripts/autoload/Overlay.tscn"
 UserInteraction="*res://scripts/autoload/UserInteraction.gd"
+VFXPlayer="*res://scripts/autoload/VFXPlayer.gd"
 GameData="*res://scripts/autoload/GameData.gd"
-FxSpawner="*res://scripts/autoload/FX.gd"
 Res="*res://scripts/autoload/Res.gd"
+Game="*res://game/Game.tscn"
 
 [debug]
 

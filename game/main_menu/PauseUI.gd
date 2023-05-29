@@ -31,11 +31,12 @@ func button_close_pressed() -> void:
 	close()
 
 func button_settings_pressed() -> void:
-	child_node = Overlay.show_modal(Res.UI_SETTINGS)
+	child_node = Overlay.show_modal(Res.SCENE_SETTINGS)
 
 func button_title_pressed() -> void:
 	queue_free()
-	Overlay.transition(GameData.PATH_LEVEL)
+	# FIXME:
+	Overlay.transition(Res.SCENE_LEVEL)
 
 func button_quit_pressed() -> void:
 	get_tree().quit()

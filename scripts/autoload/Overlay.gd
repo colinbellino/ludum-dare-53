@@ -3,14 +3,13 @@ extends Node
 var num_modals_open : int = 0
 var focus_stack : Array[Node] = []
 
-func transition(new_scene: String) -> void:
+func transition(next_scene: PackedScene) -> void:
 	# We can add a animation later here if we want
-	var next_scene = load(new_scene)
 	get_tree().change_scene_to_packed(next_scene)
 	# We maybe need to close all modals here?
 	focus_stack = []
 
-func show_modal(scene: PackedScene, pause : bool = true) -> Node:
+func show_modal(next_scene: PackedScene, pause : bool = true) -> Node:
 	if num_modals_open == 0 && pause:
 		get_tree().paused = true
 	num_modals_open += 1
@@ -20,10 +19,10 @@ func show_modal(scene: PackedScene, pause : bool = true) -> Node:
 	if focused != null:
 		focused.release_focus()
 
-	var node : Node = scene.instantiate()
-	node.process_mode = PROCESS_MODE_ALWAYS
-	add_child(node)
+	var node : Node = next_scene.instantiate()
+	# node.process_mode = PROCESS_MODE_ALWAYS
 	node.tree_exited.connect(self.on_modal_closed)
+	add_child(node)
 
 	return node
 

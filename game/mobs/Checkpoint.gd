@@ -6,15 +6,15 @@ var acceleration : float = 1.0
 func _ready() -> void:
 	trigger_area = get_node("%CheckpointArea")
 	trigger_area.connect("area_entered", on_area_entered)
-	GameData.level.connect("checkpoint_reached", on_checkpoint_reached)
-	GameData.level.connect("checkpoint_departed", on_checkpoint_departed)
+	Game.level.connect("checkpoint_reached", on_checkpoint_reached)
+	Game.level.connect("checkpoint_departed", on_checkpoint_departed)
 
 func _process(delta: float) -> void:
 	position += Vector2(0, 50) * delta * acceleration
 
 func on_area_entered(area: Area2D) -> void:
-	if area.get_owner() == GameData.level.ship:
-		GameData.level.trigger_checkpoint_reached()
+	if area.get_owner() == Game.ship:
+		Game.level.trigger_checkpoint_reached()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

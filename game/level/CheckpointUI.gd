@@ -1,4 +1,4 @@
-class_name CheckpointUI extends Control
+class_name CheckpointUI extends Node
 
 var cargo_text_default : String
 var text_cargo_shipped : RichTextLabel
@@ -14,21 +14,20 @@ func _ready() -> void:
 	button_continue = get_node("%Continue")
 	button_continue.grab_focus()
 
-	var level = GameData.level
 	label_title = get_node("%Title")
-	label_title.text = "Alpha Centauri #" + str(level.checkpoint_index)
+	label_title.text = "Alpha Centauri #" + str(Game.level.checkpoint_index)
 
 	text_cargo_shipped = get_node("%cargo_shipped")
-	text_cargo_shipped.text = tr(text_cargo_shipped.text) % [level.last_checkpoint_cargo_worth]
+	text_cargo_shipped.text = tr(text_cargo_shipped.text) % [Game.level.last_checkpoint_cargo_worth]
 
 	text_cargo_req = get_node("%cargo_req")
-	text_cargo_req.text = tr(text_cargo_req.text) % [level.cargo_required]
+	text_cargo_req.text = tr(text_cargo_req.text) % [Game.CARGO_REQUIRED]
 
 	text_cargo_worth = get_node("%cargo_worth")
 	cargo_text_default = text_cargo_worth.text
 
 func _process(_delta: float) -> void:
-	text_cargo_worth.text = tr(cargo_text_default) % [GameData.level.cargo_worth(), GameData.level.calc_difficulty_multiplier()*100.0]
+	text_cargo_worth.text = tr(cargo_text_default) % [Game.level.cargo_worth(), Game.level.calc_difficulty_multiplier()*100.0]
 
 func set_text(node: RichTextLabel, values: Array) -> void:
 	if not templates.has(node):
@@ -36,7 +35,7 @@ func set_text(node: RichTextLabel, values: Array) -> void:
 	node.text = templates[node] % values
 
 func on_continue_pressed() -> void:
-	if GameData.level.cargo_worth() < GameData.level.cargo_required:
+	if Game.level.cargo_worth() < Game.CARGO_REQUIRED:
 		AudioPlayer.play_ui_error_sound()
 	else:
 		queue_free()

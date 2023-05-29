@@ -27,7 +27,7 @@ func on_slot_selected(slot: ShipSlot) -> void:
 	node.action_pressed.connect(self.player_action.bind(slot))
 	current_ui_node = node
 
-func player_action(action_name: String, meta: Object, target: ShipSlot) -> void:
+func player_action(action_name: String, meta: PackedScene, target: ShipSlot) -> void:
 	match action_name:
 		"build":
 			target.build_structure(meta)
@@ -36,5 +36,5 @@ func player_action(action_name: String, meta: Object, target: ShipSlot) -> void:
 		"repair":
 			target.repair()
 		_:
-			print("Actiion not implemented yet")
+			print("Action not implemented yet: ", action_name)
 			AudioPlayer.play_ui_error_sound()

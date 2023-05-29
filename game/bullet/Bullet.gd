@@ -76,14 +76,13 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func spawn_explosion(pos: Vector2) -> void:
-	var explosion = Res.EXPLOSION_DAMAGING.instantiate()
+	var explosion = Res.VFX_EXPLOSION_DAMAGING.instantiate()
 	explosion.radius = explosion_radius
 	explosion.knockback = explosion_knockback
 	explosion.damage = damage
 	explosion.collision_mask = collision_mask
 	add_sibling(explosion)
 	explosion.global_position = pos
-
 
 func on_exit_screen() -> void:
 	if not Engine.is_editor_hint():

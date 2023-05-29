@@ -6,4 +6,4 @@ class_name Cargo extends BaseTurret
 func destroyed() -> void:
 	# FIXME: remove this, it's just to debug destroyed cargo
 	(get_node("Base") as Sprite2D).modulate.a = 0.5
-	GameData.level.on_cargo_destroyed(self)
+	Game.level.on_cargo_destroyed(self)

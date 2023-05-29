@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://caq64px4gbl73"]
+
+[ext_resource type="Script" path="res://game/Game.gd" id="1_dvc3v"]
+[ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="2_sbvc8"]
+[ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="3_nqotj"]
+[ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="4_myeii"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_dvc3v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CheckpointUI" parent="CanvasLayer" instance_placeholder="res://game/level/checkpoint_ui.tscn"]
+unique_name_in_owner = true
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_sbvc8")]
+unique_name_in_owner = true
+
+[node name="Ship" parent="CanvasLayer" instance=ExtResource("3_nqotj")]
+unique_name_in_owner = true
+position = Vector2(480, 270)
+
+[node name="BG" parent="." instance=ExtResource("4_myeii")]
+unique_name_in_owner = true

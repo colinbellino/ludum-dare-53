@@ -13,18 +13,15 @@ signal selected()
 func _ready() -> void:
 	health_bar = get_node("%HealthBar")
 	health_bar.visible = false
-
 	sprite = get_node("%Sprite2D")
 
 	add_to_group("Selectable")
-	if current_structure:
-		build_structure(current_structure, true)
 
 func build_structure(new_structure: PackedScene, initial_build : bool = false) -> void:
 	clear()
 	health = 1.0
 
-	var node : BaseTurret = new_structure.instantiate()
+	var node : Object = new_structure.instantiate() as Object
 
 	if initial_build == false:
 		if node.cost > GameData.money:
@@ -101,7 +98,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		if event.is_action_pressed("mouse_middle"):
 			if current_structure_node == null:
 				var meta := Res.TURRET_CARGO
-				GameData.level.ship.player_action("build", meta, self)
+				Game.ship.player_action("build", meta, self)
 
 		# Debug code to simulate damage
 		if event.is_action_pressed("mouse_right"):

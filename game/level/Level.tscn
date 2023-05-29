@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://coaiy7267rcni"]
+[gd_scene load_steps=20 format=3 uid="uid://dhhyikcdmqjnc"]
 
 [ext_resource type="Script" path="res://game/level/Level.gd" id="1_2gnls"]
-[ext_resource type="PackedScene" uid="uid://dwkdkc4usw3yn" path="res://game/ship/Ship.tscn" id="1_s3r65"]
 [ext_resource type="Script" path="res://scripts/resources/WaveList.gd" id="2_n8tay"]
-[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/mob_spawner.tscn" id="5_ih7dg"]
+[ext_resource type="PackedScene" uid="uid://cowit4pi4peyh" path="res://game/monster_spawner/mob_spawner.tscn" id="5_ih7dg"]
 [ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="5_terfg"]
 [ext_resource type="Resource" uid="uid://bcmdlykqkh1as" path="res://game/waves/wave_checkpoint.tres" id="5_ymyxe"]
 [ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="6_ehvou"]
@@ -11,11 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="7_ourkk"]
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="8_5jho8"]
 [ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="8_75juw"]
-[ext_resource type="PackedScene" uid="uid://b0t354m6rhmk5" path="res://game/level/hud.tscn" id="8_ssp35"]
 [ext_resource type="PackedScene" uid="uid://c5pa8k780rhko" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="9_6btbe"]
 [ext_resource type="PackedScene" uid="uid://bb1lsd0kwhogc" path="res://game/new_mobs/mob_watcher_1.tscn" id="10_ymv7o"]
 [ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="12_l6uy8"]
-[ext_resource type="PackedScene" uid="uid://kr7qkxwy0nhg" path="res://game/level/bg.tscn" id="14_xp8p3"]
 
 [sub_resource type="Resource" id="Resource_gghpq"]
 script = ExtResource("2_n8tay")
@@ -131,7 +128,8 @@ skip_chance = 0.2
 spawn_pattern = 0
 mobs = Array[PackedScene]([ExtResource("9_6btbe"), ExtResource("12_l6uy8"), ExtResource("10_ymv7o"), ExtResource("10_ymv7o"), ExtResource("9_6btbe"), ExtResource("9_6btbe")])
 
-[node name="Level" type="Node"]
+[node name="Level" type="CanvasLayer"]
+layer = 0
 script = ExtResource("1_2gnls")
 waves = SubResource("Resource_gghpq")
 
@@ -141,22 +139,6 @@ script = ExtResource("6_hy6mm")
 templates = Array[ExtResource("8_5jho8")]([SubResource("Resource_6y3ld"), SubResource("Resource_p3ya4"), SubResource("Resource_wy7jo"), SubResource("Resource_xp0y3"), SubResource("Resource_papjn")])
 checkpoint_wave = ExtResource("5_ymyxe")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="CheckpointUI" parent="CanvasLayer" instance_placeholder="res://game/level/checkpoint_ui.tscn"]
-unique_name_in_owner = true
-
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("8_ssp35")]
-unique_name_in_owner = true
-
-[node name="Ship" parent="." instance=ExtResource("1_s3r65")]
-unique_name_in_owner = true
-position = Vector2(480, 270)
-
 [node name="MobSpawner" parent="." instance=ExtResource("5_ih7dg")]
 unique_name_in_owner = true
 position = Vector2(480, 270)
-
-[node name="BG" parent="." instance=ExtResource("14_xp8p3")]
-unique_name_in_owner = true

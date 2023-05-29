@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqq0alerhcvd7"]
 
-[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_bcasg"]
-[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_x3eei"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_b2r8r"]
+[ext_resource type="Script" path="res://game/level/CheckpointUI.gd" id="2_uaf34"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5yl0"]
 bg_color = Color(0, 0, 0, 0.921569)
@@ -14,9 +14,9 @@ anchor_bottom = 1.0
 offset_left = -184.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("1_bcasg")
+theme = ExtResource("1_b2r8r")
 theme_override_styles/panel = SubResource("StyleBoxFlat_k5yl0")
-script = ExtResource("2_x3eei")
+script = ExtResource("2_uaf34")
 
 [node name="Title" type="Label" parent="."]
 unique_name_in_owner = true
@@ -29,7 +29,7 @@ offset_top = 12.0
 offset_right = 110.0
 offset_bottom = 34.0
 grow_horizontal = 2
-theme = ExtResource("1_bcasg")
+theme = ExtResource("1_b2r8r")
 theme_override_font_sizes/font_size = 16
 text = "Alpha Centauri #0"
 horizontal_alignment = 1
@@ -103,7 +103,7 @@ fit_content = true
 [node name="Continue" type="Button" parent="items"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("1_bcasg")
+theme = ExtResource("1_b2r8r")
 text = "Embark"
 
 [connection signal="pressed" from="items/Continue" to="." method="on_continue_pressed"]

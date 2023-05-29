@@ -29,8 +29,11 @@ func open(_slot: ShipSlot) -> void:
 			continue
 		child.pressed.connect(self.emit_action.bind(child))
 
-	if GameData.level:
-		button_cargo.visible = (GameData.level.state == Level.LevelStates.CHECKPOINT)
-		button_danger_cargo.visible = (GameData.level.state == Level.LevelStates.CHECKPOINT)
+	if Game.level:
+		button_cargo.visible = Game.level.is_at_checkpoint
+		button_danger_cargo.visible = Game.level.is_at_checkpoint
+	else:
+		button_cargo.visible = false
+		button_danger_cargo.visible = false
 
 	get_viewport().connect("gui_focus_changed", self.on_focus_changed)

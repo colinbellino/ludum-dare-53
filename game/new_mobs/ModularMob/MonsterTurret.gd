@@ -59,8 +59,8 @@ func _physics_process(delta: float) -> void:
 			shot_cooldown = 1.0 / fire_rate
 
 func spawn_bullet() -> void:
-	var level = GameData.level
-	var bullet = Res.SCENE_BULLET.instantiate()
+	var level = Game.level
+	var bullet = Res.BULLET.instantiate()
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed
 	bullet.damage = damage
@@ -92,7 +92,7 @@ func aquire_target() -> void:
 		if targets[0].global_position.distance_to(global_position) < max_range:
 			current_target = targets[0]
 
-func is_valid_target(target: Node) -> bool:
+func is_valid_target(target) -> bool:
 	return (
 		is_instance_valid(target)
 		&& target.hitpoints > 0
