@@ -64,6 +64,7 @@ launch_speed_max = 200
 launch_direction_randomness = 50
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
@@ -86,6 +87,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_m7bfp")
 

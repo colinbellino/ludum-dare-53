@@ -73,6 +73,7 @@ accleration = 4.0
 movement_type_when_in_range = 1
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(4, 6)
 scale = Vector2(17.4, 16.75)
 
@@ -104,6 +105,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 1)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_m7bfp")

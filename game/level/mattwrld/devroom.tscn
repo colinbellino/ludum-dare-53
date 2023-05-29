@@ -1,13 +1,29 @@
-[gd_scene load_steps=24 format=3 uid="uid://r0mr0eps8w7w"]
+[gd_scene load_steps=37 format=3 uid="uid://r0mr0eps8w7w"]
 
 [ext_resource type="Texture2D" uid="uid://bwle0dd1nqili" path="res://assets/sprites/cart/misc/ssanim_bullet_pearl.png" id="1_36qkb"]
 [ext_resource type="Texture2D" uid="uid://b1qd05xk4xex6" path="res://assets/sprites/cart/misc/ssanim_cycleorange.png" id="2_kbykc"]
 [ext_resource type="Texture2D" uid="uid://csc2sqpknby8t" path="res://assets/sprites/checkpointstation/ss_stationstructure_placeholder.png" id="3_v7dmn"]
-[ext_resource type="Texture2D" uid="uid://gyn2kphtlt1v" path="res://assets/sprites/enemies/dangersaucer.png" id="4_c06d5"]
 [ext_resource type="Texture2D" uid="uid://dd4pclj3lly7m" path="res://assets/sprites/checkpointstation/stationlower.png" id="4_kkk12"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="5_mqc5b"]
 [ext_resource type="Texture2D" uid="uid://d4see57ra15k" path="res://assets/sprites/checkpointstation/stationupper.png" id="5_x7xfj"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="6_308d4"]
 [ext_resource type="Texture2D" uid="uid://db6r24bbn2hbn" path="res://assets/sprites/cart/misc/thruster-sheet.png" id="6_x51uq"]
+[ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="7_1g6am"]
+[ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="8_khael"]
+[ext_resource type="PackedScene" uid="uid://c5pa8k780rhko" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="9_pmi2h"]
+[ext_resource type="PackedScene" uid="uid://dd2hjbk6dl63q" path="res://game/new_mobs/mob_chomper_red_1.tscn" id="10_3tt5k"]
+[ext_resource type="PackedScene" uid="uid://b3oia4tytewj7" path="res://game/new_mobs/mob_chomper_void_1.tscn" id="11_2uhrt"]
+[ext_resource type="PackedScene" uid="uid://d2p324c0o7ias" path="res://game/new_mobs/mob_crow_1.tscn" id="12_ue4ni"]
+[ext_resource type="PackedScene" uid="uid://bulvsvp3tdl3d" path="res://game/new_mobs/mob_crow_void_1.tscn" id="13_a7lv1"]
+[ext_resource type="PackedScene" uid="uid://b6vym1y2my4gm" path="res://game/new_mobs/mob_grabberqueen_1.tscn" id="14_gvk6o"]
+[ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="15_w3tls"]
+[ext_resource type="PackedScene" uid="uid://sqqwyclbjymj" path="res://game/new_mobs/mob_grabber_void_1.tscn" id="16_jj3kw"]
+[ext_resource type="PackedScene" uid="uid://qfbboqy84mu7" path="res://game/new_mobs/mob_saucerblue_1.tscn" id="17_mmgvx"]
+[ext_resource type="PackedScene" uid="uid://dq2m6vhsuf3jf" path="res://game/new_mobs/mob_saucer_1.tscn" id="18_4m377"]
+[ext_resource type="PackedScene" uid="uid://cmkdat30ns751" path="res://game/new_mobs/mob_stork_1.tscn" id="19_0epey"]
+[ext_resource type="PackedScene" uid="uid://jb2frd8vgjli" path="res://game/new_mobs/mob_stork_red_1.tscn" id="20_e6xt1"]
+[ext_resource type="PackedScene" uid="uid://bb1lsd0kwhogc" path="res://game/new_mobs/mob_watcher_1.tscn" id="21_mldsg"]
+[ext_resource type="PackedScene" uid="uid://bwwyjp7ypel86" path="res://game/new_mobs/mob_watcher_red_1.tscn" id="22_gaas8"]
 
 [sub_resource type="Animation" id="Animation_5o0gk"]
 length = 0.001
@@ -83,45 +99,6 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_yrfwv"),
 "new_animation": SubResource("Animation_f4vpd")
-}
-
-[sub_resource type="Animation" id="Animation_m3qnl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dangersaucer:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_qtt6x"]
-resource_name = "idle"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dangersaucer:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
-_data = {
-"RESET": SubResource("Animation_m3qnl"),
-"idle": SubResource("Animation_qtt6x")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eu7pk"]
@@ -232,20 +209,58 @@ texture = ExtResource("5_x7xfj")
 
 [node name="enemies" type="Node2D" parent="."]
 
-[node name="dangersaucer" type="Node2D" parent="enemies"]
-position = Vector2(87.9232, 32.2477)
+[node name="Node2D" type="Node2D" parent="enemies"]
 
-[node name="Dangersaucer" type="Sprite2D" parent="enemies/dangersaucer"]
-position = Vector2(2.93078, 0)
-texture = ExtResource("4_c06d5")
-hframes = 8
+[node name="asteroidlarge" parent="enemies/Node2D" instance=ExtResource("6_308d4")]
+position = Vector2(431.801, -20.5212)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="enemies/dangersaucer"]
-autoplay = "idle"
-speed_scale = 0.7
-libraries = {
-"": SubResource("AnimationLibrary_jdr8w")
-}
+[node name="asteroidmedium" parent="enemies/Node2D" instance=ExtResource("7_1g6am")]
+position = Vector2(461.109, -9.772)
+
+[node name="asteroidsmall" parent="enemies/Node2D" instance=ExtResource("8_khael")]
+position = Vector2(456.224, -28.3389)
+
+[node name="chomper_blue" parent="enemies/Node2D" instance=ExtResource("9_pmi2h")]
+position = Vector2(575.409, -35.1793)
+
+[node name="chomper_red" parent="enemies/Node2D" instance=ExtResource("10_3tt5k")]
+position = Vector2(579.317, 5.86322)
+
+[node name="chomper_void" parent="enemies/Node2D" instance=ExtResource("11_2uhrt")]
+position = Vector2(615.463, -18.5668)
+
+[node name="crow" parent="enemies/Node2D" instance=ExtResource("12_ue4ni")]
+position = Vector2(713.155, -29.3161)
+
+[node name="crow_void" parent="enemies/Node2D" instance=ExtResource("13_a7lv1")]
+position = Vector2(714.132, -4.88601)
+
+[node name="grabberqueen" parent="enemies/Node2D" instance=ExtResource("14_gvk6o")]
+position = Vector2(432.778, -139.74)
+
+[node name="grabber" parent="enemies/Node2D" instance=ExtResource("15_w3tls")]
+position = Vector2(406.401, -221.825)
+
+[node name="grabber_void" parent="enemies/Node2D" instance=ExtResource("16_jj3kw")]
+position = Vector2(489.439, -221.825)
+
+[node name="Dangersaucer" parent="enemies/Node2D" instance=ExtResource("17_mmgvx")]
+position = Vector2(480.647, 64.4953)
+
+[node name="Dangersaucer2" parent="enemies/Node2D" instance=ExtResource("18_4m377")]
+position = Vector2(423.009, 63.5181)
+
+[node name="stork" parent="enemies/Node2D" instance=ExtResource("19_0epey")]
+position = Vector2(812.802, -34.2021)
+
+[node name="stork_red" parent="enemies/Node2D" instance=ExtResource("20_e6xt1")]
+position = Vector2(806.94, 9.77201)
+
+[node name="watcher" parent="enemies/Node2D" instance=ExtResource("21_mldsg")]
+position = Vector2(610.578, -135.831)
+
+[node name="watcher_red" parent="enemies/Node2D" instance=ExtResource("22_gaas8")]
+position = Vector2(660.401, -136.808)
 
 [node name="SHIP" type="Node2D" parent="."]
 position = Vector2(223.716, -76.2218)
