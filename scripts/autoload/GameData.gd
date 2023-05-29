@@ -1,11 +1,11 @@
 extends Node
 
-# TODO: Move to Game.gd
 const PHYSICS_LAYER_MONSTER_HURTABLE := 4
 const PHYSICS_LAYER_SHIP_HURTABLE := 2
 const PHYSICS_LAYER_BLOCKER := 1
 const PHYSICS_LAYER_HURTABLE := PHYSICS_LAYER_MONSTER_HURTABLE | PHYSICS_LAYER_SHIP_HURTABLE
 const STARTING_MONEY := 200
+const CARGO_REQUIRED := 150
 
 var COLOR_GREEN : Color = Color.html("33cc73")
 var COLOR_ORANGE : Color = Color.html("c5cc28")
@@ -17,6 +17,8 @@ var money : float # Initialized in Level.ready
 var voice_played : bool
 var cheat_invincible : bool
 var cheat_skip_checkpoint : bool
+
+var level : Level
 
 func _ready() -> void:
 	add_category("Turrets", BaseTurret)

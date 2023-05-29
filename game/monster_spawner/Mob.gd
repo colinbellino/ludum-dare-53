@@ -32,22 +32,22 @@ func _ready() -> void:
 	bullet_spawn_position = get_node("%BulletSpawnPosition")
 
 func _physics_process(delta: float) -> void:
-	if not Game.level:
+	if not GameData.level:
 		return
 
 	match movement_type:
 		MovementTypes.HorizontalLine:
 			if direction_established == false:
-				target_velocity = (Game.ship.global_position - global_position).normalized() * speed
+				target_velocity = (GameData.level.ship.global_position - global_position).normalized() * speed
 				direction_established = true
 
 		MovementTypes.TowardsShip:
-			side_of_ship = int(signf(global_position.x - Game.ship.global_position.x))
-			target_position.x = Game.ship.global_position.x + approach_distance * side_of_ship
-			target_position.y = clamp(global_position.y, Game.ship.global_position.y-100.0, Game.ship.global_position.y+100.0)
+			side_of_ship = int(signf(global_position.x - GameData.level.ship.global_position.x))
+			target_position.x = GameData.level.ship.global_position.x + approach_distance * side_of_ship
+			target_position.y = clamp(global_position.y, GameData.level.ship.global_position.y-100.0, GameData.level.ship.global_position.y+100.0)
 			target_velocity = (target_position - global_position).normalized() * speed
 	if attack_type == AttackTypes.Ranged:
-		if global_position.distance_to(Game.ship.global_position) < attack_distance and attack_type == AttackTypes.Ranged:
+		if global_position.distance_to(GameData.level.ship.global_position) < attack_distance and attack_type == AttackTypes.Ranged:
 			if shot_cooldown > 0.0:
 				shot_cooldown -= delta
 			if shot_cooldown <= 0.0 and abs(Utils.angle_difference(target_rotation, current_rotation)) < PI/6:
@@ -71,7 +71,7 @@ func spawn_bullet() -> void:
 	bullet.speed = projectile_speed
 	bullet.damage = damage
 	bullet.direction = Vector2.ZERO.direction_to(bullet_spawn_position.position).rotated(current_rotation)
-	Game.level.add_child(bullet)
+	GameData.level.add_child(bullet)
 	bullet.global_position = bullet_spawn_position.global_position
 
 func take_hit(hit: int) -> void:

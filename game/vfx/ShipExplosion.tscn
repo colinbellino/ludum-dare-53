@@ -110,6 +110,6 @@ animations = [{
 }]
 
 [node name="ShipExplosion" type="AnimatedSprite2D"]
-z_index = 99
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_urnuv")
 script = ExtResource("2_c1vu5")

@@ -4,8 +4,6 @@ var button_close : Button
 var control_root : Control
 var control_content : Control
 
-signal close_pressed()
-
 func _ready() -> void:
 	AudioPlayer.play_music(Res.MUSIC_GAME_OVER, false)
 
@@ -31,6 +29,4 @@ func close() -> void:
 	tween.tween_property(control_content, "modulate", Color.TRANSPARENT, 1.0)
 	await tween.finished
 
-	queue_free()
-
-	emit_signal("close_pressed")
+	Overlay.transition(Res.SCENE_TITLE)

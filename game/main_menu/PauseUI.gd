@@ -9,6 +9,7 @@ var child_node: Node
 signal closed
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	button_close = get_node("%Close")
 	button_close.connect("pressed", button_close_pressed)
 	button_settings = get_node("%Settings")
@@ -35,8 +36,7 @@ func button_settings_pressed() -> void:
 
 func button_title_pressed() -> void:
 	queue_free()
-	# FIXME:
-	Overlay.transition(Res.SCENE_LEVEL)
+	Overlay.transition(Res.SCENE_TITLE)
 
 func button_quit_pressed() -> void:
 	get_tree().quit()

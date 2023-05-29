@@ -105,7 +105,7 @@ func spawn_bullet() -> void:
 		bullet.direction = Vector2.ZERO.direction_to(bullet_spawn_position.position)
 		node_turret.add_child(bullet)
 	else:
-		Game.level.add_child(bullet)
+		GameData.level.add_child(bullet)
 	bullet.global_position = bullet_spawn_position.global_position
 
 func aquire_target() -> void:
@@ -146,7 +146,7 @@ func calculate_cost(mode: String) -> int:
 	if mode == "build":
 		return cost
 	if mode == "sell":
-		if Game.level.is_at_checkpoint:
+		if GameData.level.is_at_checkpoint:
 			return int(cost * (hitpoints / max_hitpoints))
 		else:
 			return int(cost * (hitpoints / max_hitpoints) * 0.5)

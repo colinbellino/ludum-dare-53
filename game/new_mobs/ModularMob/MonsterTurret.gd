@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			shot_cooldown = 1.0 / fire_rate
 
 func spawn_bullet() -> void:
-	var level = Game.level
+	var level = GameData.level
 	var bullet = Res.BULLET.instantiate()
 	bullet.sprite = projectile_sprite
 	bullet.speed = projectile_speed

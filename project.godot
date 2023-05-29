@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Space Haulers"
-run/main_scene="res://game/Bootstrap.tscn"
+run/main_scene="res://game/main_menu/TitleUI.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
@@ -28,8 +29,8 @@ Overlay="*res://scripts/autoload/Overlay.tscn"
 UserInteraction="*res://scripts/autoload/UserInteraction.gd"
 VFXPlayer="*res://scripts/autoload/VFXPlayer.gd"
 GameData="*res://scripts/autoload/GameData.gd"
+DevTools="*res://scripts/autoload/DevTools.gd"
 Res="*res://scripts/autoload/Res.gd"
-Game="*res://game/Game.tscn"
 
 [debug]
 
@@ -256,3 +257,4 @@ locale/translations=PackedStringArray("res://assets/locale/text.en.translation",
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -14,9 +14,9 @@ func _ready() -> void:
 	progress_wave = get_node("%Wave")
 
 func _process(_delta: float) -> void:
-	if Game.level:
-		if Game.level.mob_spawner.is_connected("wave_over", on_wave_over) == false:
-			Game.level.mob_spawner.connect("wave_over", on_wave_over)
+	if GameData.level:
+		if GameData.level.mob_spawner.is_connected("wave_over", on_wave_over) == false:
+			GameData.level.mob_spawner.connect("wave_over", on_wave_over)
 
 		label_money.text = tr("Currency: %d") % [GameData.money]
 

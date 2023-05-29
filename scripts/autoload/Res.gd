@@ -2,14 +2,13 @@ extends Node
 
 var PATH_VERSION           := "res://version.txt"
 var PATH_CREDITS           := "res://credits.txt"
-var SCENE_BOOTSTRAP        := load("res://game/Bootstrap.tscn")
-var SCENE_LEVEL            := load("res://game/level/Level.tscn")
 var SCENE_TITLE            := load("res://game/main_menu/TitleUI.tscn")
 var SCENE_PAUSE            := load("res://game/main_menu/PauseUI.tscn")
 var SCENE_GAME_OVER        := load("res://game/main_menu/GameOverUI.tscn")
 var SCENE_SETTINGS         := load("res://game/main_menu/SettingsUI.tscn")
 var SCENE_CREDITS          := load("res://game/main_menu/CreditsUI.tscn")
 var SCENE_WORLD_MAP        := load("res://game/world_map/WorldMapUI.tscn")
+var SCENE_LEVEL            := load("res://game/level/Level.tscn")
 
 var MUSIC_TITLE            := preload("res://assets/audio/ludum_title.ogg")
 var MUSIC_VICTORY          := preload("res://assets/audio/victory.ogg")

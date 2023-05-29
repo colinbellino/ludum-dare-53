@@ -29,9 +29,9 @@ func open(_slot: ShipSlot) -> void:
 			continue
 		child.pressed.connect(self.emit_action.bind(child))
 
-	if Game.level:
-		button_cargo.visible = Game.level.is_at_checkpoint
-		button_danger_cargo.visible = Game.level.is_at_checkpoint
+	if GameData.level:
+		button_cargo.visible = GameData.level.is_at_checkpoint
+		button_danger_cargo.visible = GameData.level.is_at_checkpoint
 	else:
 		button_cargo.visible = false
 		button_danger_cargo.visible = false

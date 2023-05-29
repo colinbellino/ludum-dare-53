@@ -19,6 +19,7 @@ var slider_volume_sound : Slider
 signal closed
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	button_fullscreen = get_node("%Fullscreen")
 	button_resolution = get_node("%Resolution")
 	button_locale = get_node("%Locale")
