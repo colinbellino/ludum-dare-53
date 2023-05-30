@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dusxkafc3st0n"]
+[gd_scene load_steps=5 format=3 uid="uid://dusxkafc3st0n"]
 
 [ext_resource type="Script" path="res://game/world_map/WorldMapUI.gd" id="1_ihmcp"]
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="2_jecyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psehv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w664"]
+bg_color = Color(0, 0, 0, 0.784314)
 
 [node name="WorldMapUI" type="Control"]
 layout_mode = 3
@@ -13,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_ihmcp")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -24,3 +31,39 @@ offset_bottom = 65.0
 grow_horizontal = 2
 theme = ExtResource("2_jecyv")
 text = "WORLD MAP"
+
+[node name="Skip" type="Button" parent="."]
+unique_name_in_owner = true
+offset_right = 100.0
+offset_bottom = 30.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_psehv")
+text = "Skip
+"
+
+[node name="DebugPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 175.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7w664")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 11.5
+offset_right = 76.0
+offset_bottom = 62.5
+grow_horizontal = 2
+
+[node name="Debug" type="Label" parent="DebugPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jecyv")
+text = "- F1 : Regenerate map"
+vertical_alignment = 1
