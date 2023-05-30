@@ -65,5 +65,5 @@ grow_horizontal = 2
 [node name="Debug" type="Label" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_jecyv")
-text = "- F1 : Regenerate map"
+text = "- F1 : Regenerate "
 vertical_alignment = 1
