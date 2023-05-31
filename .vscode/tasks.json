@@ -99,7 +99,7 @@
             "dependsOn": [
                 "Web: build (release) + deploy",
                 "Windows: build (release) + deploy",
-                "Max: build (release) + deploy",
+                "Mac: build (release) + deploy",
                 "Linux: build (release) + deploy",
             ],
             "problemMatcher": []
