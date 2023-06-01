@@ -34,6 +34,7 @@ text = "WORLD MAP"
 
 [node name="Skip" type="Button" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 30.0
@@ -66,5 +67,5 @@ grow_horizontal = 2
 [node name="Debug" type="Label" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_jecyv")
-text = "- F1 : Regenerate "
+text = "- F1 : Reset & Regenerate"
 vertical_alignment = 1

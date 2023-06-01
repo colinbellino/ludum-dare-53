@@ -12,15 +12,17 @@ const COLOR_PREVIOUS := Color.WHITE
 const COLOR_SELECTED := Color.YELLOW
 const COLOR_OTHER    := Color.DIM_GRAY
 const COLOR_TEXT     := Color.WHITE
-const colors : Array[Color] = [
+
+var colors : Array[Color] = [
 	Color.RED,
 	Color.PURPLE,
 	Color.BLUE,
 	Color.GREEN,
 	Color.PINK,
 	Color.TEAL,
+	Color.DARK_RED,
 ]
-const names : Array[String] = [
+var names : Array[String] = [
 	"Huban 174",
 	"Achil",
 	"Waroros's Refuge",
@@ -48,7 +50,6 @@ const names : Array[String] = [
 	"Patdania Gamma",
 	"Beta Zedroid 12",
 ]
-
 var font : Font
 var button_skip : Button
 var draw_calls : Array[DrawCall]
@@ -87,7 +88,7 @@ func _process(_delta: float) -> void:
 		if selected_node.children.has(current_node):
 			GameData.map_previous_nodes.append(selected_node)
 			AudioPlayer.play_ui_button_sound()
-			if Input.is_key_pressed(KEY_SHIFT) != false:
+			if Input.is_key_pressed(KEY_SHIFT) == false:
 				Overlay.transition(Res.SCENE_LEVEL)
 			return
 		else:
@@ -155,15 +156,17 @@ func custom_array_sort(a: DrawCall, b: DrawCall) -> bool:
 func button_skip_pressed() -> void:
 	Overlay.transition(Res.SCENE_LEVEL)
 
-static func make_world_node(position: Vector2, node_name: String = "") -> WorldNode:
+func make_world_node(position: Vector2, node_name: String = "") -> WorldNode:
 	var node = WorldNode.new()
 	var rect_size := Vector2(RECT_SIZE, RECT_SIZE)
 	if node_name == "":
 		node.name = names[randi_range(0, names.size() - 1)]
+		names.erase(node.name)
 	else:
 		node.name = node_name
 	node.position = (position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))) * SCALE + OFFSET
 	node.color = colors[randi_range(0, colors.size() - 1 )]
+	colors.erase(node.color)
 	node.rect = Rect2(node.position - rect_size / 2, rect_size)
 	node.size = randf_range(10, 15)
 	return node
