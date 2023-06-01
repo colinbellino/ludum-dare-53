@@ -58,16 +58,16 @@ func spawn_audio_player() -> AudioStreamPlayer2D:
 	return audio_player
 
 func play_ui_hover_sound() -> void:
-	play_sound(Res.SFX_HOVER, position);
+	play_sound(Res.SFX_HOVER);
 
 func play_ui_button_sound() -> void:
-	play_sound(Res.SFX_CLICK, position);
+	play_sound(Res.SFX_CLICK);
 
 func play_ui_error_sound() -> void:
-	play_sound(Res.SFX_ERROR, position);
+	play_sound(Res.SFX_ERROR);
 
 func play_ui_money_sound() -> void:
-	play_sound(Res.SFX_MONEY, position);
+	play_sound(Res.SFX_MONEY);
 
 func play_ui_repair_sound() -> void:
-	play_sound(Res.SFX_REPAIR, position);
+	play_sound(Res.SFX_REPAIR);

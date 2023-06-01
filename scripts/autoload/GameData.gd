@@ -17,6 +17,8 @@ var money : float # Initialized in Level.ready
 var voice_played : bool
 var cheat_invincible : bool
 var cheat_skip_checkpoint : bool
+var map_previous_nodes : Array[WorldNode]
+var map_root : WorldNode
 
 var level : Level
 

@@ -1,7 +1,6 @@
 class_name Level extends Node
 
-@export var waves : WaveList
-
+var waves_list : WaveList
 var checkpoint_ui_placeholder : InstancePlaceholder
 var checkpoint_index : int = 1
 var next_wave_index : int
@@ -13,16 +12,12 @@ var game_over_triggered : bool
 var ship : Ship
 var hud : HUD
 
-const CHECKPOINT_WAVE_DELAY : int = 5
-
 signal checkpoint_reached()
 signal checkpoint_departed()
 
 func _ready() -> void:
 	hud = get_node("%HUD")
 	ship = get_node("%Ship")
-	# ship.find_child("ShipSlot3").build_structure(Res.TURRET_CARGO, true)
-	# ship.find_child("ShipSlot4").build_structure(Res.TURRET_CARGO, true)
 	checkpoint_ui_placeholder = get_node("%CheckpointUI")
 	wave_director = get_node("%WaveDirector")
 	mob_spawner = get_node("%MobSpawner")
@@ -36,7 +31,7 @@ func _ready() -> void:
 	GameData.money = GameData.STARTING_MONEY
 	ship.movement_mult = 1.0
 
-	mob_spawner.start_wave(waves.waves, next_wave_index)
+	start_wave()
 
 func _exit_tree() -> void:
 	GameData.level = null
@@ -99,24 +94,18 @@ func cargo_worth() -> int:
 	return value
 
 func on_checkpoint_continue_pressed() -> void:
-	if not is_inside_tree():
-		return
-
 	emit_signal("checkpoint_departed")
+
+	Overlay.transition(Res.SCENE_WORLD_MAP)
+
+func start_wave() -> void:
+	next_wave_index = 0
+	waves_list = wave_director.generate_waves(calc_difficulty(), 60.0)
+	mob_spawner.start_wave(waves_list.waves, next_wave_index)
+	ship.movement_mult = 1.0
 
 	AudioPlayer.play_sound(Res.SFX_DEFEND_CARGO)
 	await get_tree().create_timer(2).timeout
-
-	AudioPlayer.play_music(Res.MUSIC_ENCOUNTER)
-
-	checkpoint_index += 1
-
-	next_wave_index = 0
-	waves = wave_director.generate_waves(calc_difficulty(), 60.0)
-
-	await get_tree().create_timer(CHECKPOINT_WAVE_DELAY).timeout
-	mob_spawner.start_wave(waves.waves, next_wave_index)
-	ship.movement_mult = 1.0
 
 func on_cargo_destroyed(_cargo: Cargo) -> void:
 	if game_over_triggered == false && is_all_cargo_destroyed():

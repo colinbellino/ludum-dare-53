@@ -1,29 +1,24 @@
 class_name WorldMapUI extends CanvasItem
 
-class WorldNode:
-	var name: String
-	var position: Vector2
-	var color: Color
-	var children: Array[WorldNode]
-	var rect: Rect2
-	var size: float
-
 class DrawCall:
 	var layer: int
 	var proc
 
 const OFFSET := Vector2(480, 50)
-const SCALE := Vector2(80, 130)
+const SCALE := Vector2(100, 130)
 const RECT_SIZE := 48
+const COLOR_NEXT     := Color.WHITE
+const COLOR_PREVIOUS := Color.WHITE
+const COLOR_SELECTED := Color.YELLOW
+const COLOR_OTHER    := Color.DIM_GRAY
+const COLOR_TEXT     := Color.WHITE
 const colors : Array[Color] = [
 	Color.RED,
 	Color.PURPLE,
-	Color.BEIGE,
 	Color.BLUE,
 	Color.GREEN,
-	Color.YELLOW,
 	Color.PINK,
-	Color.ORANGE,
+	Color.TEAL,
 ]
 const names : Array[String] = [
 	"Huban 174",
@@ -54,7 +49,6 @@ const names : Array[String] = [
 	"Beta Zedroid 12",
 ]
 
-var root : WorldNode
 var font : Font
 var button_skip : Button
 var draw_calls : Array[DrawCall]
@@ -65,53 +59,82 @@ func _ready() -> void:
 	button_skip.connect("pressed", button_skip_pressed)
 	font = (get_node("Label") as Label).get_theme_font("font")
 
-	root = make_world_node(Vector2(0, 0), "Boss")
-	var node1 = make_world_node(Vector2(-1, 1))
-	var node2 = make_world_node(Vector2(1, 1))
-	var node3 = make_world_node(Vector2(-2, 2))
-	var node4 = make_world_node(Vector2(0, 2))
-	var node5 = make_world_node(Vector2(2, 2))
-	var start1 = make_world_node(Vector2(-1, 3))
-	var start2 = make_world_node(Vector2(1, 3))
+	if (GameData.map_previous_nodes.size() == 0):
+		var root = make_world_node(Vector2(0, 0), "Boss")
+		var node1 = make_world_node(Vector2(-1, 1))
+		var node2 = make_world_node(Vector2(1, 1))
+		var node3 = make_world_node(Vector2(-2, 2))
+		var node4 = make_world_node(Vector2(0, 2))
+		var node5 = make_world_node(Vector2(2, 2))
+		var start = make_world_node(Vector2(0, 3))
 
-	connect_node(root, node1)
-	connect_node(root, node2)
-	connect_node(node1, node3)
-	connect_node(node1, node4)
-	connect_node(node2, node4)
-	connect_node(node2, node5)
-	connect_node(node3, start1)
-	connect_node(node4, start1)
-	connect_node(node4, start2)
-	connect_node(node5, start2)
+		connect_node(root, node1)
+		connect_node(root, node2)
+		connect_node(node1, node3)
+		connect_node(node1, node4)
+		connect_node(node2, node4)
+		connect_node(node2, node5)
+		connect_node(node3, start)
+		connect_node(node4, start)
+		connect_node(node5, start)
+
+		GameData.map_previous_nodes = [start]
+		GameData.map_root = root
 
 func _process(_delta: float) -> void:
-	queue_redraw()
-
-	if Input.is_action_just_released("mouse_left"):
-		Overlay.transition(Res.SCENE_LEVEL)
+	var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+	if Input.is_action_just_released("mouse_left") && selected_node != null:
+		if selected_node.children.has(current_node):
+			GameData.map_previous_nodes.append(selected_node)
+			AudioPlayer.play_ui_button_sound()
+			if Input.is_key_pressed(KEY_SHIFT) != false:
+				Overlay.transition(Res.SCENE_LEVEL)
+			return
+		else:
+			AudioPlayer.play_ui_error_sound()
 
 	if Input.is_action_just_released("debug_1"):
+		GameData.map_previous_nodes = []
 		Overlay.transition(Res.SCENE_WORLD_MAP)
+		return
+
+	queue_redraw()
 
 func _draw() -> void:
-	var nodes : Array[WorldNode] = [root]
 	selected_node = null
+
+	var nodes : Array[WorldNode] = [GameData.map_root]
+	var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
 	while nodes.size() > 0:
-		var current = nodes.pop_front()
-		var selected : bool = current.rect.has_point(get_viewport().get_mouse_position())
-		if selected:
-			selected_node = current
-			var center : Vector2 = current.position + Vector2(-5 * current.name.length(), 30)
-			add_draw_call(func(): draw_circle(current.position, current.size + 2, Color.WHITE), 0)
-			add_draw_call(func(): draw_rect(Rect2(center.x, center.y, current.name.length() * 10 + 20, 30), Color(0.2, 0.2, 0.2, 1)), 3)
-			add_draw_call(func(): draw_string(font, center + Vector2(15, 20), current.name, HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color.WHITE), 4)
+		var node = nodes.pop_front()
+		var center : Vector2 = node.position + Vector2(-5 * node.name.length(), 30)
 
-		add_draw_call(func(): draw_circle(current.position, current.size, current.color), 1)
-		# add_draw_call(func(): draw_rect(current.rect, Color(1, 1, 1, 0.1)), 1)
+		var is_selected : bool = node.rect.has_point(get_viewport().get_mouse_position())
+		if is_selected:
+			selected_node = node
+			add_draw_call(func(): draw_circle(node.position, node.size + 5, COLOR_SELECTED), 1)
+			add_draw_call(func(): draw_rect(Rect2(center.x, center.y, node.name.length() * 10 + 20, 30), Color(0.2, 0.2, 0.2, 1)), 3)
+			add_draw_call(func(): draw_string(font, center + Vector2(15, 20), node.name, HORIZONTAL_ALIGNMENT_CENTER, -1, 16, COLOR_TEXT), 4)
+		else:
+			if current_node.parents.size() > 0 && current_node.parents.has(node):
+				add_draw_call(func(): draw_circle(node.position, node.size + 5, COLOR_NEXT), 1)
 
-		for child in current.children:
-			add_draw_call(func(): draw_line(current.position, child.position, Color.WHITE, 1))
+		var is_current : bool = node == current_node
+		if is_current:
+			add_draw_call(func(): draw_circle(node.position, node.size + 5, Color.ORANGE), 1)
+
+		add_draw_call(func(): draw_circle(node.position, node.size, node.color), 2)
+		# add_draw_call(func(): draw_rect(node.rect, Color(1, 1, 1, 0.1)), 99)
+
+		for child in node.children:
+			var color := COLOR_OTHER
+			if node == selected_node && child == current_node:
+				color = COLOR_SELECTED
+			elif child == current_node:
+				color = COLOR_NEXT
+			elif GameData.map_previous_nodes.has(node) && GameData.map_previous_nodes.has(child):
+				color = COLOR_PREVIOUS
+			add_draw_call(func(): draw_line(node.position, child.position, color, 2), 0)
 			nodes.push_back(child)
 
 	draw_calls.sort_custom(custom_array_sort)
@@ -139,7 +162,7 @@ static func make_world_node(position: Vector2, node_name: String = "") -> WorldN
 		node.name = names[randi_range(0, names.size() - 1)]
 	else:
 		node.name = node_name
-	node.position = (position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.1, 0.1))) * SCALE + OFFSET
+	node.position = (position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))) * SCALE + OFFSET
 	node.color = colors[randi_range(0, colors.size() - 1 )]
 	node.rect = Rect2(node.position - rect_size / 2, rect_size)
 	node.size = randf_range(10, 15)
@@ -147,3 +170,4 @@ static func make_world_node(position: Vector2, node_name: String = "") -> WorldN
 
 static func connect_node(from: WorldNode, to: WorldNode) -> void:
 	from.children.append(to)
+	to.parents.append(from)
