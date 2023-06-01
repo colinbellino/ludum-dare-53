@@ -96,7 +96,8 @@ func cargo_worth() -> int:
 func on_checkpoint_continue_pressed() -> void:
 	emit_signal("checkpoint_departed")
 
-	Overlay.transition(Res.SCENE_WORLD_MAP)
+	var world_map = Overlay.show_modal(Res.SCENE_WORLD_MAP)
+	world_map.connect("tree_exited", start_wave)
 
 func start_wave() -> void:
 	next_wave_index = 0
