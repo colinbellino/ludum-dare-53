@@ -6,8 +6,8 @@ class DrawCall:
 
 @export var font : Font
 
-const SCALE          := Vector2(0.2, 0.25)
-const OFFSET         := Vector2(0.5, 0.1)
+const SCALE          := Vector2(0.15, 0.25)
+const OFFSET         := Vector2(0.55, 0.1)
 const RECT_SIZE      := Vector2(48, 48)
 const COLOR_NEXT     := Color.WHITE
 const COLOR_PREVIOUS := Color.WHITE

@@ -19,6 +19,7 @@ contact_monitor = true
 can_sleep = false
 angular_velocity = 10.0
 script = ExtResource("1_sf168")
+collision_damage = 1
 launch_speed_min = 300
 launch_speed_max = 400
 launch_direction_randomness = 50

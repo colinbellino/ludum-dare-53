@@ -15,10 +15,11 @@ func _ready() -> void:
 
 	for child in get_tree().get_nodes_in_group("Selectable"):
 		if is_ancestor_of(child) and child is ShipSlot && child.get_parent().visible:
-			child.connect("selected", self.on_slot_selected.bind(child))
+			child.connect("selected", slot_selected.bind(child))
+			child.connect("damaged", slot_damaged)
 			health_max += 1
 
-func on_slot_selected(slot: ShipSlot) -> void:
+func slot_selected(slot: ShipSlot) -> void:
 	if _current_ui_node and is_instance_valid(_current_ui_node):
 		_current_ui_node.free()
 		_current_ui_node = null
@@ -29,6 +30,9 @@ func on_slot_selected(slot: ShipSlot) -> void:
 	node.open(slot)
 	node.action_pressed.connect(self.player_action.bind(slot))
 	_current_ui_node = node
+
+func slot_damaged(damage: int) -> void:
+	health_current = max(health_current - damage, 0)
 
 func player_action(action_name: String, meta: PackedScene, target: ShipSlot) -> void:
 	match action_name:

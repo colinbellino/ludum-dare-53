@@ -58,6 +58,7 @@ contact_monitor = true
 angular_velocity = 5.0
 angular_damp = -1.0
 script = ExtResource("2_nmpne")
+collision_damage = 1
 collision_discriminate_enemies = true
 launch_speed_min = 75
 launch_speed_max = 150

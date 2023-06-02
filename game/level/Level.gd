@@ -40,6 +40,8 @@ func _exit_tree() -> void:
 	GameData.level = null
 
 func _process(delta: float) -> void:
+	check_game_over()
+
 	if Input.is_action_just_released("ui_cancel"):
 		Overlay.show_modal(Res.SCENE_PAUSE)
 
@@ -111,8 +113,8 @@ func start_wave() -> void:
 	AudioPlayer.play_sound(Res.SFX_DEFEND_CARGO)
 	await get_tree().create_timer(2).timeout
 
-func on_cargo_destroyed(_cargo: Cargo) -> void:
-	if game_over_triggered == false && is_all_cargo_destroyed():
+func check_game_over() -> void:
+	if game_over_triggered == false && ship.health_current <= 0:
 		print("Game over")
 		movement_mult = 0.0
 		game_over_triggered = true

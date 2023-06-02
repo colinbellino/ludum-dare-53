@@ -39,7 +39,7 @@ var animation_player : AnimationPlayer
 var bullet_spawn_position : Marker2D
 var node_turret : Node2D
 
-signal damaged(damage)
+signal damaged(damage: int)
 
 func _init() -> void:
 	max_hitpoints = hitpoints

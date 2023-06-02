@@ -9,6 +9,7 @@ var current_structure_node : Node
 var is_selected : bool
 
 signal selected()
+signal damaged(damage: int)
 
 func _ready() -> void:
 	health_bar = get_node("%HealthBar")
@@ -70,7 +71,8 @@ func destroy() -> void:
 func deselect() -> void:
 	is_selected = false
 
-func on_structure_damaged(_damage: float) -> void:
+func on_structure_damaged(damage: int) -> void:
+	emit_signal("damaged", damage)
 	update_healthbar()
 
 func update_healthbar() -> void:
