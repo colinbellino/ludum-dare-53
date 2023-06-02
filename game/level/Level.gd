@@ -11,6 +11,7 @@ var is_at_checkpoint : bool
 var game_over_triggered : bool
 var ship : Ship
 var hud : HUD
+var movement_mult : float
 
 signal checkpoint_reached()
 signal checkpoint_departed()
@@ -29,7 +30,8 @@ func _ready() -> void:
 	Engine.set_time_scale(1)
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
-	ship.movement_mult = 1.0
+	ship.health_current = ship.health_max
+	print("ship.health_current: ", [ship.health_current])
 
 	start_wave()
 
@@ -103,7 +105,7 @@ func start_wave() -> void:
 	next_wave_index = 0
 	waves_list = wave_director.generate_waves(calc_difficulty(), 60.0)
 	mob_spawner.start_wave(waves_list.waves, next_wave_index)
-	ship.movement_mult = 1.0
+	movement_mult = 1.0
 
 	AudioPlayer.play_sound(Res.SFX_DEFEND_CARGO)
 	await get_tree().create_timer(2).timeout
@@ -111,7 +113,7 @@ func start_wave() -> void:
 func on_cargo_destroyed(_cargo: Cargo) -> void:
 	if game_over_triggered == false && is_all_cargo_destroyed():
 		print("Game over")
-		ship.movement_mult = 0.0
+		movement_mult = 0.0
 		game_over_triggered = true
 
 		for i in range(10):

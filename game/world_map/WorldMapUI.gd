@@ -41,7 +41,7 @@ var names : Array[String] = [
 	"Beta Zedroid 12",
 ]
 var button_skip : Button
-var map : WorldMapDraw
+var map : WorldMapControl
 
 # FIXME: this is leaking at can crash the game after a few resets
 func _ready() -> void:

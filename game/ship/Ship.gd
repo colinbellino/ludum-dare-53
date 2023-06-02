@@ -1,31 +1,34 @@
 class_name Ship extends Node2D
 
 @export var movement_speed : Vector2 = Vector2(0, -100)
-@export var movement_mult : float = 1.0
 
-var current_ui_node : Node2D
-var menu_construct : InstancePlaceholder
-var menu_repair : InstancePlaceholder
+var health_max : int
+var health_current : int
+
+var _current_ui_node : Node2D
+var _menu_construct : InstancePlaceholder
+var _menu_repair : InstancePlaceholder
 
 func _ready() -> void:
-	menu_construct = get_node("%ConstructMenu")
-	menu_repair = get_node("%RepairMenu")
+	_menu_construct = get_node("%ConstructMenu")
+	_menu_repair = get_node("%RepairMenu")
 
-	for node in get_tree().get_nodes_in_group("Selectable"):
-		if is_ancestor_of(node) and node is ShipSlot:
-			node.connect("selected", self.on_slot_selected.bind(node))
+	for child in get_tree().get_nodes_in_group("Selectable"):
+		if is_ancestor_of(child) and child is ShipSlot && child.get_parent().visible:
+			child.connect("selected", self.on_slot_selected.bind(child))
+			health_max += 1
 
 func on_slot_selected(slot: ShipSlot) -> void:
-	if current_ui_node and is_instance_valid(current_ui_node):
-		current_ui_node.free()
-		current_ui_node = null
+	if _current_ui_node and is_instance_valid(_current_ui_node):
+		_current_ui_node.free()
+		_current_ui_node = null
 
-	var ui_scene : InstancePlaceholder = menu_construct if not slot.current_structure else menu_repair
+	var ui_scene : InstancePlaceholder = _menu_construct if not slot.current_structure else _menu_repair
 	var node = ui_scene.create_instance()
 	node.global_position = slot.global_position
 	node.open(slot)
 	node.action_pressed.connect(self.player_action.bind(slot))
-	current_ui_node = node
+	_current_ui_node = node
 
 func player_action(action_name: String, meta: PackedScene, target: ShipSlot) -> void:
 	match action_name:

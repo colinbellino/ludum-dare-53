@@ -1,11 +1,13 @@
-class_name WorldMapDraw extends Control
+class_name WorldMapControl extends ColorRect
 
 class DrawCall:
 	var layer: int
 	var proc
 
-const OFFSET         := Vector2(480, 70)
-const SCALE          := Vector2(100, 130)
+@export var font : Font
+
+const SCALE          := Vector2(0.2, 0.25)
+const OFFSET         := Vector2(0.5, 0.1)
 const RECT_SIZE      := Vector2(48, 48)
 const COLOR_NEXT     := Color.WHITE
 const COLOR_PREVIOUS := Color.WHITE
@@ -13,7 +15,6 @@ const COLOR_SELECTED := Color.YELLOW
 const COLOR_OTHER    := Color.DIM_GRAY
 const COLOR_TEXT     := Color.WHITE
 
-@export var font : Font
 var draw_calls : Array[DrawCall]
 var selected_node: WorldNode
 
@@ -44,7 +45,7 @@ func _draw() -> void:
 	var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
 	while nodes.size() > 0:
 		var node = nodes.pop_front()
-		var scaled_position = node.position * SCALE + OFFSET
+		var scaled_position = node.position * (size * SCALE) + (size * OFFSET)
 		var center : Vector2 = scaled_position + Vector2(-5 * node.name.length(), 30)
 
 		var node_rect = Rect2(scaled_position - RECT_SIZE / 2, RECT_SIZE)
@@ -66,14 +67,14 @@ func _draw() -> void:
 		# add_draw_call(func(): draw_rect(node.rect, Color(1, 1, 1, 0.1)), 99)
 
 		for child in node.children:
-			var color := COLOR_OTHER
+			var line_color := COLOR_OTHER
 			if node == selected_node && child == current_node:
-				color = COLOR_SELECTED
+				line_color = COLOR_SELECTED
 			elif child == current_node:
-				color = COLOR_NEXT
+				line_color = COLOR_NEXT
 			elif GameData.map_previous_nodes.has(node) && GameData.map_previous_nodes.has(child):
-				color = COLOR_PREVIOUS
-			add_draw_call(func(): draw_line(scaled_position, child.position * SCALE + OFFSET, color, 2), 0)
+				line_color = COLOR_PREVIOUS
+			add_draw_call(func(): draw_line(scaled_position, child.position * (size * SCALE) + (size * OFFSET), line_color, 2), 0)
 			nodes.push_back(child)
 
 	draw_calls.sort_custom(custom_array_sort)
