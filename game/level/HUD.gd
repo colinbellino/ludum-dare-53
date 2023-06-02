@@ -3,6 +3,7 @@ class_name HUD extends Node
 var button_pause: Button
 var panel_debug: Panel
 var label_money: Label
+var label_health: Label
 var progress_wave: ProgressBar
 
 func _ready() -> void:
@@ -11,6 +12,7 @@ func _ready() -> void:
 	panel_debug = get_node("%DebugPanel")
 	panel_debug.visible = OS.is_debug_build()
 	label_money = get_node("%Money")
+	label_health = get_node("%HealthLabel")
 	progress_wave = get_node("%Wave")
 
 func _process(_delta: float) -> void:
@@ -19,6 +21,14 @@ func _process(_delta: float) -> void:
 			GameData.level.mob_spawner.connect("wave_over", on_wave_over)
 
 		label_money.text = tr("Currency: %d") % [GameData.money]
+
+	update_health()
+
+func update_health() -> void:
+	if GameData.level == null:
+		return
+
+	label_health.text = "HP: %s/%s" % [GameData.level.ship.health_current, GameData.level.ship.health_max]
 
 func button_pause_pressed() -> void:
 	Overlay.show_modal(Res.SCENE_PAUSE)

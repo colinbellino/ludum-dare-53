@@ -41,6 +41,9 @@ func _draw() -> void:
 	if GameData.map_previous_nodes.size() == 0:
 		return
 
+	var mouse_position := get_viewport().get_mouse_position() - position
+	# add_draw_call(func(): draw_rect(Rect2(mouse_position - Vector2(10, 10) / 2, Vector2(10, 10)), Color(1, 1, 1, 0.1)), 99)
+
 	var nodes : Array[WorldNode] = [GameData.map_root]
 	var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
 	while nodes.size() > 0:
@@ -49,7 +52,7 @@ func _draw() -> void:
 		var center : Vector2 = scaled_position + Vector2(-5 * node.name.length(), 30)
 
 		var node_rect = Rect2(scaled_position - RECT_SIZE / 2, RECT_SIZE)
-		var is_selected : bool = node_rect.has_point(get_viewport().get_mouse_position())
+		var is_selected : bool = node_rect.has_point(mouse_position)
 		if is_selected:
 			selected_node = node
 			add_draw_call(func(): draw_circle(scaled_position, node.size + 5, COLOR_SELECTED), 1)
@@ -64,7 +67,7 @@ func _draw() -> void:
 			add_draw_call(func(): draw_circle(scaled_position, node.size + 5, Color.ORANGE), 1)
 
 		add_draw_call(func(): draw_circle(scaled_position, node.size, node.color), 2)
-		# add_draw_call(func(): draw_rect(node.rect, Color(1, 1, 1, 0.1)), 99)
+		# add_draw_call(func(): draw_rect(node_rect, Color(1, 1, 1, 0.1)), 99)
 
 		for child in node.children:
 			var line_color := COLOR_OTHER

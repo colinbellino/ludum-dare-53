@@ -31,7 +31,8 @@ func _ready() -> void:
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
 	ship.health_current = ship.health_max
-	print("ship.health_current: ", [ship.health_current])
+
+	hud.update_health()
 
 	start_wave()
 
