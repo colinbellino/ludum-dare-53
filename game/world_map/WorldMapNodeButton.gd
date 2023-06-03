@@ -2,14 +2,12 @@ class_name WorldMapNodeButton extends Control
 
 var panel_tooltip : Panel
 var label_name : Label
-var line : Line2D
 var button : TextureButton
 
 func _ready() -> void:
 	panel_tooltip = get_node("%Tooltip")
 	panel_tooltip.visible = false
 	label_name = get_node("%Name")
-	line = get_node("%Line2D")
 	button = get_node("%Button")
 	button.connect("mouse_entered", _mouse_entered)
 	button.connect("mouse_exited", _mouse_exited)

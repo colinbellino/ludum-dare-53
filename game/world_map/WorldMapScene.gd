@@ -71,7 +71,8 @@ func _ready() -> void:
 
 		GameData.map_previous_nodes = [start]
 		GameData.map_root = root
-		panel_map.init(GameData.map_root)
+
+	panel_map.init(GameData.map_root)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("debug_1"):
@@ -92,7 +93,7 @@ func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
 		names.erase(node.name)
 	else:
 		node.name = node_name
-	node.position = position #+ Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
+	node.position = position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
 	node.color = colors[randi_range(0, colors.size() - 1 )]
 	colors.erase(node.color)
 	node.size = randf_range(10, 15)

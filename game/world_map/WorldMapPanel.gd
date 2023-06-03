@@ -26,6 +26,8 @@ signal node_selected(node)
 func init(root_node: WorldMapNode) -> void:
 	var nodes_created : Array[WorldMapNode] = []
 	var nodes_to_create : Array[WorldMapNode] = [root_node]
+	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+
 	while nodes_to_create.size() > 0:
 		var node = nodes_to_create.pop_back()
 
@@ -35,14 +37,23 @@ func init(root_node: WorldMapNode) -> void:
 		node_button.label_name.text = node.name
 		node_button.position = _scale_position(node.position)
 		node_button.button.connect("pressed", _node_pressed.bind(node))
+		node_button.button.disabled = current_node.parents.size() == 0 || current_node.parents.has(node) == false
 		# node_button.connect("mouse_entered", _node_mouse_entered.bind(node))
 		# node_button.connect("mouse_exited", _node_mouse_exited.bind(node))
 		# node_button.modulate = node.color
 
 		for child in node.children:
 			print("node.position: ", [node.position, child.position])
-			node_button.line.add_point(Vector2.ZERO)
-			node_button.line.add_point(_scale_position(child.position) - _scale_position(node.position))
+			var line := Line2D.new()
+			line.width = 2
+			line.add_point(Vector2.ZERO)
+			line.add_point(_scale_position(child.position) - _scale_position(node.position))
+			line.default_color = Color.DIM_GRAY
+			if child == current_node:
+				line.default_color = Color.YELLOW
+			elif GameData.map_previous_nodes.has(node) && GameData.map_previous_nodes.has(child):
+				line.default_color = Color.WHITE
+			node_button.add_child(line)
 			if nodes_created.has(child) == false:
 				nodes_to_create.push_back(child)
 

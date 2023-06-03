@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvp8xrqq50722"]
+[gd_scene load_steps=7 format=3 uid="uid://cvp8xrqq50722"]
 
-[ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="1_ru1r1"]
+[ext_resource type="Texture2D" uid="uid://dkdelfbfx6ci6" path="res://assets/sprites/enemies/world_map_node_1.png" id="2_5kjgr"]
+[ext_resource type="Texture2D" uid="uid://ba3vbgmdptgkf" path="res://assets/sprites/enemies/world_map_node_0.png" id="2_oy5l2"]
 [ext_resource type="Script" path="res://game/world_map/WorldMapNodeButton.gd" id="2_rwmb4"]
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="3_2sofg"]
+[ext_resource type="Texture2D" uid="uid://r6fj8qs11dcb" path="res://assets/sprites/enemies/world_map_node_2.png" id="3_jo2jx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md4qu"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
@@ -29,7 +31,9 @@ offset_right = 13.0
 offset_bottom = 17.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("1_ru1r1")
+texture_normal = ExtResource("2_5kjgr")
+texture_hover = ExtResource("3_jo2jx")
+texture_disabled = ExtResource("2_oy5l2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tooltip" type="Panel" parent="Button"]
@@ -59,7 +63,3 @@ theme = ExtResource("3_2sofg")
 text = "Tooltip"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Line2D" type="Line2D" parent="."]
-unique_name_in_owner = true
-width = 2.0
