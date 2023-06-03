@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvp8xrqq50722"]
+
+[ext_resource type="Texture2D" uid="uid://b0ktx33qsuh6j" path="res://assets/sprites/enemies/AcidBlob.png" id="1_ru1r1"]
+[ext_resource type="Script" path="res://game/world_map/WorldMapNodeButton.gd" id="2_rwmb4"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="3_2sofg"]
+
+[node name="WorldMapNodeButton" type="TextureButton"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_ru1r1")
+script = ExtResource("2_rwmb4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Tooltip" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 18.0
+offset_right = 48.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="Tooltip"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2sofg")
+text = "Tooltip"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -7,7 +7,7 @@ var SCENE_PAUSE            := load("res://game/main_menu/PauseUI.tscn")
 var SCENE_GAME_OVER        := load("res://game/main_menu/GameOverUI.tscn")
 var SCENE_SETTINGS         := load("res://game/main_menu/SettingsUI.tscn")
 var SCENE_CREDITS          := load("res://game/main_menu/CreditsUI.tscn")
-var SCENE_WORLD_MAP        := load("res://game/world_map/WorldMapUI.tscn")
+var SCENE_WORLD_MAP        := load("res://game/world_map/WorldMapScene.tscn")
 var SCENE_LEVEL            := load("res://game/level/Level.tscn")
 
 var MUSIC_TITLE            := preload("res://assets/audio/ludum_title.ogg")
@@ -42,3 +42,4 @@ var TURRET_CARGO           := load("res://game/turrets/Cargo.tscn")
 var TURRET_CARGO_DANGEROUS := load("res://game/turrets/DangerousCargo.tscn")
 
 var BULLET                 := preload("res://game/bullet/Bullet.tscn")
+var WORLD_MAP_NODE_BUTTON  := preload("res://game/world_map/WorldMapNodeButton.tscn")

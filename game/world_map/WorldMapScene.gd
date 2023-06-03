@@ -1,4 +1,4 @@
-class_name WorldMapUI extends CanvasItem
+class_name WorldMapScene extends CanvasItem
 
 var colors : Array[Color] = [
 	Color.RED,
@@ -41,14 +41,14 @@ var names : Array[String] = [
 	"Beta Zedroid 12",
 ]
 var button_skip : Button
-var map : WorldMapControl
+var panel_map : WorldMapPanel
 
 # FIXME: this is leaking at can crash the game after a few resets
 func _ready() -> void:
 	button_skip = get_node("%Skip")
 	button_skip.connect("pressed", button_skip_pressed)
-	map = get_node("%WorldMap")
-	map.connect("node_selected", map_node_selected)
+	panel_map = get_node("%WorldMap")
+	panel_map.connect("node_selected", map_node_selected)
 
 	if (GameData.map_previous_nodes.size() == 0):
 		var root = make_world_node(Vector2(0, 0), "Boss")
@@ -71,6 +71,7 @@ func _ready() -> void:
 
 		GameData.map_previous_nodes = [start]
 		GameData.map_root = root
+		panel_map.init(GameData.map_root)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("debug_1"):

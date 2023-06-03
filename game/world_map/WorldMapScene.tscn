@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dusxkafc3st0n"]
+[gd_scene load_steps=6 format=3 uid="uid://dusxkafc3st0n"]
 
-[ext_resource type="Script" path="res://game/world_map/WorldMapUI.gd" id="1_ihmcp"]
-[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="2_jecyv"]
-[ext_resource type="Script" path="res://game/world_map/WorldMapControl.gd" id="3_n1aiy"]
-[ext_resource type="FontFile" uid="uid://b71pqclo48r2a" path="res://assets/fonts/silver.ttf" id="4_ehy3m"]
+[ext_resource type="Script" path="res://game/world_map/WorldMapScene.gd" id="1_gbx52"]
+[ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="2_ojd24"]
+[ext_resource type="PackedScene" uid="uid://jn0odets6p3y" path="res://game/world_map/WorldMapPanel.tscn" id="3_t2ph0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psehv"]
 bg_color = Color(0, 0, 0, 1)
@@ -11,7 +10,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w664"]
 bg_color = Color(0, 0, 0, 0.784314)
 
-[node name="WorldMapUI" type="Control"]
+[node name="WorldMapScene" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -19,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ihmcp")
+script = ExtResource("1_gbx52")
 
 [node name="Background" type="ColorRect" parent="."]
 visible = false
@@ -65,22 +64,19 @@ grow_horizontal = 2
 
 [node name="Debug" type="Label" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jecyv")
+theme = ExtResource("2_ojd24")
 text = "- F1 : Reset & Regenerate"
 vertical_alignment = 1
 
-[node name="WorldMap" type="ColorRect" parent="."]
+[node name="WorldMap" parent="." instance=ExtResource("3_t2ph0")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 77.0
-offset_right = -120.0
-offset_bottom = -58.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.784314)
-script = ExtResource("3_n1aiy")
-font = ExtResource("4_ehy3m")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -195.0
+offset_right = 360.0
+offset_bottom = 210.0
