@@ -92,7 +92,7 @@ func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
 		names.erase(node.name)
 	else:
 		node.name = node_name
-	node.position = (position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2)))
+	node.position = position #+ Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
 	node.color = colors[randi_range(0, colors.size() - 1 )]
 	colors.erase(node.color)
 	node.size = randf_range(10, 15)
