@@ -15,14 +15,18 @@ const COLOR_SELECTED := Color.YELLOW
 const COLOR_OTHER    := Color.DIM_GRAY
 const COLOR_TEXT     := Color.WHITE
 
-var _draw_calls : Array[DrawCall]
-var selected_node: WorldNode
+var selected_node: WorldMapNode
 
 signal node_selected(node)
 
-func init(root_node: WorldNode) -> void:
-	var nodes_created : Array[WorldNode] = []
-	var nodes_to_create : Array[WorldNode] = [root_node]
+# TODO: Node Hover
+# TODO: Node Active
+# TODO: Line
+# TODO: Line Active
+# TODO: Line Hover
+func init(root_node: WorldMapNode) -> void:
+	var nodes_created : Array[WorldMapNode] = []
+	var nodes_to_create : Array[WorldMapNode] = [root_node]
 	while nodes_to_create.size() > 0:
 		var world_node = nodes_to_create.pop_back()
 
@@ -31,6 +35,9 @@ func init(root_node: WorldNode) -> void:
 		add_child(node_button)
 		node_button.label_name.text = world_node.name
 		node_button.position = scaled_position
+		# node_button.connect("mouse_entered", _node_mouse_entered.bind(world_node))
+		# node_button.connect("mouse_exited", _node_mouse_exited.bind(world_node))
+		node_button.connect("pressed", _node_pressed.bind(world_node))
 		# node_button.modulate = world_node.color
 
 		for child in world_node.children:
@@ -39,27 +46,7 @@ func init(root_node: WorldNode) -> void:
 
 		nodes_created.push_back(world_node)
 
-		# print("world_node: ", world_node.name)
-		# print("nodes_created: ", nodes_created)
-		# print("nodes_to_create: ", nodes_to_create)
-
-func _process(_delta: float) -> void:
-	if GameData.map_previous_nodes.size() == 0:
-		return
-
-	# var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
-	# if Input.is_action_just_released("mouse_left") && selected_node != null:
-	# 	if selected_node.children.has(current_node):
-	# 		GameData.map_previous_nodes.append(selected_node)
-	# 		AudioPlayer.play_ui_button_sound()
-	# 		if Input.is_key_pressed(KEY_SHIFT) == false:
-	# 			emit_signal("node_selected", selected_node)
-	# 	else:
-	# 		AudioPlayer.play_ui_error_sound()
-
-	# queue_redraw()
-	# selected_node = null
-
+# TODO: Remove this
 func _draw() -> void:
 	if GameData.map_previous_nodes.size() == 0:
 		return
@@ -67,8 +54,8 @@ func _draw() -> void:
 	# var mouse_position := get_viewport().get_mouse_position() - position
 	# # add_draw_call(func(): draw_rect(Rect2(mouse_position - Vector2(10, 10) / 2, Vector2(10, 10)), Color(1, 1, 1, 0.1)), 99)
 
-	# var nodes : Array[WorldNode] = [GameData.map_root]
-	# var current_node : WorldNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+	# var nodes : Array[WorldMapNode] = [GameData.map_root]
+	# var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
 	# while nodes.size() > 0:
 	# 	var node = nodes.pop_front()
 	# 	var scaled_position = node.position * (size * SCALE) + (size * OFFSET)
@@ -109,11 +96,21 @@ func _draw() -> void:
 
 	# _draw_calls.clear()
 
-func add_draw_call(proc, layer : int = 0) -> void:
-	var draw_call := DrawCall.new()
-	draw_call.proc = proc
-	draw_call.layer = layer
-	_draw_calls.push_back(draw_call)
+func _node_mouse_entered(node: WorldMapNode) -> void:
+	print("_node_mouse_entered: ", node)
+	# selected_node = node
 
-func custom_array_sort(a: DrawCall, b: DrawCall) -> bool:
-	return a.layer < b.layer
+func _node_mouse_exited(node: WorldMapNode) -> void:
+	print("_node_mouse_exited: ", node)
+	# selected_node = null
+
+func _node_pressed(node: WorldMapNode) -> void:
+	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+	if Input.is_action_just_released("mouse_left") && node != null:
+		if node.children.has(current_node):
+			GameData.map_previous_nodes.append(node)
+			AudioPlayer.play_ui_button_sound()
+			if Input.is_key_pressed(KEY_SHIFT) == false:
+				emit_signal("node_selected", node)
+		else:
+			AudioPlayer.play_ui_error_sound()

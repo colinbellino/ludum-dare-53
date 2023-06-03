@@ -82,11 +82,11 @@ func _process(_delta: float) -> void:
 func button_skip_pressed() -> void:
 	queue_free()
 
-func map_node_selected(_selected_node: WorldNode) -> void:
+func map_node_selected(_selected_node: WorldMapNode) -> void:
 	queue_free()
 
-func make_world_node(position: Vector2, node_name: String = "") -> WorldNode:
-	var node = WorldNode.new()
+func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
+	var node = WorldMapNode.new()
 	if node_name == "":
 		node.name = names[randi_range(0, names.size() - 1)]
 		names.erase(node.name)
@@ -98,6 +98,6 @@ func make_world_node(position: Vector2, node_name: String = "") -> WorldNode:
 	node.size = randf_range(10, 15)
 	return node
 
-static func connect_node(from: WorldNode, to: WorldNode) -> void:
+static func connect_node(from: WorldMapNode, to: WorldMapNode) -> void:
 	from.children.append(to)
 	to.parents.append(from)

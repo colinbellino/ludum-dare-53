@@ -18,8 +18,8 @@ var voice_played : bool
 var cheat_invincible : bool
 var cheat_skip_checkpoint : bool
 
-var map_previous_nodes : Array[WorldNode]
-var map_root : WorldNode
+var map_previous_nodes : Array[WorldMapNode]
+var map_root : WorldMapNode
 
 var level : Level
 
