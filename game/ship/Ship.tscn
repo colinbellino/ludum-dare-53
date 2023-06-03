@@ -8,7 +8,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpml2"]
 atlas = ExtResource("2_plweg")
-region = Rect2(100, 1, 160, 127)
+region = Rect2(279, 2, 70, 93)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pn8f"]
 load_path = "res://.godot/imported/ss_ship_misc.png-0f593cf4e9a35a15f8f8269f9c179d78.ctex"
@@ -56,6 +56,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lkqt8"]
+radius = 16.0
 
 [node name="Ship" type="Node2D"]
 z_index = 2
@@ -63,47 +64,17 @@ script = ExtResource("1_sr84i")
 
 [node name="section_main" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-1, 0)
+position = Vector2(-1, -28)
 texture = SubResource("AtlasTexture_lpml2")
 offset = Vector2(1, 1.5)
 
-[node name="ShipSlot" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-7, -35)
-
-[node name="ShipSlot2" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(9, -35)
-
 [node name="ShipSlot3" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-7, -19)
+position = Vector2(-7, 15)
 current_structure = ExtResource("4_nqc78")
 
 [node name="ShipSlot4" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(9, -19)
+position = Vector2(9, 15)
 current_structure = ExtResource("4_nqc78")
-
-[node name="ShipSlot5" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(9, -3)
-
-[node name="ShipSlot6" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-7, -3)
-
-[node name="ShipSlot7" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-7, 13)
-
-[node name="ShipSlot8" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(9, 13)
-
-[node name="ShipSlot9" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(25, -26)
-
-[node name="ShipSlot10" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(25, -10)
-
-[node name="ShipSlot11" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-23, -10)
-
-[node name="ShipSlot12" parent="section_main" instance=ExtResource("3_tqesp")]
-position = Vector2(-23, -26)
 
 [node name="section_3x1" type="Sprite2D" parent="."]
 visible = false
@@ -139,16 +110,17 @@ position = Vector2(55, 18)
 
 [node name="section_boosters" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-49, 21)
+position = Vector2(-32, 0)
 texture = ExtResource("2_plweg")
 centered = false
 region_enabled = true
-region_rect = Rect2(30, 186, 98, 65)
+region_rect = Rect2(446, 2, 64, 71)
 
 [node name="thrusters" type="Sprite2D" parent="section_boosters"]
 show_behind_parent = true
-position = Vector2(49, 55)
+position = Vector2(10, 67)
 texture = ExtResource("5_8g5ul")
+centered = false
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="section_boosters/thrusters"]
@@ -156,6 +128,22 @@ autoplay = "thruster fire"
 libraries = {
 "": SubResource("AnimationLibrary_cf7ph")
 }
+
+[node name="ShipSlot5" parent="section_boosters" instance=ExtResource("3_tqesp")]
+position = Vector2(16, 26)
+current_structure = ExtResource("4_nqc78")
+
+[node name="ShipSlot6" parent="section_boosters" instance=ExtResource("3_tqesp")]
+position = Vector2(32, 18)
+current_structure = ExtResource("4_nqc78")
+
+[node name="ShipSlot7" parent="section_boosters" instance=ExtResource("3_tqesp")]
+position = Vector2(32, 34)
+current_structure = ExtResource("4_nqc78")
+
+[node name="ShipSlot8" parent="section_boosters" instance=ExtResource("3_tqesp")]
+position = Vector2(48, 26)
+current_structure = ExtResource("4_nqc78")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -173,6 +161,12 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 z_index = 2
-position = Vector2(0, -19)
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_lkqt8")
+debug_color = Color(0.870588, 0, 0.854902, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+z_index = 2
+position = Vector2(0, 26)
 shape = SubResource("CircleShape2D_lkqt8")
 debug_color = Color(0.870588, 0, 0.854902, 0.419608)
