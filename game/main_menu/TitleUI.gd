@@ -28,8 +28,8 @@ func start_game() -> void:
 		GameData.voice_played = true
 
 	await get_tree().create_timer(0.1).timeout
+	GameData.open_worlmap_on_level_ready = true
 	Overlay.transition(Res.SCENE_LEVEL)
-	Overlay.show_modal(Res.SCENE_WORLD_MAP)
 
 func settings() -> void:
 	Overlay.show_modal(Res.SCENE_SETTINGS, false)

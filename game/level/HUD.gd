@@ -2,27 +2,42 @@ class_name HUD extends Node
 
 var button_pause: Button
 var panel_debug: Panel
-var label_money: Label
+var label_currency: Label
 var label_health: Label
-var progress_wave: ProgressBar
+var level_panel: Panel
+var level_progress: ProgressBar
+var level_from: Label
+var level_to: Label
 
 func _ready() -> void:
 	button_pause = get_node("%Pause")
 	button_pause.connect("pressed", button_pause_pressed)
 	panel_debug = get_node("%DebugPanel")
 	panel_debug.visible = OS.is_debug_build()
-	label_money = get_node("%Money")
+	label_currency = get_node("%Currency")
 	label_health = get_node("%HealthLabel")
-	progress_wave = get_node("%Wave")
+	level_progress = get_node("%Wave")
+	level_panel = get_node("%Level")
+	level_from = get_node("%From")
+	level_from.text = ""
+	level_to = get_node("%To")
+	level_to.text = ""
 
 func _process(_delta: float) -> void:
-	if GameData.level:
-		if GameData.level.mob_spawner.is_connected("wave_over", on_wave_over) == false:
-			GameData.level.mob_spawner.connect("wave_over", on_wave_over)
-
-		label_money.text = tr("Currency: %d") % [GameData.money]
-
+	label_currency.text = tr("Currency: %d") % [GameData.money]
 	update_health()
+
+func show_level() -> void:
+	level_panel.visible = true
+	if GameData.map_previous_nodes.size() > 1:
+		var from_node = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 2]
+		var to_node = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+		level_to.text = to_node.name
+		level_from.text = from_node.name
+
+func hide_level() -> void:
+	level_panel.visible = false
+	level_progress.value = 0.0
 
 func update_health() -> void:
 	if GameData.level == null:
@@ -33,13 +48,13 @@ func update_health() -> void:
 func button_pause_pressed() -> void:
 	Overlay.show_modal(Res.SCENE_PAUSE)
 
-func on_wave_over(wave: Wave, wave_index: int, wave_length: int) -> void:
-	var bg = progress_wave.get("theme_override_styles/fill").duplicate()
+func update_wave_progress(wave: Wave, wave_index: int, wave_length: int) -> void:
+	var bg = level_progress.get("theme_override_styles/fill").duplicate()
 
 	if wave.is_checkpoint:
-		progress_wave.value = 1.0
+		level_progress.value = 1.0
 		bg.bg_color = GameData.COLOR_ORANGE
 	else:
-		progress_wave.value = float(wave_index + 1) / wave_length
+		level_progress.value = float(wave_index + 1) / wave_length
 		bg.bg_color = GameData.COLOR_GREEN
-	progress_wave.set("theme_override_styles/fill", bg)
+	level_progress.set("theme_override_styles/fill", bg)

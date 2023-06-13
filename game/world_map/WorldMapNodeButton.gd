@@ -3,6 +3,7 @@ class_name WorldMapNodeButton extends Control
 var panel_tooltip : Panel
 var label_name : Label
 var button : TextureButton
+var node: WorldMapNode
 
 func _ready() -> void:
 	panel_tooltip = get_node("%Tooltip")

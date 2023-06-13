@@ -1,9 +1,5 @@
 class_name WorldMapPanel extends Panel
 
-class DrawCall:
-	var layer: int
-	var proc
-
 @export var font : Font
 
 const SCALE          := Vector2(0.1, 0.25)
@@ -16,6 +12,7 @@ const COLOR_OTHER    := Color.DIM_GRAY
 const COLOR_TEXT     := Color.WHITE
 
 var selected_node: WorldMapNode
+var nodes: Dictionary
 
 signal node_selected(node)
 
@@ -29,10 +26,11 @@ func init(root_node: WorldMapNode) -> void:
 	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
 
 	while nodes_to_create.size() > 0:
-		var node = nodes_to_create.pop_back()
+		var node : WorldMapNode = nodes_to_create.pop_back()
 
 		var node_button : WorldMapNodeButton = Res.WORLD_MAP_NODE_BUTTON.instantiate()
 		add_child(node_button)
+		node_button.node = node
 		node_button.name = node.name
 		node_button.label_name.text = node.name
 		node_button.position = _scale_position(node.position)
@@ -42,8 +40,11 @@ func init(root_node: WorldMapNode) -> void:
 		# node_button.connect("mouse_exited", _node_mouse_exited.bind(node))
 		# node_button.modulate = node.color
 
+		# print(node.name)
+		# print("children", node.children.map(func(a): return a.name))
+		# print("parents ", node.parents.map(func(a): return a.name))
+
 		for child in node.children:
-			print("node.position: ", [node.position, child.position])
 			var line := Line2D.new()
 			line.width = 2
 			line.add_point(Vector2.ZERO)

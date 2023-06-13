@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0t354m6rhmk5"]
+[gd_scene load_steps=7 format=3 uid="uid://b0t354m6rhmk5"]
 
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_i5mdm"]
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
 bg_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ymej"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xsws"]
 
@@ -22,32 +25,54 @@ mouse_filter = 2
 theme = ExtResource("1_i5mdm")
 script = ExtResource("2_f74ki")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Level" type="Panel" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -110.0
-offset_right = 110.0
+offset_left = -210.0
+offset_right = 210.0
 offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7vs4")
 
-[node name="Money" type="Label" parent="Panel"]
+[node name="From" type="Label" parent="Level"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_right = 10.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -8.5
+offset_right = 159.0
+offset_bottom = 8.5
 grow_vertical = 2
 theme = ExtResource("1_i5mdm")
-text = "Currency: 9999"
+text = "FROM FROM FROM FROM FROM"
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Wave" type="ProgressBar" parent="Panel"]
+[node name="Wave" type="ProgressBar" parent="Level"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4ymej")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3xsws")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="To" type="Label" parent="Level"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -55,16 +80,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -8.0
-offset_right = -10.0
-offset_bottom = 8.0
+offset_left = -159.0
+offset_top = -8.5
+offset_bottom = 8.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_3xsws")
-max_value = 1.0
-value = 0.5
-show_percentage = false
+theme = ExtResource("1_i5mdm")
+text = "TO TO TO TO TO TO TO TO "
+vertical_alignment = 1
 
 [node name="DebugPanel" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -107,6 +130,16 @@ offset_bottom = 30.0
 grow_horizontal = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_e7p1d")
 text = "Pause"
+
+[node name="Currency" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 15.0
+offset_right = 93.0
+offset_bottom = 32.0
+theme = ExtResource("1_i5mdm")
+text = "Currency: 9999"
+vertical_alignment = 1
 
 [node name="Health" type="Control" parent="."]
 anchors_preset = 0

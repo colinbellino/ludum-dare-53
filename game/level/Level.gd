@@ -34,7 +34,12 @@ func _ready() -> void:
 
 	hud.update_health()
 
-	start_wave()
+	# start_wave()
+
+	if GameData.open_worlmap_on_level_ready:
+		GameData.open_worlmap_on_level_ready = false
+		var world_map = Overlay.show_modal(Res.SCENE_WORLD_MAP)
+		world_map.connect("tree_exited", start_wave)
 
 func _exit_tree() -> void:
 	GameData.level = null
@@ -51,10 +56,12 @@ func on_wave_spawn(wave: Wave, _wave_index: int, _wave_length: int) -> void:
 	if wave.is_checkpoint:
 		is_at_checkpoint = true
 
-func on_wave_over(_wave: Wave, wave_index: int, _wave_length: int) -> void:
+func on_wave_over(wave: Wave, wave_index: int, wave_length: int) -> void:
+	hud.update_wave_progress(wave, wave_index, wave_length)
 	next_wave_index = wave_index + 1
 
 func trigger_checkpoint_reached() -> void:
+	hud.hide_level()
 	emit_signal("checkpoint_reached")
 
 	AudioPlayer.play_music(Res.MUSIC_VICTORY, false)
@@ -105,6 +112,7 @@ func on_checkpoint_continue_pressed() -> void:
 	world_map.connect("tree_exited", start_wave)
 
 func start_wave() -> void:
+	hud.show_level()
 	next_wave_index = 0
 	waves_list = wave_director.generate_waves(calc_difficulty(), 60.0)
 	mob_spawner.start_wave(waves_list.waves, next_wave_index)

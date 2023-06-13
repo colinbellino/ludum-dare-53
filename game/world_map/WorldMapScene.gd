@@ -57,7 +57,7 @@ func _ready() -> void:
 		var node3 = make_world_node(Vector2(-2, 2))
 		var node4 = make_world_node(Vector2(0, 2))
 		var node5 = make_world_node(Vector2(2, 2))
-		var start = make_world_node(Vector2(0, 3))
+		var start = make_world_node(Vector2(0, 3), "Homeworld")
 
 		connect_node(root, node1)
 		connect_node(root, node2)
@@ -73,6 +73,7 @@ func _ready() -> void:
 		GameData.map_root = root
 
 	panel_map.init(GameData.map_root)
+	GameData.level.hud.hide_level()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("debug_1"):

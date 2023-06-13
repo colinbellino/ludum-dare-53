@@ -9,6 +9,8 @@ var _current_ui_node : Node2D
 var _menu_construct : InstancePlaceholder
 var _menu_repair : InstancePlaceholder
 
+const HEALTH_BY_SLOT : int = 4
+
 func _ready() -> void:
 	_menu_construct = get_node("%ConstructMenu")
 	_menu_repair = get_node("%RepairMenu")
@@ -17,7 +19,7 @@ func _ready() -> void:
 		if is_ancestor_of(child) and child is ShipSlot && child.get_parent().visible:
 			child.connect("selected", slot_selected.bind(child))
 			child.connect("damaged", slot_damaged)
-			health_max += 1
+			health_max += HEALTH_BY_SLOT
 
 func slot_selected(slot: ShipSlot) -> void:
 	if _current_ui_node and is_instance_valid(_current_ui_node):

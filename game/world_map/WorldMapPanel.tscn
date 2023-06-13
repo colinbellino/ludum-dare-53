@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://jn0odets6p3y"]
+[gd_scene load_steps=4 format=3 uid="uid://jn0odets6p3y"]
 
 [ext_resource type="Script" path="res://game/world_map/WorldMapPanel.gd" id="1_r4n7j"]
 [ext_resource type="FontFile" uid="uid://b71pqclo48r2a" path="res://assets/fonts/silver.ttf" id="2_p81oq"]
-[ext_resource type="PackedScene" uid="uid://cvp8xrqq50722" path="res://game/world_map/WorldMapNodeButton.tscn" id="3_psppy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5f40"]
 bg_color = Color(0, 0, 0, 0.823529)
@@ -22,6 +21,3 @@ size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_r5f40")
 script = ExtResource("1_r4n7j")
 font = ExtResource("2_p81oq")
-
-[node name="WorldMapNodeButton" parent="." instance=ExtResource("3_psppy")]
-layout_mode = 0
