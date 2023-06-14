@@ -1,50 +1,29 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwxaob5dlen7i"]
+[gd_scene load_steps=17 format=3 uid="uid://dgkybvrib4flo"]
 
-[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_te8lw"]
-[ext_resource type="Texture2D" uid="uid://7bnttnh247dc" path="res://assets/sprites/cart/misc/railbeam.png" id="2_2kr4d"]
-[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_t20bm"]
-[ext_resource type="Texture2D" uid="uid://1fagr0jnofua" path="res://assets/sprites/cart/misc/ssanim_muzzle_railbeamturret.png" id="3_sttwk"]
-[ext_resource type="AudioStream" uid="uid://c6adcn2y8qh06" path="res://assets/audio/shot_railbeam.wav" id="3_uha85"]
-[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="4_xahnv"]
+[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_kyqk3"]
+[ext_resource type="Texture2D" uid="uid://6vmhu8wapokt" path="res://assets/sprites/cart/misc/pearl1.png" id="2_540bx"]
+[ext_resource type="Texture2D" uid="uid://cs1clpq1weo2a" path="res://assets/sprites/cart/misc/pearl2.png" id="3_wkyv1"]
+[ext_resource type="Texture2D" uid="uid://qrc3b6q7v382" path="res://assets/sprites/cart/misc/pearl3.png" id="4_4jmkn"]
+[ext_resource type="Texture2D" uid="uid://y3gdamm3mik4" path="res://assets/sprites/cart/misc/pearl4.png" id="5_cvs3a"]
+[ext_resource type="AudioStream" uid="uid://dov17ip4hhlew" path="res://assets/audio/shot_plasma.wav" id="6_fkvw1"]
+[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="7_xcoet"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="8_x1ao2"]
+[ext_resource type="Texture2D" uid="uid://bxrlo2pyys7vu" path="res://assets/sprites/cart/misc/ssanim_muzzle_plasmaturret.png" id="9_vw8bm"]
 
-[sub_resource type="Animation" id="Animation_pnfxg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0.415686, 1)]
-}
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_clmhl"]
+frames = 4
+frame_0/texture = ExtResource("2_540bx")
+frame_0/duration = 0.05
+frame_1/texture = ExtResource("3_wkyv1")
+frame_1/duration = 0.05
+frame_2/texture = ExtResource("4_4jmkn")
+frame_2/duration = 0.05
+frame_3/texture = ExtResource("5_cvs3a")
+frame_3/duration = 0.05
 
-[sub_resource type="Animation" id="Animation_dp4s4"]
-resource_name = "redpulse"
-length = 2.0
-loop_mode = 1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.248266, 1.00605),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0.14902, 1), Color(1, 0, 0.415686, 1), Color(1, 0.380392, 0.415686, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ull0"]
-_data = {
-"RESET": SubResource("Animation_pnfxg"),
-"redpulse": SubResource("Animation_dp4s4")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecpj5"]
+atlas = ExtResource("8_x1ao2")
+region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ta8nm"]
 lifetime_randomness = 0.13
@@ -113,14 +92,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turret/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.26, 1, 0.901333, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ar1k4"]
@@ -129,63 +144,47 @@ _data = {
 "RESET": SubResource("Animation_vh3j6")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5m2kn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh4oe"]
 size = Vector2(16, 16)
 
-[node name="Railbeam" type="AnimatableBody2D"]
+[node name="Plasma" type="AnimatableBody2D"]
 collision_layer = 2
 collision_mask = 3
 sync_to_physics = false
-script = ExtResource("1_te8lw")
-cost = 400
-hitpoints = 75
-turn_speed = 0.5
-aim_lookahead = 0.25
-damage = 25
-pierce = 200
-projectile_sprite = ExtResource("2_2kr4d")
-projectile_is_beam = true
-projectile_speed = 300.0
-projectile_lifetime = 0.25
-fire_sfx = Array[AudioStream]([ExtResource("3_uha85")])
-bullet_hit_sfx = Array[AudioStream]([ExtResource("4_xahnv")])
-max_range = 300.0
+script = ExtResource("1_kyqk3")
+cost = 50
+fire_rate = 4.0
+hitpoints = 50
+projectile_sprite = SubResource("AnimatedTexture_clmhl")
+projectile_speed = 400.0
+fire_sfx = Array[AudioStream]([ExtResource("6_fkvw1")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("7_xcoet")])
+max_range = 618.0
+debris_sprite = SubResource("AtlasTexture_ecpj5")
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_t20bm")
+texture = ExtResource("8_x1ao2")
 region_enabled = true
-region_rect = Rect2(32, 80, 16, 16)
-
-[node name="Polygon2D" type="Polygon2D" parent="Base"]
-modulate = Color(1, 0, 0.415686, 1)
-show_behind_parent = true
-polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
-
-[node name="anim_redpulse" type="AnimationPlayer" parent="Base/Polygon2D"]
-autoplay = "redpulse"
-libraries = {
-"": SubResource("AnimationLibrary_7ull0")
-}
+region_rect = Rect2(38, 381, 16, 16)
 
 [node name="Turret" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 z_index = 2
-rotation = 3.14159
-texture = ExtResource("2_t20bm")
+texture = ExtResource("8_x1ao2")
 centered = false
-offset = Vector2(-11, -5)
+offset = Vector2(-10, -5)
 region_enabled = true
-region_rect = Rect2(34, 118, 19, 10)
+region_rect = Rect2(36, 288, 15, 10)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
-position = Vector2(-10, -2.53518e-05)
+position = Vector2(-10, 0)
 
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 visible = false
-modulate = Color(0.843137, 0.886275, 0.866667, 1)
-position = Vector2(-26, -14)
-texture = ExtResource("3_sttwk")
+modulate = Color(0.26, 1, 0.901333, 1)
+position = Vector2(-21, -8)
+texture = ExtResource("9_vw8bm")
 centered = false
 hframes = 3
 
@@ -197,10 +196,18 @@ process_material = SubResource("ParticleProcessMaterial_ta8nm")
 one_shot = true
 randomness = 0.14
 
+[node name="aboveturret" type="Node2D" parent="."]
+z_index = 10
+
+[node name="aboveturret" type="Sprite2D" parent="aboveturret"]
+texture = ExtResource("8_x1ao2")
+region_enabled = true
+region_rect = Rect2(8, 287, 12, 12)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ar1k4")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5m2kn")
+shape = SubResource("RectangleShape2D_fh4oe")

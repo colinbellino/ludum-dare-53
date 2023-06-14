@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwxaob5dlen7i"]
+[gd_scene load_steps=15 format=3 uid="uid://dx3opawx3bmro"]
 
-[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_te8lw"]
-[ext_resource type="Texture2D" uid="uid://7bnttnh247dc" path="res://assets/sprites/cart/misc/railbeam.png" id="2_2kr4d"]
-[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_t20bm"]
-[ext_resource type="Texture2D" uid="uid://1fagr0jnofua" path="res://assets/sprites/cart/misc/ssanim_muzzle_railbeamturret.png" id="3_sttwk"]
-[ext_resource type="AudioStream" uid="uid://c6adcn2y8qh06" path="res://assets/audio/shot_railbeam.wav" id="3_uha85"]
-[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="4_xahnv"]
+[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_3qtgl"]
+[ext_resource type="Texture2D" uid="uid://7bnttnh247dc" path="res://assets/sprites/cart/misc/railbeam.png" id="2_tg62c"]
+[ext_resource type="AudioStream" uid="uid://c6adcn2y8qh06" path="res://assets/audio/shot_railbeam.wav" id="3_muoy4"]
+[ext_resource type="AudioStream" uid="uid://cda1eo7nlwjfs" path="res://assets/audio/hit_plasma_rail.wav" id="4_bpusx"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="5_ogxlo"]
+[ext_resource type="Texture2D" uid="uid://1fagr0jnofua" path="res://assets/sprites/cart/misc/ssanim_muzzle_railbeamturret.png" id="6_618dc"]
 
 [sub_resource type="Animation" id="Animation_pnfxg"]
 length = 0.001
@@ -24,7 +24,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dp4s4"]
 resource_name = "redpulse"
-length = 2.0
 loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
@@ -34,10 +33,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.248266, 1.00605),
+"times": PackedFloat32Array(0, 0.248266, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 0, 0.14902, 1), Color(1, 0, 0.415686, 1), Color(1, 0.380392, 0.415686, 1)]
+"values": [Color(1, 0, 0.14902, 1), Color(1, 0.729412, 0.372549, 1), Color(1, 0, 0.14902, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ull0"]
@@ -136,25 +135,25 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 3
 sync_to_physics = false
-script = ExtResource("1_te8lw")
+script = ExtResource("1_3qtgl")
 cost = 400
 hitpoints = 75
 turn_speed = 0.5
 aim_lookahead = 0.25
 damage = 25
 pierce = 200
-projectile_sprite = ExtResource("2_2kr4d")
+projectile_sprite = ExtResource("2_tg62c")
 projectile_is_beam = true
 projectile_speed = 300.0
 projectile_lifetime = 0.25
-fire_sfx = Array[AudioStream]([ExtResource("3_uha85")])
-bullet_hit_sfx = Array[AudioStream]([ExtResource("4_xahnv")])
+fire_sfx = Array[AudioStream]([ExtResource("3_muoy4")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("4_bpusx")])
 max_range = 300.0
 
 [node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_t20bm")
+texture = ExtResource("5_ogxlo")
 region_enabled = true
-region_rect = Rect2(32, 80, 16, 16)
+region_rect = Rect2(70, 381, 16, 16)
 
 [node name="Polygon2D" type="Polygon2D" parent="Base"]
 modulate = Color(1, 0, 0.415686, 1)
@@ -171,11 +170,11 @@ libraries = {
 unique_name_in_owner = true
 z_index = 2
 rotation = 3.14159
-texture = ExtResource("2_t20bm")
+texture = ExtResource("5_ogxlo")
 centered = false
-offset = Vector2(-11, -5)
+offset = Vector2(-10, -6)
 region_enabled = true
-region_rect = Rect2(34, 118, 19, 10)
+region_rect = Rect2(68, 351, 20, 12)
 
 [node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
 unique_name_in_owner = true
@@ -184,8 +183,8 @@ position = Vector2(-10, -2.53518e-05)
 [node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
 visible = false
 modulate = Color(0.843137, 0.886275, 0.866667, 1)
-position = Vector2(-26, -14)
-texture = ExtResource("3_sttwk")
+position = Vector2(-25, -14)
+texture = ExtResource("6_618dc")
 centered = false
 hframes = 3
 
@@ -203,4 +202,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_5m2kn")

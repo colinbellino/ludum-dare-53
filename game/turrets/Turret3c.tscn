@@ -1,0 +1,193 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcnshgv0mdagd"]
+
+[ext_resource type="Script" path="res://game/turrets/BaseTurret.gd" id="1_njqy8"]
+[ext_resource type="Texture2D" uid="uid://dvlafc25dxnsk" path="res://assets/sprites/cart/misc/disruptorshot.png" id="2_j8iof"]
+[ext_resource type="AudioStream" uid="uid://uixe0fbt4ssu" path="res://assets/audio/shot_disruptor.wav" id="3_n8qt5"]
+[ext_resource type="AudioStream" uid="uid://don07c1qyx1ax" path="res://assets/audio/hit_disruptor.wav" id="4_54gi7"]
+[ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="5_yblkd"]
+[ext_resource type="Texture2D" uid="uid://cjaugs122auek" path="res://assets/sprites/cart/misc/ssanim_muzzle_disruptorturret.png" id="6_mbhmi"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ta8nm"]
+lifetime_randomness = 0.13
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 168.04
+gravity = Vector3(-10, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="Animation" id="Animation_qucwf"]
+resource_name = "Fire"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 0.07, 0.13),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turret/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 0.764706, 0, 1), Color(1, 0.219608, 0, 1), Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vh3j6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turret/SsanimMuzzlePlasmaturret:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turret/SsanimMuzzlePlasmaturret:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turret/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Turret/SsanimMuzzlePlasmaturret:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.26, 1, 0.901333, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ar1k4"]
+_data = {
+"Fire": SubResource("Animation_qucwf"),
+"RESET": SubResource("Animation_vh3j6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15y56"]
+size = Vector2(16, 16)
+
+[node name="Disruptor" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 3
+sync_to_physics = false
+script = ExtResource("1_njqy8")
+cost = 600
+fire_rate = 4.0
+hitpoints = 100
+turn_speed = 4.0
+aim_lookahead = 2.0
+damage = 25
+explosion_radius = 32.0
+explosion_knockback = 40.0
+projectile_sprite = ExtResource("2_j8iof")
+projectile_lifetime = 0.5
+projectile_rotate = false
+fire_sfx = Array[AudioStream]([ExtResource("3_n8qt5")])
+bullet_hit_sfx = Array[AudioStream]([ExtResource("4_54gi7")])
+max_range = 150.0
+animation_bullet_spawn_offset = 0.25
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("5_yblkd")
+region_enabled = true
+region_rect = Rect2(102, 381, 16, 16)
+
+[node name="Turret" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 2
+texture = ExtResource("5_yblkd")
+centered = false
+offset = Vector2(-12, -7)
+region_enabled = true
+region_rect = Rect2(98, 350, 21, 14)
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="Turret"]
+unique_name_in_owner = true
+position = Vector2(-10, 0)
+
+[node name="SsanimMuzzlePlasmaturret" type="Sprite2D" parent="Turret"]
+visible = false
+modulate = Color(0.26, 1, 0.901333, 1)
+position = Vector2(-23, -6)
+texture = ExtResource("6_mbhmi")
+centered = false
+hframes = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Turret"]
+visible = false
+position = Vector2(-10, 0)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_ta8nm")
+one_shot = true
+randomness = 0.14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ar1k4")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_15y56")
