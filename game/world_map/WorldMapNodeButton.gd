@@ -12,11 +12,13 @@ func _ready() -> void:
 	button = get_node("%Button")
 	button.connect("mouse_entered", _mouse_entered)
 	button.connect("mouse_exited", _mouse_exited)
-	# button.connect("focus_entered", _mouse_entered)
-	# button.connect("focus_exited", _focus_exited)
+	button.connect("focus_entered", _mouse_entered)
+	button.connect("focus_exited", _mouse_exited)
 
 func _mouse_entered() -> void:
 	panel_tooltip.visible = true
 
 func _mouse_exited() -> void:
+	if button.has_focus():
+		return
 	panel_tooltip.visible = false

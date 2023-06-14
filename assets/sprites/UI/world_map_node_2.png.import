@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba3vbgmdptgkf"
-path="res://.godot/imported/world_map_node_0.png-03aec91ac90b6ae5bddbfb1680507470.ctex"
+uid="uid://r6fj8qs11dcb"
+path="res://.godot/imported/world_map_node_2.png-207aef59e0fb917151393db01f5492c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/world_map_node_0.png"
-dest_files=["res://.godot/imported/world_map_node_0.png-03aec91ac90b6ae5bddbfb1680507470.ctex"]
+source_file="res://assets/sprites/UI/world_map_node_2.png"
+dest_files=["res://.godot/imported/world_map_node_2.png-207aef59e0fb917151393db01f5492c4.ctex"]
 
 [params]
 

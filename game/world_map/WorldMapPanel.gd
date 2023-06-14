@@ -36,6 +36,10 @@ func init(root_node: WorldMapNode) -> void:
 		node_button.position = _scale_position(node.position)
 		node_button.button.connect("pressed", _node_pressed.bind(node))
 		node_button.button.disabled = current_node.parents.size() == 0 || current_node.parents.has(node) == false
+		if node_button.button.disabled:
+			node_button.button.focus_mode = Control.FOCUS_NONE
+		else:
+			node_button.button.grab_focus()
 		# node_button.connect("mouse_entered", _node_mouse_entered.bind(node))
 		# node_button.connect("mouse_exited", _node_mouse_exited.bind(node))
 		# node_button.modulate = node.color
@@ -51,7 +55,7 @@ func init(root_node: WorldMapNode) -> void:
 			line.add_point(_scale_position(child.position) - _scale_position(node.position))
 			line.default_color = Color.DIM_GRAY
 			if child == current_node:
-				line.default_color = Color.YELLOW
+				line.default_color = Color.WHITE
 			elif GameData.map_previous_nodes.has(node) && GameData.map_previous_nodes.has(child):
 				line.default_color = Color.WHITE
 			node_button.add_child(line)
