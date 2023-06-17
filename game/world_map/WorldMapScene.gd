@@ -40,6 +40,13 @@ var names : Array[String] = [
 	"Patdania Gamma",
 	"Beta Zedroid 12",
 ]
+const wave_templates : Array[WaveTemplate] = [
+	Res.WAVE_TEMPLATE_0,
+	Res.WAVE_TEMPLATE_1,
+	Res.WAVE_TEMPLATE_2,
+	Res.WAVE_TEMPLATE_3,
+	Res.WAVE_TEMPLATE_4,
+]
 var button_skip : Button
 var panel_map : WorldMapPanel
 
@@ -51,26 +58,7 @@ func _ready() -> void:
 	panel_map.connect("node_selected", map_node_selected)
 
 	if (GameData.map_previous_nodes.size() == 0):
-		var root = make_world_node(Vector2(0, 0), "Boss")
-		var node1 = make_world_node(Vector2(-1, 1))
-		var node2 = make_world_node(Vector2(1, 1))
-		var node3 = make_world_node(Vector2(-2, 2))
-		var node4 = make_world_node(Vector2(0, 2))
-		var node5 = make_world_node(Vector2(2, 2))
-		var start = make_world_node(Vector2(0, 3), "Homeworld")
-
-		connect_node(root, node1)
-		connect_node(root, node2)
-		connect_node(node1, node3)
-		connect_node(node1, node4)
-		connect_node(node2, node4)
-		connect_node(node2, node5)
-		connect_node(node3, start)
-		connect_node(node4, start)
-		connect_node(node5, start)
-
-		GameData.map_previous_nodes = [start]
-		GameData.map_root = root
+		generate_world_map()
 
 	panel_map.init(GameData.map_root)
 	GameData.level.hud.hide_level()
@@ -89,12 +77,17 @@ func map_node_selected(_selected_node: WorldMapNode) -> void:
 
 func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
 	var node = WorldMapNode.new()
+
 	if node_name == "":
 		node.name = names[randi_range(0, names.size() - 1)]
 		names.erase(node.name)
 	else:
 		node.name = node_name
+		if node_name == "Boss":
+			node.checkpoint_wave = Res.WAVE_CHECKPOINT_1
+
 	node.position = position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
+	node.wave_template = wave_templates[randi_range(0, wave_templates.size() - 1)]
 	node.color = colors[randi_range(0, colors.size() - 1 )]
 	colors.erase(node.color)
 	node.size = randf_range(10, 15)
@@ -103,3 +96,25 @@ func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
 static func connect_node(from: WorldMapNode, to: WorldMapNode) -> void:
 	from.children.append(to)
 	to.parents.append(from)
+
+func generate_world_map() -> void:
+	var root = make_world_node(Vector2(0, 0), "Boss")
+	var node1 = make_world_node(Vector2(-1, 1))
+	var node2 = make_world_node(Vector2(1, 1))
+	var node3 = make_world_node(Vector2(-2, 2))
+	var node4 = make_world_node(Vector2(0, 2))
+	var node5 = make_world_node(Vector2(2, 2))
+	var start = make_world_node(Vector2(0, 3), "Homeworld")
+
+	connect_node(root, node1)
+	connect_node(root, node2)
+	connect_node(node1, node3)
+	connect_node(node1, node4)
+	connect_node(node2, node4)
+	connect_node(node2, node5)
+	connect_node(node3, start)
+	connect_node(node4, start)
+	connect_node(node5, start)
+
+	GameData.map_previous_nodes = [start]
+	GameData.map_root = root

@@ -6,7 +6,6 @@ var checkpoint_index : int = 1
 var next_wave_index : int
 var last_checkpoint_cargo_worth : int
 var mob_spawner : MobSpawner
-var wave_director : WaveDirector
 var is_at_checkpoint : bool
 var game_over_triggered : bool
 var ship : Ship
@@ -20,7 +19,6 @@ func _ready() -> void:
 	hud = get_node("%HUD")
 	ship = get_node("%Ship")
 	checkpoint_ui_placeholder = get_node("%CheckpointUI")
-	wave_director = get_node("%WaveDirector")
 	mob_spawner = get_node("%MobSpawner")
 	mob_spawner.connect("wave_over", on_wave_over)
 	mob_spawner.connect("wave_spawn", on_wave_spawn)
@@ -114,12 +112,12 @@ func on_checkpoint_continue_pressed() -> void:
 func start_wave() -> void:
 	hud.show_level()
 	next_wave_index = 0
-	waves_list = wave_director.generate_waves(calc_difficulty(), 60.0)
+	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+	waves_list = generate_waves(current_node)
 	mob_spawner.start_wave(waves_list.waves, next_wave_index)
 	movement_mult = 1.0
 
 	AudioPlayer.play_sound(Res.SFX_DEFEND_CARGO)
-	await get_tree().create_timer(2).timeout
 
 func check_game_over() -> void:
 	if game_over_triggered == false && ship.health_current <= 0:
@@ -157,3 +155,13 @@ func is_all_cargo_destroyed() -> bool:
 					cargo_destroyed += 1
 
 	return cargo > 0 && cargo == cargo_destroyed
+
+func generate_waves(world_map_node: WorldMapNode) -> WaveList:
+	var waves : WaveList = WaveList.new()
+	var total_length = 0
+	while total_length < world_map_node.length:
+		var wave = world_map_node.wave_template.generate_wave(world_map_node.difficulty)
+		total_length += wave.total_wave_time
+		waves.waves.append(wave)
+	waves.waves.append(world_map_node.checkpoint_wave)
+	return waves

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WaveTemplate" load_steps=6 format=3 uid="uid://dgsu00kh40ak2"]
+
+[ext_resource type="PackedScene" uid="uid://c5pa8k780rhko" path="res://game/new_mobs/mob_chomper_blue_1.tscn" id="1_u5fsf"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="2_dgfe8"]
+[ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="3_4vvj7"]
+[ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="4_uc0na"]
+[ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="5_jbu0b"]
+
+[resource]
+resource_name = "Chompers"
+script = ExtResource("5_jbu0b")
+min_difficulty = 1.0
+mid_difficulty = 4.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.5
+selection_weight_at_mid = 1.5
+selection_weight_at_max = 0.25
+repeat_n_times_base = 2
+repeat_increase_per_difficulty = 0.25
+repeat_randomness = 2
+mob_timer = 0.75
+mob_timer_increase_per_difficulty = -0.05
+mob_timer_floor = 0.5
+wait_timer = 0.5
+wait_timer_increase_per_difficulty = -0.05
+wait_timer_floor = 0.05
+skip_chance = 0.0
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("1_u5fsf"), ExtResource("2_dgfe8"), ExtResource("3_4vvj7"), ExtResource("4_uc0na"), ExtResource("1_u5fsf")])

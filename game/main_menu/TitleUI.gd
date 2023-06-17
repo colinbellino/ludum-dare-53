@@ -12,6 +12,8 @@ func _ready() -> void:
 	AudioPlayer.play_music(Res.MUSIC_TITLE)
 
 	GameData.money = GameData.STARTING_MONEY
+	GameData.map_previous_nodes = []
+	GameData.map_root = null
 
 	Engine.set_time_scale(1)
 

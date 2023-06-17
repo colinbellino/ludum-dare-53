@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=3 format=3 uid="uid://x4mp87euau2q"]
+
+[ext_resource type="PackedScene" uid="uid://c0fbojoq66o0e" path="res://game/mobs/mob_checkpoint_1.tscn" id="1_ikiuk"]
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="2_jne2b"]
+
+[resource]
+script = ExtResource("2_jne2b")
+repeat_n_times = 1
+mob_timer = 8.2
+wait_timer = 0.1
+skip_chance = 0.0
+spawn_pattern = 1
+mobs = Array[PackedScene]([ExtResource("1_ikiuk")])
+is_checkpoint = true
+total_wave_time = 8.3

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="WaveTemplate" load_steps=5 format=3 uid="uid://eb6j75i1iofn"]
+
+[ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="1_orbff"]
+[ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="2_ajyfp"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="3_vmti8"]
+[ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="4_6supe"]
+
+[resource]
+resource_name = "Just Asteroids"
+script = ExtResource("4_6supe")
+min_difficulty = 0.0
+mid_difficulty = 4999.0
+max_difficulty = 9999.0
+selection_weight_at_min = 0.5
+selection_weight_at_mid = 0.5
+selection_weight_at_max = 0.5
+repeat_n_times_base = 10
+repeat_increase_per_difficulty = 0.25
+repeat_randomness = 3
+mob_timer = 0.5
+mob_timer_increase_per_difficulty = -0.05
+mob_timer_floor = 0.2
+wait_timer = 0.75
+wait_timer_increase_per_difficulty = -0.05
+wait_timer_floor = 0.05
+skip_chance = 0.0
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("1_orbff"), ExtResource("2_ajyfp"), ExtResource("3_vmti8")])

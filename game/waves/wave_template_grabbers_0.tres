@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WaveTemplate" load_steps=7 format=3 uid="uid://cawf42sgr8t7i"]
+
+[ext_resource type="PackedScene" uid="uid://de3finheo2q5k" path="res://game/mobs/mob_grabber_1.tscn" id="1_3dhwh"]
+[ext_resource type="PackedScene" uid="uid://o7y0cqsnib48" path="res://game/new_mobs/mob_asteroidsmall_1.tscn" id="2_k0h25"]
+[ext_resource type="PackedScene" uid="uid://cdxr67xteq03r" path="res://game/new_mobs/mob_asteroidmedium_1.tscn" id="3_s7hby"]
+[ext_resource type="PackedScene" uid="uid://bjsp08y4mcbbp" path="res://game/new_mobs/mob_asteroidlarge_1.tscn" id="4_k7w2f"]
+[ext_resource type="PackedScene" uid="uid://cfmth625wwq77" path="res://game/new_mobs/mob_grabber_1.tscn" id="5_31mcs"]
+[ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="6_r0mwn"]
+
+[resource]
+resource_name = "Grabbers"
+script = ExtResource("6_r0mwn")
+min_difficulty = 3.0
+mid_difficulty = 7.0
+max_difficulty = 200.0
+selection_weight_at_min = 0.25
+selection_weight_at_mid = 1.0
+selection_weight_at_max = 0.25
+repeat_n_times_base = 4
+repeat_increase_per_difficulty = 0.0
+repeat_randomness = 0
+mob_timer = 0.75
+mob_timer_increase_per_difficulty = -0.05
+mob_timer_floor = 0.5
+wait_timer = 2.0
+wait_timer_increase_per_difficulty = -0.05
+wait_timer_floor = 0.5
+skip_chance = 0.2
+spawn_pattern = 0
+mobs = Array[PackedScene]([ExtResource("1_3dhwh"), ExtResource("2_k0h25"), ExtResource("3_s7hby"), ExtResource("4_k7w2f"), ExtResource("5_31mcs")])
