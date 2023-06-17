@@ -76,17 +76,18 @@ func on_structure_damaged(damage: int) -> void:
 	update_healthbar()
 
 func update_healthbar() -> void:
-	var value : float = current_structure_node.hitpoints / current_structure_node.max_hitpoints
-	var bg = health_bar.get("theme_override_styles/fill").duplicate()
+	# var value : float = current_structure_node.hitpoints / current_structure_node.max_hitpoints
+	# var bg = health_bar.get("theme_override_styles/fill").duplicate()
 
-	health_bar.visible = true
-	health_bar.value = value
-	bg.bg_color = GameData.COLOR_GREEN
-	if value < 0.66:
-		bg.bg_color = GameData.COLOR_ORANGE
-	if value < 0.33:
-		bg.bg_color = GameData.COLOR_RED
-	health_bar.set("theme_override_styles/fill", bg)
+	# health_bar.visible = true
+	# health_bar.value = value
+	# bg.bg_color = GameData.COLOR_GREEN
+	# if value < 0.66:
+	# 	bg.bg_color = GameData.COLOR_ORANGE
+	# if value < 0.33:
+	# 	bg.bg_color = GameData.COLOR_RED
+	# health_bar.set("theme_override_styles/fill", bg)
+	pass
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_left"):
