@@ -59,6 +59,13 @@ func on_wave_over(wave: Wave, wave_index: int, wave_length: int) -> void:
 	next_wave_index = wave_index + 1
 
 func trigger_checkpoint_reached() -> void:
+	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
+	var last_checkpoint := current_node.parents.size() == 0
+	if last_checkpoint:
+		print("Last checkpoint reached, back to title")
+		Overlay.transition(Res.SCENE_TITLE)
+		return
+
 	hud.hide_level()
 	emit_signal("checkpoint_reached")
 

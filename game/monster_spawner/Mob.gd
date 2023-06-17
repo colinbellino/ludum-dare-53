@@ -27,7 +27,7 @@ enum MovementTypes { Stationary, HorizontalLine, TowardsShip }
 enum AttackTypes { Ranged, Collision, Touch, Bomb }
 
 func _ready() -> void:
-	print("Mob: ", name)
+	# print("Mob: ", name)
 	pivot = get_node_or_null("Pivot")
 	bullet_spawn_position = get_node("%BulletSpawnPosition")
 

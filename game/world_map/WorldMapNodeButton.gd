@@ -16,9 +16,9 @@ func _ready() -> void:
 	button.connect("focus_exited", _mouse_exited)
 
 func _mouse_entered() -> void:
+	button.grab_focus()
 	panel_tooltip.visible = true
 
 func _mouse_exited() -> void:
-	if button.has_focus():
-		return
+	button.release_focus()
 	panel_tooltip.visible = false

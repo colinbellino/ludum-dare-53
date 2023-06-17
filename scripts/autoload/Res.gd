@@ -46,6 +46,7 @@ const WORLD_MAP_NODE_BUTTON  := preload("res://game/world_map/WorldMapNodeButton
 
 const WAVE_CHECKPOINT_0      := preload("res://game/waves/wave_checkpoint_0.tres")
 const WAVE_CHECKPOINT_1      := preload("res://game/waves/wave_checkpoint_1.tres")
+const WAVE_BOSS_0            := preload("res://game/waves/wave_boss_0.tres")
 
 const WAVE_TEMPLATE_0        := preload("res://game/waves/wave_template_asteroids_0.tres")
 const WAVE_TEMPLATE_1        := preload("res://game/waves/wave_template_chompers_0.tres")

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=12 format=3 uid="uid://8ore5xaacyb7"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://d05xqd6c8hjf8" path="res://game/new_mobs/mob_physics.tres" id="1_424ct"]
+[ext_resource type="Script" path="res://game/new_mobs/ModularMob/NewMob.gd" id="2_11jtl"]
+[ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="2_nhi45"]
+[ext_resource type="Texture2D" uid="uid://w4jnvhgwkth7" path="res://assets/sprites/enemies/crow_void-sheet.png" id="3_dm0po"]
+
+[sub_resource type="Animation" id="Animation_m3qnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dangersaucer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qtt6x"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdr8w"]
+_data = {
+"RESET": SubResource("Animation_m3qnl"),
+"idle": SubResource("Animation_qtt6x")
+}
+
+[sub_resource type="Animation" id="Animation_nf565"]
+resource_name = "Fire"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bm0np"]
+_data = {
+"Fire": SubResource("Animation_nf565")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7bfp"]
+radius = 38.0
+
+[sub_resource type="PackedScene" id="PackedScene_8v685"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1, 0, 35, 34, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("crow_void", "scale", "collision_layer", "collision_mask", "physics_material_override", "gravity_scale", "max_contacts_reported", "contact_monitor", "lock_rotation", "script", "hitpoints", "speed", "approach_distance", "accleration", "movement_type", "movement_type_when_in_range", "Monsters", "RigidBody2D", "VisibleOnScreenNotifier2D", "visible", "position", "mobidle", "root_node", "autoplay", "speed_scale", "libraries", "AnimationPlayer", "Pivot", "rotation", "texture", "hframes", "Sprite2D", "CollisionShape2D", "shape", "_on_visible_on_screen_notifier_2d_screen_exited", "screen_exited"),
+"node_count": 6,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 17, 0, -1, 15, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 5, 15, 5, 1, 16, 0, 0, 18, 18, -1, 3, 19, 12, 20, 13, 1, 14, 0, 0, 0, 26, 21, -1, 4, 22, 15, 23, 16, 24, 17, 25, 18, 0, 0, 0, 31, 27, -1, 4, 20, 19, 28, 20, 29, 21, 30, 22, 0, 0, 0, 26, 26, -1, 2, 22, 15, 25, 23, 0, 0, 0, 32, 32, -1, 4, 19, 12, 20, 24, 1, 25, 33, 26, 0),
+"variants": [Vector2(10, 10), 4, 7, ExtResource("1_424ct"), 0.0, 1, true, ExtResource("2_11jtl"), 30.0, 300, 100, 4.0, false, Vector2(4, 6), Vector2(17.4, 16.75), NodePath(""), "idle", 0.8, {
+"": SubResource("AnimationLibrary_jdr8w")
+}, Vector2(-0.0692201, 0), -1.57079, ExtResource("3_dm0po"), 3, {
+"": SubResource("AnimationLibrary_bm0np")
+}, Vector2(0, -1), Vector2(0.5, 0.5), SubResource("CircleShape2D_m7bfp")],
+"version": 3
+}
+
+[resource]
+script = ExtResource("2_nhi45")
+repeat_n_times = 1
+mob_timer = 8.2
+wait_timer = 0.1
+skip_chance = 0.0
+spawn_pattern = 1
+mobs = Array[PackedScene]([SubResource("PackedScene_8v685")])
+is_checkpoint = true
+total_wave_time = 8.3
