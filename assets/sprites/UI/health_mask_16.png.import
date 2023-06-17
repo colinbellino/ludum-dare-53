@@ -2,22 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba3vbgmdptgkf"
-path="res://.godot/imported/world_map_node_0.png-5b55d64b500e5e6ba9258efec92dad66.ctex"
+uid="uid://c4hqxqg26ne7i"
+path="res://.godot/imported/health_mask_16.png-ace2b1938ee1d748aa0f3b62e48f5f33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/world_map_node_0.png"
-dest_files=["res://.godot/imported/world_map_node_0.png-5b55d64b500e5e6ba9258efec92dad66.ctex"]
+source_file="res://assets/sprites/UI/health_mask_16.png"
+dest_files=["res://.godot/imported/health_mask_16.png-ace2b1938ee1d748aa0f3b62e48f5f33.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba3vbgmdptgkf"
-path="res://.godot/imported/world_map_node_0.png-5b55d64b500e5e6ba9258efec92dad66.ctex"
+uid="uid://57rh6oj6mobx"
+path="res://.godot/imported/health_32.png-b84a95f0603be2c4ef457689e298499a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/world_map_node_0.png"
-dest_files=["res://.godot/imported/world_map_node_0.png-5b55d64b500e5e6ba9258efec92dad66.ctex"]
+source_file="res://assets/sprites/UI/health_32.png"
+dest_files=["res://.godot/imported/health_32.png-b84a95f0603be2c4ef457689e298499a.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

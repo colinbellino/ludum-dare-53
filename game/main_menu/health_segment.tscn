@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuue3esqpqvlo"]
+
+[ext_resource type="Shader" path="res://assets/shaders/sprite_mask.gdshader" id="1_a7y53"]
+[ext_resource type="Texture2D" uid="uid://c4hqxqg26ne7i" path="res://assets/sprites/UI/health_mask_16.png" id="2_6ub0e"]
+[ext_resource type="Texture2D" uid="uid://db83bq0rcbhq" path="res://assets/sprites/UI/health_16.png" id="3_glcgg"]
+[ext_resource type="Script" path="res://game/level/HealthSegment.gd" id="4_cksdw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qno45"]
+shader = ExtResource("1_a7y53")
+shader_parameter/mask_offset = Vector2i(4, 0)
+shader_parameter/mask_texture = ExtResource("2_6ub0e")
+
+[node name="HealthSegment0" type="TextureRect"]
+material = SubResource("ShaderMaterial_qno45")
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_glcgg")
+script = ExtResource("4_cksdw")

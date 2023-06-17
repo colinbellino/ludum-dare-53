@@ -1,13 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0t354m6rhmk5"]
+[gd_scene load_steps=9 format=3 uid="uid://b0t354m6rhmk5"]
 
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_i5mdm"]
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
+[ext_resource type="PackedScene" uid="uid://cuue3esqpqvlo" path="res://game/main_menu/health_segment.tscn" id="3_3x6y8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy11l"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
-bg_color = Color(0, 0, 0, 0.784314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ymej"]
 bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
@@ -16,6 +14,9 @@ bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7p1d"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
+bg_color = Color(0, 0, 0, 0.784314)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -48,37 +49,71 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -8.5
-offset_right = 83.0
-offset_bottom = 8.5
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 81.0
+offset_bottom = 27.0
 grow_vertical = 2
 text = "HP: 999/999"
 vertical_alignment = 1
+
+[node name="HealthBar" type="HBoxContainer" parent="Top Panel/Health"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -7.0
+offset_right = 292.0
+offset_bottom = 9.0
+grow_vertical = 2
+
+[node name="HealthSegment0" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment1" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment2" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment3" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment4" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment5" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment6" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
+
+[node name="HealthSegment7" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]
+layout_mode = 2
 
 [node name="Currency" type="Label" parent="Top Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 150.0
-offset_right = 250.0
+offset_left = 206.0
+offset_right = 306.0
 grow_vertical = 2
 theme = ExtResource("1_i5mdm")
 text = "Currency: 9999"
 vertical_alignment = 1
 
-[node name="Level" type="Panel" parent="Top Panel"]
+[node name="Level" type="Control" parent="Top Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -210.0
-offset_right = 210.0
+offset_left = -153.0
+offset_right = 267.0
 offset_bottom = 30.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t7vs4")
 
 [node name="From" type="Label" parent="Top Panel/Level"]
 unique_name_in_owner = true

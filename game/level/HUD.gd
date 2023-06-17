@@ -3,7 +3,7 @@ class_name HUD extends Node
 var button_pause: Button
 var label_currency: Label
 var label_health: Label
-var level_panel: Panel
+var level_panel: Control
 var level_progress: ProgressBar
 var level_from: Label
 var level_to: Label
