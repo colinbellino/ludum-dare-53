@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/resources/WaveTemplate.gd" id="4_6supe"]
 
 [resource]
-resource_name = "Just Asteroids"
+resource_name = "Asteroids"
 script = ExtResource("4_6supe")
 min_difficulty = 0.0
 mid_difficulty = 4999.0

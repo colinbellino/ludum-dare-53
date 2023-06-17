@@ -32,9 +32,8 @@ func init(root_node: WorldMapNode) -> void:
 		add_child(node_button)
 		node_button.node = node
 		node_button.name = node.name
-		node_button.label_name.text = node.name
-		# node_button.label_name.text = "%s (%s -> %s)" % [node.name, node.wave_template.resource_name, node.checkpoint_wave.resource_name]
-		print("%s (%s -> %s)" % [node.name, node.wave_template.resource_name, node.checkpoint_wave.resource_name])
+		# node_button.label_name.text = node.name
+		node_button.label_name.text = "%s (%s)" % [node.name, node.wave_template.resource_name]
 		node_button.position = _scale_position(node.position)
 		node_button.button.connect("pressed", _node_pressed.bind(node))
 		node_button.button.disabled = current_node.parents.size() == 0 || current_node.parents.has(node) == false

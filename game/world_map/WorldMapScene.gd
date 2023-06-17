@@ -40,12 +40,15 @@ var names : Array[String] = [
 	"Patdania Gamma",
 	"Beta Zedroid 12",
 ]
-const wave_templates : Array[WaveTemplate] = [
+var wave_templates : Array[WaveTemplate] = [
 	Res.WAVE_TEMPLATE_0,
 	Res.WAVE_TEMPLATE_1,
 	Res.WAVE_TEMPLATE_2,
 	Res.WAVE_TEMPLATE_3,
 	Res.WAVE_TEMPLATE_4,
+]
+var wave_templates_boss : Array[WaveTemplate] = [
+	Res.WAVE_TEMPLATE_BOSS_0,
 ]
 var button_skip : Button
 var panel_map : WorldMapPanel
@@ -75,7 +78,7 @@ func button_skip_pressed() -> void:
 func map_node_selected(_selected_node: WorldMapNode) -> void:
 	queue_free()
 
-func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
+func make_world_node(position: Vector2, node_name: String = "", is_boss: bool = false) -> WorldMapNode:
 	var node = WorldMapNode.new()
 
 	if node_name == "":
@@ -83,11 +86,11 @@ func make_world_node(position: Vector2, node_name: String = "") -> WorldMapNode:
 		names.erase(node.name)
 	else:
 		node.name = node_name
-		if node_name == "Boss":
-			node.checkpoint_wave = Res.WAVE_CHECKPOINT_1
-
 	node.position = position + Vector2(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
-	node.wave_template = wave_templates[randi_range(0, wave_templates.size() - 1)]
+	if is_boss:
+		node.wave_template = wave_templates_boss[randi_range(0, wave_templates_boss.size() - 1)]
+	else:
+		node.wave_template = wave_templates[randi_range(0, wave_templates.size() - 1)]
 	node.color = colors[randi_range(0, colors.size() - 1 )]
 	colors.erase(node.color)
 	node.size = randf_range(10, 15)
@@ -98,7 +101,7 @@ static func connect_node(from: WorldMapNode, to: WorldMapNode) -> void:
 	to.parents.append(from)
 
 func generate_world_map() -> void:
-	var root = make_world_node(Vector2(0, 0), "Boss")
+	var root = make_world_node(Vector2(0, 0), "Boss", true)
 	var node1 = make_world_node(Vector2(-1, 1))
 	var node2 = make_world_node(Vector2(1, 1))
 	var node3 = make_world_node(Vector2(-2, 2))

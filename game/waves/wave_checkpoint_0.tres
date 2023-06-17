@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://game/monster_spawner/Wave.gd" id="2_i43xf"]
 
 [resource]
+resource_name = "Checkpoint 0"
 script = ExtResource("2_i43xf")
 repeat_n_times = 1
 mob_timer = 8.2
