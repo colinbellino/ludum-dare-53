@@ -17,9 +17,6 @@ func _ready() -> void:
 
 	Engine.set_time_scale(1)
 
-	var version = Utils.load_file(Res.PATH_VERSION)
-	print("version: ", version.strip_edges())
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("ui_cancel"):
 		quit()
