@@ -1,19 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://dwkdkc4usw3yn"]
+[gd_scene load_steps=27 format=3 uid="uid://dwkdkc4usw3yn"]
 
 [ext_resource type="Script" path="res://game/ship/Ship.gd" id="1_sr84i"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_plweg"]
 [ext_resource type="PackedScene" uid="uid://capgpw4kxltue" path="res://game/ship/ShipSlot.tscn" id="3_tqesp"]
 [ext_resource type="PackedScene" uid="uid://be5fk04vsboo8" path="res://game/turrets/Cargo.tscn" id="4_nqc78"]
 [ext_resource type="Texture2D" uid="uid://bo5f8sb21d5dj" path="res://assets/sprites/cart/misc/SSANIM_yellowjacketboosters_idle.png" id="5_nw6b8"]
-[ext_resource type="PackedScene" uid="uid://dgkybvrib4flo" path="res://game/turrets/Turret1a.tscn" id="6_nvxw4"]
-[ext_resource type="PackedScene" uid="uid://bia8auplcnwpe" path="res://game/turrets/Turret1b.tscn" id="7_vopek"]
-[ext_resource type="PackedScene" uid="uid://b7mmh7owwie4a" path="res://game/turrets/Turret1c.tscn" id="8_k7yv0"]
-[ext_resource type="PackedScene" uid="uid://bceivyuldqtxg" path="res://game/turrets/Turret2a.tscn" id="9_ga3ft"]
-[ext_resource type="PackedScene" uid="uid://din14vck2lg1m" path="res://game/turrets/Turret2b.tscn" id="10_tdoep"]
-[ext_resource type="PackedScene" uid="uid://dx3opawx3bmro" path="res://game/turrets/Turret2c.tscn" id="11_ves28"]
-[ext_resource type="PackedScene" uid="uid://b2kdi5v4blgir" path="res://game/turrets/Turret3a.tscn" id="12_j32nc"]
-[ext_resource type="PackedScene" uid="uid://cucjearxgxp5y" path="res://game/turrets/Turret3b.tscn" id="13_yvvvw"]
-[ext_resource type="PackedScene" uid="uid://dcnshgv0mdagd" path="res://game/turrets/Turret3c.tscn" id="14_xfxde"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpml2"]
 atlas = ExtResource("2_plweg")
@@ -260,30 +251,3 @@ z_index = 2
 position = Vector2(0, 26)
 shape = SubResource("CircleShape2D_lkqt8")
 debug_color = Color(0.870588, 0, 0.854902, 0.419608)
-
-[node name="Plasma" parent="." instance=ExtResource("6_nvxw4")]
-position = Vector2(-176, -30)
-
-[node name="Plasma2" parent="." instance=ExtResource("7_vopek")]
-position = Vector2(-193, 22)
-
-[node name="Plasma3" parent="." instance=ExtResource("8_k7yv0")]
-position = Vector2(-174, 68)
-
-[node name="Railbeam" parent="." instance=ExtResource("9_ga3ft")]
-position = Vector2(241, -34)
-
-[node name="Railbeam2" parent="." instance=ExtResource("10_tdoep")]
-position = Vector2(252, -2)
-
-[node name="Railbeam3" parent="." instance=ExtResource("11_ves28")]
-position = Vector2(238, 44)
-
-[node name="Disruptor" parent="." instance=ExtResource("12_j32nc")]
-position = Vector2(-49, -128)
-
-[node name="Disruptor2" parent="." instance=ExtResource("13_yvvvw")]
-position = Vector2(0, -141)
-
-[node name="Disruptor3" parent="." instance=ExtResource("14_xfxde")]
-position = Vector2(43, -130)

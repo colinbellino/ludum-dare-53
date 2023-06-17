@@ -77,11 +77,13 @@ func _node_mouse_exited(node: WorldMapNode) -> void:
 
 func _node_pressed(node: WorldMapNode) -> void:
 	var current_node : WorldMapNode = GameData.map_previous_nodes[GameData.map_previous_nodes.size() - 1]
-	if Input.is_action_just_released("mouse_left") && node != null:
-		if node.children.has(current_node):
-			GameData.map_previous_nodes.append(node)
-			AudioPlayer.play_ui_button_sound()
-			if Input.is_key_pressed(KEY_SHIFT) == false:
-				emit_signal("node_selected", node)
-		else:
-			AudioPlayer.play_ui_error_sound()
+	if node == null:
+		return
+
+	if node.children.has(current_node):
+		GameData.map_previous_nodes.append(node)
+		AudioPlayer.play_ui_button_sound()
+		if Input.is_key_pressed(KEY_SHIFT) == false:
+			emit_signal("node_selected", node)
+	else:
+		AudioPlayer.play_ui_error_sound()
