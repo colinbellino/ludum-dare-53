@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0t354m6rhmk5"]
+[gd_scene load_steps=8 format=3 uid="uid://b0t354m6rhmk5"]
 
 [ext_resource type="Theme" uid="uid://cvagu3odjyln7" path="res://assets/main.theme" id="1_i5mdm"]
 [ext_resource type="Script" path="res://game/level/HUD.gd" id="2_f74ki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy11l"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vs4"]
 bg_color = Color(0, 0, 0, 0.784314)
@@ -25,7 +28,47 @@ mouse_filter = 2
 theme = ExtResource("1_i5mdm")
 script = ExtResource("2_f74ki")
 
-[node name="Level" type="Panel" parent="."]
+[node name="Top Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 30.0
+theme = ExtResource("1_i5mdm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cy11l")
+
+[node name="Health" type="Control" parent="Top Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+
+[node name="HealthLabel" type="Label" parent="Top Panel/Health"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -8.5
+offset_right = 83.0
+offset_bottom = 8.5
+grow_vertical = 2
+text = "HP: 999/999"
+vertical_alignment = 1
+
+[node name="Currency" type="Label" parent="Top Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_right = 250.0
+grow_vertical = 2
+theme = ExtResource("1_i5mdm")
+text = "Currency: 9999"
+vertical_alignment = 1
+
+[node name="Level" type="Panel" parent="Top Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
@@ -37,7 +80,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7vs4")
 
-[node name="From" type="Label" parent="Level"]
+[node name="From" type="Label" parent="Top Panel/Level"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -52,7 +95,7 @@ text = "FROM FROM FROM FROM FROM"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Wave" type="ProgressBar" parent="Level"]
+[node name="Wave" type="ProgressBar" parent="Top Panel/Level"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -72,7 +115,7 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="To" type="Label" parent="Level"]
+[node name="To" type="Label" parent="Top Panel/Level"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -88,6 +131,18 @@ grow_vertical = 2
 theme = ExtResource("1_i5mdm")
 text = "TO TO TO TO TO TO TO TO "
 vertical_alignment = 1
+
+[node name="Pause" type="Button" parent="Top Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e7p1d")
+text = "Pause"
 
 [node name="DebugPanel" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -113,37 +168,3 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i5mdm")
-
-[node name="Pause" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -100.0
-offset_bottom = 30.0
-grow_horizontal = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_e7p1d")
-text = "Pause"
-
-[node name="Currency" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-offset_top = 15.0
-offset_right = 93.0
-offset_bottom = 32.0
-theme = ExtResource("1_i5mdm")
-text = "Currency: 9999"
-vertical_alignment = 1
-
-[node name="Health" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HealthLabel" type="Label" parent="Health"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 14.0
-text = "HP: 999/999"
