@@ -14,7 +14,8 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_released("debug_10"):
 			for child in GameData.level.mob_spawner.get_children():
 				# FIXME: Merge Mob.dg and NewMob.gd
-				child.call("take_hit", 9999)
+				if child.has_method("take_hit"):
+					child.call("take_hit", 9999)
 
 		if Input.is_action_just_released("debug_11"):
 			GameData.cheat_skip_checkpoint = !GameData.cheat_skip_checkpoint

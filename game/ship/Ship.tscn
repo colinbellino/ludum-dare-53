@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://dwkdkc4usw3yn"]
+[gd_scene load_steps=29 format=3 uid="uid://dwkdkc4usw3yn"]
 
 [ext_resource type="Script" path="res://game/ship/Ship.gd" id="1_sr84i"]
 [ext_resource type="Texture2D" uid="uid://dxf0gvfd80vlt" path="res://assets/sprites/cart/misc/ss_ship_misc.png" id="2_plweg"]
 [ext_resource type="PackedScene" uid="uid://capgpw4kxltue" path="res://game/ship/ShipSlot.tscn" id="3_tqesp"]
-[ext_resource type="PackedScene" uid="uid://be5fk04vsboo8" path="res://game/turrets/Cargo.tscn" id="4_nqc78"]
+[ext_resource type="PackedScene" uid="uid://dgkybvrib4flo" path="res://game/turrets/Turret1a.tscn" id="4_uw513"]
+[ext_resource type="PackedScene" uid="uid://bceivyuldqtxg" path="res://game/turrets/Turret2a.tscn" id="5_eptxl"]
 [ext_resource type="Texture2D" uid="uid://bo5f8sb21d5dj" path="res://assets/sprites/cart/misc/SSANIM_yellowjacketboosters_idle.png" id="5_nw6b8"]
+[ext_resource type="PackedScene" uid="uid://b2kdi5v4blgir" path="res://game/turrets/Turret3a.tscn" id="6_i3y5w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpml2"]
 atlas = ExtResource("2_plweg")
@@ -152,11 +154,11 @@ offset = Vector2(1, 1.5)
 
 [node name="ShipSlot3" parent="section_main" instance=ExtResource("3_tqesp")]
 position = Vector2(-7, 15)
-current_structure = ExtResource("4_nqc78")
+current_structure = ExtResource("4_uw513")
 
 [node name="ShipSlot4" parent="section_main" instance=ExtResource("3_tqesp")]
 position = Vector2(9, 15)
-current_structure = ExtResource("4_nqc78")
+current_structure = ExtResource("5_eptxl")
 
 [node name="section_3x1" type="Sprite2D" parent="."]
 visible = false
@@ -204,19 +206,16 @@ region_rect = Rect2(446, 2, 64, 71)
 
 [node name="ShipSlot5" parent="section_boosters" instance=ExtResource("3_tqesp")]
 position = Vector2(16, 26)
-current_structure = ExtResource("4_nqc78")
+current_structure = ExtResource("6_i3y5w")
 
 [node name="ShipSlot6" parent="section_boosters" instance=ExtResource("3_tqesp")]
 position = Vector2(32, 18)
-current_structure = ExtResource("4_nqc78")
 
 [node name="ShipSlot7" parent="section_boosters" instance=ExtResource("3_tqesp")]
 position = Vector2(32, 34)
-current_structure = ExtResource("4_nqc78")
 
 [node name="ShipSlot8" parent="section_boosters" instance=ExtResource("3_tqesp")]
 position = Vector2(48, 26)
-current_structure = ExtResource("4_nqc78")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="section_boosters"]
 show_behind_parent = true
@@ -230,11 +229,11 @@ centered = false
 
 [node name="ConstructMenu" parent="." instance_placeholder="res://game/ship/EmptySlotUI.tscn"]
 unique_name_in_owner = true
-z_index = 2
+z_index = 11
 
 [node name="RepairMenu" parent="." instance_placeholder="res://game/ship/ConstructedSlotUI.tscn"]
 unique_name_in_owner = true
-z_index = 2
+z_index = 11
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
