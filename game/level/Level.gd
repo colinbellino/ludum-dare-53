@@ -23,13 +23,11 @@ func _ready() -> void:
 	mob_spawner.connect("wave_over", on_wave_over)
 	mob_spawner.connect("wave_spawn", on_wave_spawn)
 	next_wave_index = 0
-	hud.visible = true
-
 	Engine.set_time_scale(1)
 	GameData.level = self
 	GameData.money = GameData.STARTING_MONEY
 	ship.health_current = ship.health_max
-
+	hud.visible = true
 	hud.update_health()
 
 	# start_wave()

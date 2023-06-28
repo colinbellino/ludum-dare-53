@@ -58,14 +58,15 @@ text = "HP: 999/999"
 vertical_alignment = 1
 
 [node name="HealthBar" type="HBoxContainer" parent="Top Panel/Health"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 8.0
-offset_top = -7.0
+offset_top = -8.0
 offset_right = 292.0
-offset_bottom = 9.0
+offset_bottom = 8.0
 grow_vertical = 2
 
 [node name="HealthSegment0" parent="Top Panel/Health/HealthBar" instance=ExtResource("3_3x6y8")]

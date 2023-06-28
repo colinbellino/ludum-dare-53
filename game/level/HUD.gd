@@ -1,23 +1,25 @@
 class_name HUD extends Node
 
-var button_pause: Button
-var label_currency: Label
-var label_health: Label
+var pause_button: Button
+var currency_label: Label
+var health_label: Label
+var control_health: Control
 var level_panel: Control
 var level_progress: ProgressBar
 var level_from: Label
 var level_to: Label
-var panel_debug: Panel
-var label_debug: Label
+var debug_panel: Panel
+var debug_label: Label
 
 func _ready() -> void:
-	button_pause = get_node("%Pause")
-	button_pause.connect("pressed", button_pause_pressed)
-	panel_debug = get_node("%DebugPanel")
-	panel_debug.visible = OS.is_debug_build()
-	label_debug = get_node("%DebugLabel")
-	label_currency = get_node("%Currency")
-	label_health = get_node("%HealthLabel")
+	pause_button = get_node("%Pause")
+	pause_button.connect("pressed", pause_pressed_button)
+	debug_panel = get_node("%DebugPanel")
+	debug_panel.visible = OS.is_debug_build()
+	debug_label = get_node("%DebugLabel")
+	currency_label = get_node("%Currency")
+	health_label = get_node("%HealthLabel")
+	control_health = get_node("%HealthBar")
 	level_progress = get_node("%Wave")
 	level_panel = get_node("%Level")
 	level_from = get_node("%From")
@@ -27,7 +29,7 @@ func _ready() -> void:
 
 # TODO: don't do this every frame
 func _process(_delta: float) -> void:
-	label_currency.text = tr("Currency: %d") % [GameData.money]
+	currency_label.text = tr("Currency: %d") % [GameData.money]
 	update_health()
 	if OS.is_debug_build():
 		update_debug_panel()
@@ -48,9 +50,18 @@ func update_health() -> void:
 	if GameData.level == null:
 		return
 
-	label_health.text = "HP: %s/%s" % [GameData.level.ship.health_current, GameData.level.ship.health_max]
+	health_label.text = "HP: %s/%s" % [GameData.level.ship.health_current, GameData.level.ship.health_max]
+	var remaining = GameData.level.ship.health_current
+	var children := control_health.get_children()
+	for i in range(0, children.size()):
+		var child := children[i]
 
-func button_pause_pressed() -> void:
+		var value := clampi(remaining, 0, 4)
+		child.set_value(value)
+		remaining -= 4
+
+
+func pause_pressed_button() -> void:
 	Overlay.show_modal(Res.SCENE_PAUSE)
 
 func update_wave_progress(wave: Wave, wave_index: int, wave_length: int) -> void:
@@ -73,4 +84,4 @@ func update_debug_panel() -> void:
 - F10   : Kill all mobs
 - F11   : Skip checkpoints (%s)
 - F12   : Invincibility (%s)" % [GameData.version, Engine.time_scale, "ON" if GameData.cheat_skip_checkpoint else "OFF", "ON" if GameData.cheat_invincible else "OFF"]
-	label_debug.text = text
+	debug_label.text = text
