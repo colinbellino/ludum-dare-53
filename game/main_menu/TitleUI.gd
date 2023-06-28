@@ -8,7 +8,8 @@ func _ready() -> void:
 	button_start = get_node("%Start")
 	button_start.grab_focus()
 
-	Settings.load_all()
+	if Settings.resource == null:
+		Settings.load_all()
 	AudioPlayer.play_music(Res.MUSIC_TITLE)
 
 	GameData.money = GameData.STARTING_MONEY
